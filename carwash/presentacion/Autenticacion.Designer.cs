@@ -35,10 +35,11 @@
             pictureBoxAdministrador = new PictureBox();
             textBoxNombreUsuario = new TextBox();
             pictureBoxContrasena = new PictureBox();
-            textBox1 = new TextBox();
+            textBoxContrasena = new TextBox();
             buttonIniciarSesion = new Button();
             panelDecorativoAzulOscuro = new Panel();
             buttonMostrarEsconderContrasena = new Button();
+            labelCredencialesInvalidas = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAdministrador).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxContrasena).BeginInit();
             SuspendLayout();
@@ -104,14 +105,15 @@
             pictureBoxContrasena.TabIndex = 5;
             pictureBoxContrasena.TabStop = false;
             // 
-            // textBox1
+            // textBoxContrasena
             // 
-            textBox1.Font = new Font("Nacelle", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(740, 673);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(447, 22);
-            textBox1.TabIndex = 6;
-            textBox1.Text = "Contraseña";
+            textBoxContrasena.Font = new Font("Nacelle", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBoxContrasena.Location = new Point(740, 673);
+            textBoxContrasena.Name = "textBoxContrasena";
+            textBoxContrasena.Size = new Size(447, 22);
+            textBoxContrasena.TabIndex = 6;
+            textBoxContrasena.Text = "Contraseña";
+            textBoxContrasena.UseSystemPasswordChar = true;
             // 
             // buttonIniciarSesion
             // 
@@ -125,6 +127,7 @@
             buttonIniciarSesion.TabIndex = 7;
             buttonIniciarSesion.Text = "Iniciar Sesión";
             buttonIniciarSesion.UseVisualStyleBackColor = false;
+            buttonIniciarSesion.Click += buttonIniciarSesion_Click;
             // 
             // panelDecorativoAzulOscuro
             // 
@@ -144,6 +147,19 @@
             buttonMostrarEsconderContrasena.Size = new Size(40, 40);
             buttonMostrarEsconderContrasena.TabIndex = 9;
             buttonMostrarEsconderContrasena.UseVisualStyleBackColor = true;
+            buttonMostrarEsconderContrasena.Click += buttonMostrarEsconderContrasena_Click;
+            // 
+            // labelCredencialesInvalidas
+            // 
+            labelCredencialesInvalidas.AutoSize = true;
+            labelCredencialesInvalidas.Font = new Font("Nacelle", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelCredencialesInvalidas.ForeColor = Color.Red;
+            labelCredencialesInvalidas.Location = new Point(789, 708);
+            labelCredencialesInvalidas.Name = "labelCredencialesInvalidas";
+            labelCredencialesInvalidas.Size = new Size(331, 19);
+            labelCredencialesInvalidas.TabIndex = 10;
+            labelCredencialesInvalidas.Text = "Nombre de usuario o contraseña incorrecta.";
+            labelCredencialesInvalidas.Visible = false;
             // 
             // Autenticacion
             // 
@@ -151,10 +167,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(1904, 1041);
+            Controls.Add(labelCredencialesInvalidas);
             Controls.Add(buttonMostrarEsconderContrasena);
             Controls.Add(panelDecorativoAzulOscuro);
             Controls.Add(buttonIniciarSesion);
-            Controls.Add(textBox1);
+            Controls.Add(textBoxContrasena);
             Controls.Add(pictureBoxContrasena);
             Controls.Add(textBoxNombreUsuario);
             Controls.Add(pictureBoxAdministrador);
@@ -179,9 +196,10 @@
         private PictureBox pictureBoxAdministrador;
         private TextBox textBoxNombreUsuario;
         private PictureBox pictureBoxContrasena;
-        private TextBox textBox1;
+        private TextBox textBoxContrasena;
         private Button buttonIniciarSesion;
         private Panel panelDecorativoAzulOscuro;
         private Button buttonMostrarEsconderContrasena;
+        private Label labelCredencialesInvalidas;
     }
 }

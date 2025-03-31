@@ -9,7 +9,7 @@ namespace persistencia
 {
     internal class Conexion
     {
-        private MySqlConnection conexion = new MySqlConnection("Server=localhost;Database=carwash;User Id=root;Password=root;");
+        private MySqlConnection conexion = new MySqlConnection("Server=localhost;Database=carwash;User Id=root;");
 
         public MySqlConnection abrirConexion() {
             if (conexion.State == System.Data.ConnectionState.Closed)

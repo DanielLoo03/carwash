@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace negocios
 {
-    internal class LogicaNegocios
+    public class LogicaNegocios
     {
         private AdministradoresService administradoresService = new AdministradoresService();
 
@@ -15,7 +15,7 @@ namespace negocios
             DataTable administradores = administradoresService.obtenerAdministradores();
 
             foreach (DataRow administrador in administradores.Rows) {
-                if (nombreUsuario.Equals(administrador["nombre"]) && contrasena.Equals(administrador["contrasena"])) {
+                if (nombreUsuario.Equals(administrador["nombreUsuario"]) && contrasena.Equals(administrador["contrasena"])) {
                     return true;
                 }
             }

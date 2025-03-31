@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6759A920-27C2-4953-B668-A3E92AE8BC1E}|presentacion\\presentacion.csproj|c:\\users\\daniel loo\\repos\\carwash\\carwash\\presentacion\\autenticacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6759A920-27C2-4953-B668-A3E92AE8BC1E}|presentacion\\presentacion.csproj|solutionrelative:presentacion\\autenticacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6759A920-27C2-4953-B668-A3E92AE8BC1E}|presentacion\\presentacion.csproj|c:\\users\\daniel loo\\repos\\carwash\\carwash\\presentacion\\autenticacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{6759A920-27C2-4953-B668-A3E92AE8BC1E}|presentacion\\presentacion.csproj|solutionrelative:presentacion\\autenticacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
@@ -14,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,15 +30,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Autenticacion.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\Autenticacion.cs",
               "RelativeDocumentMoniker": "presentacion\\Autenticacion.cs",
               "ToolTip": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\Autenticacion.cs [Design]",
               "RelativeToolTip": "presentacion\\Autenticacion.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T04:02:00.873Z",
+              "WhenOpened": "2025-03-31T04:26:33.519Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Autenticacion.cs",
+              "DocumentMoniker": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\Autenticacion.cs",
+              "RelativeDocumentMoniker": "presentacion\\Autenticacion.cs",
+              "ToolTip": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\Autenticacion.cs",
+              "RelativeToolTip": "presentacion\\Autenticacion.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAADwvygAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T04:07:54.562Z",
+              "EditorCaption": ""
             }
           ]
         }

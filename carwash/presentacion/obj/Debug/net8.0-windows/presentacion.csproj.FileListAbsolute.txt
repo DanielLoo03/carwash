@@ -45,3 +45,4 @@ C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\
 C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\presentacion.pdb
 C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\presentacion.genruntimeconfig.cache
 C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\ref\presentacion.dll
+C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\presentacion.MenuPrincipal.resources
