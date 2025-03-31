@@ -3,7 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{67FB6456-420E-4783-9498-A82BDF51F1B1}|..\\persistencia\\persistencia.csproj|c:\\users\\daniel loo\\repos\\carwash\\persistencia\\administradoresdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{39601310-FE69-4009-BB5C-D9923B61C971}|negocios\\negocios.csproj|c:\\users\\daniel loo\\repos\\carwash\\carwash\\negocios\\logicanegocios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39601310-FE69-4009-BB5C-D9923B61C971}|negocios\\negocios.csproj|solutionrelative:negocios\\logicanegocios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,14 +27,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AdministradoresDAO.cs",
-              "DocumentMoniker": "C:\\Users\\Daniel Loo\\repos\\carwash\\persistencia\\AdministradoresDAO.cs",
-              "RelativeDocumentMoniker": "..\\persistencia\\AdministradoresDAO.cs",
-              "ToolTip": "C:\\Users\\Daniel Loo\\repos\\carwash\\persistencia\\AdministradoresDAO.cs",
-              "RelativeToolTip": "..\\persistencia\\AdministradoresDAO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAWAAAA",
+              "Title": "LogicaNegocios.cs",
+              "DocumentMoniker": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\negocios\\LogicaNegocios.cs",
+              "RelativeDocumentMoniker": "negocios\\LogicaNegocios.cs",
+              "ToolTip": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\negocios\\LogicaNegocios.cs",
+              "RelativeToolTip": "negocios\\LogicaNegocios.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T23:02:19.607Z",
+              "WhenOpened": "2025-03-31T01:10:47.883Z",
               "EditorCaption": ""
             }
           ]
