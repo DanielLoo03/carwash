@@ -15,6 +15,10 @@ namespace presentacion
         public Autenticacion()
         {
             InitializeComponent();
+            //Se cargan fuentes para Form desde los recursos de la capa (resources.resx)
+            labelCarWash.Font = Fuentes.obtenerFuente(64, FontStyle.Bold, "Inter");
+            labelLeo.Font = Fuentes.obtenerFuente(64, FontStyle.Bold, "Inter");
+            labelInicioDeSesion.Font = Fuentes.obtenerFuente(36, FontStyle.Regular, "Nacelle");
         }
 
         private void Autenticacion_Load(object sender, EventArgs e)
@@ -22,9 +26,5 @@ namespace presentacion
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

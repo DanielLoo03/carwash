@@ -31,19 +31,19 @@ namespace presentacion
             Marshal.FreeCoTaskMem(punteroFuenteNacelleRegular);
         }
 
-        public static Font obtenerFuente(float tamano, FontStyle estilo)
+        public static Font obtenerFuente(float tamano, FontStyle estilo, String familiaSeleccionada)
         {
             FontFamily fuente = null;
 
             // Buscar la fuente según el estilo
             foreach (FontFamily familia in privateFonts.Families)
             {
-                if (estilo == FontStyle.Regular && familia.Name.Contains("Nacelle"))
+                if (estilo == FontStyle.Regular && familiaSeleccionada.Equals("Nacelle") && familia.Name.Contains("Nacelle"))
                 {
                     fuente = familia;
                     break;
                 }
-                else if (estilo == FontStyle.Bold && familia.Name.Contains("Inter"))
+                else if (estilo == FontStyle.Bold && familiaSeleccionada.Equals("Inter") && familia.Name.Contains("Inter"))
                 {
                     fuente = familia;
                     break;
