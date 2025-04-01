@@ -12,13 +12,28 @@ namespace presentacion
 {
     public partial class MenuPrincipal : Form
     {
-        public MenuPrincipal()
+        private Form ventanaAutenticacion;
+
+        public MenuPrincipal(Form ventanaAutenticacion)
         {
             InitializeComponent();
+            this.ventanaAutenticacion = ventanaAutenticacion;
         }
 
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonSalir_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ventanaAutenticacion.Show();
 
         }
     }

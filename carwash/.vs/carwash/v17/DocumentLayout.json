@@ -7,6 +7,14 @@
       "RelativeMoniker": "D:0:0:{6759A920-27C2-4953-B668-A3E92AE8BC1E}|presentacion\\presentacion.csproj|solutionrelative:presentacion\\autenticacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{6759A920-27C2-4953-B668-A3E92AE8BC1E}|presentacion\\presentacion.csproj|c:\\users\\daniel loo\\repos\\carwash\\carwash\\presentacion\\menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{6759A920-27C2-4953-B668-A3E92AE8BC1E}|presentacion\\presentacion.csproj|solutionrelative:presentacion\\menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6759A920-27C2-4953-B668-A3E92AE8BC1E}|presentacion\\presentacion.csproj|c:\\users\\daniel loo\\repos\\carwash\\carwash\\presentacion\\menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6759A920-27C2-4953-B668-A3E92AE8BC1E}|presentacion\\presentacion.csproj|solutionrelative:presentacion\\menuprincipal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6759A920-27C2-4953-B668-A3E92AE8BC1E}|presentacion\\presentacion.csproj|c:\\users\\daniel loo\\repos\\carwash\\carwash\\presentacion\\autenticacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{6759A920-27C2-4953-B668-A3E92AE8BC1E}|presentacion\\presentacion.csproj|solutionrelative:presentacion\\autenticacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
@@ -36,21 +44,46 @@
               "RelativeDocumentMoniker": "presentacion\\Autenticacion.cs",
               "ToolTip": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\Autenticacion.cs",
               "RelativeToolTip": "presentacion\\Autenticacion.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAANAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T06:08:44.807Z",
+              "WhenOpened": "2025-04-01T06:51:10.568Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "MenuPrincipal.cs",
+              "DocumentMoniker": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\MenuPrincipal.cs",
+              "RelativeDocumentMoniker": "presentacion\\MenuPrincipal.cs",
+              "ToolTip": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\MenuPrincipal.cs",
+              "RelativeToolTip": "presentacion\\MenuPrincipal.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACMAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T06:49:40.879Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Autenticacion.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\Autenticacion.cs",
               "RelativeDocumentMoniker": "presentacion\\Autenticacion.cs",
               "ToolTip": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\Autenticacion.cs [Design]",
               "RelativeToolTip": "presentacion\\Autenticacion.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T06:07:40.17Z",
+              "WhenOpened": "2025-04-01T06:35:56.569Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MenuPrincipal.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\MenuPrincipal.cs",
+              "RelativeDocumentMoniker": "presentacion\\MenuPrincipal.cs",
+              "ToolTip": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\MenuPrincipal.cs [Design]",
+              "RelativeToolTip": "presentacion\\MenuPrincipal.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T06:33:43.859Z",
               "EditorCaption": " [Design]"
             }
           ]

@@ -15,6 +15,7 @@ namespace presentacion
     {
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
         private ValidacionesUI validacionesUI = new ValidacionesUI();
+        private MenuPrincipal ventanaMenuPrincipal;
 
         public Autenticacion()
         {
@@ -36,6 +37,9 @@ namespace presentacion
             String contrasena = textBoxContrasena.Text;
             TextBox[] textBoxesEvaluar = {textBoxNombreUsuario, textBoxContrasena};
 
+            if (ventanaMenuPrincipal == null) {
+                ventanaMenuPrincipal = new MenuPrincipal(this);
+            }
 
             if (validacionesUI.validarSiCamposVacios(textBoxesEvaluar) == true) {
                 if (labelCredencialesInvalidas.Visible == true || labelContrasenaExcedeCaracteres.Visible == true) { labelCredencialesInvalidas.Visible = false; labelContrasenaExcedeCaracteres.Visible = false; }
@@ -54,7 +58,6 @@ namespace presentacion
 
             if (logicaNegocios.login(nombreUsuario, contrasena))
             {
-                MenuPrincipal ventanaMenuPrincipal = new MenuPrincipal();
                 ventanaMenuPrincipal.Show();
                 this.Hide();
             }
