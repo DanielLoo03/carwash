@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,6 +30,19 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Autenticacion.cs",
+              "DocumentMoniker": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\Autenticacion.cs",
+              "RelativeDocumentMoniker": "presentacion\\Autenticacion.cs",
+              "ToolTip": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\Autenticacion.cs",
+              "RelativeToolTip": "presentacion\\Autenticacion.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACsAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T06:08:44.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Autenticacion.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\Autenticacion.cs",
@@ -37,21 +50,8 @@
               "ToolTip": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\Autenticacion.cs [Design]",
               "RelativeToolTip": "presentacion\\Autenticacion.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T04:26:33.519Z",
+              "WhenOpened": "2025-04-01T06:07:40.17Z",
               "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Autenticacion.cs",
-              "DocumentMoniker": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\Autenticacion.cs",
-              "RelativeDocumentMoniker": "presentacion\\Autenticacion.cs",
-              "ToolTip": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\Autenticacion.cs",
-              "RelativeToolTip": "presentacion\\Autenticacion.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAADwvygAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T04:07:54.562Z",
-              "EditorCaption": ""
             }
           ]
         }

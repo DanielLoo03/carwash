@@ -40,6 +40,9 @@
             panelDecorativoAzulOscuro = new Panel();
             buttonMostrarEsconderContrasena = new Button();
             labelCredencialesInvalidas = new Label();
+            labelCampoVacio = new Label();
+            labelNombreUsuarioExcedeCaracteres = new Label();
+            labelContrasenaExcedeCaracteres = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAdministrador).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxContrasena).BeginInit();
             SuspendLayout();
@@ -161,12 +164,51 @@
             labelCredencialesInvalidas.Text = "Nombre de usuario o contraseña incorrecta.";
             labelCredencialesInvalidas.Visible = false;
             // 
+            // labelCampoVacio
+            // 
+            labelCampoVacio.AutoSize = true;
+            labelCampoVacio.Font = new Font("Nacelle", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelCampoVacio.ForeColor = Color.Red;
+            labelCampoVacio.Location = new Point(775, 708);
+            labelCampoVacio.Name = "labelCampoVacio";
+            labelCampoVacio.Size = new Size(365, 19);
+            labelCampoVacio.TabIndex = 11;
+            labelCampoVacio.Text = "Al menos uno de los campos se encuentra vacío.";
+            labelCampoVacio.Visible = false;
+            // 
+            // labelNombreUsuarioExcedeCaracteres
+            // 
+            labelNombreUsuarioExcedeCaracteres.AutoSize = true;
+            labelNombreUsuarioExcedeCaracteres.Font = new Font("Nacelle", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelNombreUsuarioExcedeCaracteres.ForeColor = Color.Red;
+            labelNombreUsuarioExcedeCaracteres.Location = new Point(740, 593);
+            labelNombreUsuarioExcedeCaracteres.Name = "labelNombreUsuarioExcedeCaracteres";
+            labelNombreUsuarioExcedeCaracteres.Size = new Size(436, 19);
+            labelNombreUsuarioExcedeCaracteres.TabIndex = 12;
+            labelNombreUsuarioExcedeCaracteres.Text = "El nombre de usuario no puede ser mayor a 50 caracteres.";
+            labelNombreUsuarioExcedeCaracteres.Visible = false;
+            // 
+            // labelContrasenaExcedeCaracteres
+            // 
+            labelContrasenaExcedeCaracteres.AutoSize = true;
+            labelContrasenaExcedeCaracteres.Font = new Font("Nacelle", 11.9999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelContrasenaExcedeCaracteres.ForeColor = Color.Red;
+            labelContrasenaExcedeCaracteres.Location = new Point(766, 708);
+            labelContrasenaExcedeCaracteres.Name = "labelContrasenaExcedeCaracteres";
+            labelContrasenaExcedeCaracteres.Size = new Size(384, 19);
+            labelContrasenaExcedeCaracteres.TabIndex = 13;
+            labelContrasenaExcedeCaracteres.Text = "La contraseña no puede ser mayor a 50 caracteres.";
+            labelContrasenaExcedeCaracteres.Visible = false;
+            // 
             // Autenticacion
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(1904, 1041);
+            Controls.Add(labelContrasenaExcedeCaracteres);
+            Controls.Add(labelNombreUsuarioExcedeCaracteres);
+            Controls.Add(labelCampoVacio);
             Controls.Add(labelCredencialesInvalidas);
             Controls.Add(buttonMostrarEsconderContrasena);
             Controls.Add(panelDecorativoAzulOscuro);
@@ -201,5 +243,8 @@
         private Panel panelDecorativoAzulOscuro;
         private Button buttonMostrarEsconderContrasena;
         private Label labelCredencialesInvalidas;
+        private Label labelCampoVacio;
+        private Label labelNombreUsuarioExcedeCaracteres;
+        private Label labelContrasenaExcedeCaracteres;
     }
 }

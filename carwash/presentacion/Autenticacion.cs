@@ -14,6 +14,7 @@ namespace presentacion
     public partial class Autenticacion : Form
     {
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
+        private ValidacionesUI validacionesUI = new ValidacionesUI();
 
         public Autenticacion()
         {
@@ -33,6 +34,23 @@ namespace presentacion
         {
             String nombreUsuario = textBoxNombreUsuario.Text;
             String contrasena = textBoxContrasena.Text;
+            TextBox[] textBoxesEvaluar = {textBoxNombreUsuario, textBoxContrasena};
+
+
+            if (validacionesUI.validarSiCamposVacios(textBoxesEvaluar) == true) {
+                if (labelCredencialesInvalidas.Visible == true || labelContrasenaExcedeCaracteres.Visible == true) { labelCredencialesInvalidas.Visible = false; labelContrasenaExcedeCaracteres.Visible = false; }
+                labelCampoVacio.Visible = true;
+                return;
+            }
+
+            if (textBoxNombreUsuario.Text.Length > 50) {
+                labelNombreUsuarioExcedeCaracteres.Visible = true;
+            }
+            if (textBoxContrasena.Text.Length > 50) {
+                if (labelCampoVacio.Visible == true || labelCredencialesInvalidas.Visible == true) { labelCampoVacio.Visible = false; labelCredencialesInvalidas.Visible = false; }
+                labelContrasenaExcedeCaracteres.Visible = true;
+                return;
+            }
 
             if (logicaNegocios.login(nombreUsuario, contrasena))
             {
@@ -42,6 +60,7 @@ namespace presentacion
             }
             else
             {
+                if (labelCampoVacio.Visible == true || labelContrasenaExcedeCaracteres.Visible == true) { labelCampoVacio.Visible = false; labelContrasenaExcedeCaracteres.Visible = false; }
                 labelCredencialesInvalidas.Visible = true;
             }
         }
