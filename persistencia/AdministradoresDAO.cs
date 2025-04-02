@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace persistencia
 {
-    internal class AdministradoresDAO
+    public class AdministradoresDAO
     {
         private Conexion conexion = new Conexion();
         private MySqlDataReader leer;
