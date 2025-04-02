@@ -31,7 +31,7 @@ C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\bin\Debug\net8.0-windows\
 C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\bin\Debug\net8.0-windows\persistencia.pdb
 C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\presentacion.csproj.AssemblyReference.cache
 C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\presentacion.Autenticacion.resources
-C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\presentacion.Form1.resources
+C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\presentacion.MenuPrincipal.resources
 C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\presentacion.Properties.Resources.resources
 C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\presentacion.csproj.GenerateResource.cache
 C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\presentacion.GeneratedMSBuildEditorConfig.editorconfig
@@ -45,4 +45,3 @@ C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\
 C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\presentacion.pdb
 C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\presentacion.genruntimeconfig.cache
 C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\ref\presentacion.dll
-C:\Users\Daniel Loo\repos\carwash\carwash\presentacion\obj\Debug\net8.0-windows\presentacion.MenuPrincipal.resources

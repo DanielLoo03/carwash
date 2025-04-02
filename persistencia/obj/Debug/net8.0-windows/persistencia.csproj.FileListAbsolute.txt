@@ -20,8 +20,6 @@ C:\Users\Daniel Loo\repos\carwash\persistencia\bin\Debug\net8.0-windows\runtimes
 C:\Users\Daniel Loo\repos\carwash\persistencia\bin\Debug\net8.0-windows\runtimes\win-x64\native\krbcc64.dll
 C:\Users\Daniel Loo\repos\carwash\persistencia\bin\Debug\net8.0-windows\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\Daniel Loo\repos\carwash\persistencia\obj\Debug\net8.0-windows\persistencia.csproj.AssemblyReference.cache
-C:\Users\Daniel Loo\repos\carwash\persistencia\obj\Debug\net8.0-windows\persistencia.Form1.resources
-C:\Users\Daniel Loo\repos\carwash\persistencia\obj\Debug\net8.0-windows\persistencia.csproj.GenerateResource.cache
 C:\Users\Daniel Loo\repos\carwash\persistencia\obj\Debug\net8.0-windows\persistencia.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Daniel Loo\repos\carwash\persistencia\obj\Debug\net8.0-windows\persistencia.AssemblyInfoInputs.cache
 C:\Users\Daniel Loo\repos\carwash\persistencia\obj\Debug\net8.0-windows\persistencia.AssemblyInfo.cs
