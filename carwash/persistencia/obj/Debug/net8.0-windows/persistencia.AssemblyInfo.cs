@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("carwash")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("persistencia")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+777fc0c36eb8fd6b82db505e86b1b6ea3a1cbb5a")]
-[assembly: System.Reflection.AssemblyProductAttribute("carwash")]
-[assembly: System.Reflection.AssemblyTitleAttribute("carwash")]
+[assembly: System.Reflection.AssemblyProductAttribute("persistencia")]
+[assembly: System.Reflection.AssemblyTitleAttribute("persistencia")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
