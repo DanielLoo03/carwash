@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("persistencia")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("negocios")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9ddb1f602db634399bb88179559bcd5769c7e042")]
-[assembly: System.Reflection.AssemblyProductAttribute("persistencia")]
-[assembly: System.Reflection.AssemblyTitleAttribute("persistencia")]
+[assembly: System.Reflection.AssemblyProductAttribute("negocios")]
+[assembly: System.Reflection.AssemblyTitleAttribute("negocios")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
