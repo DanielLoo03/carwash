@@ -47,7 +47,7 @@ namespace presentacion
 
             if (logicaNegocios.Login(nombreUsr, pwd))
             {
-                return;
+                System.Diagnostics.Debug.WriteLine("Login exitoso.");
             }
             else
             {
