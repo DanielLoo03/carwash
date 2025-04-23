@@ -13,8 +13,8 @@ namespace persistencia
 
         private Conexion conexion = new Conexion();
         private MySqlDataReader leer;
-        private DataTable tabla = new DataTable();
-        private MySqlCommand comando = new MySqlCommand();
+        private DataTable tabla;
+        private MySqlCommand comando;
 
         public DataTable GetAdmins()
         {
