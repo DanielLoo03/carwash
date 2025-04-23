@@ -27,7 +27,7 @@ namespace presentacion
             String pwd = txtPwd.Text;
             TextBox[] textBoxesEvaluar = { txtNombreUsr, txtPwd };
 
-            if (validacionesUI.evalCamposVacios(textBoxesEvaluar) == true)
+            if (validacionesUI.EvalTxtVacios(textBoxesEvaluar) == true)
             {
                 Toast toast = new Toast("Los campos de nombre de usuario y contraseña deben ser llenados.");
                 toast.Show();

@@ -9,12 +9,12 @@ namespace negocios
 {
     public class LogicaNegocios
     {
-        private AdministradoresService administradoresService = new AdministradoresService();
+        private AdminsService adminsService = new AdminsService();
 
         //Valor de retorno: booleano que determina si el login fue exitoso o no exitoso
         public Boolean Login(String nombreUsuario, String contrasena)
         {
-            DataTable administradores = administradoresService.ObtenerAdministradores();
+            DataTable administradores = adminsService.GetAdmins();
 
             foreach (DataRow administrador in administradores.Rows)
             {

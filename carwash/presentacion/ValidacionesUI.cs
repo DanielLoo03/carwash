@@ -9,7 +9,7 @@ namespace presentacion
     internal class ValidacionesUI
     {
 
-        public Boolean evalCamposVacios(TextBox[] textBoxesEvaluar)
+        public Boolean EvalTxtVacios(TextBox[] textBoxesEvaluar)
         {
             foreach (TextBox textBox in textBoxesEvaluar)
             {

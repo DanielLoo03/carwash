@@ -231,10 +231,7 @@
           "MySql.Data": "9.3.0"
         },
         "runtime": {
-          "persistencia.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "persistencia.dll": {}
         }
       }
     }
