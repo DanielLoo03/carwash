@@ -4,6 +4,15 @@
     <Compile Update="Autenticacion.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="DatosPersonales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Domicilio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="GestionEmpleados.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Toast.cs">
       <SubType>Form</SubType>
     </Compile>

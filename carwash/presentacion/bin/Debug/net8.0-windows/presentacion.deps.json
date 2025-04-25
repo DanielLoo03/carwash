@@ -240,7 +240,10 @@
           "persistencia": "1.0.0"
         },
         "runtime": {
-          "negocios.dll": {}
+          "negocios.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "persistencia/1.0.0": {
@@ -248,7 +251,10 @@
           "MySql.Data": "9.3.0"
         },
         "runtime": {
-          "persistencia.dll": {}
+          "persistencia.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }

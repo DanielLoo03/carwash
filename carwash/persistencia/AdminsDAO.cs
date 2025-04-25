@@ -18,6 +18,7 @@ namespace persistencia
 
         public DataTable GetAdmins()
         {
+
             tabla = new DataTable();
             comando = new MySqlCommand();
 
@@ -29,6 +30,7 @@ namespace persistencia
             conexion.CerrarConexion();
 
             return tabla;
+
         }
 
     }

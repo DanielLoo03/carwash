@@ -43,6 +43,22 @@ namespace persistencia
 
         }
 
+        public DataTable GetNumsEmpleado() {
+
+            tabla = new DataTable();
+            comando = new MySqlCommand();
+
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "obtenerNumsEmpleado";
+            comando.CommandType = CommandType.StoredProcedure;
+            MySqlDataReader leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+
+            return tabla;
+
+        }
+
     }
 
 }

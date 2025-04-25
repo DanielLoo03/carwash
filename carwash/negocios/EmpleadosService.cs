@@ -19,5 +19,11 @@ namespace negocios
             empleadosDAO.InsertEmpleado(nombre, apellidoPaterno, apellidoMaterno, numTelefono, numEmpleado, fechaNacimiento, calle, colonia, numExterior, numInterior, codigoPostal);
         }
 
+        public DataTable GetNumsEmpleado() {
+
+            return empleadosDAO.GetNumsEmpleado();
+
+        }
+
     }
 }

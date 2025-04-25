@@ -1698,23 +1698,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Daniel Loo\\.nuget\\packages\\": {},
+    "C:\\Users\\danie\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\presentacion.csproj",
+      "projectUniqueName": "C:\\Users\\danie\\repos\\carwash\\carwash\\presentacion\\presentacion.csproj",
       "projectName": "presentacion",
-      "projectPath": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\presentacion.csproj",
-      "packagesPath": "C:\\Users\\Daniel Loo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\presentacion\\obj\\",
+      "projectPath": "C:\\Users\\danie\\repos\\carwash\\carwash\\presentacion\\presentacion.csproj",
+      "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\danie\\repos\\carwash\\carwash\\presentacion\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Daniel Loo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1729,8 +1729,8 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\negocios\\negocios.csproj": {
-              "projectPath": "C:\\Users\\Daniel Loo\\repos\\carwash\\carwash\\negocios\\negocios.csproj"
+            "C:\\Users\\danie\\repos\\carwash\\carwash\\negocios\\negocios.csproj": {
+              "projectPath": "C:\\Users\\danie\\repos\\carwash\\carwash\\negocios\\negocios.csproj"
             }
           }
         }
@@ -1744,7 +1744,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -1774,7 +1775,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

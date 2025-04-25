@@ -37,5 +37,11 @@ namespace negocios
         
         }
 
+        public DataTable GetNumsEmpleado() {
+
+            return empleadosService.GetNumsEmpleado();
+        
+        }
+
     }
 }
