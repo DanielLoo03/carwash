@@ -40,7 +40,8 @@ namespace presentacion
             if (validacionesUI.EvalTxtVacios(textBoxes))
             {
 
-                Toast toast = new Toast("Los campos obligatorios deben ser llenados (los que tienen el *)");
+                Toast toast = new Toast("error", "Los campos obligatorios deben ser llenados (los que tienen el *)");
+                toast.Show();
                 errorCapturado = true;
 
             }
@@ -48,14 +49,16 @@ namespace presentacion
             TextBox[] textBoxes50 = { txtNombre, txtApellidoPaterno, txtApellidoMaterno }; //Los textBoxes que su limite de caracteres es de 50
             if (validacionesUI.EvalTxtChars(textBoxes, 50)) {
 
-                Toast toast = new Toast("Los campos nombre, apellido paterno y apellido materno no admiten más de 50 caracteres");
+                Toast toast = new Toast("error", "Los campos nombre, apellido paterno y apellido materno no admiten más de 50 caracteres");
+                toast.Show();
                 errorCapturado = true;
 
             }
             //No se puede utilizar el validador de exceso de caracteres ya que necesitamos validar si el tamaño es de un valor exacto, no si excede cierto número.
             if (txtNumTelefono.Text.Length != 10) {
 
-                Toast toast = new Toast("El número de teléfono debe ser de 10 dígitos.");
+                Toast toast = new Toast("error", "El número de teléfono debe ser de 10 dígitos.");
+                toast.Show();
                 errorCapturado = true;
 
             }
@@ -63,21 +66,24 @@ namespace presentacion
             //Se pasa el parametro textBoxes50 ya que coincide con los campos que se deben de evaluar con los caracteres especiales.
             if (validacionesUI.EvalTxtCharsEspecial(textBoxes50)) {
 
-                Toast toast = new Toast("Los campos nombre, apellido paterno y apellido paterno no deben incluir caracteres especiales ni dígitos (!, @, #, 0, 1 etc.)");
+                Toast toast = new Toast("error", "Los campos nombre, apellido paterno y apellido paterno no deben incluir caracteres especiales ni dígitos (!, @, #, 0, 1 etc.)");
+                toast.Show();
                 errorCapturado = true;
 
             }
             //Evaluación de número de empleado repetido
             if (validacionesUI.EvalNumEmpleado((int)nudNumEmpleado.Value)) {
 
-                Toast toast = new Toast("El número de empleado introducido ya se ha usado.");
+                Toast toast = new Toast("error", "El número de empleado introducido ya se ha usado.");
+                toast.Show();
                 errorCapturado = true;
 
             }
             //Evaluación de mayoría de edad
             if (validacionesUI.EvalMayorEdad(dtFechaNacimiento.Value)) {
 
-                Toast toast = new Toast("El empleado es menor de edad.");
+                Toast toast = new Toast("error", "El empleado es menor de edad.");
+                toast.Show();
                 errorCapturado = true;
 
             }

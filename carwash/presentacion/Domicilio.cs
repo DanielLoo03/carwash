@@ -50,12 +50,15 @@ namespace presentacion
             infoEmpleado.CodigoPostal = txtCodigoPostal.Text;
 
             //Inicio de evaluaciones
+            Boolean errorCapturado = false; //Bandera para decidir si pasar al siguiente formulario o no permitir el paso. 
+
             //Evaluación de código postal
             if (validacionesUI.EvalCodigoPostal(txtCodigoPostal.Text))
             {
 
-                Toast toast = new Toast("Código postal inválido.");
-                return;
+                Toast toast = new Toast("error", "Código postal inválido.");
+                toast.Show();
+                errorCapturado = true;
 
             }
 
@@ -63,48 +66,62 @@ namespace presentacion
             TextBox[] textBoxes = { txtCalle, txtCodigoPostal, txtColonia, txtNumExterior };
             if (validacionesUI.EvalTxtVacios(textBoxes)) {
 
-                Toast toast = new Toast("Los campos obligatorios deben ser llenados (los que tienen el *)");
-                return;
-            
+                Toast toast = new Toast("error", "Los campos obligatorios deben ser llenados (los que tienen el *)");
+                toast.Show();
+                errorCapturado = true;
+
             }
 
             //Evaluación de exceso de caracteres
             TextBox[] textBoxes50 = { txtCalle, txtColonia }; //Campos que su límite de caracteres es de 50
             if (validacionesUI.EvalTxtChars(textBoxes50, 50)) {
 
-                Toast toast = new Toast("Los campos calle y colonia no pueden exceder los 50 caracteres.");
-                return;
+                Toast toast = new Toast("error", "Los campos calle y colonia no pueden exceder los 50 caracteres.");
+                toast.Show();
+                errorCapturado = true;
 
             }
             TextBox[] textBox4 = { txtNumExterior }; //Solo un campo tiene un límite de 4 caracteres
             if(validacionesUI.EvalTxtChars(textBox4, 4)){
 
-                Toast toast = new Toast("El campo número exterior no puede exceder los 4 caracteres.");
-                return;
+                Toast toast = new Toast("error", "El campo número exterior no puede exceder los 4 caracteres.");
+                toast.Show();
+                errorCapturado = true;
 
             }
             //No se utiliza el validador de exceso de caracteres ya que se evalua una desigualdad, no un exceso.
             if(txtCodigoPostal.Text.Length != 5){
 
-                Toast toast = new Toast("El código postal debe consistir de 5 dígitos.");
-                return;
+                Toast toast = new Toast("error", "El código postal debe consistir de 5 dígitos.");
+                toast.Show();
+                errorCapturado = true;
 
             }
+            //Fin validaciones
 
-            logicaNegocios.AltaEmpleado(
-                infoEmpleado.Nombre,
-                infoEmpleado.ApellidoPaterno,
-                infoEmpleado.ApellidoMaterno,
-                infoEmpleado.NumTelefono,
-                infoEmpleado.NumEmpleado,
-                infoEmpleado.FechaNacimiento,
-                infoEmpleado.Calle,
-                infoEmpleado.Colonia,
-                infoEmpleado.NumInterior,
-                infoEmpleado.NumExterior,
-                infoEmpleado.CodigoPostal
-            );
-            this.Close();
+            //Si no se ha capturaro ningún error, entonces podemos agregar al empleado
+            if (!errorCapturado)
+            {
+
+                logicaNegocios.AltaEmpleado(
+                    infoEmpleado.Nombre,
+                    infoEmpleado.ApellidoPaterno,
+                    infoEmpleado.ApellidoMaterno,
+                    infoEmpleado.NumTelefono,
+                    infoEmpleado.NumEmpleado,
+                    infoEmpleado.FechaNacimiento,
+                    infoEmpleado.Calle,
+                    infoEmpleado.Colonia,
+                    infoEmpleado.NumInterior,
+                    infoEmpleado.NumExterior,
+                    infoEmpleado.CodigoPostal
+                );
+
+                Toast toastExito = new Toast("exito", "Empleado registrado con éxito.");
+                toastExito.Show();
+                this.Close();
+
+            }
 
         }
 

@@ -82,7 +82,8 @@ namespace presentacion
         {
             //No hay para la tecla F1 ya que te redirige donde mismo, módulo de gestión de empleados
 
-            switch (e.KeyCode) {
+            switch (e.KeyCode)
+            {
 
                 case Keys.F2:
                     btnVentas.PerformClick();
@@ -105,6 +106,14 @@ namespace presentacion
                     break;
 
             }
+
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+
+            this.Close();
+            vtnAutenticacion.Show();
 
         }
     }

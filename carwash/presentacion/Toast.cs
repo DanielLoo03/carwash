@@ -9,9 +9,11 @@ namespace presentacion
     {
         private Label lblMensaje; 
         private PictureBox imgIcono; // El icono de éxito, error, advertencia...
+        private string tipo;
 
-        public Toast(string mensaje, int offsetY = 0)
+        public Toast(string tipo, string mensaje, int offsetY = 0)
         {
+            this.tipo = tipo;
             FormBorderStyle = FormBorderStyle.None;
             StartPosition = FormStartPosition.Manual;
             ShowInTaskbar = false;
@@ -25,12 +27,20 @@ namespace presentacion
             // Cargar la imagen antes del texto
             imgIcono = new PictureBox()
             {
-                Image = Image.FromFile("../../../recursos/imagenes/error.png"),
                 SizeMode = PictureBoxSizeMode.Zoom,
-                Size = new Size(40, 40), 
-                Location = new Point(10, (Height - 40) / 2), // Centrado verticalmente
-                BackColor = Color.Transparent 
+                Size = new Size(40, 40),
+                Location = new Point(10, (Height - 40) / 2),
+                BackColor = Color.Transparent
             };
+
+            //Según el parámetro tipo, cargar imagen de error o éxito
+            if (tipo.Equals("error")){
+                imgIcono.Image = Image.FromFile("../../../recursos/imagenes/error.png");
+            }
+            else{
+                imgIcono.Image = Image.FromFile("../../../recursos/imagenes/exito.png");
+            }
+
 
             lblMensaje = new Label()
             {
@@ -65,11 +75,16 @@ namespace presentacion
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            using (LinearGradientBrush pincel = new LinearGradientBrush(ClientRectangle, Color.Red, Color.DarkRed, 90F))
+
+            Color colorInicio = tipo.Equals("error") ? Color.Red : Color.Green;
+            Color colorFin = tipo.Equals("error") ? Color.DarkRed : Color.DarkGreen;
+
+            using (LinearGradientBrush pincel = new LinearGradientBrush(ClientRectangle, colorInicio, colorFin, 90F))
             {
                 e.Graphics.FillRectangle(pincel, ClientRectangle);
             }
         }
+
 
         public void MostrarToast()
         {

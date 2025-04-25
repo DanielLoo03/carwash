@@ -29,19 +29,19 @@ namespace presentacion
 
             if (validacionesUI.EvalTxtVacios(textBoxesEvaluar) == true)
             {
-                Toast toast = new Toast("Los campos de nombre de usuario y contraseña deben ser llenados.");
+                Toast toast = new Toast("error", "Los campos de nombre de usuario y contraseña deben ser llenados.");
                 toast.Show();
             }
 
             if (txtNombreUsr.Text.Length > 50)
             {
-                Toast toast = new Toast("El nombre de usuario no puede exceder 50 caracteres.");
+                Toast toast = new Toast("error", "El nombre de usuario no puede exceder 50 caracteres.");
                 toast.Show();
             }
 
             if (txtPwd.Text.Length > 50)
             {
-                Toast toast = new Toast("La contraseña no puede exceder 50 caracteres.");
+                Toast toast = new Toast("error", "La contraseña no puede exceder 50 caracteres.");
                 toast.Show();
             }
 
@@ -53,7 +53,7 @@ namespace presentacion
             }
             else
             {
-                Toast toast = new Toast("Credenciales inválidas.");
+                Toast toast = new Toast("error", "Credenciales inválidas.");
                 toast.Show();
             }
         }

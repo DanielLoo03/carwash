@@ -30,10 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionEmpleados));
             panel1 = new Panel();
+            btnCerrarSesion = new Button();
             lblCerrarSesion = new Label();
+            btnGestionAdmins = new Button();
             lblAdminActual = new Label();
+            btnGestionInventario = new Button();
             lblGestionAdmins = new Label();
+            btnCorteCaja = new Button();
             lblGestionInventario = new Label();
+            btnVentas = new Button();
+            btnGestionEmpleados = new Button();
             lblCorteCaja = new Label();
             lblVentas = new Label();
             lblGestionEmpleados = new Label();
@@ -50,12 +56,6 @@
             lblEmpleados = new Label();
             lblGestionDe = new Label();
             pnlContenido = new Panel();
-            btnGestionEmpleados = new Button();
-            btnVentas = new Button();
-            btnCorteCaja = new Button();
-            btnGestionInventario = new Button();
-            btnGestionAdmins = new Button();
-            btnCerrarSesion = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgAdminActual).BeginInit();
@@ -95,6 +95,19 @@
             panel1.Size = new Size(1920, 100);
             panel1.TabIndex = 0;
             // 
+            // btnCerrarSesion
+            // 
+            btnCerrarSesion.BackColor = Color.FromArgb(17, 45, 78);
+            btnCerrarSesion.FlatStyle = FlatStyle.Flat;
+            btnCerrarSesion.ForeColor = Color.FromArgb(17, 45, 78);
+            btnCerrarSesion.Image = (Image)resources.GetObject("btnCerrarSesion.Image");
+            btnCerrarSesion.Location = new Point(1775, 16);
+            btnCerrarSesion.Name = "btnCerrarSesion";
+            btnCerrarSesion.Size = new Size(50, 50);
+            btnCerrarSesion.TabIndex = 8;
+            btnCerrarSesion.UseVisualStyleBackColor = false;
+            btnCerrarSesion.Click += btnCerrarSesion_Click;
+            // 
             // lblCerrarSesion
             // 
             lblCerrarSesion.AutoSize = true;
@@ -105,6 +118,18 @@
             lblCerrarSesion.Size = new Size(112, 20);
             lblCerrarSesion.TabIndex = 15;
             lblCerrarSesion.Text = "Cerrar Sesión";
+            // 
+            // btnGestionAdmins
+            // 
+            btnGestionAdmins.BackColor = Color.FromArgb(17, 45, 78);
+            btnGestionAdmins.FlatStyle = FlatStyle.Flat;
+            btnGestionAdmins.ForeColor = Color.FromArgb(17, 45, 78);
+            btnGestionAdmins.Image = (Image)resources.GetObject("btnGestionAdmins.Image");
+            btnGestionAdmins.Location = new Point(1224, 16);
+            btnGestionAdmins.Name = "btnGestionAdmins";
+            btnGestionAdmins.Size = new Size(50, 50);
+            btnGestionAdmins.TabIndex = 7;
+            btnGestionAdmins.UseVisualStyleBackColor = false;
             // 
             // lblAdminActual
             // 
@@ -117,6 +142,18 @@
             lblAdminActual.TabIndex = 14;
             lblAdminActual.Text = "Daniel Loo";
             // 
+            // btnGestionInventario
+            // 
+            btnGestionInventario.BackColor = Color.FromArgb(17, 45, 78);
+            btnGestionInventario.FlatStyle = FlatStyle.Flat;
+            btnGestionInventario.ForeColor = Color.FromArgb(17, 45, 78);
+            btnGestionInventario.Image = (Image)resources.GetObject("btnGestionInventario.Image");
+            btnGestionInventario.Location = new Point(1010, 16);
+            btnGestionInventario.Name = "btnGestionInventario";
+            btnGestionInventario.Size = new Size(50, 50);
+            btnGestionInventario.TabIndex = 6;
+            btnGestionInventario.UseVisualStyleBackColor = false;
+            // 
             // lblGestionAdmins
             // 
             lblGestionAdmins.AutoSize = true;
@@ -128,6 +165,18 @@
             lblGestionAdmins.TabIndex = 13;
             lblGestionAdmins.Text = "Gestión de Administradores";
             // 
+            // btnCorteCaja
+            // 
+            btnCorteCaja.BackColor = Color.FromArgb(17, 45, 78);
+            btnCorteCaja.FlatStyle = FlatStyle.Flat;
+            btnCorteCaja.ForeColor = Color.FromArgb(7, 45, 78);
+            btnCorteCaja.Image = (Image)resources.GetObject("btnCorteCaja.Image");
+            btnCorteCaja.Location = new Point(811, 11);
+            btnCorteCaja.Name = "btnCorteCaja";
+            btnCorteCaja.Size = new Size(55, 55);
+            btnCorteCaja.TabIndex = 5;
+            btnCorteCaja.UseVisualStyleBackColor = false;
+            // 
             // lblGestionInventario
             // 
             lblGestionInventario.AutoSize = true;
@@ -138,6 +187,30 @@
             lblGestionInventario.Size = new Size(169, 20);
             lblGestionInventario.TabIndex = 12;
             lblGestionInventario.Text = "Gestión de Inventario";
+            // 
+            // btnVentas
+            // 
+            btnVentas.BackColor = Color.FromArgb(17, 45, 78);
+            btnVentas.FlatStyle = FlatStyle.Flat;
+            btnVentas.ForeColor = Color.FromArgb(17, 45, 78);
+            btnVentas.Image = (Image)resources.GetObject("btnVentas.Image");
+            btnVentas.Location = new Point(665, 16);
+            btnVentas.Name = "btnVentas";
+            btnVentas.Size = new Size(50, 50);
+            btnVentas.TabIndex = 4;
+            btnVentas.UseVisualStyleBackColor = false;
+            // 
+            // btnGestionEmpleados
+            // 
+            btnGestionEmpleados.BackColor = Color.FromArgb(17, 45, 78);
+            btnGestionEmpleados.FlatStyle = FlatStyle.Flat;
+            btnGestionEmpleados.ForeColor = Color.FromArgb(17, 45, 78);
+            btnGestionEmpleados.Image = (Image)resources.GetObject("btnGestionEmpleados.Image");
+            btnGestionEmpleados.Location = new Point(488, 16);
+            btnGestionEmpleados.Name = "btnGestionEmpleados";
+            btnGestionEmpleados.Size = new Size(50, 50);
+            btnGestionEmpleados.TabIndex = 3;
+            btnGestionEmpleados.UseVisualStyleBackColor = false;
             // 
             // lblCorteCaja
             // 
@@ -310,78 +383,6 @@
             pnlContenido.Name = "pnlContenido";
             pnlContenido.Size = new Size(1820, 547);
             pnlContenido.TabIndex = 2;
-            // 
-            // btnGestionEmpleados
-            // 
-            btnGestionEmpleados.BackColor = Color.FromArgb(17, 45, 78);
-            btnGestionEmpleados.FlatStyle = FlatStyle.Flat;
-            btnGestionEmpleados.ForeColor = Color.FromArgb(17, 45, 78);
-            btnGestionEmpleados.Image = (Image)resources.GetObject("btnGestionEmpleados.Image");
-            btnGestionEmpleados.Location = new Point(488, 16);
-            btnGestionEmpleados.Name = "btnGestionEmpleados";
-            btnGestionEmpleados.Size = new Size(50, 50);
-            btnGestionEmpleados.TabIndex = 3;
-            btnGestionEmpleados.UseVisualStyleBackColor = false;
-            // 
-            // btnVentas
-            // 
-            btnVentas.BackColor = Color.FromArgb(17, 45, 78);
-            btnVentas.FlatStyle = FlatStyle.Flat;
-            btnVentas.ForeColor = Color.FromArgb(17, 45, 78);
-            btnVentas.Image = (Image)resources.GetObject("btnVentas.Image");
-            btnVentas.Location = new Point(665, 16);
-            btnVentas.Name = "btnVentas";
-            btnVentas.Size = new Size(50, 50);
-            btnVentas.TabIndex = 4;
-            btnVentas.UseVisualStyleBackColor = false;
-            // 
-            // btnCorteCaja
-            // 
-            btnCorteCaja.BackColor = Color.FromArgb(17, 45, 78);
-            btnCorteCaja.FlatStyle = FlatStyle.Flat;
-            btnCorteCaja.ForeColor = Color.FromArgb(7, 45, 78);
-            btnCorteCaja.Image = (Image)resources.GetObject("btnCorteCaja.Image");
-            btnCorteCaja.Location = new Point(811, 11);
-            btnCorteCaja.Name = "btnCorteCaja";
-            btnCorteCaja.Size = new Size(55, 55);
-            btnCorteCaja.TabIndex = 5;
-            btnCorteCaja.UseVisualStyleBackColor = false;
-            // 
-            // btnGestionInventario
-            // 
-            btnGestionInventario.BackColor = Color.FromArgb(17, 45, 78);
-            btnGestionInventario.FlatStyle = FlatStyle.Flat;
-            btnGestionInventario.ForeColor = Color.FromArgb(17, 45, 78);
-            btnGestionInventario.Image = (Image)resources.GetObject("btnGestionInventario.Image");
-            btnGestionInventario.Location = new Point(1010, 16);
-            btnGestionInventario.Name = "btnGestionInventario";
-            btnGestionInventario.Size = new Size(50, 50);
-            btnGestionInventario.TabIndex = 6;
-            btnGestionInventario.UseVisualStyleBackColor = false;
-            // 
-            // btnGestionAdmins
-            // 
-            btnGestionAdmins.BackColor = Color.FromArgb(17, 45, 78);
-            btnGestionAdmins.FlatStyle = FlatStyle.Flat;
-            btnGestionAdmins.ForeColor = Color.FromArgb(17, 45, 78);
-            btnGestionAdmins.Image = (Image)resources.GetObject("btnGestionAdmins.Image");
-            btnGestionAdmins.Location = new Point(1224, 16);
-            btnGestionAdmins.Name = "btnGestionAdmins";
-            btnGestionAdmins.Size = new Size(50, 50);
-            btnGestionAdmins.TabIndex = 7;
-            btnGestionAdmins.UseVisualStyleBackColor = false;
-            // 
-            // btnCerrarSesion
-            // 
-            btnCerrarSesion.BackColor = Color.FromArgb(17, 45, 78);
-            btnCerrarSesion.FlatStyle = FlatStyle.Flat;
-            btnCerrarSesion.ForeColor = Color.FromArgb(17, 45, 78);
-            btnCerrarSesion.Image = (Image)resources.GetObject("btnCerrarSesion.Image");
-            btnCerrarSesion.Location = new Point(1775, 16);
-            btnCerrarSesion.Name = "btnCerrarSesion";
-            btnCerrarSesion.Size = new Size(50, 50);
-            btnCerrarSesion.TabIndex = 8;
-            btnCerrarSesion.UseVisualStyleBackColor = false;
             // 
             // GestionEmpleados
             // 

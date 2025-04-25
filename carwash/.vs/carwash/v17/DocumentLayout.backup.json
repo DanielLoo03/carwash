@@ -1,16 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\danie\\repos\\carwash\\carwash\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{F9DC3EA4-5E71-4BDC-94F2-0D2C9381DBDD}|presentacion\\presentacion.csproj|c:\\users\\danie\\repos\\carwash\\carwash\\presentacion\\domicilio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F9DC3EA4-5E71-4BDC-94F2-0D2C9381DBDD}|presentacion\\presentacion.csproj|solutionrelative:presentacion\\domicilio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F9DC3EA4-5E71-4BDC-94F2-0D2C9381DBDD}|presentacion\\presentacion.csproj|c:\\users\\danie\\repos\\carwash\\carwash\\presentacion\\gestionempleados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F9DC3EA4-5E71-4BDC-94F2-0D2C9381DBDD}|presentacion\\presentacion.csproj|solutionrelative:presentacion\\gestionempleados.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -31,32 +22,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Domicilio.cs",
-              "DocumentMoniker": "C:\\Users\\danie\\repos\\carwash\\carwash\\presentacion\\Domicilio.cs",
-              "RelativeDocumentMoniker": "presentacion\\Domicilio.cs",
-              "ToolTip": "C:\\Users\\danie\\repos\\carwash\\carwash\\presentacion\\Domicilio.cs",
-              "RelativeToolTip": "presentacion\\Domicilio.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAADEAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T22:41:37.57Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GestionEmpleados.cs",
-              "DocumentMoniker": "C:\\Users\\danie\\repos\\carwash\\carwash\\presentacion\\GestionEmpleados.cs",
-              "RelativeDocumentMoniker": "presentacion\\GestionEmpleados.cs",
-              "ToolTip": "C:\\Users\\danie\\repos\\carwash\\carwash\\presentacion\\GestionEmpleados.cs",
-              "RelativeToolTip": "presentacion\\GestionEmpleados.cs",
-              "ViewState": "AgIAAF4AAAAAAAAAAAD4vwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-24T22:28:18.847Z",
-              "EditorCaption": ""
             }
           ]
         }
