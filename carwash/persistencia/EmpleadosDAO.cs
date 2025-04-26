@@ -58,6 +58,21 @@ namespace persistencia
             return tabla;
 
         }
+        public DataTable ConsultEmpleados(){
+
+            tabla = new DataTable();
+            comando = new MySqlCommand();
+
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "consultarEmpleados";
+            comando.CommandType = CommandType.StoredProcedure;
+            MySqlDataReader leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+
+            return tabla;
+
+        }
 
     }
 

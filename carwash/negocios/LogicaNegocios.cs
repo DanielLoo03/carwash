@@ -43,5 +43,25 @@ namespace negocios
         
         }
 
+        public Boolean ConsultEmpleados(DataGridView tblEmpleados) {
+
+            //Condición: Si la tabla resultante que contiene los empleados no está vacía
+            //ConsultEmpleados() regresa un DataTable
+            DataTable empleados = empleadosService.ConsultEmpleados();
+            if (empleados.Rows.Count != 0) {
+
+                tblEmpleados.DataSource = empleados;
+                return true;
+
+            }
+            //Si la tabla está vacía
+            else {
+
+                return false;
+
+            }
+
+        }
+
     }
 }

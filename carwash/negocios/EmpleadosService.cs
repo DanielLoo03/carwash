@@ -25,5 +25,11 @@ namespace negocios
 
         }
 
+        public DataTable ConsultEmpleados() {
+
+            return empleadosDAO.ConsultEmpleados();
+
+        }
+
     }
 }

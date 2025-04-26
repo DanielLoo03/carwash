@@ -56,6 +56,8 @@
             lblEmpleados = new Label();
             lblGestionDe = new Label();
             pnlContenido = new Panel();
+            lblNoEmpleados = new Label();
+            tblEmpleados = new DataGridView();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgAdminActual).BeginInit();
@@ -64,6 +66,8 @@
             ((System.ComponentModel.ISupportInitialize)imgCorteCaja).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgVentas).BeginInit();
             pnlCabecera.SuspendLayout();
+            pnlContenido.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)tblEmpleados).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -379,10 +383,33 @@
             // pnlContenido
             // 
             pnlContenido.BorderStyle = BorderStyle.FixedSingle;
+            pnlContenido.Controls.Add(lblNoEmpleados);
+            pnlContenido.Controls.Add(tblEmpleados);
             pnlContenido.Location = new Point(39, 335);
             pnlContenido.Name = "pnlContenido";
             pnlContenido.Size = new Size(1820, 547);
             pnlContenido.TabIndex = 2;
+            // 
+            // lblNoEmpleados
+            // 
+            lblNoEmpleados.AutoSize = true;
+            lblNoEmpleados.Font = new Font("Nacelle", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNoEmpleados.Location = new Point(599, 249);
+            lblNoEmpleados.Name = "lblNoEmpleados";
+            lblNoEmpleados.Size = new Size(567, 34);
+            lblNoEmpleados.TabIndex = 1;
+            lblNoEmpleados.Text = "No se encuentran empleados dados de alta.";
+            lblNoEmpleados.Visible = false;
+            // 
+            // tblEmpleados
+            // 
+            tblEmpleados.BackgroundColor = Color.White;
+            tblEmpleados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tblEmpleados.Location = new Point(76, 72);
+            tblEmpleados.Name = "tblEmpleados";
+            tblEmpleados.RowHeadersWidth = 62;
+            tblEmpleados.Size = new Size(1669, 404);
+            tblEmpleados.TabIndex = 0;
             // 
             // GestionEmpleados
             // 
@@ -396,6 +423,7 @@
             KeyPreview = true;
             Name = "GestionEmpleados";
             Text = "Car Wash Leo";
+            Load += GestionEmpleados_Load;
             KeyDown += GestionEmpleados_KeyDown;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -407,6 +435,9 @@
             ((System.ComponentModel.ISupportInitialize)imgVentas).EndInit();
             pnlCabecera.ResumeLayout(false);
             pnlCabecera.PerformLayout();
+            pnlContenido.ResumeLayout(false);
+            pnlContenido.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)tblEmpleados).EndInit();
             ResumeLayout(false);
         }
 
@@ -439,5 +470,7 @@
         private Button btnGestionInventario;
         private Button btnGestionAdmins;
         private Button btnCerrarSesion;
+        private DataGridView tblEmpleados;
+        private Label lblNoEmpleados;
     }
 }
