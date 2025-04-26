@@ -74,6 +74,14 @@ namespace presentacion
         {
             //Parámetro infoEmpleado: Se almacena la info introducida en el formulario para recuperarla después
             DatosPersonales vtnDatosPersonales = new DatosPersonales(infoEmpleado);
+            vtnDatosPersonales.EmpleadoAgregado += (s, ev) => {
+                logicaNegocios.ConsultEmpleados(tblEmpleados);
+                if (lblNoEmpleados.Visible == true) {
+
+                    lblNoEmpleados.Visible = false;
+
+                }
+            };
             vtnDatosPersonales.ShowDialog();
 
         }
@@ -114,6 +122,18 @@ namespace presentacion
 
             this.Close();
             vtnAutenticacion.Show();
+
+        }
+
+        private void GestionEmpleados_Load(object sender, EventArgs e)
+        {
+            //Condición: Si no hay empleados dados de alta en la base de datos 
+            if (!logicaNegocios.ConsultEmpleados(tblEmpleados))
+            {
+
+                lblNoEmpleados.Visible = true;
+
+            }
 
         }
     }

@@ -17,6 +17,7 @@ namespace presentacion
         private InfoEmpleado infoEmpleado;
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
+        public event EventHandler EmpleadoAgregado; //Es público por que debe ser visible para el Form DatosPersonales
 
         public Domicilio(InfoEmpleado infoEmpleado)
         {
@@ -117,6 +118,8 @@ namespace presentacion
                     infoEmpleado.CodigoPostal
                 );
 
+                //Se invoca el evento para avisar a GestionEmpleados que se registró un empleado
+                EmpleadoAgregado?.Invoke(this, EventArgs.Empty);
                 Toast toastExito = new Toast("exito", "Empleado registrado con éxito.");
                 toastExito.Show();
                 this.Close();
