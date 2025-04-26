@@ -407,6 +407,7 @@
             tblEmpleados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tblEmpleados.Location = new Point(76, 72);
             tblEmpleados.Name = "tblEmpleados";
+            tblEmpleados.ReadOnly = true;
             tblEmpleados.RowHeadersWidth = 62;
             tblEmpleados.Size = new Size(1669, 404);
             tblEmpleados.TabIndex = 0;
