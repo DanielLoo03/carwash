@@ -47,13 +47,11 @@ namespace presentacion
 
             if (logicaNegocios.Login(nombreUsr, pwd))
             {
-<<<<<<< HEAD
-                System.Diagnostics.Debug.WriteLine("Login exitoso.");
-=======
+
                 GestionEmpleados vtnGestionEmpleados = new GestionEmpleados(this);
                 vtnGestionEmpleados.Show();
                 this.Hide();
->>>>>>> Daniel-Loo
+
             }
             else
             {

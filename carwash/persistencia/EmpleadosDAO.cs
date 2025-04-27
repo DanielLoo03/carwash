@@ -75,7 +75,7 @@ namespace persistencia
 
         }
 
-        public void ModEmpleados(string nombre, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleado, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
+        public void ModEmpleados(string nombre, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleadoActual, int numEmpleadoNuevo, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
 
             comando = new MySqlCommand();
 
@@ -86,7 +86,8 @@ namespace persistencia
             comando.Parameters.AddWithValue("@apellidoPaternoParam", apellidoPaterno);
             comando.Parameters.AddWithValue("@apellidoMaternoParam", apellidoMaterno);
             comando.Parameters.AddWithValue("@numTelefonoParam", numTelefono);
-            comando.Parameters.AddWithValue("@numEmpleadoParam", numEmpleado);
+            comando.Parameters.AddWithValue("@numEmpleadoActualParam", numEmpleadoActual);
+            comando.Parameters.AddWithValue("@numEmpleadoNuevoParam", numEmpleadoNuevo);
             comando.Parameters.AddWithValue("@fechaNacimientoParam", fechaNacimiento);
             comando.Parameters.AddWithValue("@calleParam", calle);
             comando.Parameters.AddWithValue("@coloniaParam", colonia);

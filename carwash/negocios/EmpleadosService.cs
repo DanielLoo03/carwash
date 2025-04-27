@@ -30,9 +30,9 @@ namespace negocios
 
             return empleadosDAO.ConsultEmpleados();
         }
-        public void ModEmpleados(string nombre, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleado, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
+        public void ModEmpleados(string nombre, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleadoActual, int numEmpleadoNuevo, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
 
-            empleadosDAO.ModEmpleados(nombre, apellidoPaterno, apellidoMaterno, numTelefono, numEmpleado, fechaNacimiento, calle, colonia, numExterior, numInterior, codigoPostal);
+            empleadosDAO.ModEmpleados(nombre, apellidoPaterno, apellidoMaterno, numTelefono, numEmpleadoActual, numEmpleadoNuevo, fechaNacimiento, calle, colonia, numExterior, numInterior, codigoPostal);
 
         }
 

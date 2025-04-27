@@ -174,6 +174,7 @@
             // nudNumEmpleado
             // 
             nudNumEmpleado.Location = new Point(100, 769);
+            nudNumEmpleado.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nudNumEmpleado.Name = "nudNumEmpleado";
             nudNumEmpleado.Size = new Size(557, 31);
             nudNumEmpleado.TabIndex = 13;

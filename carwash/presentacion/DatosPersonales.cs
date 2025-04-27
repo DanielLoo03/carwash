@@ -15,8 +15,8 @@ namespace presentacion
         private InfoEmpleado infoEmpleado;
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         public event EventHandler EmpleadoAgregado; //Público por que debe de ser accesible para GestionEmpleados
-        public event EventHandler EmpleadoModificado; //Público por que debe de ser accesible para GestionEmpleados
         private string accion;
+        private int numEmpleadoActual = 0;
 
         //Parametro infoEmpleado: Contiene la información introducida por el administrador. Se almacena para que no se pierdan los datos introducidos. 
         public DatosPersonales(InfoEmpleado infoEmpleado, string accion)
@@ -28,6 +28,10 @@ namespace presentacion
 
         private void btnContinuar_Click(object sender, EventArgs e)
         {
+            //Condición: Si ya viene asignado un número de empleado, se almacena el número de empleado actual por si se modifica el empleado 
+            if (infoEmpleado.NumEmpleado != 0) {
+                numEmpleadoActual = infoEmpleado.NumEmpleado;
+            }
 
             infoEmpleado.Nombre = txtNombre.Text;
             infoEmpleado.ApellidoPaterno = txtApellidoPaterno.Text;
@@ -75,12 +79,18 @@ namespace presentacion
                 errorCapturado = true;
 
             }
-            //Evaluación de número de empleado repetido
-            if (validacionesUI.EvalNumEmpleado((int)nudNumEmpleado.Value)) {
+            //Si se modifica el número de empleado, evaluar
+            if (numEmpleadoActual != nudNumEmpleado.Value) {
 
-                Toast toast = new Toast("error", "El número de empleado introducido ya se ha usado.");
-                toast.Show();
-                errorCapturado = true;
+                //Evaluación de número de empleado repetido
+                if (validacionesUI.EvalNumEmpleado((int)nudNumEmpleado.Value))
+                {
+
+                    Toast toast = new Toast("error", "El número de empleado introducido ya se ha usado.");
+                    toast.Show();
+                    errorCapturado = true;
+
+                }
 
             }
             //Evaluación de mayoría de edad
@@ -96,7 +106,7 @@ namespace presentacion
             //Si no se ha capturaro ningún error, entonces podemos pasar al siguiente formulario
             if (!errorCapturado) {
 
-                Domicilio vtnDomicilio = new Domicilio(infoEmpleado, accion);
+                Domicilio vtnDomicilio = new Domicilio(infoEmpleado, accion, numEmpleadoActual);
                 //Cuando Domicilio lanza el evento, DatosPersonales también lo hace
                 vtnDomicilio.EmpleadoAgregado += (s, ev) => EmpleadoAgregado?.Invoke(this, ev);
                 this.Hide();

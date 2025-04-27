@@ -18,14 +18,15 @@ namespace presentacion
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
         public event EventHandler EmpleadoAgregado; //Es público por que debe ser visible para el Form DatosPersonales
-        public event EventHandler EmpleadoModificado; //Es público por que debe ser visible para el Form DatosPersonales
         private string accion;
+        private int numEmpleadoActual;
 
-        public Domicilio(InfoEmpleado infoEmpleado, string accion)
+        public Domicilio(InfoEmpleado infoEmpleado, string accion, int numEmpleadoActual)
         {
             this.infoEmpleado = infoEmpleado;
             this.accion = accion;
             InitializeComponent();
+            this.numEmpleadoActual = numEmpleadoActual;
         }
 
         private void lblNombre_Click(object sender, EventArgs e)
@@ -103,7 +104,7 @@ namespace presentacion
             }
             //Fin validaciones
 
-            //Si no se ha capturaro ningún error, entonces podemos agregar al empleado
+            //Si no se ha capturaro ningún error, entonces podemos agregar/modificar al empleado
             if (!errorCapturado)
             {
 
@@ -119,8 +120,8 @@ namespace presentacion
                             infoEmpleado.FechaNacimiento,
                             infoEmpleado.Calle,
                             infoEmpleado.Colonia,
-                            infoEmpleado.NumInterior,
                             infoEmpleado.NumExterior,
+                            infoEmpleado.NumInterior,
                             infoEmpleado.CodigoPostal
                         );
                         Toast toastAgregar = new Toast("exito", "Empleado agregado con éxito.");
@@ -133,12 +134,13 @@ namespace presentacion
                             infoEmpleado.ApellidoPaterno,
                             infoEmpleado.ApellidoMaterno,
                             infoEmpleado.NumTelefono,
+                            numEmpleadoActual,
                             infoEmpleado.NumEmpleado,
                             infoEmpleado.FechaNacimiento,
                             infoEmpleado.Calle,
                             infoEmpleado.Colonia,
-                            infoEmpleado.NumInterior,
                             infoEmpleado.NumExterior,
+                            infoEmpleado.NumInterior,
                             infoEmpleado.CodigoPostal
                         );
                         Toast toastModificar = new Toast("exito", "Empleado modificado con éxito.");
@@ -149,6 +151,19 @@ namespace presentacion
                 //Se invoca el evento para avisar a GestionEmpleados que se registró un empleado
                 EmpleadoAgregado?.Invoke(this, EventArgs.Empty);
                 this.Close();
+
+                //Se limpian campos
+                infoEmpleado.Nombre = "";
+                infoEmpleado.ApellidoPaterno = "";
+                infoEmpleado.ApellidoMaterno = "";
+                infoEmpleado.NumTelefono = "";
+                infoEmpleado.NumEmpleado = 0;
+                infoEmpleado.FechaNacimiento = DateTime.Today;
+                infoEmpleado.Calle = "";
+                infoEmpleado.Colonia = "";
+                infoEmpleado.NumExterior = "";
+                infoEmpleado.NumInterior = "";
+                infoEmpleado.CodigoPostal = "";
 
             }
 
