@@ -63,5 +63,12 @@ namespace negocios
 
         }
 
+        public Boolean modEmpleados(string nombre, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleado, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
+
+            empleadosService.modEmpleados(nombre, apellidoPaterno, apellidoMaterno, numTelefono, numEmpleado, fechaNacimiento, calle, colonia, numExterior, numInterior, codigoPostal);
+            return true;
+
+        }
+
     }
 }
