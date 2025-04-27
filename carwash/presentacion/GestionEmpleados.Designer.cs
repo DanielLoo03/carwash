@@ -58,6 +58,7 @@
             pnlContenido = new Panel();
             lblNoEmpleados = new Label();
             tblEmpleados = new DataGridView();
+            btnModEmpleado = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgAdminActual).BeginInit();
@@ -333,6 +334,7 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
+            pnlCabecera.Controls.Add(btnModEmpleado);
             pnlCabecera.Controls.Add(btnAddEmpleado);
             pnlCabecera.Controls.Add(lblEmpleados);
             pnlCabecera.Controls.Add(lblGestionDe);
@@ -407,9 +409,27 @@
             tblEmpleados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tblEmpleados.Location = new Point(76, 72);
             tblEmpleados.Name = "tblEmpleados";
+            tblEmpleados.ReadOnly = true;
             tblEmpleados.RowHeadersWidth = 62;
             tblEmpleados.Size = new Size(1669, 404);
             tblEmpleados.TabIndex = 0;
+            // 
+            // btnModEmpleado
+            // 
+            btnModEmpleado.BackColor = Color.FromArgb(63, 114, 175);
+            btnModEmpleado.FlatStyle = FlatStyle.Popup;
+            btnModEmpleado.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnModEmpleado.ForeColor = Color.White;
+            btnModEmpleado.Image = (Image)resources.GetObject("btnModEmpleado.Image");
+            btnModEmpleado.ImageAlign = ContentAlignment.MiddleLeft;
+            btnModEmpleado.Location = new Point(1185, 32);
+            btnModEmpleado.Name = "btnModEmpleado";
+            btnModEmpleado.Size = new Size(225, 39);
+            btnModEmpleado.TabIndex = 3;
+            btnModEmpleado.Text = "Modificar Empleado";
+            btnModEmpleado.TextAlign = ContentAlignment.MiddleRight;
+            btnModEmpleado.UseVisualStyleBackColor = false;
+            btnModEmpleado.Click += btnModEmpleado_Click;
             // 
             // GestionEmpleados
             // 
@@ -472,5 +492,6 @@
         private Button btnCerrarSesion;
         private DataGridView tblEmpleados;
         private Label lblNoEmpleados;
+        private Button btnModEmpleado;
     }
 }

@@ -18,10 +18,13 @@ namespace presentacion
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
         public event EventHandler EmpleadoAgregado; //Es público por que debe ser visible para el Form DatosPersonales
+        public event EventHandler EmpleadoModificado; //Es público por que debe ser visible para el Form DatosPersonales
+        private string accion;
 
-        public Domicilio(InfoEmpleado infoEmpleado)
+        public Domicilio(InfoEmpleado infoEmpleado, string accion)
         {
             this.infoEmpleado = infoEmpleado;
+            this.accion = accion;
             InitializeComponent();
         }
 
@@ -104,24 +107,47 @@ namespace presentacion
             if (!errorCapturado)
             {
 
-                logicaNegocios.AltaEmpleado(
-                    infoEmpleado.Nombre,
-                    infoEmpleado.ApellidoPaterno,
-                    infoEmpleado.ApellidoMaterno,
-                    infoEmpleado.NumTelefono,
-                    infoEmpleado.NumEmpleado,
-                    infoEmpleado.FechaNacimiento,
-                    infoEmpleado.Calle,
-                    infoEmpleado.Colonia,
-                    infoEmpleado.NumInterior,
-                    infoEmpleado.NumExterior,
-                    infoEmpleado.CodigoPostal
-                );
+                switch (accion)
+                {
+                    case "agregar":
+                        logicaNegocios.AltaEmpleado(
+                            infoEmpleado.Nombre,
+                            infoEmpleado.ApellidoPaterno,
+                            infoEmpleado.ApellidoMaterno,
+                            infoEmpleado.NumTelefono,
+                            infoEmpleado.NumEmpleado,
+                            infoEmpleado.FechaNacimiento,
+                            infoEmpleado.Calle,
+                            infoEmpleado.Colonia,
+                            infoEmpleado.NumInterior,
+                            infoEmpleado.NumExterior,
+                            infoEmpleado.CodigoPostal
+                        );
+                        Toast toastAgregar = new Toast("exito", "Empleado agregado con éxito.");
+                        toastAgregar.Show();
+                        break;
 
+                    case "modificar":
+                        logicaNegocios.ModEmpleados(
+                            infoEmpleado.Nombre,
+                            infoEmpleado.ApellidoPaterno,
+                            infoEmpleado.ApellidoMaterno,
+                            infoEmpleado.NumTelefono,
+                            infoEmpleado.NumEmpleado,
+                            infoEmpleado.FechaNacimiento,
+                            infoEmpleado.Calle,
+                            infoEmpleado.Colonia,
+                            infoEmpleado.NumInterior,
+                            infoEmpleado.NumExterior,
+                            infoEmpleado.CodigoPostal
+                        );
+                        Toast toastModificar = new Toast("exito", "Empleado modificado con éxito.");
+                        toastModificar.Show();
+                        break;
+
+                }
                 //Se invoca el evento para avisar a GestionEmpleados que se registró un empleado
                 EmpleadoAgregado?.Invoke(this, EventArgs.Empty);
-                Toast toastExito = new Toast("exito", "Empleado registrado con éxito.");
-                toastExito.Show();
                 this.Close();
 
             }
@@ -132,7 +158,7 @@ namespace presentacion
         {
 
             this.Hide();
-            DatosPersonales vtnDatosPersonales = new DatosPersonales(infoEmpleado);
+            DatosPersonales vtnDatosPersonales = new DatosPersonales(infoEmpleado, accion);
             vtnDatosPersonales.ShowDialog();
 
         }

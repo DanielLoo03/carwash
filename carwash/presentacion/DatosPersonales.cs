@@ -15,11 +15,14 @@ namespace presentacion
         private InfoEmpleado infoEmpleado;
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         public event EventHandler EmpleadoAgregado; //Público por que debe de ser accesible para GestionEmpleados
+        public event EventHandler EmpleadoModificado; //Público por que debe de ser accesible para GestionEmpleados
+        private string accion;
 
         //Parametro infoEmpleado: Contiene la información introducida por el administrador. Se almacena para que no se pierdan los datos introducidos. 
-        public DatosPersonales(InfoEmpleado infoEmpleado)
+        public DatosPersonales(InfoEmpleado infoEmpleado, string accion)
         {
             this.infoEmpleado = infoEmpleado;
+            this.accion = accion;
             InitializeComponent();
         }
 
@@ -93,7 +96,7 @@ namespace presentacion
             //Si no se ha capturaro ningún error, entonces podemos pasar al siguiente formulario
             if (!errorCapturado) {
 
-                Domicilio vtnDomicilio = new Domicilio(infoEmpleado);
+                Domicilio vtnDomicilio = new Domicilio(infoEmpleado, accion);
                 //Cuando Domicilio lanza el evento, DatosPersonales también lo hace
                 vtnDomicilio.EmpleadoAgregado += (s, ev) => EmpleadoAgregado?.Invoke(this, ev);
                 this.Hide();

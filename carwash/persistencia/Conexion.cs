@@ -14,10 +14,19 @@ namespace persistencia
 
         public MySqlConnection AbrirConexion()
         {
-            if (conexion.State == System.Data.ConnectionState.Closed)
-                conexion.Open();
+            try
+            {
+                if (conexion.State == System.Data.ConnectionState.Closed)
+                    conexion.Open();
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine("Error al abrir la conexión a la base de datos.", e);
+            }
+
             return conexion;
         }
+
 
         public MySqlConnection CerrarConexion()
         {
