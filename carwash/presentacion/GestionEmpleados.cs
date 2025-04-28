@@ -175,5 +175,41 @@ namespace presentacion
             }
 
         }
+
+        private void btnElimEmpleado_Click(object sender, EventArgs e)
+        {
+
+            DataGridViewRow filaSeleccionada = tblEmpleados.CurrentRow;//El empleado seleccionado para eliminar
+            //Condición: Si seleccionó a un empleado/fila de la tabla
+            if (filaSeleccionada != null) {
+
+                MessageBoxConfirmar messageBoxConfirmar = new MessageBoxConfirmar("¿Está seguro de eliminar al empleado " + (int)filaSeleccionada.Cells["numEmpleado"].Value + " | " + (string)filaSeleccionada.Cells["nombre"].Value + " " + (string)filaSeleccionada.Cells["apellidoPaterno"].Value + " " + (string)filaSeleccionada.Cells["apellidoMaterno"].Value + "?");
+                messageBoxConfirmar.ConfirmarPresionado += (s, ev) =>
+                {
+
+                    logicaNegocios.ElimEmpleados((int)filaSeleccionada.Cells["numEmpleado"].Value);
+                    Toast toast = new Toast("exito", "Empleado eliminado con éxito.");
+                    toast.MostrarToast();
+                    messageBoxConfirmar.Close();
+                    //Si hay 0 empleados disponibles actualmente (regresa false), mostrar label informativo
+                    if (!logicaNegocios.ConsultEmpleados(tblEmpleados))
+                    {
+
+                        lblNoEmpleados.Visible = true;
+
+                    }
+
+                };
+                messageBoxConfirmar.mostrarMessageBox();
+
+            }
+            else
+            {
+
+                Toast toast = new Toast("error", "No has seleccionado ningún empleado.");
+
+            }
+
+        }
     }
 }

@@ -52,13 +52,14 @@
             lblLeo = new Label();
             lblCarWash = new Label();
             pnlCabecera = new Panel();
+            btnElimEmpleado = new Button();
+            btnModEmpleado = new Button();
             btnAddEmpleado = new Button();
             lblEmpleados = new Label();
             lblGestionDe = new Label();
             pnlContenido = new Panel();
             lblNoEmpleados = new Label();
             tblEmpleados = new DataGridView();
-            btnModEmpleado = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgAdminActual).BeginInit();
@@ -334,6 +335,7 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
+            pnlCabecera.Controls.Add(btnElimEmpleado);
             pnlCabecera.Controls.Add(btnModEmpleado);
             pnlCabecera.Controls.Add(btnAddEmpleado);
             pnlCabecera.Controls.Add(lblEmpleados);
@@ -342,6 +344,40 @@
             pnlCabecera.Name = "pnlCabecera";
             pnlCabecera.Size = new Size(1820, 100);
             pnlCabecera.TabIndex = 1;
+            // 
+            // btnElimEmpleado
+            // 
+            btnElimEmpleado.BackColor = Color.FromArgb(63, 114, 175);
+            btnElimEmpleado.FlatStyle = FlatStyle.Popup;
+            btnElimEmpleado.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnElimEmpleado.ForeColor = Color.White;
+            btnElimEmpleado.Image = (Image)resources.GetObject("btnElimEmpleado.Image");
+            btnElimEmpleado.ImageAlign = ContentAlignment.MiddleLeft;
+            btnElimEmpleado.Location = new Point(1194, 32);
+            btnElimEmpleado.Name = "btnElimEmpleado";
+            btnElimEmpleado.Size = new Size(225, 39);
+            btnElimEmpleado.TabIndex = 4;
+            btnElimEmpleado.Text = "Eliminar Empleado";
+            btnElimEmpleado.TextAlign = ContentAlignment.MiddleRight;
+            btnElimEmpleado.UseVisualStyleBackColor = false;
+            btnElimEmpleado.Click += btnElimEmpleado_Click;
+            // 
+            // btnModEmpleado
+            // 
+            btnModEmpleado.BackColor = Color.FromArgb(63, 114, 175);
+            btnModEmpleado.FlatStyle = FlatStyle.Popup;
+            btnModEmpleado.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnModEmpleado.ForeColor = Color.White;
+            btnModEmpleado.Image = (Image)resources.GetObject("btnModEmpleado.Image");
+            btnModEmpleado.ImageAlign = ContentAlignment.MiddleLeft;
+            btnModEmpleado.Location = new Point(899, 32);
+            btnModEmpleado.Name = "btnModEmpleado";
+            btnModEmpleado.Size = new Size(225, 39);
+            btnModEmpleado.TabIndex = 3;
+            btnModEmpleado.Text = "Modificar Empleado";
+            btnModEmpleado.TextAlign = ContentAlignment.MiddleRight;
+            btnModEmpleado.UseVisualStyleBackColor = false;
+            btnModEmpleado.Click += btnModEmpleado_Click;
             // 
             // btnAddEmpleado
             // 
@@ -408,28 +444,13 @@
             tblEmpleados.BackgroundColor = Color.White;
             tblEmpleados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tblEmpleados.Location = new Point(76, 72);
+            tblEmpleados.MultiSelect = false;
             tblEmpleados.Name = "tblEmpleados";
             tblEmpleados.ReadOnly = true;
             tblEmpleados.RowHeadersWidth = 62;
+            tblEmpleados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             tblEmpleados.Size = new Size(1669, 404);
             tblEmpleados.TabIndex = 0;
-            // 
-            // btnModEmpleado
-            // 
-            btnModEmpleado.BackColor = Color.FromArgb(63, 114, 175);
-            btnModEmpleado.FlatStyle = FlatStyle.Popup;
-            btnModEmpleado.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnModEmpleado.ForeColor = Color.White;
-            btnModEmpleado.Image = (Image)resources.GetObject("btnModEmpleado.Image");
-            btnModEmpleado.ImageAlign = ContentAlignment.MiddleLeft;
-            btnModEmpleado.Location = new Point(1185, 32);
-            btnModEmpleado.Name = "btnModEmpleado";
-            btnModEmpleado.Size = new Size(225, 39);
-            btnModEmpleado.TabIndex = 3;
-            btnModEmpleado.Text = "Modificar Empleado";
-            btnModEmpleado.TextAlign = ContentAlignment.MiddleRight;
-            btnModEmpleado.UseVisualStyleBackColor = false;
-            btnModEmpleado.Click += btnModEmpleado_Click;
             // 
             // GestionEmpleados
             // 
@@ -493,5 +514,6 @@
         private DataGridView tblEmpleados;
         private Label lblNoEmpleados;
         private Button btnModEmpleado;
+        private Button btnElimEmpleado;
     }
 }

@@ -8,7 +8,7 @@ namespace presentacion
     public class Toast : Form
     {
         private Label lblMensaje; 
-        private PictureBox imgIcono; // El icono de éxito, error, advertencia...
+        private PictureBox imgIcono; // El icono de éxito o error
         private string tipo;
 
         public Toast(string tipo, string mensaje, int offsetY = 0)
@@ -59,8 +59,9 @@ namespace presentacion
 
             EstablecerPosicion(offsetY);
 
-            this.Click += (s, e) => Cerrar();
-            lblMensaje.Click += (s, e) => Cerrar();
+            //Al hacer clic sobre cualquier parte del form, se cierra. 
+            this.Click += (sender, e) => Cerrar();
+            lblMensaje.Click += (sender, e) => Cerrar();
         }
 
         private void EstablecerPosicion(int y)
