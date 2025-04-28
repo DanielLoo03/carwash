@@ -8,14 +8,14 @@ using persistencia;
 
 namespace negocios
 {
-    public class AdministradoresService
+    public class AdminsService
     {
         //Proviene de la capa de persistencia
-        private AdministradoresDAO administradoresDAO = new AdministradoresDAO();
+        private AdminsDAO adminsDAO = new AdminsDAO();
 
-        public DataTable ObtenerAdministradores()
+        public DataTable GetAdmins()
         {
-            return administradoresDAO.ObtenerAdministradores();
+            return adminsDAO.GetAdmins();
         }
     }
 }

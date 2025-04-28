@@ -8,16 +8,17 @@ using MySql.Data.MySqlClient;
 
 namespace persistencia
 {
-    public class AdministradoresDAO
+    public class AdminsDAO
     {
 
         private Conexion conexion = new Conexion();
         private MySqlDataReader leer;
-        private DataTable tabla = new DataTable();
-        private MySqlCommand comando = new MySqlCommand();
+        private DataTable tabla;
+        private MySqlCommand comando;
 
-        public DataTable ObtenerAdministradores()
+        public DataTable GetAdmins()
         {
+
             tabla = new DataTable();
             comando = new MySqlCommand();
 
@@ -29,6 +30,7 @@ namespace persistencia
             conexion.CerrarConexion();
 
             return tabla;
+
         }
 
     }
