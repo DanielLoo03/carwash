@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,6 +73,35 @@ namespace presentacion
 
         private void Autenticacion_Load(object sender, EventArgs e)
         {
+            //Redondeo de pnlLogin
+            int radioEsquinas = 20; //Redondeo de las esquinas
+            Rectangle areaPanel = pnlLogin.ClientRectangle; // área del panel
+
+            using (GraphicsPath rutaRedondeada = PanelAndBotonRedondeado(areaPanel, radioEsquinas))
+            {
+                pnlLogin.Region = new Region(rutaRedondeada); // recorta visualmente el panel con esquinas redondeadas
+            }
+
+            //Redondeo de btnLogin
+            int radio = 10;
+            Rectangle areaBoton = btnLogin.ClientRectangle;
+            btnLogin.Region = new Region(PanelAndBotonRedondeado(areaBoton, radio));
+
+            //Redondeo del textbox
+        }
+
+        public GraphicsPath PanelAndBotonRedondeado(Rectangle area, int radio)
+        {
+            GraphicsPath ruta = new GraphicsPath();
+            int diametro = radio * 2;
+
+            ruta.AddArc(area.X, area.Y, diametro, diametro, 180, 90); // esquina superior izquierda
+            ruta.AddArc(area.Right - diametro, area.Y, diametro, diametro, 270, 90); // esquina superior derecha
+            ruta.AddArc(area.Right - diametro, area.Bottom - diametro, diametro, diametro, 0, 90); // esquina inferior derecha
+            ruta.AddArc(area.X, area.Bottom - diametro, diametro, diametro, 90, 90); // esquina inferior izquierda
+            ruta.CloseFigure();
+
+            return ruta;
         }
     }
 }
