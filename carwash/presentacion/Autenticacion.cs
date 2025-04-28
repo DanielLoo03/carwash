@@ -47,9 +47,11 @@ namespace presentacion
 
             if (logicaNegocios.Login(nombreUsr, pwd))
             {
+
                 GestionEmpleados vtnGestionEmpleados = new GestionEmpleados(this);
                 vtnGestionEmpleados.Show();
                 this.Hide();
+
             }
             else
             {

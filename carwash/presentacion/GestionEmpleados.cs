@@ -73,10 +73,12 @@ namespace presentacion
         private void btnAddEmpleado_Click(object sender, EventArgs e)
         {
             //Parámetro infoEmpleado: Se almacena la info introducida en el formulario para recuperarla después
-            DatosPersonales vtnDatosPersonales = new DatosPersonales(infoEmpleado);
-            vtnDatosPersonales.EmpleadoAgregado += (s, ev) => {
+            DatosPersonales vtnDatosPersonales = new DatosPersonales(infoEmpleado, "agregar");
+            vtnDatosPersonales.EmpleadoAgregado += (s, ev) =>
+            {
                 logicaNegocios.ConsultEmpleados(tblEmpleados);
-                if (lblNoEmpleados.Visible == true) {
+                if (lblNoEmpleados.Visible == true)
+                {
 
                     lblNoEmpleados.Visible = false;
 
@@ -132,6 +134,43 @@ namespace presentacion
             {
 
                 lblNoEmpleados.Visible = true;
+
+            }
+
+        }
+
+        private void btnModEmpleado_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow filaSeleccionada = tblEmpleados.CurrentRow; //El empleado seleccionado para modificar
+            //Condición: Si seleccionó a un empleado/fila de la tabla
+            if (filaSeleccionada != null)
+            {
+
+                //Se cargan propiedades para pasarlos a los formularios y se cargen los datos del empleado seleccionado
+                infoEmpleado.Nombre = (string)filaSeleccionada.Cells["nombre"].Value;
+                infoEmpleado.ApellidoPaterno = (string)filaSeleccionada.Cells["apellidoPaterno"].Value;
+                infoEmpleado.ApellidoMaterno = (string)filaSeleccionada.Cells["apellidoMaterno"].Value;
+                infoEmpleado.NumTelefono = (string)filaSeleccionada.Cells["numTelefono"].Value;
+                infoEmpleado.NumEmpleado = (int)filaSeleccionada.Cells["numEmpleado"].Value;
+                infoEmpleado.FechaNacimiento = (DateTime)filaSeleccionada.Cells["fechaNacimiento"].Value;
+                infoEmpleado.Calle = (string)filaSeleccionada.Cells["calle"].Value;
+                infoEmpleado.Colonia = (string)filaSeleccionada.Cells["colonia"].Value;
+                infoEmpleado.NumExterior = (string)filaSeleccionada.Cells["numExterior"].Value;
+                infoEmpleado.NumInterior = (string)filaSeleccionada.Cells["numInterior"].Value;
+                infoEmpleado.CodigoPostal = (string)filaSeleccionada.Cells["codigoPostal"].Value;
+
+                DatosPersonales vtnDatosPersonales = new DatosPersonales(infoEmpleado, "modificar");
+                vtnDatosPersonales.EmpleadoAgregado += (s, ev) =>
+                {
+                    logicaNegocios.ConsultEmpleados(tblEmpleados);
+                };
+                vtnDatosPersonales.ShowDialog();
+
+            }
+            else
+            {
+
+                Toast toast = new Toast("error", "No has seleccionado ningún empleado");
 
             }
 

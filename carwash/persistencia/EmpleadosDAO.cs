@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace persistencia
 {
@@ -71,6 +72,32 @@ namespace persistencia
             conexion.CerrarConexion();
 
             return tabla;
+
+        }
+
+        public void ModEmpleados(string nombre, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleadoActual, int numEmpleadoNuevo, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
+
+            comando = new MySqlCommand();
+
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "modificarEmpleado";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@nombreParam", nombre);
+            comando.Parameters.AddWithValue("@apellidoPaternoParam", apellidoPaterno);
+            comando.Parameters.AddWithValue("@apellidoMaternoParam", apellidoMaterno);
+            comando.Parameters.AddWithValue("@numTelefonoParam", numTelefono);
+            comando.Parameters.AddWithValue("@numEmpleadoActualParam", numEmpleadoActual);
+            comando.Parameters.AddWithValue("@numEmpleadoNuevoParam", numEmpleadoNuevo);
+            comando.Parameters.AddWithValue("@fechaNacimientoParam", fechaNacimiento);
+            comando.Parameters.AddWithValue("@calleParam", calle);
+            comando.Parameters.AddWithValue("@coloniaParam", colonia);
+            comando.Parameters.AddWithValue("@numExteriorParam", numExterior);
+            comando.Parameters.AddWithValue("@numInteriorParam", numInterior);
+            comando.Parameters.AddWithValue("@codigoPostalParam", codigoPostal);
+
+            comando.ExecuteNonQuery(); //Es NonQuery ya que un UPDATE no regresa valores como lo haría un SELECT
+            comando.Parameters.Clear();
+            conexion.CerrarConexion();
 
         }
 

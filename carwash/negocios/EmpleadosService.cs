@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace negocios
 {
@@ -28,6 +29,10 @@ namespace negocios
         public DataTable ConsultEmpleados() {
 
             return empleadosDAO.ConsultEmpleados();
+        }
+        public void ModEmpleados(string nombre, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleadoActual, int numEmpleadoNuevo, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
+
+            empleadosDAO.ModEmpleados(nombre, apellidoPaterno, apellidoMaterno, numTelefono, numEmpleadoActual, numEmpleadoNuevo, fechaNacimiento, calle, colonia, numExterior, numInterior, codigoPostal);
 
         }
 
