@@ -36,5 +36,12 @@ namespace negocios
 
         }
 
+        public void ElimEmpleado(int numEmpleado)
+        {
+
+            empleadosDAO.ElimEmpleado(numEmpleado);
+
+        }
+
     }
 }

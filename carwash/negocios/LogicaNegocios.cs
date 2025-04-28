@@ -70,5 +70,12 @@ namespace negocios
 
         }
 
+        public void ElimEmpleados(int numEmpleado)
+        {
+
+            empleadosService.ElimEmpleado(numEmpleado);
+
+        }
+
     }
 }
