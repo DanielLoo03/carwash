@@ -101,6 +101,21 @@ namespace persistencia
 
         }
 
+        public void ElimEmpleado(int numEmpleado) {
+
+            comando = new MySqlCommand();
+
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "eliminarEmpleado";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@numEmpleadoParam", numEmpleado);
+
+            comando.ExecuteNonQuery(); //Es NonQuery ya que un DELETE no regresa valores como lo haría un SELECT
+            comando.Parameters.Clear();
+            conexion.CerrarConexion();
+
+        }
+
     }
 
 }
