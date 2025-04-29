@@ -48,9 +48,9 @@ namespace negocios
             //Condición: Si la tabla resultante que contiene los empleados no está vacía
             //ConsultEmpleados() regresa un DataTable
             DataTable empleados = empleadosService.ConsultEmpleados();
+            tblEmpleados.DataSource = empleados;
             if (empleados.Rows.Count != 0) {
 
-                tblEmpleados.DataSource = empleados;
                 return true;
 
             }

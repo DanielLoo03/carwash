@@ -461,6 +461,7 @@
             Controls.Add(pnlContenido);
             Controls.Add(pnlCabecera);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             KeyPreview = true;
             Name = "GestionEmpleados";
             Text = "Car Wash Leo";

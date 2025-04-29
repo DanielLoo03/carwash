@@ -50,21 +50,21 @@
             // lblCarWash
             // 
             lblCarWash.AutoSize = true;
-            lblCarWash.Font = new Font("Inter", 63F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblCarWash.Location = new Point(649, 89);
+            lblCarWash.Font = new Font("Inter", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCarWash.Location = new Point(609, 111);
             lblCarWash.Name = "lblCarWash";
-            lblCarWash.Size = new Size(438, 101);
+            lblCarWash.Size = new Size(502, 116);
             lblCarWash.TabIndex = 0;
             lblCarWash.Text = "Car Wash";
             // 
             // lblLeo
             // 
             lblLeo.AutoSize = true;
-            lblLeo.Font = new Font("Inter", 63F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLeo.Font = new Font("Inter", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLeo.ForeColor = Color.FromArgb(63, 114, 175);
-            lblLeo.Location = new Point(1061, 89);
+            lblLeo.Location = new Point(1085, 111);
             lblLeo.Name = "lblLeo";
-            lblLeo.Size = new Size(193, 101);
+            lblLeo.Size = new Size(219, 116);
             lblLeo.TabIndex = 1;
             lblLeo.Text = "Leo";
             // 
@@ -109,11 +109,11 @@
             // 
             btnLogin.BackColor = Color.FromArgb(63, 114, 175);
             btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Font = new Font("Nacelle", 13.4999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnLogin.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = SystemColors.Window;
             btnLogin.Location = new Point(71, 496);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(391, 34);
+            btnLogin.Size = new Size(391, 36);
             btnLogin.TabIndex = 9;
             btnLogin.Text = "Iniciar Sesión";
             btnLogin.UseVisualStyleBackColor = false;
@@ -129,11 +129,11 @@
             txtPwd.ColorD = Color.FromArgb(0, 0, 0, 0);
             txtPwd.ColorE = Color.FromArgb(25, 255, 255, 255);
             txtPwd.ColorF = Color.Black;
-            txtPwd.Font = new Font("Nacelle", 13.4999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtPwd.Font = new Font("Nacelle", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtPwd.ForeColor = Color.Black;
             txtPwd.Location = new Point(71, 390);
             txtPwd.Name = "txtPwd";
-            txtPwd.Size = new Size(391, 29);
+            txtPwd.Size = new Size(391, 34);
             txtPwd.TabIndex = 8;
             // 
             // txtNombreUsr
@@ -146,30 +146,30 @@
             txtNombreUsr.ColorD = Color.FromArgb(0, 0, 0, 0);
             txtNombreUsr.ColorE = Color.FromArgb(25, 255, 255, 255);
             txtNombreUsr.ColorF = Color.Black;
-            txtNombreUsr.Font = new Font("Nacelle", 13.4999981F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNombreUsr.Font = new Font("Nacelle", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNombreUsr.ForeColor = Color.Black;
             txtNombreUsr.Location = new Point(71, 269);
             txtNombreUsr.Name = "txtNombreUsr";
-            txtNombreUsr.Size = new Size(391, 29);
+            txtNombreUsr.Size = new Size(391, 34);
             txtNombreUsr.TabIndex = 7;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Nacelle", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(102, 344);
             label3.Name = "label3";
-            label3.Size = new Size(115, 24);
+            label3.Size = new Size(105, 22);
             label3.TabIndex = 6;
             label3.Text = "Contraseña";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Nacelle", 15F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.Location = new Point(102, 226);
             label2.Name = "label2";
-            label2.Size = new Size(179, 24);
+            label2.Size = new Size(166, 22);
             label2.TabIndex = 5;
             label2.Text = "Nombre de usuario";
             // 
@@ -194,8 +194,8 @@
             // lblLogin
             // 
             lblLogin.AutoSize = true;
-            lblLogin.Font = new Font("Inter", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblLogin.Location = new Point(98, 68);
+            lblLogin.Font = new Font("Inter", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblLogin.Location = new Point(102, 65);
             lblLogin.Name = "lblLogin";
             lblLogin.Size = new Size(329, 49);
             lblLogin.TabIndex = 0;
@@ -206,11 +206,12 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(190, 223, 255);
-            ClientSize = new Size(1910, 1058);
+            ClientSize = new Size(1910, 1050);
             Controls.Add(pnlLogin);
             Controls.Add(pnlDecorativo);
             Controls.Add(lblLeo);
             Controls.Add(lblCarWash);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Autenticacion";
             Text = "Car Wash Leo";
             Load += Autenticacion_Load;

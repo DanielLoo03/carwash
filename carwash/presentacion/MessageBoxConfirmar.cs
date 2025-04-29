@@ -61,6 +61,7 @@ namespace presentacion
         {
 
             ConfirmarPresionado?.Invoke(this, EventArgs.Empty);
+            Close();
 
         }
 

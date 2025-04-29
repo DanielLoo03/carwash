@@ -81,6 +81,7 @@ namespace presentacion
                 {
 
                     lblNoEmpleados.Visible = false;
+                    tblEmpleados.Visible = true;
 
                 }
             };
@@ -190,12 +191,12 @@ namespace presentacion
                     logicaNegocios.ElimEmpleados((int)filaSeleccionada.Cells["numEmpleado"].Value);
                     Toast toast = new Toast("exito", "Empleado eliminado con éxito.");
                     toast.MostrarToast();
-                    messageBoxConfirmar.Close();
                     //Si hay 0 empleados disponibles actualmente (regresa false), mostrar label informativo
                     if (!logicaNegocios.ConsultEmpleados(tblEmpleados))
                     {
 
                         lblNoEmpleados.Visible = true;
+                        tblEmpleados.Visible = false;
 
                     }
 
