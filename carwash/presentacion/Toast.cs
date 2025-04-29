@@ -10,6 +10,9 @@ namespace presentacion
         private Label lblMensaje; 
         private PictureBox imgIcono; // El icono de éxito o error
         private string tipo;
+        private System.Windows.Forms.Timer temporizador;
+        private static readonly List<Toast> toastsActivos = new List<Toast>();
+        private const int Separacion = 10;
 
         public Toast(string tipo, string mensaje, int offsetY = 0)
         {
@@ -62,6 +65,33 @@ namespace presentacion
             //Al hacer clic sobre cualquier parte del form, se cierra. 
             this.Click += (sender, e) => Cerrar();
             lblMensaje.Click += (sender, e) => Cerrar();
+
+            temporizador = new System.Windows.Forms.Timer { Interval = 7_500 };
+            temporizador.Tick += (s, e) => Cerrar();
+
+            this.Shown += (s, e) =>
+            {
+                toastsActivos.Add(this);
+                ReposicionarToasts();
+                temporizador.Start();
+            };
+        }
+
+        private static void ReposicionarToasts()
+        {
+            var pantalla = Screen.PrimaryScreen.WorkingArea;
+            int margenDerecho = 30;
+            int startY = pantalla.Top + 60;
+
+            for (int i = 0; i < toastsActivos.Count; i++)
+            {
+                var toast = toastsActivos[i];
+                int yOffset = i * (toast.Height + Separacion);
+                toast.Location = new Point(
+                    pantalla.Right - toast.Width - margenDerecho,
+                    startY + yOffset
+                );
+            }
         }
 
         private void EstablecerPosicion(int y)
@@ -94,6 +124,9 @@ namespace presentacion
 
         private void Cerrar()
         {
+            temporizador.Stop();
+            toastsActivos.Remove(this);
+            ReposicionarToasts();
             Close();
         }
     }
