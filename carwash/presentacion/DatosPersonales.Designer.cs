@@ -284,6 +284,8 @@
             Controls.Add(lblNombre);
             Controls.Add(btnRegresar);
             Controls.Add(lblDatosPersonales);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
             Name = "DatosPersonales";
             Text = "Car Wash Leo";
             Load += DatosPersonales_Load;

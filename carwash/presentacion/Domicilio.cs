@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using negocios;
@@ -86,10 +87,10 @@ namespace presentacion
                 errorCapturado = true;
 
             }
-            TextBox[] textBox4 = { txtNumExterior }; //Solo un campo tiene un límite de 4 caracteres
+            TextBox[] textBox4 = { txtNumExterior, txtNumInterior }; 
             if(validacionesUI.EvalTxtChars(textBox4, 4)){
 
-                Toast toast = new Toast("error", "El campo número exterior no puede exceder los 4 caracteres.");
+                Toast toast = new Toast("error", "Los campos número exterior y número interior no pueden exceder los 4 caracteres.");
                 toast.Show();
                 errorCapturado = true;
 
@@ -100,6 +101,22 @@ namespace presentacion
                 Toast toast = new Toast("error", "El código postal debe consistir de 5 dígitos.");
                 toast.Show();
                 errorCapturado = true;
+
+            }
+            //Validación de solo dígitos
+            TextBox[] textBoxesNums = { txtCodigoPostal, txtNumExterior, txtNumInterior };
+            foreach (TextBox textBox in textBoxesNums)
+            {
+
+                //El segundo parámetro es una expresión regular que considera todos los caracteres que no sean dígitos
+                if (Regex.IsMatch(textBox.Text, @"[^0-9]"))
+                {
+
+                    Toast toast = new Toast("error", "Los campos número exterior, número interior y código postal solo deben consistir de dígitos.");
+                    toast.Show();
+                    errorCapturado = true;
+
+                }
 
             }
             //Fin validaciones

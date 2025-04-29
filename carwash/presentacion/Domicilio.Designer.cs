@@ -236,6 +236,8 @@
             Controls.Add(lblCalle);
             Controls.Add(btnRegresar);
             Controls.Add(lblDomicilio);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
             Name = "Domicilio";
             Text = "Car Wash Leo";
             Load += Domicilio_Load;
