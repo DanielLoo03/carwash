@@ -28,10 +28,6 @@ namespace presentacion
 
         private void btnContinuar_Click(object sender, EventArgs e)
         {
-            //Condición: Si ya viene asignado un número de empleado, se almacena el número de empleado actual por si se modifica el empleado 
-            if (infoEmpleado.NumEmpleado != 0) {
-                numEmpleadoActual = infoEmpleado.NumEmpleado;
-            }
 
             infoEmpleado.Nombre = txtNombre.Text;
             infoEmpleado.ApellidoPaterno = txtApellidoPaterno.Text;
@@ -125,6 +121,8 @@ namespace presentacion
             dtFechaNacimiento.Text = infoEmpleado.FechaNacimiento.ToString("yyyy-MM-dd");
             txtNumTelefono.Text = infoEmpleado.NumTelefono;
             nudNumEmpleado.Text = infoEmpleado.NumEmpleado.ToString();
+
+            numEmpleadoActual = infoEmpleado.NumEmpleado;
 
         }
 

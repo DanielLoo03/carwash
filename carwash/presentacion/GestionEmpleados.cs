@@ -23,6 +23,7 @@ namespace presentacion
             this.vtnAutenticacion = vtnAutenticacion;
             infoEmpleado.FechaNacimiento = DateTime.Today;
             InitializeComponent();
+
         }
 
         private void imgGestionEmpleados_Click(object sender, EventArgs e)
@@ -76,6 +77,7 @@ namespace presentacion
             DatosPersonales vtnDatosPersonales = new DatosPersonales(infoEmpleado, "agregar");
             vtnDatosPersonales.EmpleadoAgregado += (s, ev) =>
             {
+
                 logicaNegocios.ConsultEmpleados(tblEmpleados);
                 if (lblNoEmpleados.Visible == true)
                 {
@@ -84,6 +86,7 @@ namespace presentacion
                     tblEmpleados.Visible = true;
 
                 }
+
             };
             vtnDatosPersonales.ShowDialog();
 
@@ -135,6 +138,7 @@ namespace presentacion
             {
 
                 lblNoEmpleados.Visible = true;
+                tblEmpleados.Visible = false;
 
             }
 
