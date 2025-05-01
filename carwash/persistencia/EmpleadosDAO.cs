@@ -24,7 +24,7 @@ namespace persistencia
             comando = new MySqlCommand();
 
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "InsertEmpleado";
+            comando.CommandText = "altaEmpleado";
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@nombre", nombre);
             comando.Parameters.AddWithValue("@apellidoPaterno", apellidoPaterno);
