@@ -20,6 +20,7 @@ namespace presentacion
 
         public GestionEmpleados(Autenticacion vtnAutenticacion)
         {
+
             this.vtnAutenticacion = vtnAutenticacion;
             infoEmpleado.FechaNacimiento = DateTime.Today;
             InitializeComponent();

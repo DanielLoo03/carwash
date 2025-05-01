@@ -46,7 +46,8 @@ END $$
 /*Consulta de empleados*/
 CREATE PROCEDURE consultarEmpleados()
 BEGIN
-    SELECT nombre, apellidoPaterno, apellidoMaterno, numEmpleado,  numTelefono, fechaNacimiento, calle, colonia, codigoPostal, numInterior, numExterior  FROM empleados;
+    SELECT nombre, apellidoPaterno, apellidoMaterno, numEmpleado,  numTelefono, fechaNacimiento, calle, colonia, codigoPostal, numInterior, numExterior  FROM empleados
+    ORDER BY nombre ASC;
 END $$
 
 /*Modificación de empleados*/
