@@ -141,11 +141,36 @@ BEGIN
     WHERE nombreEmpleado = nombreEmpleadoParam;
 END $$
 
-/* Obtener nombre de empleado en base al número de empleado*/
+/* Obtener nombre completo de empleado en base al número de empleado*/
 CREATE PROCEDURE obtenerNombreEmpleado(IN numEmpleadoParam INT)
 BEGIN 
-    SELECT nombreEmpleado from empleados
+    SELECT 
+        CONCAT(nombre, ' ', apellidoPaterno, ' ', apellidoMaterno) AS nombreCompleto
+    FROM empleados
     WHERE numEmpleado = numEmpleadoParam;
+END $$
+
+/* Modificar porcentaje de ganancia */
+CREATE PROCEDURE setPorcentajeGanancia(IN porcentajeParam INT) 
+BEGIN
+    UPDATE configventas
+    SET porcentaje = porcentajeParam
+    WHERE tipoConfig = 'ganancia';
+END $$
+
+/* Modificar porcentaje de correspondencia */
+CREATE PROCEDURE setPorcentajeCorrespondencia(IN porcentajeParam INT) 
+BEGIN
+    UPDATE configventas
+    SET porcentaje = porcentajeParam
+    WHERE tipoConfig = 'correspondencia';
+END $$
+
+/* Consultar porcentajes (ganancia y correspondencia) */
+CREATE PROCEDURE obtenerPorcentajes()
+BEGIN
+    SELECT porcentaje 
+    FROM configventas;
 END $$
 
 DELIMITER ;
