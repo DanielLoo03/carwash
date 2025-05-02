@@ -28,31 +28,35 @@ namespace presentacion
             String pwd = txtPwd.Text;
             TextBox[] textBoxesEvaluar = { txtNombreUsr, txtPwd };
 
-            if (validacionesUI.evalCamposVacios(textBoxesEvaluar) == true)
+            if (validacionesUI.EvalTxtVacios(textBoxesEvaluar) == true)
             {
-                Toast toast = new Toast("Los campos de nombre de usuario y contraseña deben ser llenados.");
+                Toast toast = new Toast("error", "Los campos de nombre de usuario y contraseña deben ser llenados.");
                 toast.Show();
             }
 
             if (txtNombreUsr.Text.Length > 50)
             {
-                Toast toast = new Toast("El nombre de usuario no puede exceder 50 caracteres.");
+                Toast toast = new Toast("error", "El nombre de usuario no puede exceder 50 caracteres.");
                 toast.Show();
             }
 
             if (txtPwd.Text.Length > 50)
             {
-                Toast toast = new Toast("La contraseña no puede exceder 50 caracteres.");
+                Toast toast = new Toast("error", "La contraseña no puede exceder 50 caracteres.");
                 toast.Show();
             }
 
             if (logicaNegocios.Login(nombreUsr, pwd))
             {
-                return;
+
+                GestionEmpleados vtnGestionEmpleados = new GestionEmpleados(this);
+                vtnGestionEmpleados.Show();
+                this.Hide();
+
             }
             else
             {
-                Toast toast = new Toast("Credenciales inválidas.");
+                Toast toast = new Toast("error", "Credenciales inválidas.");
                 toast.Show();
             }
         }
