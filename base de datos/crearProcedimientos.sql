@@ -1,7 +1,13 @@
 DELIMITER $$
 
+/*Consulta de administradores*/
+CREATE PROCEDURE obtenerAdministradores ()   
+BEGIN
+    SELECT nombreUsuario, contrasena FROM administradores;
+END$$
+
 /*Alta de empleados*/
-CREATE PROCEDURE InsertEmpleado(
+CREATE PROCEDURE altaEmpleado(
     IN nombre VARCHAR(50),
     IN apellidoPaterno VARCHAR(50),
     IN apellidoMaterno VARCHAR(50),
@@ -46,7 +52,8 @@ END $$
 /*Consulta de empleados*/
 CREATE PROCEDURE consultarEmpleados()
 BEGIN
-    SELECT nombre, apellidoPaterno, apellidoMaterno, numEmpleado,  numTelefono, fechaNacimiento, calle, colonia, codigoPostal, numInterior, numExterior  FROM empleados
+    SELECT nombre, apellidoPaterno, apellidoMaterno, numEmpleado, numTelefono, fechaNacimiento, calle, colonia, codigoPostal, numInterior, numExterior  
+    FROM empleados
     ORDER BY nombre ASC;
 END $$
 
@@ -88,12 +95,82 @@ CREATE PROCEDURE eliminarEmpleado(IN numEmpleadoParam INT)
 BEGIN
     DELETE FROM empleados
     WHERE numEmpleado = numEmpleadoParam;
-END$$
+END $$
 
 /*Consulta números de empleado*/
-CREATE PROCEDURE obtenerNumsEmpleado
+CREATE PROCEDURE obtenerNumsEmpleado()
 BEGIN
-    SELECT numEmpleado from Empleados;
+    SELECT numEmpleado FROM Empleados;
+END $$
+
+/*Registro de ventas*/
+CREATE PROCEDURE registrarVenta(
+    IN marcaCarroParam VARCHAR(50),
+    IN modeloCarroParam VARCHAR(50),
+    IN colorCarroParam VARCHAR(50),
+    IN precioParam decimal(6,2),
+    IN gananciaParam decimal(6,2),
+    IN correspondenciaParam decimal(6,2),
+    IN numEmpleadoParam int
+)
+BEGIN
+    INSERT INTO ventas (
+        marcaCarro,
+        modeloCarro,
+        colorCarro,
+        precio,
+        ganancia,
+        correspondencia,
+        numEmpleado
+    )
+    VALUES (
+        marcaCarroParam,
+        modeloCarroParam,
+        colorCarroParam,
+        precioParam,
+        gananciaParam,
+        correspondenciaParam,
+        numEmpleadoParam
+    );
+END $$
+
+/* Obtener número de empleado en base al nombre de empleado*/
+CREATE PROCEDURE obtenerNumEmpleado(IN nombreEmpleadoParam VARCHAR(50))
+BEGIN 
+    SELECT numEmpleado from empleados
+    WHERE nombreEmpleado = nombreEmpleadoParam;
+END $$
+
+/* Obtener nombre completo de empleado en base al número de empleado*/
+CREATE PROCEDURE obtenerNombreEmpleado(IN numEmpleadoParam INT)
+BEGIN 
+    SELECT 
+        CONCAT(nombre, ' ', apellidoPaterno, ' ', apellidoMaterno) AS nombreCompleto
+    FROM empleados
+    WHERE numEmpleado = numEmpleadoParam;
+END $$
+
+/* Modificar porcentaje de ganancia */
+CREATE PROCEDURE setPorcentajeGanancia(IN porcentajeParam INT) 
+BEGIN
+    UPDATE configventas
+    SET porcentaje = porcentajeParam
+    WHERE tipoConfig = 'ganancia';
+END $$
+
+/* Modificar porcentaje de correspondencia */
+CREATE PROCEDURE setPorcentajeCorrespondencia(IN porcentajeParam INT) 
+BEGIN
+    UPDATE configventas
+    SET porcentaje = porcentajeParam
+    WHERE tipoConfig = 'correspondencia';
+END $$
+
+/* Consultar porcentajes (ganancia y correspondencia) */
+CREATE PROCEDURE obtenerPorcentajes()
+BEGIN
+    SELECT porcentaje 
+    FROM configventas;
 END $$
 
 DELIMITER ;
