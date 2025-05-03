@@ -134,11 +134,18 @@ BEGIN
     );
 END $$
 
-/* Obtener número de empleado en base al nombre de empleado*/
-CREATE PROCEDURE obtenerNumEmpleado(IN nombreEmpleadoParam VARCHAR(50))
+/* Obtener número de empleado en base al nombre completo de empleado*/
+CREATE PROCEDURE obtenerNumEmpleado(
+    IN nombreParam VARCHAR(50),
+    IN apellidoPaternoParam VARCHAR(50),
+    IN apellidoMaternoParam VARCHAR(50)
+)
 BEGIN 
-    SELECT numEmpleado from empleados
-    WHERE nombreEmpleado = nombreEmpleadoParam;
+    SELECT numEmpleado 
+    FROM empleados
+    WHERE nombre = nombreParam
+        AND apellidoPaterno = apellidoPaternoParam
+        AND apellidoMaterno = apellidoMaternoParam;
 END $$
 
 /* Obtener nombre completo de empleado en base al número de empleado*/
