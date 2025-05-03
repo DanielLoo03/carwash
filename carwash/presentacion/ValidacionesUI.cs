@@ -114,5 +114,43 @@ namespace presentacion
 
         }
 
+        public Boolean EvalSoloNumeros(float valor)
+        {
+            return valor > 0;
+        }
+
+        public Boolean EvalCharsColor(string colorCarro)
+        {
+            // Solo letras (incluyendo acentos y ñ) y espacios
+            return Regex.IsMatch(colorCarro, "[^a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\\s]");
+        }
+
+        // Valida que porcentaje esté entre 0 y 100
+        public Boolean EvalPorDistribucion(int por)
+        {
+            if (por < 0 || por > 100)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public Boolean EvalCamposObligatoriosVenta(float precio, float gan, float corresp, string nomCompleto, int numEmp)
+        {
+            // Verificar que los valores numéricos sean mayores que cero y campos de texto no estén vacíos
+            if (precio <= 0.0f ||
+                gan <= 0.0f ||
+                corresp <= 0.0f ||
+                string.IsNullOrWhiteSpace(nomCompleto) ||
+                numEmp <= 0)
+            {
+                return true; // Algún campo obligatorio no cumple
+            }
+            return false; // Todos los campos obligatorios están presentes y válidos
+        }
+
     }
 }
