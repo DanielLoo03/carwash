@@ -17,6 +17,8 @@ namespace presentacion
 
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
+        private Boolean cambioConTeclado = false;
+        private bool cargando = true;
 
         public AltaVenta()
         {
@@ -25,42 +27,72 @@ namespace presentacion
 
         private void AltaVenta_Load(object sender, EventArgs e)
         {
+            cargando = true;
 
             cbNomEmpleado.DataSource = logicaNegocios.ConsNomEmpleados();
+            cbNomEmpleado.DisplayMember = "nomCompleto";
+            cbNomEmpleado.ValueMember = "nomCompleto";
             cbNumEmpleado.DataSource = logicaNegocios.GetNumsEmpleado();
+            cbNumEmpleado.DisplayMember = "numEmpleado";
+            cbNumEmpleado.ValueMember = "numEmpleado";
 
+            // Forzar sincronización inicial
+            if (cbNomEmpleado.Items.Count > 0)
+            {
+                cbNomEmpleado.SelectedIndex = 0;
+
+                if (!string.IsNullOrWhiteSpace(cbNomEmpleado.Text))
+                {
+                    string[] nomCompleto = cbNomEmpleado.Text.Split(' ');
+
+                    if (nomCompleto.Length >= 3)
+                    {
+                        string nom, apellidoPaterno, apellidoMaterno;
+
+                        if (nomCompleto.Length == 3)
+                        {
+                            nom = nomCompleto[0];
+                            apellidoPaterno = nomCompleto[1];
+                            apellidoMaterno = nomCompleto[2];
+                        }
+                        else
+                        {
+                            nom = nomCompleto[0] + " " + nomCompleto[1];
+                            apellidoPaterno = nomCompleto[2];
+                            apellidoMaterno = nomCompleto[3];
+                        }
+
+                        cbNumEmpleado.SelectedValue = logicaNegocios.ConsNumEmp(nom, apellidoPaterno, apellidoMaterno);
+                    }
+                }
+            }
+
+            cargando = false;
         }
 
         private void btnConfirmarVenta_Click(object sender, EventArgs e)
         {
+            Boolean errorCapturado = false;
+            string marcaCarro = txtMarcaCarro.Text;
+            string modeloCarro = txtModeloCarro.Text;
+            string colorCarro = txtColorCarro.Text;
 
-            //Inicio de validaciones
-            Boolean errorCapturado = false; //Bandera para decidir si registrar la venta
-
-            //Validación de caracteres especiales en campo color de carro
-            if (validacionesUI.EvalCharsColor(txtColorCarro.Text))
+            if (validacionesUI.EvalCharsColor(colorCarro))
             {
-
                 Toast toast = new Toast("error", "El campo color de carro solo puede incluir letras");
                 toast.Show();
                 errorCapturado = true;
-
             }
 
-            //Validación de solo números
             string[] posiblesNums = { txtPrecioCarro.Text, txtGanancia.Text, txtCorresp.Text };
             if (validacionesUI.EvalSoloNums(posiblesNums))
             {
-
                 Toast toast = new Toast("error", "Los campos precio del carro, ganancia y correspondencia deben contener valores númericos.");
                 toast.Show();
                 errorCapturado = true;
                 return;
-
             }
 
-            //Validación de campos obligatorios
-            //Si falla una transformación de string a float, se asigna a la variable respectiva el valor 0.0 (el validador marcará error)
             float precio;
             float.TryParse(txtPrecioCarro.Text, out precio);
             float gan;
@@ -71,36 +103,38 @@ namespace presentacion
             int numEmp = int.Parse(cbNumEmpleado.Text);
             if (validacionesUI.EvalCamposObligatoriosVenta(precio, gan, corresp, nomCompleto, numEmp))
             {
-
                 Toast toast = new Toast("error", "Los campos obligatorios deben ser llenados (los que tienen el *)");
                 toast.Show();
                 errorCapturado = true;
-
             }
 
-            //Validaciones de precios inválidos
             if (validacionesUI.EvalMontos(precio))
             {
-
                 Toast toast = new Toast("error", "El precio no puede ser igual a 0 o negativo.");
                 toast.Show();
                 errorCapturado = true;
-
             }
             if (validacionesUI.EvalMontos(gan))
             {
-
                 Toast toast = new Toast("error", "La ganancia no puede ser igual a 0 o negativo.");
                 toast.Show();
                 errorCapturado = true;
-
             }
             if (validacionesUI.EvalMontos(corresp))
             {
-
                 Toast toast = new Toast("error", "La correspondencia no puede ser igual a 0 o negativo.");
                 toast.Show();
                 errorCapturado = true;
+            }
+
+            if (!errorCapturado) {
+
+                DateTime fechaVenta = DateTime.Today;
+
+                logicaNegocios.AltaVenta(marcaCarro, modeloCarro, colorCarro, precio, gan, corresp, numEmp, fechaVenta);
+                Toast toast = new Toast("exito", "Venta registrada con éxito.");
+                toast.Show();
+                this.Close();
 
             }
 
@@ -114,119 +148,307 @@ namespace presentacion
         private void txtPrecioCarro_TextChanged(object sender, EventArgs e)
         {
             int[] porcentajes = logicaNegocios.ConsPor();
-            //Porcentajes[0] = % ganancia
-            //Porcentajes[1] = % correspondencia
-            float ganCalculada = logicaNegocios.CalcGan(float.Parse(txtGanancia.Text), porcentajes[0]);
-            float correspCalculada = logicaNegocios.CalcCorresp(float.Parse(txtCorresp.Text), porcentajes[1]);
-            txtGanancia.Text = ganCalculada.ToString();
-            txtCorresp.Text = correspCalculada.ToString();
+            float precio;
 
+            if (float.TryParse(txtPrecioCarro.Text, out precio) && cambioConTeclado)
+            {
+                cambioConTeclado = false;
+                float ganCalculada = logicaNegocios.CalcGan(precio, porcentajes[0]);
+                float correspCalculada = logicaNegocios.CalcCorresp(precio, porcentajes[1]);
+                txtGanancia.Text = ganCalculada.ToString();
+                txtCorresp.Text = correspCalculada.ToString();
+            }
+            else if (txtPrecioCarro.Text.Equals("") && cambioConTeclado)
+            {
+                cambioConTeclado = false;
+
+                if (!txtPrecioCarro.Text.Equals("")) txtPrecioCarro.Text = "";
+                if (!txtGanancia.Text.Equals("")) txtGanancia.Text = "";
+                if (!txtCorresp.Text.Equals("")) txtCorresp.Text = "";
+            }
         }
 
         private void txtPrecioCarro_KeyPress(object sender, KeyPressEventArgs e)
         {
             char caracter = e.KeyChar;
 
-            //Si el caracter no es dígito ni un punto o un backspace, asumelo como manejado y no permitas que se escriba en el textBox
             if (!char.IsDigit(caracter) && caracter != '.' && !char.IsControl(caracter))
             {
-
                 e.Handled = true;
-
+                return;
             }
 
-            //Solo permitir que se escriba un punto decimal
-            if (caracter == '.' && ((sender as TextBox).Text.Contains(".")))
+            TextBox txt = sender as TextBox;
+            string textoActual = txt.Text;
+            int posCursor = txt.SelectionStart;
+            int selLength = txt.SelectionLength;
+            string resultado = "";
+
+            if (caracter == (char)Keys.Back)
             {
+                if (posCursor > 0 && textoActual.Length > 0)
+                {
+                    resultado = textoActual.Remove(posCursor - 1, 1);
+                }
+                else
+                {
+                    resultado = textoActual;
+                }
+            }
+            else
+            {
+                if (caracter == '.' && textoActual.Contains("."))
+                {
+                    e.Handled = true;
+                    return;
+                }
 
-                e.Handled = true;
-
+                if (selLength > 0)
+                {
+                    resultado = textoActual.Remove(posCursor, selLength).Insert(posCursor, caracter.ToString());
+                }
+                else
+                {
+                    resultado = textoActual.Insert(posCursor, caracter.ToString());
+                }
             }
 
+            if (resultado.Length > 1 && resultado.StartsWith("0") && !resultado.StartsWith("0."))
+            {
+                e.Handled = true;
+                return;
+            }
         }
+
 
         private void txtGanancia_TextChanged(object sender, EventArgs e)
         {
+            float gan;
+            float corresp = 0;
+            if (float.TryParse(txtGanancia.Text, out gan) && float.TryParse(txtCorresp.Text, out corresp) && cambioConTeclado)
+            {
+                cambioConTeclado = false;
+                float nuevoPrecio = gan + corresp;
+                txtPrecioCarro.Text = nuevoPrecio.ToString();
+            }
+            else if (txtGanancia.Text.Equals(""))
+            {
+                cambioConTeclado = false;
 
+                float.TryParse(txtCorresp.Text, out corresp);
+
+                if (corresp != 0)
+                {
+                    txtPrecioCarro.Text = corresp.ToString();
+                }
+                else
+                {
+                    if (!txtPrecioCarro.Text.Equals(""))
+                    {
+                        txtPrecioCarro.Text = "";
+                    }
+                }
+
+            }//fin else-if
         }
 
         private void txtGanancia_KeyPress(object sender, KeyPressEventArgs e)
         {
             char caracter = e.KeyChar;
 
-            //Si el caracter no es dígito ni un punto o un backspace, asumelo como manejado y no permitas que se escriba en el textBox
             if (!char.IsDigit(caracter) && caracter != '.' && !char.IsControl(caracter))
             {
-
                 e.Handled = true;
-
+                return;
             }
 
-            //Solo permitir que se escriba un punto decimal
-            if (caracter == '.' && ((sender as TextBox).Text.Contains(".")))
+            TextBox txt = sender as TextBox;
+            string textoActual = txt.Text;
+            int posCursor = txt.SelectionStart;
+            int selLength = txt.SelectionLength;
+            string resultado = "";
+
+            // Si es Backspace, simular eliminación
+            if (caracter == (char)Keys.Back)
             {
-
-                e.Handled = true;
-
+                if (posCursor > 0 && textoActual.Length > 0)
+                {
+                    resultado = textoActual.Remove(posCursor - 1, 1);
+                }
+                else
+                {
+                    resultado = textoActual;
+                }
             }
-        }
+            else
+            {
+                // Si es punto y ya hay un punto, bloquear
+                if (caracter == '.' && textoActual.Contains("."))
+                {
+                    e.Handled = true;
+                    return;
+                }
 
+                // Insertar o reemplazar texto simulado
+                if (selLength > 0)
+                {
+                    resultado = textoActual.Remove(posCursor, selLength).Insert(posCursor, caracter.ToString());
+                }
+                else
+                {
+                    resultado = textoActual.Insert(posCursor, caracter.ToString());
+                }
+            }
+
+            // No permite ceros al inicio, a menos que sea solo un 0 o un decimal tipo 0.25
+            if (resultado.Length > 1 && resultado.StartsWith("0") && !resultado.StartsWith("0."))
+            {
+                e.Handled = true;
+                return;
+            }
+
+        }
         private void txtCorresp_KeyPress(object sender, KeyPressEventArgs e)
         {
             char caracter = e.KeyChar;
 
-            //Si el caracter no es dígito ni un punto o un backspace, asumelo como manejado y no permitas que se escriba en el textBox
             if (!char.IsDigit(caracter) && caracter != '.' && !char.IsControl(caracter))
             {
-
                 e.Handled = true;
-
+                return;
             }
 
-            //Solo permitir que se escriba un punto decimal
-            if (caracter == '.' && ((sender as TextBox).Text.Contains(".")))
+            TextBox txt = sender as TextBox;
+            string textoActual = txt.Text;
+            int posCursor = txt.SelectionStart;
+            int selLength = txt.SelectionLength;
+            string resultado = "";
+
+            if (caracter == (char)Keys.Back)
             {
+                if (posCursor > 0 && textoActual.Length > 0)
+                {
+                    resultado = textoActual.Remove(posCursor - 1, 1);
+                }
+                else
+                {
+                    resultado = textoActual;
+                }
+            }
+            else
+            {
+                if (caracter == '.' && textoActual.Contains("."))
+                {
+                    e.Handled = true;
+                    return;
+                }
 
+                if (selLength > 0)
+                {
+                    resultado = textoActual.Remove(posCursor, selLength).Insert(posCursor, caracter.ToString());
+                }
+                else
+                {
+                    resultado = textoActual.Insert(posCursor, caracter.ToString());
+                }
+            }
+
+            if (resultado.Length > 1 && resultado.StartsWith("0") && !resultado.StartsWith("0."))
+            {
                 e.Handled = true;
-
+                return;
             }
         }
 
+
         private void cbNomEmpleado_SelectedValueChanged(object sender, EventArgs e)
         {
-            //Se divide el nombre completo por espacios
-            string[] nomCompleto = cbNomEmpleado.Text.Split(' ');
+            if (cargando) return;
+
+            if (string.IsNullOrWhiteSpace(cbNomEmpleado.Text)) return;
+
+            string[] nomCompleto = cbNomEmpleado.Text.Trim().Split(' ');
+
+            if (nomCompleto.Length < 3) return;
+
             string nom;
             string apellidoPaterno;
             string apellidoMaterno;
-            //Si el nombre completo contiene un nombre
+
             if (nomCompleto.Length == 3)
             {
-
                 nom = nomCompleto[0];
                 apellidoPaterno = nomCompleto[1];
                 apellidoMaterno = nomCompleto[2];
-
             }
-            //Si el nombre completo contiene dos nombres
-            else
+            else if (nomCompleto.Length >= 4)
             {
-
                 nom = nomCompleto[0] + " " + nomCompleto[1];
                 apellidoPaterno = nomCompleto[2];
                 apellidoMaterno = nomCompleto[3];
-
             }
-            cbNumEmpleado.SelectedValue = logicaNegocios.ConsNumEmp(nom, apellidoPaterno, apellidoMaterno);
+            else
+            {
+                return;
+            }
 
+            cbNumEmpleado.SelectedValue = logicaNegocios.ConsNumEmp(nom, apellidoPaterno, apellidoMaterno);
         }
 
         private void cbNumEmpleado_SelectedValueChanged(object sender, EventArgs e)
         {
+            if (cargando) return;
 
-            int numSeleccionado = int.Parse(cbNumEmpleado.Text);
-            cbNomEmpleado.SelectedValue = logicaNegocios.ConsNomEmp(numSeleccionado);
+            int numSeleccionado;
+            if (int.TryParse(cbNumEmpleado.Text, out numSeleccionado))
+            {
+                cbNomEmpleado.SelectedValue = logicaNegocios.ConsNomEmp(numSeleccionado);
+            }
+        }
 
+        private void txtCorresp_TextChanged(object sender, EventArgs e)
+        {
+            float gan = 0;
+            float corresp;
+            if (float.TryParse(txtGanancia.Text, out gan) && float.TryParse(txtCorresp.Text, out corresp) && cambioConTeclado)
+            {
+                cambioConTeclado = false;
+                float nuevoPrecio = gan + corresp;
+                txtPrecioCarro.Text = nuevoPrecio.ToString();
+            }
+            else if (txtCorresp.Text.Equals(""))
+            {
+                cambioConTeclado = false;
+
+                float.TryParse(txtGanancia.Text, out gan);
+
+                if (gan != 0)
+                {
+                    txtPrecioCarro.Text = gan.ToString();
+                }
+                else
+                {
+                    if (!txtPrecioCarro.Text.Equals(""))
+                    {
+                        txtPrecioCarro.Text = "";
+                    }
+                }
+            }
+        }
+
+        private void txtPrecioCarro_KeyDown(object sender, KeyEventArgs e)
+        {
+            cambioConTeclado = true;
+        }
+
+        private void txtGanancia_KeyDown(object sender, KeyEventArgs e)
+        {
+            cambioConTeclado = true;
+        }
+
+        private void txtCorresp_KeyDown(object sender, KeyEventArgs e)
+        {
+            cambioConTeclado = true;
         }
     }
 }

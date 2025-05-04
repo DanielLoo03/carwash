@@ -81,7 +81,7 @@
             // 
             lblModelo.AutoSize = true;
             lblModelo.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblModelo.Location = new Point(88, 128);
+            lblModelo.Location = new Point(88, 243);
             lblModelo.Name = "lblModelo";
             lblModelo.Size = new Size(147, 22);
             lblModelo.TabIndex = 18;
@@ -89,14 +89,14 @@
             // 
             // txtModeloCarro
             // 
-            txtModeloCarro.Location = new Point(88, 159);
+            txtModeloCarro.Location = new Point(88, 274);
             txtModeloCarro.Name = "txtModeloCarro";
             txtModeloCarro.Size = new Size(557, 31);
             txtModeloCarro.TabIndex = 24;
             // 
             // txtMarcaCarro
             // 
-            txtMarcaCarro.Location = new Point(88, 258);
+            txtMarcaCarro.Location = new Point(88, 184);
             txtMarcaCarro.Name = "txtMarcaCarro";
             txtMarcaCarro.Size = new Size(557, 31);
             txtMarcaCarro.TabIndex = 26;
@@ -105,7 +105,7 @@
             // 
             lblMarca.AutoSize = true;
             lblMarca.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblMarca.Location = new Point(88, 227);
+            lblMarca.Location = new Point(88, 153);
             lblMarca.Name = "lblMarca";
             lblMarca.Size = new Size(138, 22);
             lblMarca.TabIndex = 25;
@@ -113,7 +113,7 @@
             // 
             // txtColorCarro
             // 
-            txtColorCarro.Location = new Point(88, 358);
+            txtColorCarro.Location = new Point(88, 363);
             txtColorCarro.Name = "txtColorCarro";
             txtColorCarro.Size = new Size(557, 31);
             txtColorCarro.TabIndex = 28;
@@ -122,7 +122,7 @@
             // 
             lblColor.AutoSize = true;
             lblColor.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblColor.Location = new Point(88, 327);
+            lblColor.Location = new Point(88, 332);
             lblColor.Name = "lblColor";
             lblColor.Size = new Size(132, 22);
             lblColor.TabIndex = 27;
@@ -130,17 +130,19 @@
             // 
             // txtCorresp
             // 
-            txtCorresp.Location = new Point(88, 656);
+            txtCorresp.Location = new Point(88, 620);
             txtCorresp.Name = "txtCorresp";
             txtCorresp.Size = new Size(557, 31);
             txtCorresp.TabIndex = 34;
+            txtCorresp.TextChanged += txtCorresp_TextChanged;
+            txtCorresp.KeyDown += txtCorresp_KeyDown;
             txtCorresp.KeyPress += txtCorresp_KeyPress;
             // 
             // lblCorrespondencia
             // 
             lblCorrespondencia.AutoSize = true;
             lblCorrespondencia.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCorrespondencia.Location = new Point(88, 625);
+            lblCorrespondencia.Location = new Point(88, 589);
             lblCorrespondencia.Name = "lblCorrespondencia";
             lblCorrespondencia.Size = new Size(147, 22);
             lblCorrespondencia.TabIndex = 33;
@@ -148,18 +150,19 @@
             // 
             // txtGanancia
             // 
-            txtGanancia.Location = new Point(88, 556);
+            txtGanancia.Location = new Point(88, 535);
             txtGanancia.Name = "txtGanancia";
             txtGanancia.Size = new Size(557, 31);
             txtGanancia.TabIndex = 32;
             txtGanancia.TextChanged += txtGanancia_TextChanged;
+            txtGanancia.KeyDown += txtGanancia_KeyDown;
             txtGanancia.KeyPress += txtGanancia_KeyPress;
             // 
             // lblGanancia
             // 
             lblGanancia.AutoSize = true;
             lblGanancia.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGanancia.Location = new Point(88, 525);
+            lblGanancia.Location = new Point(88, 504);
             lblGanancia.Name = "lblGanancia";
             lblGanancia.Size = new Size(87, 22);
             lblGanancia.TabIndex = 31;
@@ -167,18 +170,19 @@
             // 
             // txtPrecioCarro
             // 
-            txtPrecioCarro.Location = new Point(88, 457);
+            txtPrecioCarro.Location = new Point(88, 449);
             txtPrecioCarro.Name = "txtPrecioCarro";
             txtPrecioCarro.Size = new Size(557, 31);
             txtPrecioCarro.TabIndex = 30;
             txtPrecioCarro.TextChanged += txtPrecioCarro_TextChanged;
+            txtPrecioCarro.KeyDown += txtPrecioCarro_KeyDown;
             txtPrecioCarro.KeyPress += txtPrecioCarro_KeyPress;
             // 
             // lblPrecio
             // 
             lblPrecio.AutoSize = true;
             lblPrecio.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPrecio.Location = new Point(88, 426);
+            lblPrecio.Location = new Point(88, 418);
             lblPrecio.Name = "lblPrecio";
             lblPrecio.Size = new Size(140, 22);
             lblPrecio.TabIndex = 29;
@@ -188,7 +192,7 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = Color.Red;
-            label3.Location = new Point(224, 423);
+            label3.Location = new Point(224, 416);
             label3.Name = "label3";
             label3.Size = new Size(20, 25);
             label3.TabIndex = 35;
@@ -198,7 +202,7 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.Red;
-            label1.Location = new Point(171, 523);
+            label1.Location = new Point(172, 502);
             label1.Name = "label1";
             label1.Size = new Size(20, 25);
             label1.TabIndex = 36;
@@ -208,7 +212,7 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.Red;
-            label2.Location = new Point(235, 622);
+            label2.Location = new Point(235, 586);
             label2.Name = "label2";
             label2.Size = new Size(20, 25);
             label2.TabIndex = 37;
@@ -218,7 +222,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(88, 732);
+            label4.Location = new Point(88, 687);
             label4.Name = "label4";
             label4.Size = new Size(182, 22);
             label4.TabIndex = 38;
@@ -228,7 +232,7 @@
             // 
             label5.AutoSize = true;
             label5.ForeColor = Color.Red;
-            label5.Location = new Point(267, 729);
+            label5.Location = new Point(267, 684);
             label5.Name = "label5";
             label5.Size = new Size(20, 25);
             label5.TabIndex = 39;
@@ -238,7 +242,7 @@
             // 
             cbNomEmpleado.DropDownStyle = ComboBoxStyle.DropDownList;
             cbNomEmpleado.FormattingEnabled = true;
-            cbNomEmpleado.Location = new Point(88, 766);
+            cbNomEmpleado.Location = new Point(88, 721);
             cbNomEmpleado.Name = "cbNomEmpleado";
             cbNomEmpleado.Size = new Size(288, 33);
             cbNomEmpleado.TabIndex = 40;
@@ -248,7 +252,7 @@
             // 
             cbNumEmpleado.DropDownStyle = ComboBoxStyle.DropDownList;
             cbNumEmpleado.FormattingEnabled = true;
-            cbNumEmpleado.Location = new Point(88, 872);
+            cbNumEmpleado.Location = new Point(88, 818);
             cbNumEmpleado.Name = "cbNumEmpleado";
             cbNumEmpleado.Size = new Size(288, 33);
             cbNumEmpleado.TabIndex = 43;
@@ -258,7 +262,7 @@
             // 
             label6.AutoSize = true;
             label6.ForeColor = Color.Red;
-            label6.Location = new Point(267, 835);
+            label6.Location = new Point(267, 790);
             label6.Name = "label6";
             label6.Size = new Size(20, 25);
             label6.TabIndex = 42;
@@ -268,7 +272,7 @@
             // 
             lblNumEmp.AutoSize = true;
             lblNumEmp.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNumEmp.Location = new Point(88, 838);
+            lblNumEmp.Location = new Point(88, 784);
             lblNumEmp.Name = "lblNumEmp";
             lblNumEmp.Size = new Size(183, 22);
             lblNumEmp.TabIndex = 41;
@@ -282,7 +286,7 @@
             btnConfirmarVenta.ForeColor = SystemColors.Window;
             btnConfirmarVenta.Image = (Image)resources.GetObject("btnConfirmarVenta.Image");
             btnConfirmarVenta.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConfirmarVenta.Location = new Point(442, 964);
+            btnConfirmarVenta.Location = new Point(442, 912);
             btnConfirmarVenta.Name = "btnConfirmarVenta";
             btnConfirmarVenta.Size = new Size(203, 34);
             btnConfirmarVenta.TabIndex = 44;
@@ -296,7 +300,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(746, 1044);
+            ClientSize = new Size(746, 968);
             Controls.Add(btnConfirmarVenta);
             Controls.Add(cbNumEmpleado);
             Controls.Add(label6);

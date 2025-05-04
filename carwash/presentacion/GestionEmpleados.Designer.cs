@@ -205,6 +205,7 @@
             btnVentas.Size = new Size(50, 50);
             btnVentas.TabIndex = 4;
             btnVentas.UseVisualStyleBackColor = false;
+            btnVentas.Click += btnVentas_Click;
             // 
             // btnGestionEmpleados
             // 

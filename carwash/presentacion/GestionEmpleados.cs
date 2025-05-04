@@ -187,7 +187,8 @@ namespace presentacion
 
             DataGridViewRow filaSeleccionada = tblEmpleados.CurrentRow;//El empleado seleccionado para eliminar
             //Condición: Si seleccionó a un empleado/fila de la tabla
-            if (filaSeleccionada != null) {
+            if (filaSeleccionada != null)
+            {
 
                 MessageBoxConfirmar messageBoxConfirmar = new MessageBoxConfirmar("¿Está seguro de eliminar al empleado " + (int)filaSeleccionada.Cells["numEmpleado"].Value + " | " + (string)filaSeleccionada.Cells["nombre"].Value + " " + (string)filaSeleccionada.Cells["apellidoPaterno"].Value + " " + (string)filaSeleccionada.Cells["apellidoMaterno"].Value + "?");
                 messageBoxConfirmar.ConfirmarPresionado += (s, ev) =>
@@ -215,6 +216,15 @@ namespace presentacion
                 Toast toast = new Toast("error", "No has seleccionado ningún empleado.");
 
             }
+
+        }
+
+        private void btnVentas_Click(object sender, EventArgs e)
+        {
+
+            Ventas vtnVentas = new Ventas();
+            vtnVentas.Show();
+            this.Hide();
 
         }
     }

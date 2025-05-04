@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using persistencia;
 
 namespace negocios
 {
@@ -45,7 +46,7 @@ namespace negocios
         public DataTable ConsPor()
         {
 
-            return ventasDAO.ConsPor();
+            return ventasDAO.ConstPor();
 
         }
 

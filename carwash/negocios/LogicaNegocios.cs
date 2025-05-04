@@ -156,10 +156,23 @@ namespace negocios
         public int[] ConsPor() {
 
             DataTable resultQuery = ventasService.ConsPor();
-            //Rows [0] es el porcentaje de ganancia, Rows[1] es el porcentaje de correspondencia
-            int[] porcentajes = { (int)resultQuery.Rows[0]["porcentaje"], (int)resultQuery.Rows[1]["porcentaje"] };
+
+            int[] porcentajes = new int[2];
+
+            foreach (DataRow row in resultQuery.Rows)
+            {
+                string tipoConfig = row["tipoConfig"].ToString();
+
+                //Se asegura que porcentajes[0] siempre contenga la ganancia
+                if (tipoConfig == "ganancia")
+                    porcentajes[0] = Convert.ToInt32(row["porcentaje"]);
+                //Se asegura que porcentajes[0] siempre contenga la correspondencia
+                else if (tipoConfig == "correspondencia")
+                    porcentajes[1] = Convert.ToInt32(row["porcentaje"]);
+            }
+
             return porcentajes;
-        
+
         }
 
         //Consulta todos los números de empleados

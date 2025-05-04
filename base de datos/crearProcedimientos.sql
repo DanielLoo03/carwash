@@ -111,7 +111,8 @@ CREATE PROCEDURE registrarVenta(
     IN precioParam decimal(6,2),
     IN gananciaParam decimal(6,2),
     IN correspondenciaParam decimal(6,2),
-    IN numEmpleadoParam int
+    IN numEmpleadoParam int,
+    IN fechaVentaParam DATE
 )
 BEGIN
     INSERT INTO ventas (
@@ -121,7 +122,8 @@ BEGIN
         precio,
         ganancia,
         correspondencia,
-        numEmpleado
+        numEmpleado,
+        fechaVenta
     )
     VALUES (
         marcaCarroParam,
@@ -130,7 +132,8 @@ BEGIN
         precioParam,
         gananciaParam,
         correspondenciaParam,
-        numEmpleadoParam
+        numEmpleadoParam,
+        fechaVentaParam
     );
 END $$
 
@@ -176,7 +179,7 @@ END $$
 /* Consultar porcentajes (ganancia y correspondencia) */
 CREATE PROCEDURE obtenerPorcentajes()
 BEGIN
-    SELECT porcentaje 
+    SELECT porcentaje, tipoConfig
     FROM configventas;
 END $$
 

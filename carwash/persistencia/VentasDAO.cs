@@ -9,7 +9,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace persistencia
 {
-    internal class VentasDAO
+    public class VentasDAO
     {
         private Conexion conexion = new Conexion();
         private MySqlDataReader leer;
@@ -23,16 +23,16 @@ namespace persistencia
 
 
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "altaEmpleado";
+            comando.CommandText = "registrarVenta";
             comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@marcaCarro", marcaCarro);
-            comando.Parameters.AddWithValue("@modeloCarro", modeloCarro);
-            comando.Parameters.AddWithValue("@colorCarro", colorCarro);
-            comando.Parameters.AddWithValue("@precio", precio);
-            comando.Parameters.AddWithValue("@ganancia", gan);
-            comando.Parameters.AddWithValue("@correspondencia", corresp);
-            comando.Parameters.AddWithValue("@numEmpleado", numEmp);
-            comando.Parameters.AddWithValue("@fechaVenta", fechaVenta);
+            comando.Parameters.AddWithValue("@marcaCarroParam", marcaCarro);
+            comando.Parameters.AddWithValue("@modeloCarroParam", modeloCarro);
+            comando.Parameters.AddWithValue("@colorCarroParam", colorCarro);
+            comando.Parameters.AddWithValue("@precioParam", precio);
+            comando.Parameters.AddWithValue("@gananciaParam", gan);
+            comando.Parameters.AddWithValue("@correspondenciaParam", corresp);
+            comando.Parameters.AddWithValue("@numEmpleadoParam", numEmp);
+            comando.Parameters.AddWithValue("@fechaVentaParam", fechaVenta);
 
             comando.ExecuteNonQuery(); 
             comando.Parameters.Clear();
@@ -49,7 +49,7 @@ namespace persistencia
                 CommandText = "obtenerNumEmpleado",
                 CommandType = CommandType.StoredProcedure
             };
-            comando.Parameters.AddWithValue("@nombreEmpleadoParam", nom);
+            comando.Parameters.AddWithValue("@nombreParam", nom);
             comando.Parameters.AddWithValue("@apellidoPaternoParam",apellidoPaterno);
             comando.Parameters.AddWithValue("@apellidoMaternoParam",apellidoMaterno);
 

@@ -122,13 +122,13 @@ namespace presentacion
                 {
 
                     //No pudo realizar un parse de string a float correctamente (algún valor no se traduce a un float)
-                    return false;
+                    return true;
 
                 }
             
             }
             //Pasó todas las pruebas (nunca marcó "error")
-            return true;
+            return false;
 
         }
 
