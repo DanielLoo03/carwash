@@ -49,5 +49,11 @@ namespace negocios
 
         }
 
+        public DataTable ConsNomCompletos() {
+
+            return ventasDAO.ConsNomCompletos();
+        
+        }
+
     }
 }

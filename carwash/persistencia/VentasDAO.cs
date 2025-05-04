@@ -121,5 +121,23 @@ namespace persistencia
             conexion.CerrarConexion();
             return tabla;
         }
+
+        public DataTable ConsNomCompletos() {
+
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consNomCompletos",
+                CommandType = CommandType.StoredProcedure
+            };
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            return tabla;
+
+        }
+
     }
 }

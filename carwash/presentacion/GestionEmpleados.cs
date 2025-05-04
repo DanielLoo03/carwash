@@ -35,9 +35,9 @@ namespace presentacion
         private void imgVentas_Click(object sender, EventArgs e)
         {
 
-            //Ventas vtnVentas = new Ventas();
-            //vtnVentas.Show();
-            //this.Hide();
+            Ventas vtnVentas = new Ventas();
+            vtnVentas.Show();
+            this.Hide();
 
         }
 

@@ -114,9 +114,22 @@ namespace presentacion
 
         }
 
-        public Boolean EvalSoloNumeros(float valor)
+        public Boolean EvalSoloNums(string[] valores)
         {
-            return valor > 0;
+            for (int i = 0; i < valores.Length; i++) {
+
+                if (!float.TryParse(valores[i], out _))
+                {
+
+                    //No pudo realizar un parse de string a float correctamente (algún valor no se traduce a un float)
+                    return false;
+
+                }
+            
+            }
+            //Pasó todas las pruebas (nunca marcó "error")
+            return true;
+
         }
 
         public Boolean EvalCharsColor(string colorCarro)
@@ -150,6 +163,18 @@ namespace presentacion
                 return true; // Algún campo obligatorio no cumple
             }
             return false; // Todos los campos obligatorios están presentes y válidos
+        }
+
+        public Boolean EvalMontos(float monto)
+        {
+
+            if (monto <= 0) {
+
+                return true;
+
+            }
+            return false;
+
         }
 
     }

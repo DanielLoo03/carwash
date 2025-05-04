@@ -75,6 +75,7 @@
             btnRegresar.Size = new Size(40, 40);
             btnRegresar.TabIndex = 17;
             btnRegresar.UseVisualStyleBackColor = true;
+            btnRegresar.Click += btnRegresar_Click;
             // 
             // lblModelo
             // 
@@ -133,6 +134,7 @@
             txtCorresp.Name = "txtCorresp";
             txtCorresp.Size = new Size(557, 31);
             txtCorresp.TabIndex = 34;
+            txtCorresp.KeyPress += txtCorresp_KeyPress;
             // 
             // lblCorrespondencia
             // 
@@ -150,6 +152,8 @@
             txtGanancia.Name = "txtGanancia";
             txtGanancia.Size = new Size(557, 31);
             txtGanancia.TabIndex = 32;
+            txtGanancia.TextChanged += txtGanancia_TextChanged;
+            txtGanancia.KeyPress += txtGanancia_KeyPress;
             // 
             // lblGanancia
             // 
@@ -167,6 +171,8 @@
             txtPrecioCarro.Name = "txtPrecioCarro";
             txtPrecioCarro.Size = new Size(557, 31);
             txtPrecioCarro.TabIndex = 30;
+            txtPrecioCarro.TextChanged += txtPrecioCarro_TextChanged;
+            txtPrecioCarro.KeyPress += txtPrecioCarro_KeyPress;
             // 
             // lblPrecio
             // 
@@ -230,19 +236,23 @@
             // 
             // cbNomEmpleado
             // 
+            cbNomEmpleado.DropDownStyle = ComboBoxStyle.DropDownList;
             cbNomEmpleado.FormattingEnabled = true;
             cbNomEmpleado.Location = new Point(88, 766);
             cbNomEmpleado.Name = "cbNomEmpleado";
             cbNomEmpleado.Size = new Size(288, 33);
             cbNomEmpleado.TabIndex = 40;
+            cbNomEmpleado.SelectedValueChanged += cbNomEmpleado_SelectedValueChanged;
             // 
             // cbNumEmpleado
             // 
+            cbNumEmpleado.DropDownStyle = ComboBoxStyle.DropDownList;
             cbNumEmpleado.FormattingEnabled = true;
             cbNumEmpleado.Location = new Point(88, 872);
             cbNumEmpleado.Name = "cbNumEmpleado";
             cbNumEmpleado.Size = new Size(288, 33);
             cbNumEmpleado.TabIndex = 43;
+            cbNumEmpleado.SelectedValueChanged += cbNumEmpleado_SelectedValueChanged;
             // 
             // label6
             // 
@@ -262,7 +272,7 @@
             lblNumEmp.Name = "lblNumEmp";
             lblNumEmp.Size = new Size(183, 22);
             lblNumEmp.TabIndex = 41;
-            lblNumEmp.Text = "Numero de Empleado";
+            lblNumEmp.Text = "Número de Empleado";
             // 
             // btnConfirmarVenta
             // 
@@ -279,6 +289,7 @@
             btnConfirmarVenta.Text = "Confirmar";
             btnConfirmarVenta.TextAlign = ContentAlignment.MiddleRight;
             btnConfirmarVenta.UseVisualStyleBackColor = false;
+            btnConfirmarVenta.Click += btnConfirmarVenta_Click;
             // 
             // AltaVenta
             // 

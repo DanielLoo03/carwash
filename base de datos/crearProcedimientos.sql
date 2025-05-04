@@ -180,4 +180,11 @@ BEGIN
     FROM configventas;
 END $$
 
+/* Consultar nombres completos de empleados */
+CREATE PROCEDURE consNomCompletos()
+BEGIN
+    SELECT CONCAT(nombre, ' ', apellidoPaterno, ' ', apellidoMaterno) as nomCompleto
+    FROM empleados;
+END $$
+
 DELIMITER ;

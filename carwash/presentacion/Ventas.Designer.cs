@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ventas));
             pnlCabecera = new Panel();
+            btnConfigVentas = new Button();
             btnAddVenta = new Button();
             lblVentas = new Label();
             pnlContenido = new Panel();
@@ -42,12 +43,30 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
+            pnlCabecera.Controls.Add(btnConfigVentas);
             pnlCabecera.Controls.Add(btnAddVenta);
             pnlCabecera.Controls.Add(lblVentas);
             pnlCabecera.Location = new Point(0, 0);
             pnlCabecera.Name = "pnlCabecera";
             pnlCabecera.Size = new Size(1820, 100);
             pnlCabecera.TabIndex = 2;
+            // 
+            // btnConfigVentas
+            // 
+            btnConfigVentas.BackColor = Color.FromArgb(63, 114, 175);
+            btnConfigVentas.FlatStyle = FlatStyle.Popup;
+            btnConfigVentas.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnConfigVentas.ForeColor = Color.White;
+            btnConfigVentas.Image = (Image)resources.GetObject("btnConfigVentas.Image");
+            btnConfigVentas.ImageAlign = ContentAlignment.MiddleLeft;
+            btnConfigVentas.Location = new Point(1216, 32);
+            btnConfigVentas.Name = "btnConfigVentas";
+            btnConfigVentas.Size = new Size(225, 39);
+            btnConfigVentas.TabIndex = 3;
+            btnConfigVentas.Text = "Configuraciones";
+            btnConfigVentas.TextAlign = ContentAlignment.MiddleRight;
+            btnConfigVentas.UseVisualStyleBackColor = false;
+            btnConfigVentas.Click += btnConfigVentas_Click;
             // 
             // btnAddVenta
             // 
@@ -64,6 +83,7 @@
             btnAddVenta.Text = "Registrar Venta";
             btnAddVenta.TextAlign = ContentAlignment.MiddleRight;
             btnAddVenta.UseVisualStyleBackColor = false;
+            btnAddVenta.Click += btnAddVenta_Click;
             // 
             // lblVentas
             // 
@@ -125,5 +145,6 @@
         private Label lblVentas;
         private Panel pnlContenido;
         private DataGridView tblVentas;
+        private Button btnConfigVentas;
     }
 }

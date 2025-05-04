@@ -36,6 +36,8 @@
             txtPorCorresp = new TextBox();
             label1 = new Label();
             btnConfirmar = new Button();
+            obligatorio = new Label();
+            label2 = new Label();
             SuspendLayout();
             // 
             // btnRegresar
@@ -48,6 +50,7 @@
             btnRegresar.Size = new Size(40, 40);
             btnRegresar.TabIndex = 19;
             btnRegresar.UseVisualStyleBackColor = true;
+            btnRegresar.Click += btnRegresar_Click;
             // 
             // lblConfigVenta
             // 
@@ -57,7 +60,7 @@
             lblConfigVenta.Name = "lblConfigVenta";
             lblConfigVenta.Size = new Size(460, 46);
             lblConfigVenta.TabIndex = 18;
-            lblConfigVenta.Text = "Configuracion de Venta";
+            lblConfigVenta.Text = "Configuración de Venta";
             // 
             // lblModelo
             // 
@@ -75,6 +78,8 @@
             txtPorGan.Name = "txtPorGan";
             txtPorGan.Size = new Size(329, 31);
             txtPorGan.TabIndex = 25;
+            txtPorGan.TextChanged += txtPorGan_TextChanged;
+            txtPorGan.KeyPress += txtPorGan_KeyPress;
             // 
             // txtPorCorresp
             // 
@@ -82,6 +87,8 @@
             txtPorCorresp.Name = "txtPorCorresp";
             txtPorCorresp.Size = new Size(329, 31);
             txtPorCorresp.TabIndex = 27;
+            txtPorCorresp.TextChanged += txtPorCorresp_TextChanged;
+            txtPorCorresp.KeyPress += txtPorCorresp_KeyPress;
             // 
             // label1
             // 
@@ -108,6 +115,27 @@
             btnConfirmar.Text = "Confirmar";
             btnConfirmar.TextAlign = ContentAlignment.MiddleRight;
             btnConfirmar.UseVisualStyleBackColor = false;
+            btnConfirmar.Click += btnConfirmar_Click;
+            // 
+            // obligatorio
+            // 
+            obligatorio.AutoSize = true;
+            obligatorio.ForeColor = Color.Red;
+            obligatorio.Location = new Point(483, 161);
+            obligatorio.Name = "obligatorio";
+            obligatorio.Size = new Size(20, 25);
+            obligatorio.TabIndex = 46;
+            obligatorio.Text = "*";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.ForeColor = Color.Red;
+            label2.Location = new Point(513, 264);
+            label2.Name = "label2";
+            label2.Size = new Size(20, 25);
+            label2.TabIndex = 47;
+            label2.Text = "*";
             // 
             // ConfigVenta
             // 
@@ -115,6 +143,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(800, 486);
+            Controls.Add(label2);
+            Controls.Add(obligatorio);
             Controls.Add(btnConfirmar);
             Controls.Add(txtPorCorresp);
             Controls.Add(label1);
@@ -124,6 +154,7 @@
             Controls.Add(lblConfigVenta);
             Name = "ConfigVenta";
             Text = "Car Wash Leo";
+            Load += ConfigVenta_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -137,5 +168,7 @@
         private TextBox txtPorCorresp;
         private Label label1;
         private Button btnConfirmar;
+        private Label obligatorio;
+        private Label label2;
     }
 }

@@ -87,30 +87,16 @@ namespace negocios
 
         //por = porcentaje que ya se tiene calculado
         //tipoPor = si es el porcentaje de ganancia o de correspondencia
-        public int[] CalcPor(int por, string tipoPor) {
-
-            //Arreglo que contiene el porcentaje de ganancia y el porcentaje de correspondencia
-            int[] pors;
+        public int CalcPor(int por, string tipoPor) {
 
             //otroPor = se calcula el porcentaje de ganancia/correspondencia
             int otroPor = 100 - por; 
 
-            //Verifica que siempre el valor en pors[0] sea el porcentaje de ganancia y que siempre el valor en pors[1] sea el porcentaje de conrrespondencia
-            if (tipoPor.Equals("ganancia")) {
-
-                pors = new int[] { por , otroPor };
-            
-            }
-            else
-            {
-
-                pors = new int[] { otroPor , por };
-
-            }
-            return pors;
+            return otroPor;
         
         }
 
+        //Calcula la ganancia según el porcentaje de ganancia
         public float CalcGan(float precio, int porGan) {
 
             float gan = precio * (porGan / 100f);
@@ -118,6 +104,7 @@ namespace negocios
         
         }
 
+        //Calcula la correspondencia según el porcentaje de correspondencia
         public float CalcCorresp(float precio, int porCorresp)
         {
 
@@ -126,6 +113,7 @@ namespace negocios
 
         }
 
+        //Consulta el número de empleado
         public int ConsNumEmp(string nom, string apellidoPaterno, string apellidoMaterno) {
 
             //resultCons almacena el nombre de empleado en forma de DataTable, ya que viene de hacerse una consulta de MySQL
@@ -135,6 +123,7 @@ namespace negocios
         
         }
 
+        //Consulta el nombre de empleado
         public string ConsNomEmp(int numEmpleado)
         {
 
@@ -145,6 +134,7 @@ namespace negocios
 
         }
 
+        //Modifica el porcentaje de ganancia
         public Boolean ModPorGan(int por)
         {
 
@@ -153,11 +143,29 @@ namespace negocios
 
         }
 
+        //Modifica el porcentaje de correspondencia
         public Boolean ModPorCorresp(int por)
         {
 
             ventasService.ModPorCorresp(por);
             return true;
+
+        }
+
+        //Consulta los porcentajes de ganancia y correspondencia actuales
+        public int[] ConsPor() {
+
+            DataTable resultQuery = ventasService.ConsPor();
+            //Rows [0] es el porcentaje de ganancia, Rows[1] es el porcentaje de correspondencia
+            int[] porcentajes = { (int)resultQuery.Rows[0]["porcentaje"], (int)resultQuery.Rows[1]["porcentaje"] };
+            return porcentajes;
+        
+        }
+
+        //Consulta todos los números de empleados
+        public DataTable ConsNomEmpleados() { 
+        
+            return ventasService.ConsNomCompletos();
 
         }
 
