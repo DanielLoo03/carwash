@@ -49,7 +49,7 @@ namespace presentacion
             if (logicaNegocios.Login(nombreUsr, pwd))
             {
 
-                GestionEmpleados vtnGestionEmpleados = new GestionEmpleados(this);
+                PantallaPrincipal vtnGestionEmpleados = new PantallaPrincipal(this);
                 vtnGestionEmpleados.Show();
                 this.Hide();
 
@@ -91,7 +91,6 @@ namespace presentacion
             Rectangle areaBoton = btnLogin.ClientRectangle;
             btnLogin.Region = new Region(PanelAndBotonRedondeado(areaBoton, radio));
 
-            //Redondeo del textbox
         }
 
         public GraphicsPath PanelAndBotonRedondeado(Rectangle area, int radio)
