@@ -11,6 +11,7 @@ namespace negocios
     {
         private AdminsService adminsService = new AdminsService();
         private EmpleadosService empleadosService = new EmpleadosService();
+        private VentasService ventasService = new VentasService();
 
         //Valor de retorno: booleano que determina si el login fue exitoso o no exitoso
         public Boolean Login(String nombreUsuario, String contrasena)
@@ -74,6 +75,110 @@ namespace negocios
         {
 
             empleadosService.ElimEmpleado(numEmpleado);
+
+        }
+
+        public Boolean AltaVenta(string marcaCarro, string modeloCarro, string colorCarro, float precio, float gan, float corresp, int numEmp, DateTime fechaVenta) { 
+        
+            ventasService.AltaVenta(marcaCarro, modeloCarro, colorCarro, precio, gan, corresp, numEmp, fechaVenta);
+            return true;
+
+        }
+
+        //por = porcentaje que ya se tiene calculado
+        //tipoPor = si es el porcentaje de ganancia o de correspondencia
+        public int CalcPor(int por, string tipoPor) {
+
+            //otroPor = se calcula el porcentaje de ganancia/correspondencia
+            int otroPor = 100 - por; 
+
+            return otroPor;
+        
+        }
+
+        //Calcula la ganancia según el porcentaje de ganancia
+        public float CalcGan(float precio, int porGan) {
+
+            float gan = precio * (porGan / 100f);
+            return gan;
+        
+        }
+
+        //Calcula la correspondencia según el porcentaje de correspondencia
+        public float CalcCorresp(float precio, int porCorresp)
+        {
+
+            float corresp = precio * (porCorresp / 100f);
+            return corresp;
+
+        }
+
+        //Consulta el número de empleado
+        public int ConsNumEmp(string nom, string apellidoPaterno, string apellidoMaterno) {
+
+            //resultCons almacena el nombre de empleado en forma de DataTable, ya que viene de hacerse una consulta de MySQL
+            DataTable resultCons = ventasService.ConsNumEmp(nom, apellidoPaterno, apellidoMaterno);
+            int numEmp = (int)resultCons.Rows[0]["numEmpleado"];
+            return numEmp;
+        
+        }
+
+        //Consulta el nombre de empleado
+        public string ConsNomEmp(int numEmpleado)
+        {
+
+            //resultCons almacena el número de empleado en forma de DataTable, ya que viene de hacerse una consulta de MySQL
+            DataTable resultCons = ventasService.ConsNomEmp(numEmpleado);
+            string nomEmp = (string)resultCons.Rows[0]["nombreCompleto"];
+            return nomEmp;
+
+        }
+
+        //Modifica el porcentaje de ganancia
+        public Boolean ModPorGan(int por)
+        {
+
+            ventasService.ModPorGan(por);
+            return true;
+
+        }
+
+        //Modifica el porcentaje de correspondencia
+        public Boolean ModPorCorresp(int por)
+        {
+
+            ventasService.ModPorCorresp(por);
+            return true;
+
+        }
+
+        //Consulta los porcentajes de ganancia y correspondencia actuales
+        public int[] ConsPor() {
+
+            DataTable resultQuery = ventasService.ConsPor();
+
+            int[] porcentajes = new int[2];
+
+            foreach (DataRow row in resultQuery.Rows)
+            {
+                string tipoConfig = row["tipoConfig"].ToString();
+
+                //Se asegura que porcentajes[0] siempre contenga la ganancia
+                if (tipoConfig == "ganancia")
+                    porcentajes[0] = Convert.ToInt32(row["porcentaje"]);
+                //Se asegura que porcentajes[0] siempre contenga la correspondencia
+                else if (tipoConfig == "correspondencia")
+                    porcentajes[1] = Convert.ToInt32(row["porcentaje"]);
+            }
+
+            return porcentajes;
+
+        }
+
+        //Consulta todos los números de empleados
+        public DataTable ConsNomEmpleados() { 
+        
+            return ventasService.ConsNomCompletos();
 
         }
 

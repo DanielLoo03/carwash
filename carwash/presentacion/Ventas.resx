@@ -118,15 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnConfigVentas.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EgAACxIB0t1+/AAAAThJREFUSEvlVdsNwjAM7AhsACMwAiOwEWwAG8BmHYHPShRkbOcQTnqQ0E846aSm
-        Ppv4UdP9D+R+75UC9iKygGkeYgC5XtcheKLIEuZOhmGFxzZogBOC7Pw8jpssuPF227pNNdAe7FyFCYtg
-        VppL8S7a4vmEMBwafFU4fM9ab7Qce+rYQvVFmM9QcZl6733A7az+TOPO72DONg1wzhxZ2q7Pf+Til9CJ
-        gyRHIX4R08JApytxmg0ROWGmQBZtfkzkJOWJoD5KmF/Ql7xEWgZIJiD9epI33FdCqmv8sFqb7P3yQalk
-        zbLpn832wOkSE40716AB0m6Zw9o+8tsxx28YtiyFluJcOPHmpz7ltnE8IsxnmBAOvlvotGC6TONnvZid
-        mxH/RDTt6ZYNK8FKi8d5QG9iOdom5gfQdQ/N0tjkBwiNfQAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
+        rwAAAK8BK7AVuQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGWSURBVEhLrZbJ
+        SgNBEIbjvh3UZxG9KV4FQdFncSGIvpGKD+HF7RVExeXg7sUF9Psn06GYVE9n4vzwQSfTf3dPVXUljQoa
+        hOkcjWvVKrzDb47Ga9CzBmCsNcx0AmHxwDkEjUJ/a5jWLNzAD+zCENxCcYN70LMmfIM8c1AqLf4MdiEb
+        miLFZy8Q3USveA3W0At6EzdciuMXeKYqKFzj4GoLPNM+LICSPwyLcATe3B2ISkl7BWvYhpg2wM59A63R
+        oXW4gAewBp08pQOwHlXXKSxDJt3KWKUoLClpjud9hCzZU/kXHiOQ0iR4XpEl+78b6MZ7XpFtoBApOd4E
+        VUtKsRA9Qfs+rIAScwd2kkoxpUOwHiX5DNpJtlKJfYA1qBRj2gQ7V22mtJXvgTUEVIrzoIQq5gpL8eSB
+        6IEmQB3UM1XhE3TbO6Q2UEezu4Q+cOW1a7Vg+9lSrD5VzgyUSptcgTqrmp+SpsqwCwnN0TPlTaHV5+Ti
+        QXpFe8lUdsUNjiFIie/6J9OT7okNlUKxBLVKRRD+tnR52kbjD7kmBSj8LoYrAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="btnAddVenta.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

@@ -16,5 +16,17 @@ namespace presentacion
         {
             InitializeComponent();
         }
+
+        private void btnConfigVentas_Click(object sender, EventArgs e)
+        {
+            ConfigVenta vtnConfigVenta = new ConfigVenta();
+            vtnConfigVenta.ShowDialog();
+        }
+
+        private void btnAddVenta_Click(object sender, EventArgs e)
+        {
+            AltaVenta vtnAltaVenta = new AltaVenta();
+            vtnAltaVenta.ShowDialog();
+        }
     }
 }

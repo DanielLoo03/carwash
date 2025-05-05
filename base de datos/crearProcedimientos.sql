@@ -111,7 +111,8 @@ CREATE PROCEDURE registrarVenta(
     IN precioParam decimal(6,2),
     IN gananciaParam decimal(6,2),
     IN correspondenciaParam decimal(6,2),
-    IN numEmpleadoParam int
+    IN numEmpleadoParam int,
+    IN fechaVentaParam DATE
 )
 BEGIN
     INSERT INTO ventas (
@@ -121,7 +122,8 @@ BEGIN
         precio,
         ganancia,
         correspondencia,
-        numEmpleado
+        numEmpleado,
+        fechaVenta
     )
     VALUES (
         marcaCarroParam,
@@ -130,15 +132,23 @@ BEGIN
         precioParam,
         gananciaParam,
         correspondenciaParam,
-        numEmpleadoParam
+        numEmpleadoParam,
+        fechaVentaParam
     );
 END $$
 
-/* Obtener número de empleado en base al nombre de empleado*/
-CREATE PROCEDURE obtenerNumEmpleado(IN nombreEmpleadoParam VARCHAR(50))
+/* Obtener número de empleado en base al nombre completo de empleado*/
+CREATE PROCEDURE obtenerNumEmpleado(
+    IN nombreParam VARCHAR(50),
+    IN apellidoPaternoParam VARCHAR(50),
+    IN apellidoMaternoParam VARCHAR(50)
+)
 BEGIN 
-    SELECT numEmpleado from empleados
-    WHERE nombreEmpleado = nombreEmpleadoParam;
+    SELECT numEmpleado 
+    FROM empleados
+    WHERE nombre = nombreParam
+        AND apellidoPaterno = apellidoPaternoParam
+        AND apellidoMaterno = apellidoMaternoParam;
 END $$
 
 /* Obtener nombre completo de empleado en base al número de empleado*/
@@ -169,8 +179,15 @@ END $$
 /* Consultar porcentajes (ganancia y correspondencia) */
 CREATE PROCEDURE obtenerPorcentajes()
 BEGIN
-    SELECT porcentaje 
+    SELECT porcentaje, tipoConfig
     FROM configventas;
+END $$
+
+/* Consultar nombres completos de empleados */
+CREATE PROCEDURE consNomCompletos()
+BEGIN
+    SELECT CONCAT(nombre, ' ', apellidoPaterno, ' ', apellidoMaterno) as nomCompleto
+    FROM empleados;
 END $$
 
 DELIMITER ;
