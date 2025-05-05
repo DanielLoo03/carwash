@@ -65,6 +65,9 @@ namespace presentacion
 
             switch (e.KeyCode)
             {
+                case Keys.F1:
+                    btnGestionEmpleados.PerformClick(); 
+                    break;
 
                 case Keys.F2:
                     btnVentas.PerformClick();
