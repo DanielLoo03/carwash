@@ -35,9 +35,21 @@
             lblVentas = new Label();
             pnlContenido = new Panel();
             tblVentas = new DataGridView();
+            lblTotales = new Label();
+            lblPrecio = new Label();
+            lblGan = new Label();
+            lblCorresp = new Label();
+            lblPrecioMonto = new Label();
+            lblGanMonto = new Label();
+            lblCorrespMonto = new Label();
+            separator1 = new ReaLTaiizor.Controls.Separator();
+            dtFechaVenta = new DateTimePicker();
+            lblFechaVenta = new Label();
+            imgFechaVenta = new PictureBox();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tblVentas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgFechaVenta).BeginInit();
             SuspendLayout();
             // 
             // pnlCabecera
@@ -100,6 +112,17 @@
             // 
             pnlContenido.BackColor = SystemColors.Window;
             pnlContenido.BorderStyle = BorderStyle.FixedSingle;
+            pnlContenido.Controls.Add(imgFechaVenta);
+            pnlContenido.Controls.Add(lblFechaVenta);
+            pnlContenido.Controls.Add(dtFechaVenta);
+            pnlContenido.Controls.Add(separator1);
+            pnlContenido.Controls.Add(lblCorrespMonto);
+            pnlContenido.Controls.Add(lblGanMonto);
+            pnlContenido.Controls.Add(lblPrecioMonto);
+            pnlContenido.Controls.Add(lblCorresp);
+            pnlContenido.Controls.Add(lblGan);
+            pnlContenido.Controls.Add(lblPrecio);
+            pnlContenido.Controls.Add(lblTotales);
             pnlContenido.Controls.Add(tblVentas);
             pnlContenido.Location = new Point(0, 100);
             pnlContenido.Name = "pnlContenido";
@@ -110,14 +133,120 @@
             // 
             tblVentas.BackgroundColor = Color.White;
             tblVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tblVentas.Location = new Point(76, 72);
+            tblVentas.Location = new Point(76, 169);
             tblVentas.MultiSelect = false;
             tblVentas.Name = "tblVentas";
             tblVentas.ReadOnly = true;
             tblVentas.RowHeadersWidth = 62;
             tblVentas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            tblVentas.Size = new Size(1669, 404);
+            tblVentas.Size = new Size(1669, 321);
             tblVentas.TabIndex = 0;
+            // 
+            // lblTotales
+            // 
+            lblTotales.AutoSize = true;
+            lblTotales.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTotales.Location = new Point(1502, 54);
+            lblTotales.Name = "lblTotales";
+            lblTotales.Size = new Size(69, 22);
+            lblTotales.TabIndex = 1;
+            lblTotales.Text = "Totales";
+            // 
+            // lblPrecio
+            // 
+            lblPrecio.AutoSize = true;
+            lblPrecio.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPrecio.Location = new Point(1400, 97);
+            lblPrecio.Name = "lblPrecio";
+            lblPrecio.Size = new Size(62, 22);
+            lblPrecio.TabIndex = 2;
+            lblPrecio.Text = "Precio";
+            // 
+            // lblGan
+            // 
+            lblGan.AutoSize = true;
+            lblGan.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblGan.Location = new Point(1494, 97);
+            lblGan.Name = "lblGan";
+            lblGan.Size = new Size(88, 22);
+            lblGan.TabIndex = 3;
+            lblGan.Text = "Ganancia";
+            // 
+            // lblCorresp
+            // 
+            lblCorresp.AutoSize = true;
+            lblCorresp.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCorresp.Location = new Point(1593, 97);
+            lblCorresp.Name = "lblCorresp";
+            lblCorresp.Size = new Size(152, 22);
+            lblCorresp.TabIndex = 4;
+            lblCorresp.Text = "Correspondencia";
+            // 
+            // lblPrecioMonto
+            // 
+            lblPrecioMonto.AutoSize = true;
+            lblPrecioMonto.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPrecioMonto.Location = new Point(1414, 119);
+            lblPrecioMonto.Name = "lblPrecioMonto";
+            lblPrecioMonto.Size = new Size(28, 22);
+            lblPrecioMonto.TabIndex = 5;
+            lblPrecioMonto.Text = "---";
+            // 
+            // lblGanMonto
+            // 
+            lblGanMonto.AutoSize = true;
+            lblGanMonto.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblGanMonto.Location = new Point(1524, 119);
+            lblGanMonto.Name = "lblGanMonto";
+            lblGanMonto.Size = new Size(28, 22);
+            lblGanMonto.TabIndex = 6;
+            lblGanMonto.Text = "---";
+            // 
+            // lblCorrespMonto
+            // 
+            lblCorrespMonto.AutoSize = true;
+            lblCorrespMonto.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCorrespMonto.Location = new Point(1650, 119);
+            lblCorrespMonto.Name = "lblCorrespMonto";
+            lblCorrespMonto.Size = new Size(28, 22);
+            lblCorrespMonto.TabIndex = 7;
+            lblCorrespMonto.Text = "---";
+            // 
+            // separator1
+            // 
+            separator1.LineColor = Color.LightGray;
+            separator1.Location = new Point(1400, 79);
+            separator1.Name = "separator1";
+            separator1.Size = new Size(345, 15);
+            separator1.TabIndex = 8;
+            separator1.Text = "sepTotales";
+            // 
+            // dtFechaVenta
+            // 
+            dtFechaVenta.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtFechaVenta.Location = new Point(1016, 88);
+            dtFechaVenta.Name = "dtFechaVenta";
+            dtFechaVenta.Size = new Size(300, 29);
+            dtFechaVenta.TabIndex = 9;
+            // 
+            // lblFechaVenta
+            // 
+            lblFechaVenta.AutoSize = true;
+            lblFechaVenta.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblFechaVenta.Location = new Point(1102, 54);
+            lblFechaVenta.Name = "lblFechaVenta";
+            lblFechaVenta.Size = new Size(112, 22);
+            lblFechaVenta.TabIndex = 10;
+            lblFechaVenta.Text = "Día de venta";
+            // 
+            // imgFechaVenta
+            // 
+            imgFechaVenta.Image = (Image)resources.GetObject("imgFechaVenta.Image");
+            imgFechaVenta.Location = new Point(1060, 54);
+            imgFechaVenta.Name = "imgFechaVenta";
+            imgFechaVenta.Size = new Size(24, 24);
+            imgFechaVenta.TabIndex = 11;
+            imgFechaVenta.TabStop = false;
             // 
             // Ventas
             // 
@@ -132,7 +261,9 @@
             pnlCabecera.ResumeLayout(false);
             pnlCabecera.PerformLayout();
             pnlContenido.ResumeLayout(false);
+            pnlContenido.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)tblVentas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgFechaVenta).EndInit();
             ResumeLayout(false);
         }
 
@@ -146,5 +277,16 @@
         private Panel pnlContenido;
         private DataGridView tblVentas;
         private Button btnConfigVentas;
+        private Label lblTotales;
+        private Label lblCorrespMonto;
+        private Label lblGanMonto;
+        private Label lblPrecioMonto;
+        private Label lblCorresp;
+        private Label lblGan;
+        private Label lblPrecio;
+        private ReaLTaiizor.Controls.Separator separator1;
+        private Label lblFechaVenta;
+        private DateTimePicker dtFechaVenta;
+        private PictureBox imgFechaVenta;
     }
 }
