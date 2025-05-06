@@ -78,7 +78,7 @@ namespace negocios
 
         }
 
-        public Boolean AltaVenta(string marcaCarro, string modeloCarro, string colorCarro, float precio, float gan, float corresp, int numEmp, DateTime fechaVenta) { 
+        public Boolean AltaVenta(string marcaCarro, string modeloCarro, string colorCarro, int precio, int gan, int corresp, int numEmp, DateTime fechaVenta) { 
         
             ventasService.AltaVenta(marcaCarro, modeloCarro, colorCarro, precio, gan, corresp, numEmp, fechaVenta);
             return true;
@@ -97,18 +97,18 @@ namespace negocios
         }
 
         //Calcula la ganancia según el porcentaje de ganancia
-        public float CalcGan(float precio, int porGan) {
+        public int CalcGan(int precio, int porGan) {
 
-            float gan = precio * (porGan / 100f);
+            int gan = precio * (porGan / 100);
             return gan;
         
         }
 
         //Calcula la correspondencia según el porcentaje de correspondencia
-        public float CalcCorresp(float precio, int porCorresp)
+        public int CalcCorresp(int precio, int porCorresp)
         {
 
-            float corresp = precio * (porCorresp / 100f);
+            int corresp = precio * (porCorresp / 100);
             return corresp;
 
         }

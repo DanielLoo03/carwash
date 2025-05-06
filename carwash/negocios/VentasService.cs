@@ -13,7 +13,7 @@ namespace negocios
 
         private VentasDAO ventasDAO = new VentasDAO();
 
-        public void AltaVenta(string marcaCarro, string modeloCarro, string colorCarro, float precio, float gan, float corresp, int numEmp, DateTime fechaVenta) {
+        public void AltaVenta(string marcaCarro, string modeloCarro, string colorCarro, int precio, int gan, int corresp, int numEmp, DateTime fechaVenta) {
 
             ventasDAO.AltaVenta(marcaCarro, modeloCarro, colorCarro, precio, gan, corresp, numEmp, fechaVenta);
         
