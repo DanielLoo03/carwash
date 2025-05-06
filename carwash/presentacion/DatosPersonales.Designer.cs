@@ -56,10 +56,10 @@
             // lblDatosPersonales
             // 
             lblDatosPersonales.AutoSize = true;
-            lblDatosPersonales.Font = new Font("Inter Black", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDatosPersonales.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDatosPersonales.Location = new Point(192, 70);
             lblDatosPersonales.Name = "lblDatosPersonales";
-            lblDatosPersonales.Size = new Size(374, 49);
+            lblDatosPersonales.Size = new Size(352, 46);
             lblDatosPersonales.TabIndex = 0;
             lblDatosPersonales.Text = "Datos Personales";
             // 
@@ -78,20 +78,20 @@
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNombre.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblNombre.Location = new Point(100, 208);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(77, 22);
+            lblNombre.Size = new Size(73, 22);
             lblNombre.TabIndex = 2;
             lblNombre.Text = "Nombre";
             // 
             // lblApellidoPaterno
             // 
             lblApellidoPaterno.AutoSize = true;
-            lblApellidoPaterno.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblApellidoPaterno.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblApellidoPaterno.Location = new Point(100, 313);
             lblApellidoPaterno.Name = "lblApellidoPaterno";
-            lblApellidoPaterno.Size = new Size(150, 22);
+            lblApellidoPaterno.Size = new Size(147, 22);
             lblApellidoPaterno.TabIndex = 3;
             lblApellidoPaterno.Text = "Apellido Paterno ";
             lblApellidoPaterno.Click += lblApellidoPaterno_Click;
@@ -99,40 +99,40 @@
             // lblApellidoMaterno
             // 
             lblApellidoMaterno.AutoSize = true;
-            lblApellidoMaterno.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblApellidoMaterno.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblApellidoMaterno.Location = new Point(100, 418);
             lblApellidoMaterno.Name = "lblApellidoMaterno";
-            lblApellidoMaterno.Size = new Size(150, 22);
+            lblApellidoMaterno.Size = new Size(144, 22);
             lblApellidoMaterno.TabIndex = 4;
             lblApellidoMaterno.Text = "Apellido Materno";
             // 
             // lblFechaNacimiento
             // 
             lblFechaNacimiento.AutoSize = true;
-            lblFechaNacimiento.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblFechaNacimiento.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblFechaNacimiento.Location = new Point(100, 523);
             lblFechaNacimiento.Name = "lblFechaNacimiento";
-            lblFechaNacimiento.Size = new Size(181, 22);
+            lblFechaNacimiento.Size = new Size(176, 22);
             lblFechaNacimiento.TabIndex = 5;
             lblFechaNacimiento.Text = "Fecha de nacimiento";
             // 
             // lblNumTelefono
             // 
             lblNumTelefono.AutoSize = true;
-            lblNumTelefono.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNumTelefono.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblNumTelefono.Location = new Point(100, 628);
             lblNumTelefono.Name = "lblNumTelefono";
-            lblNumTelefono.Size = new Size(172, 22);
+            lblNumTelefono.Size = new Size(167, 22);
             lblNumTelefono.TabIndex = 6;
             lblNumTelefono.Text = "Número de teléfono";
             // 
             // numEmpleado
             // 
             numEmpleado.AutoSize = true;
-            numEmpleado.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            numEmpleado.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             numEmpleado.Location = new Point(100, 733);
             numEmpleado.Name = "numEmpleado";
-            numEmpleado.Size = new Size(187, 22);
+            numEmpleado.Size = new Size(181, 22);
             numEmpleado.TabIndex = 7;
             numEmpleado.Text = "Número de empleado";
             // 
@@ -184,7 +184,7 @@
             // 
             btnContinuar.BackColor = Color.FromArgb(63, 114, 175);
             btnContinuar.FlatStyle = FlatStyle.Flat;
-            btnContinuar.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnContinuar.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnContinuar.ForeColor = SystemColors.Window;
             btnContinuar.Image = (Image)resources.GetObject("btnContinuar.Image");
             btnContinuar.ImageAlign = ContentAlignment.MiddleLeft;
@@ -284,7 +284,7 @@
             Controls.Add(lblNombre);
             Controls.Add(btnRegresar);
             Controls.Add(lblDatosPersonales);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             MaximizeBox = false;
             Name = "DatosPersonales";
             Text = "Car Wash Leo";

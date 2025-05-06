@@ -14,10 +14,12 @@ namespace presentacion
     public partial class PantallaPrincipal : Form
     {
         private Autenticacion vtnAutenticacion;
+        private String nomUsuario;
 
-        public PantallaPrincipal(Autenticacion vtnAutenticacion)
+        public PantallaPrincipal(Autenticacion vtnAutenticacion, String nomUsuario)
         {
             this.vtnAutenticacion = vtnAutenticacion;
+            this.nomUsuario = nomUsuario;
             InitializeComponent();
 
         }
@@ -66,7 +68,7 @@ namespace presentacion
             switch (e.KeyCode)
             {
                 case Keys.F1:
-                    btnGestionEmpleados.PerformClick(); 
+                    btnGestionEmpleados.PerformClick();
                     break;
 
                 case Keys.F2:
@@ -121,6 +123,7 @@ namespace presentacion
         private void PantallaPrincipal_Load(object sender, EventArgs e)
         {
             CargarForm(new GestionEmpleado());
+            this.lblAdminActual.Text = this.nomUsuario;
         }
     }
 }

@@ -48,8 +48,7 @@ namespace presentacion
 
             if (logicaNegocios.Login(nombreUsr, pwd))
             {
-
-                PantallaPrincipal vtnGestionEmpleados = new PantallaPrincipal(this);
+                PantallaPrincipal vtnGestionEmpleados = new PantallaPrincipal(this, nombreUsr);
                 vtnGestionEmpleados.Show();
                 this.Hide();
 

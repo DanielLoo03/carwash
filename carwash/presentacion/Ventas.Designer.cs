@@ -33,11 +33,11 @@
             btnConfigVentas = new Button();
             btnAddVenta = new Button();
             lblVentas = new Label();
-            pnlContenido = new Panel();
             tblVentas = new DataGridView();
+            pnlContenido = new Panel();
             pnlCabecera.SuspendLayout();
-            pnlContenido.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tblVentas).BeginInit();
+            pnlContenido.SuspendLayout();
             SuspendLayout();
             // 
             // pnlCabecera
@@ -96,16 +96,6 @@
             lblVentas.TabIndex = 1;
             lblVentas.Text = "Ventas";
             // 
-            // pnlContenido
-            // 
-            pnlContenido.BackColor = SystemColors.Window;
-            pnlContenido.BorderStyle = BorderStyle.FixedSingle;
-            pnlContenido.Controls.Add(tblVentas);
-            pnlContenido.Location = new Point(0, 100);
-            pnlContenido.Name = "pnlContenido";
-            pnlContenido.Size = new Size(1820, 547);
-            pnlContenido.TabIndex = 3;
-            // 
             // tblVentas
             // 
             tblVentas.BackgroundColor = Color.White;
@@ -119,6 +109,16 @@
             tblVentas.Size = new Size(1669, 404);
             tblVentas.TabIndex = 0;
             // 
+            // pnlContenido
+            // 
+            pnlContenido.BackColor = SystemColors.Window;
+            pnlContenido.BorderStyle = BorderStyle.FixedSingle;
+            pnlContenido.Controls.Add(tblVentas);
+            pnlContenido.Location = new Point(0, 100);
+            pnlContenido.Name = "pnlContenido";
+            pnlContenido.Size = new Size(1820, 547);
+            pnlContenido.TabIndex = 3;
+            // 
             // Ventas
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -131,8 +131,8 @@
             Text = "Ventas";
             pnlCabecera.ResumeLayout(false);
             pnlCabecera.PerformLayout();
-            pnlContenido.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)tblVentas).EndInit();
+            pnlContenido.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -143,8 +143,8 @@
         private Button btnModEmpleado;
         private Button btnAddVenta;
         private Label lblVentas;
-        private Panel pnlContenido;
-        private DataGridView tblVentas;
         private Button btnConfigVentas;
+        private DataGridView tblVentas;
+        private Panel pnlContenido;
     }
 }

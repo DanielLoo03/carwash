@@ -52,7 +52,7 @@
             // 
             btnConfirmar.BackColor = Color.FromArgb(63, 114, 175);
             btnConfirmar.FlatStyle = FlatStyle.Flat;
-            btnConfirmar.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnConfirmar.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConfirmar.ForeColor = SystemColors.Window;
             btnConfirmar.Image = (Image)resources.GetObject("btnConfirmar.Image");
             btnConfirmar.ImageAlign = ContentAlignment.MiddleLeft;
@@ -96,47 +96,47 @@
             // lblCodigoPostal
             // 
             lblCodigoPostal.AutoSize = true;
-            lblCodigoPostal.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCodigoPostal.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblCodigoPostal.Location = new Point(117, 603);
             lblCodigoPostal.Name = "lblCodigoPostal";
-            lblCodigoPostal.Size = new Size(126, 22);
+            lblCodigoPostal.Size = new Size(120, 22);
             lblCodigoPostal.TabIndex = 21;
             lblCodigoPostal.Text = "Código postal";
             // 
             // lblNumExterior
             // 
             lblNumExterior.AutoSize = true;
-            lblNumExterior.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNumExterior.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblNumExterior.Location = new Point(117, 498);
             lblNumExterior.Name = "lblNumExterior";
-            lblNumExterior.Size = new Size(140, 22);
+            lblNumExterior.Size = new Size(138, 22);
             lblNumExterior.TabIndex = 20;
             lblNumExterior.Text = "Número exterior";
             // 
             // lblNumInterior
             // 
             lblNumInterior.AutoSize = true;
-            lblNumInterior.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNumInterior.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblNumInterior.Location = new Point(117, 393);
             lblNumInterior.Name = "lblNumInterior";
-            lblNumInterior.Size = new Size(136, 22);
+            lblNumInterior.Size = new Size(133, 22);
             lblNumInterior.TabIndex = 19;
             lblNumInterior.Text = "Número interior";
             // 
             // lblColonia
             // 
             lblColonia.AutoSize = true;
-            lblColonia.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblColonia.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblColonia.Location = new Point(117, 288);
             lblColonia.Name = "lblColonia";
-            lblColonia.Size = new Size(73, 22);
+            lblColonia.Size = new Size(71, 22);
             lblColonia.TabIndex = 18;
             lblColonia.Text = "Colonia";
             // 
             // lblCalle
             // 
             lblCalle.AutoSize = true;
-            lblCalle.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCalle.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblCalle.Location = new Point(117, 183);
             lblCalle.Name = "lblCalle";
             lblCalle.Size = new Size(51, 22);
@@ -159,10 +159,10 @@
             // lblDomicilio
             // 
             lblDomicilio.AutoSize = true;
-            lblDomicilio.Font = new Font("Inter Black", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDomicilio.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDomicilio.Location = new Point(283, 45);
             lblDomicilio.Name = "lblDomicilio";
-            lblDomicilio.Size = new Size(211, 49);
+            lblDomicilio.Size = new Size(194, 46);
             lblDomicilio.TabIndex = 15;
             lblDomicilio.Text = "Domicilio";
             // 
@@ -236,7 +236,7 @@
             Controls.Add(lblCalle);
             Controls.Add(btnRegresar);
             Controls.Add(lblDomicilio);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             MaximizeBox = false;
             Name = "Domicilio";
             Text = "Car Wash Leo";
