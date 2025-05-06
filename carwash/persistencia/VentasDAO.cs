@@ -139,5 +139,25 @@ namespace persistencia
 
         }
 
+        public DataTable ConsVentas(DateTime fecha)
+        {
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consVentas",
+                CommandType = CommandType.StoredProcedure
+            };
+            comando.Parameters.AddWithValue("@fechaParam", fecha); 
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            comando.Parameters.Clear();
+
+            return tabla;
+        }
+
+
     }
 }
