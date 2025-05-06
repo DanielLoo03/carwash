@@ -182,5 +182,32 @@ namespace negocios
 
         }
 
+        public Boolean ConsVentas(DataGridView tblVentas, DateTime fecha)
+        {
+            DataTable ventas = ventasService.ConsVentas(fecha);
+            tblVentas.DataSource = ventas;
+            if (ventas.Rows.Count != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public int CalcMontosTotal(DataGridView tblVentas, string col)
+        {
+            int total = 0;
+            foreach (DataGridViewRow row in tblVentas.Rows)
+            {
+                if (row.Cells[col].Value != null && int.TryParse(row.Cells[col].Value.ToString(), out int valor))
+                {
+                    total += valor;
+                }
+            }
+            return total;
+        }
+
     }
 }
