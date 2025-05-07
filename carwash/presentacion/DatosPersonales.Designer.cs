@@ -289,6 +289,7 @@
             Name = "DatosPersonales";
             Text = "Car Wash Leo";
             Load += DatosPersonales_Load;
+            KeyDown += DatosPersonales_KeyDown;
             ((System.ComponentModel.ISupportInitialize)nudNumEmpleado).EndInit();
             ResumeLayout(false);
             PerformLayout();

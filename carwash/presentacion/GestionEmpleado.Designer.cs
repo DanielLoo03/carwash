@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionEmpleado));
             pnlCabecera = new Panel();
-            btnElimEmpleado = new Button();
+            btnBajaEmpleado = new Button();
             btnModEmpleado = new Button();
-            btnAddEmpleado = new Button();
+            btnAltaEmpleado = new Button();
             lblEmpleados = new Label();
             lblGestionDe = new Label();
             pnlContenido = new Panel();
@@ -46,9 +46,9 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
-            pnlCabecera.Controls.Add(btnElimEmpleado);
+            pnlCabecera.Controls.Add(btnBajaEmpleado);
             pnlCabecera.Controls.Add(btnModEmpleado);
-            pnlCabecera.Controls.Add(btnAddEmpleado);
+            pnlCabecera.Controls.Add(btnAltaEmpleado);
             pnlCabecera.Controls.Add(lblEmpleados);
             pnlCabecera.Controls.Add(lblGestionDe);
             pnlCabecera.Location = new Point(0, 0);
@@ -56,22 +56,22 @@
             pnlCabecera.Size = new Size(1820, 100);
             pnlCabecera.TabIndex = 2;
             // 
-            // btnElimEmpleado
+            // btnBajaEmpleado
             // 
-            btnElimEmpleado.BackColor = Color.FromArgb(63, 114, 175);
-            btnElimEmpleado.FlatStyle = FlatStyle.Popup;
-            btnElimEmpleado.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnElimEmpleado.ForeColor = Color.White;
-            btnElimEmpleado.Image = (Image)resources.GetObject("btnElimEmpleado.Image");
-            btnElimEmpleado.ImageAlign = ContentAlignment.MiddleLeft;
-            btnElimEmpleado.Location = new Point(1194, 32);
-            btnElimEmpleado.Name = "btnElimEmpleado";
-            btnElimEmpleado.Size = new Size(225, 39);
-            btnElimEmpleado.TabIndex = 4;
-            btnElimEmpleado.Text = "Eliminar Empleado";
-            btnElimEmpleado.TextAlign = ContentAlignment.MiddleRight;
-            btnElimEmpleado.UseVisualStyleBackColor = false;
-            btnElimEmpleado.Click += btnElimEmpleado_Click;
+            btnBajaEmpleado.BackColor = Color.FromArgb(63, 114, 175);
+            btnBajaEmpleado.FlatStyle = FlatStyle.Popup;
+            btnBajaEmpleado.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnBajaEmpleado.ForeColor = Color.White;
+            btnBajaEmpleado.Image = (Image)resources.GetObject("btnBajaEmpleado.Image");
+            btnBajaEmpleado.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBajaEmpleado.Location = new Point(1194, 32);
+            btnBajaEmpleado.Name = "btnBajaEmpleado";
+            btnBajaEmpleado.Size = new Size(225, 39);
+            btnBajaEmpleado.TabIndex = 4;
+            btnBajaEmpleado.Text = "Eliminar Empleado";
+            btnBajaEmpleado.TextAlign = ContentAlignment.MiddleRight;
+            btnBajaEmpleado.UseVisualStyleBackColor = false;
+            btnBajaEmpleado.Click += btnElimEmpleado_Click;
             // 
             // btnModEmpleado
             // 
@@ -90,22 +90,22 @@
             btnModEmpleado.UseVisualStyleBackColor = false;
             btnModEmpleado.Click += btnModEmpleado_Click;
             // 
-            // btnAddEmpleado
+            // btnAltaEmpleado
             // 
-            btnAddEmpleado.BackColor = Color.FromArgb(63, 114, 175);
-            btnAddEmpleado.FlatStyle = FlatStyle.Popup;
-            btnAddEmpleado.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAddEmpleado.ForeColor = Color.White;
-            btnAddEmpleado.Image = (Image)resources.GetObject("btnAddEmpleado.Image");
-            btnAddEmpleado.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddEmpleado.Location = new Point(1487, 32);
-            btnAddEmpleado.Name = "btnAddEmpleado";
-            btnAddEmpleado.Size = new Size(225, 39);
-            btnAddEmpleado.TabIndex = 2;
-            btnAddEmpleado.Text = "Agregar Empleado";
-            btnAddEmpleado.TextAlign = ContentAlignment.MiddleRight;
-            btnAddEmpleado.UseVisualStyleBackColor = false;
-            btnAddEmpleado.Click += btnAddEmpleado_Click;
+            btnAltaEmpleado.BackColor = Color.FromArgb(63, 114, 175);
+            btnAltaEmpleado.FlatStyle = FlatStyle.Popup;
+            btnAltaEmpleado.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAltaEmpleado.ForeColor = Color.White;
+            btnAltaEmpleado.Image = (Image)resources.GetObject("btnAltaEmpleado.Image");
+            btnAltaEmpleado.ImageAlign = ContentAlignment.MiddleLeft;
+            btnAltaEmpleado.Location = new Point(1487, 32);
+            btnAltaEmpleado.Name = "btnAltaEmpleado";
+            btnAltaEmpleado.Size = new Size(225, 39);
+            btnAltaEmpleado.TabIndex = 2;
+            btnAltaEmpleado.Text = "Agregar Empleado";
+            btnAltaEmpleado.TextAlign = ContentAlignment.MiddleRight;
+            btnAltaEmpleado.UseVisualStyleBackColor = false;
+            btnAltaEmpleado.Click += btnAddEmpleado_Click;
             // 
             // lblEmpleados
             // 
@@ -175,6 +175,7 @@
             Name = "GestionEmpleado";
             Text = "GestionEmpleado";
             Load += GestionEmpleado_Load;
+            KeyDown += GestionEmpleado_KeyDown;
             pnlCabecera.ResumeLayout(false);
             pnlCabecera.PerformLayout();
             pnlContenido.ResumeLayout(false);
@@ -186,9 +187,9 @@
         #endregion
 
         private Panel pnlCabecera;
-        private Button btnElimEmpleado;
+        private Button btnBajaEmpleado;
         private Button btnModEmpleado;
-        private Button btnAddEmpleado;
+        private Button btnAltaEmpleado;
         private Label lblEmpleados;
         private Label lblGestionDe;
         private Panel pnlContenido;

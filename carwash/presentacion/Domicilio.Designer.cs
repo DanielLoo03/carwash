@@ -241,6 +241,7 @@
             Name = "Domicilio";
             Text = "Car Wash Leo";
             Load += Domicilio_Load;
+            KeyDown += Domicilio_KeyDown;
             ResumeLayout(false);
             PerformLayout();
         }

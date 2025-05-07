@@ -31,32 +31,32 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ventas));
             pnlCabecera = new Panel();
             btnConfigVentas = new Button();
-            btnAddVenta = new Button();
+            btnAltaVenta = new Button();
             lblVentas = new Label();
             pnlContenido = new Panel();
-            tblVentas = new DataGridView();
-            lblTotales = new Label();
-            lblPrecio = new Label();
-            lblGan = new Label();
-            lblCorresp = new Label();
-            lblPrecioMonto = new Label();
-            lblGanMonto = new Label();
-            lblCorrespMonto = new Label();
-            separator1 = new ReaLTaiizor.Controls.Separator();
-            dtFechaVenta = new DateTimePicker();
-            lblFechaVenta = new Label();
             imgFechaVenta = new PictureBox();
+            lblFechaVenta = new Label();
+            dtFechaVenta = new DateTimePicker();
+            separator1 = new ReaLTaiizor.Controls.Separator();
+            lblCorrespMonto = new Label();
+            lblGanMonto = new Label();
+            lblPrecioMonto = new Label();
+            lblCorresp = new Label();
+            lblGan = new Label();
+            lblPrecio = new Label();
+            lblTotales = new Label();
+            tblVentas = new DataGridView();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)tblVentas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgFechaVenta).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tblVentas).BeginInit();
             SuspendLayout();
             // 
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
             pnlCabecera.Controls.Add(btnConfigVentas);
-            pnlCabecera.Controls.Add(btnAddVenta);
+            pnlCabecera.Controls.Add(btnAltaVenta);
             pnlCabecera.Controls.Add(lblVentas);
             pnlCabecera.Location = new Point(0, 0);
             pnlCabecera.Name = "pnlCabecera";
@@ -80,22 +80,22 @@
             btnConfigVentas.UseVisualStyleBackColor = false;
             btnConfigVentas.Click += btnConfigVentas_Click;
             // 
-            // btnAddVenta
+            // btnAltaVenta
             // 
-            btnAddVenta.BackColor = Color.FromArgb(63, 114, 175);
-            btnAddVenta.FlatStyle = FlatStyle.Popup;
-            btnAddVenta.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAddVenta.ForeColor = Color.White;
-            btnAddVenta.Image = (Image)resources.GetObject("btnAddVenta.Image");
-            btnAddVenta.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddVenta.Location = new Point(1487, 32);
-            btnAddVenta.Name = "btnAddVenta";
-            btnAddVenta.Size = new Size(225, 39);
-            btnAddVenta.TabIndex = 2;
-            btnAddVenta.Text = "Registrar Venta";
-            btnAddVenta.TextAlign = ContentAlignment.MiddleRight;
-            btnAddVenta.UseVisualStyleBackColor = false;
-            btnAddVenta.Click += btnAddVenta_Click;
+            btnAltaVenta.BackColor = Color.FromArgb(63, 114, 175);
+            btnAltaVenta.FlatStyle = FlatStyle.Popup;
+            btnAltaVenta.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAltaVenta.ForeColor = Color.White;
+            btnAltaVenta.Image = (Image)resources.GetObject("btnAltaVenta.Image");
+            btnAltaVenta.ImageAlign = ContentAlignment.MiddleLeft;
+            btnAltaVenta.Location = new Point(1487, 32);
+            btnAltaVenta.Name = "btnAltaVenta";
+            btnAltaVenta.Size = new Size(225, 39);
+            btnAltaVenta.TabIndex = 2;
+            btnAltaVenta.Text = "Agregar Venta";
+            btnAltaVenta.TextAlign = ContentAlignment.MiddleRight;
+            btnAltaVenta.UseVisualStyleBackColor = false;
+            btnAltaVenta.Click += btnAddVenta_Click;
             // 
             // lblVentas
             // 
@@ -129,6 +129,112 @@
             pnlContenido.Size = new Size(1820, 547);
             pnlContenido.TabIndex = 3;
             // 
+            // imgFechaVenta
+            // 
+            imgFechaVenta.Image = (Image)resources.GetObject("imgFechaVenta.Image");
+            imgFechaVenta.Location = new Point(1060, 54);
+            imgFechaVenta.Name = "imgFechaVenta";
+            imgFechaVenta.Size = new Size(24, 24);
+            imgFechaVenta.TabIndex = 11;
+            imgFechaVenta.TabStop = false;
+            // 
+            // lblFechaVenta
+            // 
+            lblFechaVenta.AutoSize = true;
+            lblFechaVenta.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblFechaVenta.Location = new Point(1102, 54);
+            lblFechaVenta.Name = "lblFechaVenta";
+            lblFechaVenta.Size = new Size(112, 22);
+            lblFechaVenta.TabIndex = 10;
+            lblFechaVenta.Text = "Día de venta";
+            // 
+            // dtFechaVenta
+            // 
+            dtFechaVenta.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtFechaVenta.Location = new Point(1016, 88);
+            dtFechaVenta.Name = "dtFechaVenta";
+            dtFechaVenta.Size = new Size(300, 29);
+            dtFechaVenta.TabIndex = 9;
+            // 
+            // separator1
+            // 
+            separator1.LineColor = Color.LightGray;
+            separator1.Location = new Point(1400, 79);
+            separator1.Name = "separator1";
+            separator1.Size = new Size(345, 15);
+            separator1.TabIndex = 8;
+            separator1.Text = "sepTotales";
+            // 
+            // lblCorrespMonto
+            // 
+            lblCorrespMonto.AutoSize = true;
+            lblCorrespMonto.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCorrespMonto.Location = new Point(1650, 119);
+            lblCorrespMonto.Name = "lblCorrespMonto";
+            lblCorrespMonto.Size = new Size(28, 22);
+            lblCorrespMonto.TabIndex = 7;
+            lblCorrespMonto.Text = "---";
+            // 
+            // lblGanMonto
+            // 
+            lblGanMonto.AutoSize = true;
+            lblGanMonto.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblGanMonto.Location = new Point(1524, 119);
+            lblGanMonto.Name = "lblGanMonto";
+            lblGanMonto.Size = new Size(28, 22);
+            lblGanMonto.TabIndex = 6;
+            lblGanMonto.Text = "---";
+            // 
+            // lblPrecioMonto
+            // 
+            lblPrecioMonto.AutoSize = true;
+            lblPrecioMonto.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPrecioMonto.Location = new Point(1414, 119);
+            lblPrecioMonto.Name = "lblPrecioMonto";
+            lblPrecioMonto.Size = new Size(28, 22);
+            lblPrecioMonto.TabIndex = 5;
+            lblPrecioMonto.Text = "---";
+            // 
+            // lblCorresp
+            // 
+            lblCorresp.AutoSize = true;
+            lblCorresp.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCorresp.Location = new Point(1593, 97);
+            lblCorresp.Name = "lblCorresp";
+            lblCorresp.Size = new Size(152, 22);
+            lblCorresp.TabIndex = 4;
+            lblCorresp.Text = "Correspondencia";
+            // 
+            // lblGan
+            // 
+            lblGan.AutoSize = true;
+            lblGan.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblGan.Location = new Point(1494, 97);
+            lblGan.Name = "lblGan";
+            lblGan.Size = new Size(88, 22);
+            lblGan.TabIndex = 3;
+            lblGan.Text = "Ganancia";
+            // 
+            // lblPrecio
+            // 
+            lblPrecio.AutoSize = true;
+            lblPrecio.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPrecio.Location = new Point(1400, 97);
+            lblPrecio.Name = "lblPrecio";
+            lblPrecio.Size = new Size(62, 22);
+            lblPrecio.TabIndex = 2;
+            lblPrecio.Text = "Precio";
+            // 
+            // lblTotales
+            // 
+            lblTotales.AutoSize = true;
+            lblTotales.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTotales.Location = new Point(1502, 54);
+            lblTotales.Name = "lblTotales";
+            lblTotales.Size = new Size(69, 22);
+            lblTotales.TabIndex = 1;
+            lblTotales.Text = "Totales";
+            // 
             // tblVentas
             // 
             tblVentas.BackgroundColor = Color.White;
@@ -142,112 +248,6 @@
             tblVentas.Size = new Size(1669, 321);
             tblVentas.TabIndex = 0;
             // 
-            // lblTotales
-            // 
-            lblTotales.AutoSize = true;
-            lblTotales.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTotales.Location = new Point(1502, 54);
-            lblTotales.Name = "lblTotales";
-            lblTotales.Size = new Size(69, 22);
-            lblTotales.TabIndex = 1;
-            lblTotales.Text = "Totales";
-            // 
-            // lblPrecio
-            // 
-            lblPrecio.AutoSize = true;
-            lblPrecio.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPrecio.Location = new Point(1400, 97);
-            lblPrecio.Name = "lblPrecio";
-            lblPrecio.Size = new Size(62, 22);
-            lblPrecio.TabIndex = 2;
-            lblPrecio.Text = "Precio";
-            // 
-            // lblGan
-            // 
-            lblGan.AutoSize = true;
-            lblGan.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGan.Location = new Point(1494, 97);
-            lblGan.Name = "lblGan";
-            lblGan.Size = new Size(88, 22);
-            lblGan.TabIndex = 3;
-            lblGan.Text = "Ganancia";
-            // 
-            // lblCorresp
-            // 
-            lblCorresp.AutoSize = true;
-            lblCorresp.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCorresp.Location = new Point(1593, 97);
-            lblCorresp.Name = "lblCorresp";
-            lblCorresp.Size = new Size(152, 22);
-            lblCorresp.TabIndex = 4;
-            lblCorresp.Text = "Correspondencia";
-            // 
-            // lblPrecioMonto
-            // 
-            lblPrecioMonto.AutoSize = true;
-            lblPrecioMonto.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPrecioMonto.Location = new Point(1414, 119);
-            lblPrecioMonto.Name = "lblPrecioMonto";
-            lblPrecioMonto.Size = new Size(28, 22);
-            lblPrecioMonto.TabIndex = 5;
-            lblPrecioMonto.Text = "---";
-            // 
-            // lblGanMonto
-            // 
-            lblGanMonto.AutoSize = true;
-            lblGanMonto.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGanMonto.Location = new Point(1524, 119);
-            lblGanMonto.Name = "lblGanMonto";
-            lblGanMonto.Size = new Size(28, 22);
-            lblGanMonto.TabIndex = 6;
-            lblGanMonto.Text = "---";
-            // 
-            // lblCorrespMonto
-            // 
-            lblCorrespMonto.AutoSize = true;
-            lblCorrespMonto.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCorrespMonto.Location = new Point(1650, 119);
-            lblCorrespMonto.Name = "lblCorrespMonto";
-            lblCorrespMonto.Size = new Size(28, 22);
-            lblCorrespMonto.TabIndex = 7;
-            lblCorrespMonto.Text = "---";
-            // 
-            // separator1
-            // 
-            separator1.LineColor = Color.LightGray;
-            separator1.Location = new Point(1400, 79);
-            separator1.Name = "separator1";
-            separator1.Size = new Size(345, 15);
-            separator1.TabIndex = 8;
-            separator1.Text = "sepTotales";
-            // 
-            // dtFechaVenta
-            // 
-            dtFechaVenta.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtFechaVenta.Location = new Point(1016, 88);
-            dtFechaVenta.Name = "dtFechaVenta";
-            dtFechaVenta.Size = new Size(300, 29);
-            dtFechaVenta.TabIndex = 9;
-            // 
-            // lblFechaVenta
-            // 
-            lblFechaVenta.AutoSize = true;
-            lblFechaVenta.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblFechaVenta.Location = new Point(1102, 54);
-            lblFechaVenta.Name = "lblFechaVenta";
-            lblFechaVenta.Size = new Size(112, 22);
-            lblFechaVenta.TabIndex = 10;
-            lblFechaVenta.Text = "Día de venta";
-            // 
-            // imgFechaVenta
-            // 
-            imgFechaVenta.Image = (Image)resources.GetObject("imgFechaVenta.Image");
-            imgFechaVenta.Location = new Point(1060, 54);
-            imgFechaVenta.Name = "imgFechaVenta";
-            imgFechaVenta.Size = new Size(24, 24);
-            imgFechaVenta.TabIndex = 11;
-            imgFechaVenta.TabStop = false;
-            // 
             // Ventas
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -258,12 +258,14 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "Ventas";
             Text = "Ventas";
+            Load += Ventas_Load;
+            KeyDown += Ventas_KeyDown;
             pnlCabecera.ResumeLayout(false);
             pnlCabecera.PerformLayout();
             pnlContenido.ResumeLayout(false);
             pnlContenido.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)tblVentas).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgFechaVenta).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tblVentas).EndInit();
             ResumeLayout(false);
         }
 
@@ -272,7 +274,7 @@
         private Panel pnlCabecera;
         private Button btnElimEmpleado;
         private Button btnModEmpleado;
-        private Button btnAddVenta;
+        private Button btnAltaVenta;
         private Label lblVentas;
         private Panel pnlContenido;
         private DataGridView tblVentas;

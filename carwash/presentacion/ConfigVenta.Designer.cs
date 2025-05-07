@@ -154,6 +154,7 @@
             Name = "ConfigVenta";
             Text = "Car Wash Leo";
             Load += ConfigVenta_Load;
+            KeyDown += ConfigVenta_KeyDown;
             ResumeLayout(false);
             PerformLayout();
         }

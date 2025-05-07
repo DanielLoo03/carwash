@@ -27,6 +27,7 @@ namespace presentacion
             this.infoEmpleado = infoEmpleado;
             this.accion = accion;
             InitializeComponent();
+            this.KeyPreview = true;
             this.numEmpleadoActual = numEmpleadoActual;
         }
 
@@ -70,7 +71,8 @@ namespace presentacion
 
             //Evaluación de campos obligatorios
             TextBox[] textBoxes = { txtCalle, txtCodigoPostal, txtColonia, txtNumExterior };
-            if (validacionesUI.EvalTxtVacios(textBoxes)) {
+            if (validacionesUI.EvalTxtVacios(textBoxes))
+            {
 
                 Toast toast = new Toast("error", "Los campos obligatorios deben ser llenados (los que tienen el *)");
                 toast.Show();
@@ -80,15 +82,17 @@ namespace presentacion
 
             //Evaluación de exceso de caracteres
             TextBox[] textBoxes50 = { txtCalle, txtColonia }; //Campos que su límite de caracteres es de 50
-            if (validacionesUI.EvalTxtChars(textBoxes50, 50)) {
+            if (validacionesUI.EvalTxtChars(textBoxes50, 50))
+            {
 
                 Toast toast = new Toast("error", "Los campos calle y colonia no pueden exceder los 50 caracteres.");
                 toast.Show();
                 errorCapturado = true;
 
             }
-            TextBox[] textBox4 = { txtNumExterior, txtNumInterior }; 
-            if(validacionesUI.EvalTxtChars(textBox4, 4)){
+            TextBox[] textBox4 = { txtNumExterior, txtNumInterior };
+            if (validacionesUI.EvalTxtChars(textBox4, 4))
+            {
 
                 Toast toast = new Toast("error", "Los campos número exterior y número interior no pueden exceder los 4 caracteres.");
                 toast.Show();
@@ -96,7 +100,8 @@ namespace presentacion
 
             }
             //No se utiliza el validador de exceso de caracteres ya que se evalua una desigualdad, no un exceso.
-            if(txtCodigoPostal.Text.Length != 5){
+            if (txtCodigoPostal.Text.Length != 5)
+            {
 
                 Toast toast = new Toast("error", "El código postal debe consistir de 5 dígitos.");
                 toast.Show();
@@ -193,6 +198,15 @@ namespace presentacion
             DatosPersonales vtnDatosPersonales = new DatosPersonales(infoEmpleado, accion);
             vtnDatosPersonales.ShowDialog();
 
+        }
+
+        private void Domicilio_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Shift && e.KeyCode == Keys.C) {
+
+                btnConfirmar.PerformClick();
+            
+            }
         }
     }
 }

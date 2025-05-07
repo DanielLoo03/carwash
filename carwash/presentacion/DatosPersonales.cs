@@ -24,6 +24,9 @@ namespace presentacion
             this.infoEmpleado = infoEmpleado;
             this.accion = accion;
             InitializeComponent();
+            this.KeyPreview = true;
+            btnContinuar.DialogResult = DialogResult.None;
+
         }
 
         private void btnContinuar_Click(object sender, EventArgs e)
@@ -51,7 +54,8 @@ namespace presentacion
             }
             //Evaluación de exceso de caracteres
             TextBox[] textBoxes50 = { txtNombre, txtApellidoPaterno, txtApellidoMaterno }; //Los textBoxes que su limite de caracteres es de 50
-            if (validacionesUI.EvalTxtChars(textBoxes, 50)) {
+            if (validacionesUI.EvalTxtChars(textBoxes, 50))
+            {
 
                 Toast toast = new Toast("error", "Los campos nombre, apellido paterno y apellido materno no admiten más de 50 caracteres");
                 toast.Show();
@@ -59,7 +63,8 @@ namespace presentacion
 
             }
             //No se puede utilizar el validador de exceso de caracteres ya que necesitamos validar si el tamaño es de un valor exacto, no si excede cierto número.
-            if (txtNumTelefono.Text.Length != 10) {
+            if (txtNumTelefono.Text.Length != 10)
+            {
 
                 Toast toast = new Toast("error", "El número de teléfono debe ser de 10 dígitos.");
                 toast.Show();
@@ -68,7 +73,8 @@ namespace presentacion
             }
             //Evaluación de caracteres especiales
             //Se pasa el parametro textBoxes50 ya que coincide con los campos que se deben de evaluar con los caracteres especiales.
-            if (validacionesUI.EvalTxtCharsEspecial(textBoxes50)) {
+            if (validacionesUI.EvalTxtCharsEspecial(textBoxes50))
+            {
 
                 Toast toast = new Toast("error", "Los campos nombre, apellido paterno y apellido paterno no deben incluir caracteres especiales ni dígitos (!, @, #, 0, 1 etc.)");
                 toast.Show();
@@ -76,7 +82,8 @@ namespace presentacion
 
             }
             //Si se modifica el número de empleado, evaluar
-            if (numEmpleadoActual != nudNumEmpleado.Value) {
+            if (numEmpleadoActual != nudNumEmpleado.Value)
+            {
 
                 //Evaluación de número de empleado repetido
                 if (validacionesUI.EvalNumEmpleado((int)nudNumEmpleado.Value))
@@ -90,7 +97,8 @@ namespace presentacion
 
             }
             //Evaluación de mayoría de edad
-            if (validacionesUI.EvalMayorEdad(dtFechaNacimiento.Value)) {
+            if (validacionesUI.EvalMayorEdad(dtFechaNacimiento.Value))
+            {
 
                 Toast toast = new Toast("error", "El empleado es menor de edad.");
                 toast.Show();
@@ -100,7 +108,8 @@ namespace presentacion
             //Fin validaciones
 
             //Si no se ha capturaro ningún error, entonces podemos pasar al siguiente formulario
-            if (!errorCapturado) {
+            if (!errorCapturado)
+            {
 
                 Domicilio vtnDomicilio = new Domicilio(infoEmpleado, accion, numEmpleadoActual);
                 //Cuando Domicilio lanza el evento, DatosPersonales también lo hace
@@ -134,6 +143,15 @@ namespace presentacion
         private void lblApellidoPaterno_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void DatosPersonales_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Shift && e.KeyCode == Keys.C) {
+
+                btnContinuar.PerformClick();
+            
+            }
         }
     }
 }

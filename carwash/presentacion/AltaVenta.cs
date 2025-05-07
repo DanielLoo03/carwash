@@ -23,6 +23,7 @@ namespace presentacion
         public AltaVenta()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         private void AltaVenta_Load(object sender, EventArgs e)
@@ -127,7 +128,8 @@ namespace presentacion
                 errorCapturado = true;
             }
 
-            if (!errorCapturado) {
+            if (!errorCapturado)
+            {
 
                 DateTime fechaVenta = DateTime.Today;
 
@@ -449,6 +451,15 @@ namespace presentacion
         private void txtCorresp_KeyDown(object sender, KeyEventArgs e)
         {
             cambioConTeclado = true;
+        }
+
+        private void AltaVenta_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Shift && e.KeyCode == Keys.C) {
+
+                btnConfirmarVenta.PerformClick();
+            
+            }
         }
     }
 }

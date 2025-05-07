@@ -20,6 +20,7 @@ namespace presentacion
         public Autenticacion()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -105,6 +106,20 @@ namespace presentacion
             ruta.CloseFigure();
 
             return ruta;
+        }
+
+        private void Autenticacion_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) {
+
+                btnLogin.PerformClick();
+
+            }
+            else if (e.Shift && e.KeyCode == Keys.C){ 
+            
+                btnMostrarPwd.PerformClick();  
+            
+            }
         }
     }
 }

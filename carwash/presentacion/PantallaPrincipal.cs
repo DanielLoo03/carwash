@@ -59,7 +59,7 @@ namespace presentacion
             this.Hide();
         }
 
-        private void GestionEmpleados_KeyDown(object sender, KeyEventArgs e)
+        private void PantallaPrincipal_KeyDown(object sender, KeyEventArgs e)
         {
             //No hay para la tecla F1 ya que te redirige donde mismo, módulo de gestión de empleados
 

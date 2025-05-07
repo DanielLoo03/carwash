@@ -20,6 +20,7 @@ namespace presentacion
         {
             infoEmpleado.FechaNacimiento = DateTime.Today;
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         private void btnModEmpleado_Click(object sender, EventArgs e)
@@ -126,7 +127,35 @@ namespace presentacion
                 tblEmpleados.Visible = false;
 
             }
+            this.ActiveControl = pnlContenido;
 
         }
+
+        private void GestionEmpleado_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Shift)
+            {
+
+                switch (e.KeyCode)
+                {
+
+                    case Keys.A:
+                        btnAltaEmpleado.PerformClick();
+                        break;
+
+                    case Keys.E:
+                        btnBajaEmpleado.PerformClick();
+                        break;
+
+                    case Keys.M:
+                        btnModEmpleado.PerformClick();
+                        break;
+
+                }
+
+            }
+
+        }
+
     }
 }

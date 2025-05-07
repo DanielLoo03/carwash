@@ -328,6 +328,7 @@
             Name = "AltaVenta";
             Text = "Car Wash Leo";
             Load += AltaVenta_Load;
+            KeyDown += AltaVenta_KeyDown;
             ResumeLayout(false);
             PerformLayout();
         }

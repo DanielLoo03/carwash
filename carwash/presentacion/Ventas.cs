@@ -15,6 +15,7 @@ namespace presentacion
         public Ventas()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         private void btnConfigVentas_Click(object sender, EventArgs e)
@@ -27,6 +28,33 @@ namespace presentacion
         {
             AltaVenta vtnAltaVenta = new AltaVenta();
             vtnAltaVenta.ShowDialog();
+        }
+
+        private void Ventas_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Shift)
+            {
+
+                switch (e.KeyCode)
+                {
+
+                    case Keys.A:
+                        btnAltaVenta.PerformClick();
+                        break;
+
+                    case Keys.C:
+                       btnConfigVentas.PerformClick();
+                        break;
+
+
+                }
+
+            }
+        }
+
+        private void Ventas_Load(object sender, EventArgs e)
+        {
+            this.ActiveControl = pnlContenido;
         }
     }
 }

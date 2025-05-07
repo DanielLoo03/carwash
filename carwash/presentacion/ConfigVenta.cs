@@ -19,6 +19,7 @@ namespace presentacion
         public ConfigVenta()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         private void btnRegresar_Click(object sender, EventArgs e)
@@ -175,7 +176,8 @@ namespace presentacion
                 toast.Show();
 
             }
-            else {
+            else
+            {
 
                 logicaNegocios.ModPorGan(int.Parse(txtPorGan.Text));
                 logicaNegocios.ModPorCorresp(int.Parse(txtPorCorresp.Text));
@@ -205,6 +207,16 @@ namespace presentacion
                 txtPorCorresp.Text = logicaNegocios.CalcPor(por, "correspondencia").ToString();
             }
 
+        }
+
+        private void ConfigVenta_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Shift && e.KeyCode == Keys.C)
+            {
+
+                btnConfirmar.PerformClick();
+
+            }
         }
     }
 }

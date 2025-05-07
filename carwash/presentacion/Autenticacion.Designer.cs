@@ -215,6 +215,7 @@
             Name = "Autenticacion";
             Text = "Car Wash Leo";
             Load += Autenticacion_Load;
+            KeyDown += Autenticacion_KeyDown;
             pnlLogin.ResumeLayout(false);
             pnlLogin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();

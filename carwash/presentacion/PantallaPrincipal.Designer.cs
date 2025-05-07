@@ -343,7 +343,7 @@
             Name = "PantallaPrincipal";
             Text = "Car Wash Leo";
             Load += PantallaPrincipal_Load;
-            KeyDown += GestionEmpleados_KeyDown;
+            KeyDown += PantallaPrincipal_KeyDown;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();

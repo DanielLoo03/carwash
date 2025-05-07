@@ -31,9 +31,28 @@ namespace negocios
 
         }
 
+        //Convertir datos a mayúsculas
+        public string[] Mayusculas(params string[] datos) {
+
+            string[] resultado = new string[datos.Length];
+
+            int i = 0;
+            foreach (string dato in datos)
+            {
+                resultado[i] = dato.ToUpper();
+                i++;
+
+            }
+
+            return resultado;
+        
+        } 
+
         public Boolean AltaEmpleado(string nombre, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleado, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
 
-            empleadosService.InsertEmpleado(nombre, apellidoPaterno, apellidoMaterno, numTelefono, numEmpleado, fechaNacimiento, calle, colonia, numExterior, numInterior, codigoPostal);
+            string[] datosMayus = Mayusculas(nombre, apellidoPaterno, apellidoMaterno, numTelefono, calle, colonia, numExterior, numInterior, codigoPostal);
+
+            empleadosService.InsertEmpleado(datosMayus[0], datosMayus[1], datosMayus[2], datosMayus[3], numEmpleado, fechaNacimiento, datosMayus[4], datosMayus[5], datosMayus[6], datosMayus[7], datosMayus[8]);
             return true;
         
         }
@@ -66,7 +85,9 @@ namespace negocios
 
         public Boolean ModEmpleados(string nombre, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleadoActual, int numEmpleadoNuevo, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
 
-            empleadosService.ModEmpleados(nombre, apellidoPaterno, apellidoMaterno, numTelefono, numEmpleadoActual, numEmpleadoNuevo, fechaNacimiento, calle, colonia, numExterior, numInterior, codigoPostal);
+            string[] datosMayus = Mayusculas(nombre, apellidoPaterno, apellidoMaterno, numTelefono, calle, colonia, numExterior, numInterior, codigoPostal);
+
+            empleadosService.ModEmpleados(datosMayus[0], datosMayus[1], datosMayus[2], datosMayus[3], numEmpleadoActual, numEmpleadoNuevo, fechaNacimiento, datosMayus[4], datosMayus[5], datosMayus[6], datosMayus[7], datosMayus[8]);
             return true;
 
         }
@@ -78,9 +99,11 @@ namespace negocios
 
         }
 
-        public Boolean AltaVenta(string marcaCarro, string modeloCarro, string colorCarro, float precio, float gan, float corresp, int numEmp, DateTime fechaVenta) { 
-        
-            ventasService.AltaVenta(marcaCarro, modeloCarro, colorCarro, precio, gan, corresp, numEmp, fechaVenta);
+        public Boolean AltaVenta(string marcaCarro, string modeloCarro, string colorCarro, float precio, float gan, float corresp, int numEmp, DateTime fechaVenta) {
+
+            string[] datosMayus = Mayusculas(marcaCarro, modeloCarro, colorCarro);
+
+            ventasService.AltaVenta(datosMayus[0], datosMayus[1], datosMayus[2], precio, gan, corresp, numEmp, fechaVenta);
             return true;
 
         }
