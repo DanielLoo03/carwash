@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PantallaPrincipal));
             panel1 = new Panel();
             btnCerrarSesion = new Button();
@@ -52,6 +53,11 @@
             lblLeo = new Label();
             lblCarWash = new Label();
             pnlContenido = new Panel();
+            lblHora = new Label();
+            timer1 = new System.Windows.Forms.Timer(components);
+            label1 = new Label();
+            label2 = new Label();
+            lblFecha = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgAdminActual).BeginInit();
@@ -330,12 +336,60 @@
             pnlContenido.Size = new Size(1820, 647);
             pnlContenido.TabIndex = 1;
             // 
+            // lblHora
+            // 
+            lblHora.AutoSize = true;
+            lblHora.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblHora.Location = new Point(1705, 979);
+            lblHora.Name = "lblHora";
+            lblHora.Size = new Size(78, 32);
+            lblHora.TabIndex = 2;
+            lblHora.Text = "label1";
+            // 
+            // timer1
+            // 
+            timer1.Tick += timer1_Tick;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(1711, 962);
+            label1.Name = "label1";
+            label1.Size = new Size(66, 25);
+            label1.TabIndex = 3;
+            label1.Text = "Hora: ";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(1708, 894);
+            label2.Name = "label2";
+            label2.Size = new Size(68, 25);
+            label2.TabIndex = 4;
+            label2.Text = "Fecha:";
+            // 
+            // lblFecha
+            // 
+            lblFecha.AutoSize = true;
+            lblFecha.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblFecha.Location = new Point(1705, 916);
+            lblFecha.Name = "lblFecha";
+            lblFecha.Size = new Size(78, 32);
+            lblFecha.TabIndex = 5;
+            lblFecha.Text = "label3";
+            // 
             // PantallaPrincipal
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(1898, 1024);
+            Controls.Add(lblFecha);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(lblHora);
             Controls.Add(pnlContenido);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -353,6 +407,7 @@
             ((System.ComponentModel.ISupportInitialize)imgCorteCaja).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgVentas).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -380,5 +435,10 @@
         private Button btnGestionAdmins;
         private Button btnCerrarSesion;
         private Panel pnlContenido;
+        private Label lblHora;
+        private System.Windows.Forms.Timer timer1;
+        private Label label1;
+        private Label label2;
+        private Label lblFecha;
     }
 }

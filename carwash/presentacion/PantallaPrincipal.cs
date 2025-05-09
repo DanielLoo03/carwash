@@ -20,6 +20,12 @@ namespace presentacion
             this.vtnAutenticacion = vtnAutenticacion;
             InitializeComponent();
 
+            timer1.Interval = 1000;
+            timer1.Tick += timer1_Tick;
+            timer1.Start();
+            lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
+            lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
+
         }
 
         private void imgGestionEmpleados_Click(object sender, EventArgs e)
@@ -66,7 +72,7 @@ namespace presentacion
             switch (e.KeyCode)
             {
                 case Keys.F1:
-                    btnGestionEmpleados.PerformClick(); 
+                    btnGestionEmpleados.PerformClick();
                     break;
 
                 case Keys.F2:
@@ -120,7 +126,13 @@ namespace presentacion
 
         private void PantallaPrincipal_Load(object sender, EventArgs e)
         {
+            lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
             CargarForm(new GestionEmpleado());
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
         }
     }
 }
