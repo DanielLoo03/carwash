@@ -17,7 +17,7 @@ namespace persistencia
         private MySqlCommand comando = new MySqlCommand();
         DateTime fechaVenta = DateTime.Now;
 
-        public void AltaVenta(string marcaCarro, string modeloCarro, string colorCarro, float precio, float gan, float corresp, int numEmp, DateTime fechaVenta){
+        public void AltaVenta(string marcaCarro, string modeloCarro, string colorCarro, decimal precio, decimal gan, decimal corresp, int numEmp, DateTime fechaVenta){
              
             comando = new MySqlCommand();
 

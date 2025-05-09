@@ -24,20 +24,12 @@ namespace presentacion
             lblMensaje.Text = mensaje;
             btnCancelar.FlatAppearance.BorderColor = Color.FromArgb(63, 114, 175);
             this.FormBorderStyle = FormBorderStyle.None; //Se quita el borde por default
-            EstablecerPosicion(0);
             //Al hacer clic en los botones, se disparan ciertos eventos.
             btnConfirmar.Click += (sender, e) => Confirmar();
             btnCancelar.Click += (sender, e) => Cancelar();
+            this.StartPosition = FormStartPosition.CenterScreen;
 
-        }
 
-        private void EstablecerPosicion(int y)
-        {
-            var pantalla = Screen.PrimaryScreen.WorkingArea;
-            int margenDerecho = 30;
-            int margenSuperior = 60;
-
-            Location = new Point(pantalla.Right - Width - margenDerecho, pantalla.Top + y + margenSuperior);
         }
 
         protected override void OnPaint(PaintEventArgs e)

@@ -288,6 +288,7 @@
             MaximizeBox = false;
             Name = "DatosPersonales";
             Text = "Car Wash Leo";
+            FormClosing += DatosPersonales_FormClosing;
             Load += DatosPersonales_Load;
             KeyDown += DatosPersonales_KeyDown;
             ((System.ComponentModel.ISupportInitialize)nudNumEmpleado).EndInit();

@@ -41,7 +41,6 @@ namespace negocios
             {
                 resultado[i] = dato.ToUpper();
                 i++;
-
             }
 
             return resultado;
@@ -83,11 +82,11 @@ namespace negocios
 
         }
 
-        public Boolean ModEmpleados(string nombre, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleadoActual, int numEmpleadoNuevo, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
+        public Boolean ModEmpleados(string nombre, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleado, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
 
             string[] datosMayus = Mayusculas(nombre, apellidoPaterno, apellidoMaterno, numTelefono, calle, colonia, numExterior, numInterior, codigoPostal);
 
-            empleadosService.ModEmpleados(datosMayus[0], datosMayus[1], datosMayus[2], datosMayus[3], numEmpleadoActual, numEmpleadoNuevo, fechaNacimiento, datosMayus[4], datosMayus[5], datosMayus[6], datosMayus[7], datosMayus[8]);
+            empleadosService.ModEmpleados(datosMayus[0], datosMayus[1], datosMayus[2], datosMayus[3], numEmpleado, fechaNacimiento, datosMayus[4], datosMayus[5], datosMayus[6], datosMayus[7], datosMayus[8]);
             return true;
 
         }
@@ -99,7 +98,7 @@ namespace negocios
 
         }
 
-        public Boolean AltaVenta(string marcaCarro, string modeloCarro, string colorCarro, float precio, float gan, float corresp, int numEmp, DateTime fechaVenta) {
+        public Boolean AltaVenta(string marcaCarro, string modeloCarro, string colorCarro, decimal precio, decimal gan, decimal corresp, int numEmp, DateTime fechaVenta) {
 
             string[] datosMayus = Mayusculas(marcaCarro, modeloCarro, colorCarro);
 
@@ -202,6 +201,18 @@ namespace negocios
         public DataTable ConsNomEmpleados() { 
         
             return ventasService.ConsNomCompletos();
+
+        }
+
+        //Formatea el número de teléfono con guiones
+        public string FormatNumTelefono(string numTelefono) {
+
+            string primeraParte = numTelefono.Substring(0, 3);
+            string segundaParte = numTelefono.Substring(3, 3);
+            string terceraParte = numTelefono.Substring(6, 4);
+            string numTelefonoNuevo = primeraParte + "-" + segundaParte + "-" + terceraParte;
+
+            return numTelefonoNuevo;
 
         }
 

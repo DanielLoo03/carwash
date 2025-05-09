@@ -17,11 +17,14 @@ namespace presentacion
 
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
+        private InfoVenta infoVentaAlta = new InfoVenta();
         private Boolean cambioConTeclado = false;
+        //Bandera para saber si se está ejecutando el código del método Load
         private bool cargando = true;
 
-        public AltaVenta()
+        public AltaVenta(InfoVenta infoVentaAlta)
         {
+            this.infoVentaAlta = infoVentaAlta;
             InitializeComponent();
             this.KeyPreview = true;
         }
@@ -30,6 +33,7 @@ namespace presentacion
         {
             cargando = true;
 
+            //Se preparan comboBoxes cargándolos con los números y nombres de empleados existentes
             cbNomEmpleado.DataSource = logicaNegocios.ConsNomEmpleados();
             cbNomEmpleado.DisplayMember = "nomCompleto";
             cbNomEmpleado.ValueMember = "nomCompleto";
@@ -37,38 +41,137 @@ namespace presentacion
             cbNumEmpleado.DisplayMember = "numEmpleado";
             cbNumEmpleado.ValueMember = "numEmpleado";
 
-            // Forzar sincronización inicial
-            if (cbNomEmpleado.Items.Count > 0)
+            //Se cargan campos con los valores anteriormente introducidos (si se introdujeron datos anteriormente sin completar la alta)
+            //Condición: Si se introdujo información y nunca se dió de alta
+            if (infoVentaAlta.NumEmp != 0)
             {
-                cbNomEmpleado.SelectedIndex = 0;
 
-                if (!string.IsNullOrWhiteSpace(cbNomEmpleado.Text))
+                txtMarcaCarro.Text = infoVentaAlta.MarcaCarro;
+                txtModeloCarro.Text = infoVentaAlta.ModeloCarro;
+                txtColorCarro.Text = infoVentaAlta.ColorCarro;
+                if (infoVentaAlta.Precio != 0)
                 {
-                    string[] nomCompleto = cbNomEmpleado.Text.Split(' ');
 
-                    if (nomCompleto.Length >= 3)
+                    txtPrecioCarro.Text = infoVentaAlta.Precio.ToString();
+
+                }
+                else {
+
+                    txtPrecioCarro.Text = "";
+                
+                }
+                if (infoVentaAlta.Gan != 0)
+                {
+
+                    txtGanancia.Text = infoVentaAlta.Gan.ToString();
+
+                }
+                else
+                {
+
+                    txtPrecioCarro.Text = "";
+
+                }
+                if (infoVentaAlta.Corresp != 0)
+                {
+
+                    txtCorresp.Text = infoVentaAlta.Corresp.ToString();
+
+                }
+                else
+                {
+
+                    txtPrecioCarro.Text = "";
+
+                }
+                cbNumEmpleado.SelectedValue = infoVentaAlta.NumEmp;
+
+                //Se carga nombre de empleado según el número de empleado seteado
+                int numSeleccionado;
+                if (int.TryParse(cbNumEmpleado.Text, out numSeleccionado))
+                {
+                    cbNomEmpleado.SelectedValue = logicaNegocios.ConsNomEmp(numSeleccionado);
+                }
+
+            }
+            else {
+
+                // Forzar sincronización inicial
+                if (cbNomEmpleado.Items.Count > 0)
+                {
+                    cbNomEmpleado.SelectedIndex = 0;
+
+                    if (!string.IsNullOrWhiteSpace(cbNomEmpleado.Text))
                     {
-                        string nom, apellidoPaterno, apellidoMaterno;
+                        string[] nomCompleto = cbNomEmpleado.Text.Split(' ');
 
-                        if (nomCompleto.Length == 3)
+                        if (nomCompleto.Length >= 3)
                         {
-                            nom = nomCompleto[0];
-                            apellidoPaterno = nomCompleto[1];
-                            apellidoMaterno = nomCompleto[2];
-                        }
-                        else
-                        {
-                            nom = nomCompleto[0] + " " + nomCompleto[1];
-                            apellidoPaterno = nomCompleto[2];
-                            apellidoMaterno = nomCompleto[3];
-                        }
+                            string nom, apellidoPaterno, apellidoMaterno;
 
-                        cbNumEmpleado.SelectedValue = logicaNegocios.ConsNumEmp(nom, apellidoPaterno, apellidoMaterno);
+                            if (nomCompleto.Length == 3)
+                            {
+                                nom = nomCompleto[0];
+                                apellidoPaterno = nomCompleto[1];
+                                apellidoMaterno = nomCompleto[2];
+                            }
+                            else
+                            {
+                                nom = nomCompleto[0] + " " + nomCompleto[1];
+                                apellidoPaterno = nomCompleto[2];
+                                apellidoMaterno = nomCompleto[3];
+                            }
+
+                            cbNumEmpleado.SelectedValue = logicaNegocios.ConsNumEmp(nom, apellidoPaterno, apellidoMaterno);
+                        }
                     }
                 }
+
             }
 
             cargando = false;
+
+        }
+
+        private void guardarDatos()
+        {
+
+            //Se guardan valores en infoVentaAlta 
+            infoVentaAlta.MarcaCarro = txtMarcaCarro.Text;
+            infoVentaAlta.ModeloCarro = txtModeloCarro.Text;
+            infoVentaAlta.ColorCarro = txtColorCarro.Text;
+            //temp = variable temporal que almacena el resultado del tryParse
+            int temp;
+            //Condición: Si se puede realizar la conversión del string a int
+            if (int.TryParse(txtPrecioCarro.Text, out temp))
+            {
+                infoVentaAlta.Precio = temp;
+            }
+            else {
+
+                infoVentaAlta.Precio = 0;
+            
+            }
+            if (int.TryParse(txtGanancia.Text, out temp))
+            {
+                infoVentaAlta.Gan = temp;
+            }
+            else {
+
+                infoVentaAlta.Gan = 0;
+
+            }
+            if (int.TryParse(txtCorresp.Text, out temp))
+            {
+                infoVentaAlta.Corresp = temp;
+            }
+            else {
+
+                infoVentaAlta.Corresp = 0;
+
+            }
+            infoVentaAlta.NumEmp = Convert.ToInt32(cbNumEmpleado.SelectedValue);
+
         }
 
         private void btnConfirmarVenta_Click(object sender, EventArgs e)
@@ -77,6 +180,9 @@ namespace presentacion
             string marcaCarro = txtMarcaCarro.Text;
             string modeloCarro = txtModeloCarro.Text;
             string colorCarro = txtColorCarro.Text;
+
+            //Se guardan datos introducidos a objeto infoVentaAlta
+            guardarDatos();
 
             if (validacionesUI.EvalCharsColor(colorCarro))
             {
@@ -94,12 +200,12 @@ namespace presentacion
                 return;
             }
 
-            float precio;
-            float.TryParse(txtPrecioCarro.Text, out precio);
-            float gan;
-            float.TryParse(txtGanancia.Text, out gan);
-            float corresp;
-            float.TryParse(txtCorresp.Text, out corresp);
+            decimal precio;
+            decimal.TryParse(txtPrecioCarro.Text, out precio);
+            decimal gan;
+            decimal.TryParse(txtGanancia.Text, out gan);
+            decimal corresp;
+            decimal.TryParse(txtCorresp.Text, out corresp);
             string nomCompleto = cbNomEmpleado.Text;
             int numEmp = int.Parse(cbNumEmpleado.Text);
             if (validacionesUI.EvalCamposObligatoriosVenta(precio, gan, corresp, nomCompleto, numEmp))
@@ -135,6 +241,16 @@ namespace presentacion
 
                 logicaNegocios.AltaVenta(marcaCarro, modeloCarro, colorCarro, precio, gan, corresp, numEmp, fechaVenta);
                 Toast toast = new Toast("exito", "Venta registrada con éxito.");
+
+                //Se limpian campos de InfoVenta
+                infoVentaAlta.MarcaCarro = "";
+                infoVentaAlta.ModeloCarro = "";
+                infoVentaAlta.ColorCarro = "";
+                infoVentaAlta.Precio = 0;
+                infoVentaAlta.Gan = 0;
+                infoVentaAlta.Corresp = 0;
+                infoVentaAlta.NumEmp = 0;
+
                 toast.Show();
                 this.Close();
 
@@ -144,121 +260,19 @@ namespace presentacion
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
+
+            //Se guardan datos introducidos a objeto infoVentaAlta
+            guardarDatos();
+
             this.Close();
+
         }
 
-        private void txtPrecioCarro_TextChanged(object sender, EventArgs e)
-        {
-            int[] porcentajes = logicaNegocios.ConsPor();
-            float precio;
+        private void manejarKeyPress(object sender, KeyPressEventArgs e) {
 
-            if (float.TryParse(txtPrecioCarro.Text, out precio) && cambioConTeclado)
-            {
-                cambioConTeclado = false;
-                float ganCalculada = logicaNegocios.CalcGan(precio, porcentajes[0]);
-                float correspCalculada = logicaNegocios.CalcCorresp(precio, porcentajes[1]);
-                txtGanancia.Text = ganCalculada.ToString();
-                txtCorresp.Text = correspCalculada.ToString();
-            }
-            else if (txtPrecioCarro.Text.Equals("") && cambioConTeclado)
-            {
-                cambioConTeclado = false;
-
-                if (!txtPrecioCarro.Text.Equals("")) txtPrecioCarro.Text = "";
-                if (!txtGanancia.Text.Equals("")) txtGanancia.Text = "";
-                if (!txtCorresp.Text.Equals("")) txtCorresp.Text = "";
-            }
-        }
-
-        private void txtPrecioCarro_KeyPress(object sender, KeyPressEventArgs e)
-        {
             char caracter = e.KeyChar;
 
-            if (!char.IsDigit(caracter) && caracter != '.' && !char.IsControl(caracter))
-            {
-                e.Handled = true;
-                return;
-            }
-
-            TextBox txt = sender as TextBox;
-            string textoActual = txt.Text;
-            int posCursor = txt.SelectionStart;
-            int selLength = txt.SelectionLength;
-            string resultado = "";
-
-            if (caracter == (char)Keys.Back)
-            {
-                if (posCursor > 0 && textoActual.Length > 0)
-                {
-                    resultado = textoActual.Remove(posCursor - 1, 1);
-                }
-                else
-                {
-                    resultado = textoActual;
-                }
-            }
-            else
-            {
-                if (caracter == '.' && textoActual.Contains("."))
-                {
-                    e.Handled = true;
-                    return;
-                }
-
-                if (selLength > 0)
-                {
-                    resultado = textoActual.Remove(posCursor, selLength).Insert(posCursor, caracter.ToString());
-                }
-                else
-                {
-                    resultado = textoActual.Insert(posCursor, caracter.ToString());
-                }
-            }
-
-            if (resultado.Length > 1 && resultado.StartsWith("0") && !resultado.StartsWith("0."))
-            {
-                e.Handled = true;
-                return;
-            }
-        }
-
-
-        private void txtGanancia_TextChanged(object sender, EventArgs e)
-        {
-            float gan;
-            float corresp = 0;
-            if (float.TryParse(txtGanancia.Text, out gan) && float.TryParse(txtCorresp.Text, out corresp) && cambioConTeclado)
-            {
-                cambioConTeclado = false;
-                float nuevoPrecio = gan + corresp;
-                txtPrecioCarro.Text = nuevoPrecio.ToString();
-            }
-            else if (txtGanancia.Text.Equals(""))
-            {
-                cambioConTeclado = false;
-
-                float.TryParse(txtCorresp.Text, out corresp);
-
-                if (corresp != 0)
-                {
-                    txtPrecioCarro.Text = corresp.ToString();
-                }
-                else
-                {
-                    if (!txtPrecioCarro.Text.Equals(""))
-                    {
-                        txtPrecioCarro.Text = "";
-                    }
-                }
-
-            }//fin else-if
-        }
-
-        private void txtGanancia_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char caracter = e.KeyChar;
-
-            if (!char.IsDigit(caracter) && caracter != '.' && !char.IsControl(caracter))
+            if (!char.IsDigit(caracter) && !char.IsControl(caracter) && caracter != '.')
             {
                 e.Handled = true;
                 return;
@@ -300,6 +314,14 @@ namespace presentacion
                 {
                     resultado = textoActual.Insert(posCursor, caracter.ToString());
                 }
+
+                // Validar que no haya más de dos dígitos después del punto
+                int indicePunto = resultado.IndexOf('.');
+                if (indicePunto >= 0 && resultado.Length - indicePunto - 1 > 2)
+                {
+                    e.Handled = true;
+                    return;
+                }
             }
 
             // No permite ceros al inicio, a menos que sea solo un 0 o un decimal tipo 0.25
@@ -309,57 +331,100 @@ namespace presentacion
                 return;
             }
 
+
+        }
+
+        private string LimitarDecimales(string monto)
+        {
+            // Verifica si la cadena contiene un punto decimal
+            if (monto.Contains("."))
+            {
+                // Divide la cadena en la parte entera y la decimal
+                string[] partes = monto.Split('.');
+
+                // Si hay más de dos decimales, recorta a dos
+                if (partes.Length > 1 && partes[1].Length > 2)
+                {
+                    monto = partes[0] + "." + partes[1].Substring(0, 2);
+                }
+            }
+
+            return monto;
+        }
+
+        private void txtPrecioCarro_TextChanged(object sender, EventArgs e)
+        {
+            int[] porcentajes = logicaNegocios.ConsPor();
+            float precio;
+
+            if (float.TryParse(txtPrecioCarro.Text, out precio) && cambioConTeclado)
+            {
+                cambioConTeclado = false;
+                float ganCalculada = logicaNegocios.CalcGan(precio, porcentajes[0]);
+                float correspCalculada = logicaNegocios.CalcCorresp(precio, porcentajes[1]);
+                txtGanancia.Text = LimitarDecimales(ganCalculada.ToString());
+                txtCorresp.Text = LimitarDecimales(correspCalculada.ToString());
+            }
+            else if (txtPrecioCarro.Text.Equals("") && cambioConTeclado)
+            {
+                cambioConTeclado = false;
+
+                if (!txtPrecioCarro.Text.Equals("")) txtPrecioCarro.Text = "";
+                if (!txtGanancia.Text.Equals("")) txtGanancia.Text = "";
+                if (!txtCorresp.Text.Equals("")) txtCorresp.Text = "";
+            }
+        }
+
+        private void txtPrecioCarro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            manejarKeyPress(sender, e);
+
+        }
+
+
+        private void txtGanancia_TextChanged(object sender, EventArgs e)
+        {
+            float gan;
+            float corresp = 0;
+            if (float.TryParse(txtGanancia.Text, out gan) && float.TryParse(txtCorresp.Text, out corresp) && cambioConTeclado)
+            {
+                cambioConTeclado = false;
+                float nuevoPrecio = gan + corresp;
+                txtPrecioCarro.Text = LimitarDecimales(nuevoPrecio.ToString());
+            }
+            else if (txtGanancia.Text.Equals(""))
+            {
+                cambioConTeclado = false;
+
+                float.TryParse(txtCorresp.Text, out corresp);
+
+                if (corresp != 0)
+                {
+                    txtPrecioCarro.Text = LimitarDecimales(corresp.ToString());
+                }
+                else
+                {
+                    if (!txtPrecioCarro.Text.Equals(""))
+                    {
+                        txtPrecioCarro.Text = "";
+                    }
+                }
+
+            }//fin else-if
+        }
+
+        private void txtGanancia_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            manejarKeyPress(sender, e);
+
         }
         private void txtCorresp_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char caracter = e.KeyChar;
 
-            if (!char.IsDigit(caracter) && caracter != '.' && !char.IsControl(caracter))
-            {
-                e.Handled = true;
-                return;
-            }
+            manejarKeyPress(sender, e);
 
-            TextBox txt = sender as TextBox;
-            string textoActual = txt.Text;
-            int posCursor = txt.SelectionStart;
-            int selLength = txt.SelectionLength;
-            string resultado = "";
-
-            if (caracter == (char)Keys.Back)
-            {
-                if (posCursor > 0 && textoActual.Length > 0)
-                {
-                    resultado = textoActual.Remove(posCursor - 1, 1);
-                }
-                else
-                {
-                    resultado = textoActual;
-                }
-            }
-            else
-            {
-                if (caracter == '.' && textoActual.Contains("."))
-                {
-                    e.Handled = true;
-                    return;
-                }
-
-                if (selLength > 0)
-                {
-                    resultado = textoActual.Remove(posCursor, selLength).Insert(posCursor, caracter.ToString());
-                }
-                else
-                {
-                    resultado = textoActual.Insert(posCursor, caracter.ToString());
-                }
-            }
-
-            if (resultado.Length > 1 && resultado.StartsWith("0") && !resultado.StartsWith("0."))
-            {
-                e.Handled = true;
-                return;
-            }
         }
 
 
@@ -416,7 +481,7 @@ namespace presentacion
             {
                 cambioConTeclado = false;
                 float nuevoPrecio = gan + corresp;
-                txtPrecioCarro.Text = nuevoPrecio.ToString();
+                txtPrecioCarro.Text = LimitarDecimales(nuevoPrecio.ToString());
             }
             else if (txtCorresp.Text.Equals(""))
             {
@@ -426,7 +491,7 @@ namespace presentacion
 
                 if (gan != 0)
                 {
-                    txtPrecioCarro.Text = gan.ToString();
+                    txtPrecioCarro.Text = LimitarDecimales(gan.ToString());
                 }
                 else
                 {
@@ -455,11 +520,20 @@ namespace presentacion
 
         private void AltaVenta_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Shift && e.KeyCode == Keys.C) {
+            if (e.Shift && e.KeyCode == Keys.C)
+            {
 
                 btnConfirmarVenta.PerformClick();
-            
+
             }
+        }
+
+        private void AltaVenta_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            //Se guardan datos introducidos a objeto infoVentaAlta
+            guardarDatos();
+
         }
     }
 }

@@ -47,14 +47,21 @@ namespace presentacion
 
         }
 
-        private void btnConfirmar_Click(object sender, EventArgs e)
-        {
+        private void guardarDatos() {
 
             infoEmpleado.Calle = txtCalle.Text;
             infoEmpleado.Colonia = txtColonia.Text;
             infoEmpleado.NumInterior = txtNumInterior.Text;
             infoEmpleado.NumExterior = txtNumExterior.Text;
             infoEmpleado.CodigoPostal = txtCodigoPostal.Text;
+
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+
+            //Se guardan datos introducidos en objeto infoEmpleado
+            guardarDatos();
 
             //Inicio de evaluaciones
             Boolean errorCapturado = false; //Bandera para decidir si pasar al siguiente formulario o no permitir el paso. 
@@ -137,7 +144,7 @@ namespace presentacion
                             infoEmpleado.Nombre,
                             infoEmpleado.ApellidoPaterno,
                             infoEmpleado.ApellidoMaterno,
-                            infoEmpleado.NumTelefono,
+                            logicaNegocios.FormatNumTelefono(infoEmpleado.NumTelefono),
                             infoEmpleado.NumEmpleado,
                             infoEmpleado.FechaNacimiento,
                             infoEmpleado.Calle,
@@ -155,8 +162,7 @@ namespace presentacion
                             infoEmpleado.Nombre,
                             infoEmpleado.ApellidoPaterno,
                             infoEmpleado.ApellidoMaterno,
-                            infoEmpleado.NumTelefono,
-                            numEmpleadoActual,
+                            logicaNegocios.FormatNumTelefono(infoEmpleado.NumTelefono),
                             infoEmpleado.NumEmpleado,
                             infoEmpleado.FechaNacimiento,
                             infoEmpleado.Calle,
@@ -193,7 +199,9 @@ namespace presentacion
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-
+            //Se guardan datos introducidos en objeto infoEmpleado
+            guardarDatos();
+            
             this.Hide();
             DatosPersonales vtnDatosPersonales = new DatosPersonales(infoEmpleado, accion);
             vtnDatosPersonales.ShowDialog();
@@ -202,11 +210,20 @@ namespace presentacion
 
         private void Domicilio_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Shift && e.KeyCode == Keys.C) {
+            if (e.Shift && e.KeyCode == Keys.C)
+            {
 
                 btnConfirmar.PerformClick();
-            
+
             }
+        }
+
+        private void Domicilio_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            //Se guardan datos introducidos en objeto infoEmpleado
+            guardarDatos();
+
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using negocios;
 
 namespace presentacion
 {
@@ -27,10 +28,17 @@ namespace presentacion
             this.KeyPreview = true;
             btnContinuar.DialogResult = DialogResult.None;
 
+            //Si vamos a modificar el empleado, no deberia de permitirse modificar el número de empleado
+            if (accion.Equals("modificar"))
+            {
+
+                nudNumEmpleado.Enabled = false;
+
+            }
+
         }
 
-        private void btnContinuar_Click(object sender, EventArgs e)
-        {
+        private void guardarDatos() {
 
             infoEmpleado.Nombre = txtNombre.Text;
             infoEmpleado.ApellidoPaterno = txtApellidoPaterno.Text;
@@ -38,6 +46,13 @@ namespace presentacion
             infoEmpleado.FechaNacimiento = dtFechaNacimiento.Value;
             infoEmpleado.NumTelefono = txtNumTelefono.Text;
             infoEmpleado.NumEmpleado = (int)nudNumEmpleado.Value;
+
+        }
+        private void btnContinuar_Click(object sender, EventArgs e)
+        {
+
+            //Se guardan datos en objeto infoEmpleado
+            guardarDatos();
 
             //Inicio de evaluaciones
             Boolean errorCapturado = false; //Bandera para decidir si pasar al siguiente formulario o no permitir el paso. 
@@ -137,6 +152,11 @@ namespace presentacion
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
+
+            //Se guardan datos en objeto infoEmpleado
+            guardarDatos();
+
+
             this.Close();
         }
 
@@ -147,11 +167,20 @@ namespace presentacion
 
         private void DatosPersonales_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Shift && e.KeyCode == Keys.C) {
+            if (e.Shift && e.KeyCode == Keys.C)
+            {
 
                 btnContinuar.PerformClick();
-            
+
             }
+        }
+
+        private void DatosPersonales_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            //Se guardan datos en objeto infoEmpleado
+            guardarDatos();
+
         }
     }
 }

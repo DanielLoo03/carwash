@@ -12,6 +12,9 @@ namespace presentacion
 {
     public partial class Ventas : Form
     {
+
+        private InfoVenta infoVentaAlta = new InfoVenta();
+
         public Ventas()
         {
             InitializeComponent();
@@ -26,7 +29,7 @@ namespace presentacion
 
         private void btnAddVenta_Click(object sender, EventArgs e)
         {
-            AltaVenta vtnAltaVenta = new AltaVenta();
+            AltaVenta vtnAltaVenta = new AltaVenta(infoVentaAlta);
             vtnAltaVenta.ShowDialog();
         }
 

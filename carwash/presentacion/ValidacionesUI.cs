@@ -151,12 +151,13 @@ namespace presentacion
             }
         }
 
-        public Boolean EvalCamposObligatoriosVenta(float precio, float gan, float corresp, string nomCompleto, int numEmp)
+        public Boolean EvalCamposObligatoriosVenta(decimal precio, decimal gan, decimal corresp, string nomCompleto, int numEmp)
         {
             // Verificar que los valores numéricos sean mayores que cero y campos de texto no estén vacíos
-            if (precio <= 0.0f ||
-                gan <= 0.0f ||
-                corresp <= 0.0f ||
+            // Se escribe una m después del valor 0.00 para indicar que es un tipo decimal, no float ni double. 
+            if (precio <= 0.00m ||
+                gan <= 0.00m ||
+                corresp <= 0.00m ||
                 string.IsNullOrWhiteSpace(nomCompleto) ||
                 numEmp <= 0)
             {
@@ -165,7 +166,8 @@ namespace presentacion
             return false; // Todos los campos obligatorios están presentes y válidos
         }
 
-        public Boolean EvalMontos(float monto)
+
+        public Boolean EvalMontos(decimal monto)
         {
 
             if (monto <= 0) {

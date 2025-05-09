@@ -11,7 +11,7 @@ CREATE PROCEDURE altaEmpleado(
     IN nombre VARCHAR(50),
     IN apellidoPaterno VARCHAR(50),
     IN apellidoMaterno VARCHAR(50),
-    IN numTelefono VARCHAR(10),
+    IN numTelefono VARCHAR(12),
     IN numEmpleado INT,
     IN fechaNacimiento DATE,
     IN calle VARCHAR(50),
@@ -62,9 +62,8 @@ CREATE PROCEDURE modificarEmpleado(
     IN nombreParam VARCHAR(50),
     IN apellidoPaternoParam VARCHAR(50),
     IN apellidoMaternoParam VARCHAR(50),
-    IN numTelefonoParam VARCHAR(10),
-    IN numEmpleadoActualParam INT,
-    IN numEmpleadoNuevoParam INT,
+    IN numTelefonoParam VARCHAR(12),
+    IN numEmpleadoParam INT,
     IN fechaNacimientoParam DATE,
     IN calleParam VARCHAR(50),
     IN coloniaParam VARCHAR(50),
@@ -79,7 +78,6 @@ BEGIN
         apellidoPaterno = apellidoPaternoParam,
         apellidoMaterno = apellidoMaternoParam,
         numTelefono = numTelefonoParam,
-        numEmpleado = numEmpleadoNuevoParam,
         fechaNacimiento = fechaNacimientoParam,
         calle = calleParam,
         colonia = coloniaParam,
@@ -87,7 +85,7 @@ BEGIN
         numInterior = numInteriorParam,
         codigoPostal = codigoPostalParam
     WHERE
-        numEmpleado = numEmpleadoActualParam;
+        numEmpleado = numEmpleadoParam;
 END $$
 
 /*Eliminación de empleados*/

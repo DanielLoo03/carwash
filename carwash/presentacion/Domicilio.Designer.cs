@@ -240,6 +240,7 @@
             MaximizeBox = false;
             Name = "Domicilio";
             Text = "Car Wash Leo";
+            FormClosing += Domicilio_FormClosing;
             Load += Domicilio_Load;
             KeyDown += Domicilio_KeyDown;
             ResumeLayout(false);
