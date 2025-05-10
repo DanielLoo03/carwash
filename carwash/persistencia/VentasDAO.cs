@@ -17,7 +17,7 @@ namespace persistencia
         private MySqlCommand comando = new MySqlCommand();
         DateTime fechaVenta = DateTime.Now;
 
-        public void AltaVenta(string marcaCarro, string modeloCarro, string colorCarro, float precio, float gan, float corresp, int numEmp, DateTime fechaVenta){
+        public void AltaVenta(string marcaCarro, string modeloCarro, string colorCarro, int precio, int gan, int corresp, int numEmp, DateTime fechaVenta){
              
             comando = new MySqlCommand();
 
@@ -138,6 +138,26 @@ namespace persistencia
             return tabla;
 
         }
+
+        public DataTable ConsVentas(DateTime fecha)
+        {
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consVentas",
+                CommandType = CommandType.StoredProcedure
+            };
+            comando.Parameters.AddWithValue("@fechaParam", fecha); 
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            comando.Parameters.Clear();
+
+            return tabla;
+        }
+
 
     }
 }

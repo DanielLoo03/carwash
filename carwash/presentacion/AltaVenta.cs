@@ -17,6 +17,7 @@ namespace presentacion
 
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
+        public event EventHandler ventaAgregada;
         private Boolean cambioConTeclado = false;
         private bool cargando = true;
 
@@ -93,14 +94,15 @@ namespace presentacion
                 return;
             }
 
-            float precio;
-            float.TryParse(txtPrecioCarro.Text, out precio);
-            float gan;
-            float.TryParse(txtGanancia.Text, out gan);
-            float corresp;
-            float.TryParse(txtCorresp.Text, out corresp);
+            int precio;
+            int.TryParse(txtPrecioCarro.Text, out precio);
+            int gan;
+            int.TryParse(txtGanancia.Text, out gan);
+            int corresp;
+            int.TryParse(txtCorresp.Text, out corresp);
             string nomCompleto = cbNomEmpleado.Text;
             int numEmp = int.Parse(cbNumEmpleado.Text);
+
             if (validacionesUI.EvalCamposObligatoriosVenta(precio, gan, corresp, nomCompleto, numEmp))
             {
                 Toast toast = new Toast("error", "Los campos obligatorios deben ser llenados (los que tienen el *)");
@@ -114,12 +116,14 @@ namespace presentacion
                 toast.Show();
                 errorCapturado = true;
             }
+
             if (validacionesUI.EvalMontos(gan))
             {
                 Toast toast = new Toast("error", "La ganancia no puede ser igual a 0 o negativo.");
                 toast.Show();
                 errorCapturado = true;
             }
+
             if (validacionesUI.EvalMontos(corresp))
             {
                 Toast toast = new Toast("error", "La correspondencia no puede ser igual a 0 o negativo.");
@@ -133,10 +137,12 @@ namespace presentacion
 
                 logicaNegocios.AltaVenta(marcaCarro, modeloCarro, colorCarro, precio, gan, corresp, numEmp, fechaVenta);
                 Toast toast = new Toast("exito", "Venta registrada con éxito.");
+                ventaAgregada?.Invoke(this, EventArgs.Empty);
                 toast.Show();
                 this.Close();
 
             }
+
 
         }
 
@@ -148,13 +154,13 @@ namespace presentacion
         private void txtPrecioCarro_TextChanged(object sender, EventArgs e)
         {
             int[] porcentajes = logicaNegocios.ConsPor();
-            float precio;
+            int precio;
 
-            if (float.TryParse(txtPrecioCarro.Text, out precio) && cambioConTeclado)
+            if (int.TryParse(txtPrecioCarro.Text, out precio) && cambioConTeclado)
             {
                 cambioConTeclado = false;
-                float ganCalculada = logicaNegocios.CalcGan(precio, porcentajes[0]);
-                float correspCalculada = logicaNegocios.CalcCorresp(precio, porcentajes[1]);
+                int ganCalculada = logicaNegocios.CalcGan(precio, porcentajes[0]);
+                int correspCalculada = logicaNegocios.CalcCorresp(precio, porcentajes[1]);
                 txtGanancia.Text = ganCalculada.ToString();
                 txtCorresp.Text = correspCalculada.ToString();
             }
@@ -223,19 +229,19 @@ namespace presentacion
 
         private void txtGanancia_TextChanged(object sender, EventArgs e)
         {
-            float gan;
-            float corresp = 0;
-            if (float.TryParse(txtGanancia.Text, out gan) && float.TryParse(txtCorresp.Text, out corresp) && cambioConTeclado)
+            int gan;
+            int corresp = 0;
+            if (int.TryParse(txtGanancia.Text, out gan) && int.TryParse(txtCorresp.Text, out corresp) && cambioConTeclado)
             {
                 cambioConTeclado = false;
-                float nuevoPrecio = gan + corresp;
+                int nuevoPrecio = gan + corresp;
                 txtPrecioCarro.Text = nuevoPrecio.ToString();
             }
             else if (txtGanancia.Text.Equals(""))
             {
                 cambioConTeclado = false;
 
-                float.TryParse(txtCorresp.Text, out corresp);
+                int.TryParse(txtCorresp.Text, out corresp);
 
                 if (corresp != 0)
                 {
@@ -408,19 +414,19 @@ namespace presentacion
 
         private void txtCorresp_TextChanged(object sender, EventArgs e)
         {
-            float gan = 0;
-            float corresp;
-            if (float.TryParse(txtGanancia.Text, out gan) && float.TryParse(txtCorresp.Text, out corresp) && cambioConTeclado)
+            int gan = 0;
+            int corresp;
+            if (int.TryParse(txtGanancia.Text, out gan) && int.TryParse(txtCorresp.Text, out corresp) && cambioConTeclado)
             {
                 cambioConTeclado = false;
-                float nuevoPrecio = gan + corresp;
+                int nuevoPrecio = gan + corresp;
                 txtPrecioCarro.Text = nuevoPrecio.ToString();
             }
             else if (txtCorresp.Text.Equals(""))
             {
                 cambioConTeclado = false;
 
-                float.TryParse(txtGanancia.Text, out gan);
+                int.TryParse(txtGanancia.Text, out gan);
 
                 if (gan != 0)
                 {

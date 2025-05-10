@@ -103,6 +103,7 @@ namespace presentacion
             if (!errorCapturado) {
 
                 Domicilio vtnDomicilio = new Domicilio(infoEmpleado, accion, numEmpleadoActual);
+
                 //Cuando Domicilio lanza el evento, DatosPersonales también lo hace
                 vtnDomicilio.EmpleadoAgregado += (s, ev) => EmpleadoAgregado?.Invoke(this, ev);
                 this.Close();

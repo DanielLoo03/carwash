@@ -1,4 +1,5 @@
-﻿using System;
+﻿using negocios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace presentacion
 {
     public partial class Ventas : Form
     {
+        private LogicaNegocios logicaNegocios = new LogicaNegocios();
+        private DateTime dtFechaActual = DateTime.Today.Date;
         public Ventas()
         {
             InitializeComponent();
@@ -27,6 +30,91 @@ namespace presentacion
         {
             AltaVenta vtnAltaVenta = new AltaVenta();
             vtnAltaVenta.ShowDialog();
+            vtnAltaVenta.ventaAgregada += (s, e) =>
+            {
+                if (logicaNegocios.ConsVentas(tblVentas, dtFechaActual))
+                {
+                    RenombrarEncabezados(tblVentas);
+                    calcularMontos();
+
+                    lblNoVentas.Visible = false;
+                    tblVentas.Visible = true;
+                }
+            };
         }
+
+        private void Ventas_Load(object sender, EventArgs e)
+        {
+            //Condicion si hay ventas del dia se muestran
+            if(logicaNegocios.ConsVentas(tblVentas, dtFechaActual))
+            {
+                RenombrarEncabezados(tblVentas);
+                calcularMontos();
+                lblNoVentas.Visible = false;
+                tblVentas.Visible = true;
+            }
+            else
+            {
+                limpiarTotales();
+                lblNoVentas.Visible = true;
+                tblVentas.Visible = false;
+            }
+
+        }
+
+        private void dtFechaVenta_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime fechaSeleccionada = dtFechaVenta.Value.Date;
+
+            //Condicion si hay ventas del dia se muestran
+            if (logicaNegocios.ConsVentas(tblVentas, fechaSeleccionada))
+            {
+                RenombrarEncabezados(tblVentas);
+                calcularMontos();
+                lblNoVentas.Visible = false;
+                tblVentas.Visible = true;
+            }
+            else
+            {
+                limpiarTotales();
+                lblNoVentas.Visible = true;
+                tblVentas.Visible = false;
+            }
+
+        }
+
+        private void RenombrarEncabezados(DataGridView tblVentas)
+        {
+            tblVentas.Columns["marcaCarro"].HeaderText = "Marca";
+            tblVentas.Columns["modeloCarro"].HeaderText = "Modelo";
+            tblVentas.Columns["colorCarro"].HeaderText = "Color";
+            tblVentas.Columns["precio"].HeaderText = "Precio";
+            tblVentas.Columns["ganancia"].HeaderText = "Ganancia";
+            tblVentas.Columns["correspondencia"].HeaderText = "Correspondencia";
+            tblVentas.Columns["nomCompleto"].HeaderText = "Empleado Encargado";
+
+            // Estilo de encabezados
+            tblVentas.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 8, FontStyle.Bold);
+            tblVentas.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            tblVentas.EnableHeadersVisualStyles = false;
+
+            // Ajuste automático del ancho de columnas
+            tblVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        private void limpiarTotales()
+        {
+            lblPrecioMonto.Text = "---";
+            lblGanMonto.Text = "---";
+            lblCorrespMonto.Text = "---";
+        }
+
+        private void calcularMontos()
+        {
+            lblPrecioMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "precio").ToString();
+            lblGanMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "ganancia").ToString();
+            lblCorrespMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "correspondencia").ToString();
+        }
+
     }
 }

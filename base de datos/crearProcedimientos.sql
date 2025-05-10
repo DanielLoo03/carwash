@@ -190,4 +190,13 @@ BEGIN
     FROM empleados;
 END $$
 
+/* Consultar ventas según el día */
+CREATE PROCEDURE consVentas(IN fechaParam DATETIME)
+BEGIN
+    SELECT v.marcaCarro, v.modeloCarro, v.colorCarro, v.precio, v.ganancia, v.correspondencia, CONCAT(e.nombre, ' ', e.apellidoPaterno, ' ', e.apellidoMaterno) as nomCompleto
+    FROM ventas v
+    INNER JOIN empleados e ON v.numEmpleado = e.numEmpleado
+    WHERE v.fechaVenta = fechaParam;
+END $$
+
 DELIMITER ;

@@ -118,10 +118,10 @@ namespace presentacion
         {
             for (int i = 0; i < valores.Length; i++) {
 
-                if (!float.TryParse(valores[i], out _))
+                if (!int.TryParse(valores[i], out _))
                 {
 
-                    //No pudo realizar un parse de string a float correctamente (algún valor no se traduce a un float)
+                    //No pudo realizar un parse de string a int correctamente (algún valor no se traduce a un int)
                     return true;
 
                 }
@@ -151,12 +151,12 @@ namespace presentacion
             }
         }
 
-        public Boolean EvalCamposObligatoriosVenta(float precio, float gan, float corresp, string nomCompleto, int numEmp)
+        public Boolean EvalCamposObligatoriosVenta(int precio, int gan, int corresp, string nomCompleto, int numEmp)
         {
             // Verificar que los valores numéricos sean mayores que cero y campos de texto no estén vacíos
-            if (precio <= 0.0f ||
-                gan <= 0.0f ||
-                corresp <= 0.0f ||
+            if (precio <= 0 ||
+                gan <= 0 ||
+                corresp <= 0 ||
                 string.IsNullOrWhiteSpace(nomCompleto) ||
                 numEmp <= 0)
             {
@@ -165,7 +165,7 @@ namespace presentacion
             return false; // Todos los campos obligatorios están presentes y válidos
         }
 
-        public Boolean EvalMontos(float monto)
+        public Boolean EvalMontos(int monto)
         {
 
             if (monto <= 0) {
