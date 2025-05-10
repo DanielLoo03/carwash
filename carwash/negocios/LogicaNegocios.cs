@@ -216,5 +216,12 @@ namespace negocios
 
         }
 
+        //Se quitan los guiones del número de teléfono antes de cargarlo en los formularios de empleados
+        public string QuitarGuiones(string numTelefono) {
+
+            return numTelefono.Replace("-", "");
+        
+        }
+
     }
 }

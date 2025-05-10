@@ -15,6 +15,7 @@ namespace presentacion
     {
         private InfoEmpleado infoEmpleado;
         private ValidacionesUI validacionesUI = new ValidacionesUI();
+        private LogicaNegocios logicaNegocios = new LogicaNegocios();
         public event EventHandler EmpleadoAgregado; //Público por que debe de ser accesible para GestionEmpleados
         private string accion;
         private int numEmpleadoActual = 0;
@@ -143,7 +144,17 @@ namespace presentacion
             txtApellidoPaterno.Text = infoEmpleado.ApellidoPaterno;
             txtApellidoMaterno.Text = infoEmpleado.ApellidoMaterno;
             dtFechaNacimiento.Text = infoEmpleado.FechaNacimiento.ToString("yyyy-MM-dd");
-            txtNumTelefono.Text = infoEmpleado.NumTelefono;
+            if (string.IsNullOrEmpty(infoEmpleado.NumTelefono))
+            {
+
+                txtNumTelefono.Text = infoEmpleado.NumTelefono;
+
+            }
+            else {
+
+                txtNumTelefono.Text = logicaNegocios.QuitarGuiones(infoEmpleado.NumTelefono);
+
+            }
             nudNumEmpleado.Text = infoEmpleado.NumEmpleado.ToString();
 
             numEmpleadoActual = infoEmpleado.NumEmpleado;
