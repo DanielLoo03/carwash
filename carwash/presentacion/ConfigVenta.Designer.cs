@@ -151,6 +151,7 @@
             Controls.Add(lblModelo);
             Controls.Add(btnRegresar);
             Controls.Add(lblConfigVenta);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "ConfigVenta";
             Text = "Car Wash Leo";
             Load += ConfigVenta_Load;

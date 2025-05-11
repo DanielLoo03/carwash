@@ -325,7 +325,7 @@
             Controls.Add(lblModelo);
             Controls.Add(btnRegresar);
             Controls.Add(lblVenta);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "AltaVenta";
             Text = "Car Wash Leo";
             FormClosing += AltaVenta_FormClosing;

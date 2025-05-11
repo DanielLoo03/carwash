@@ -119,18 +119,18 @@ namespace negocios
         }
 
         //Calcula la ganancia según el porcentaje de ganancia
-        public int CalcGan(int precio, int porGan) {
+        public decimal CalcGan(decimal precio, decimal porGan) {
 
-            int gan = precio * (porGan / 100);
+            decimal gan = precio * (porGan / 100);
             return gan;
         
         }
 
         //Calcula la correspondencia según el porcentaje de correspondencia
-        public int CalcCorresp(int precio, int porCorresp)
+        public decimal CalcCorresp(decimal precio, decimal porCorresp)
         {
 
-            int corresp = precio * (porCorresp / 100);
+            decimal corresp = precio * (porCorresp / 100);
             return corresp;
 
         }
@@ -218,16 +218,21 @@ namespace negocios
             }
         }
 
-        public int CalcMontosTotal(DataGridView tblVentas, string col)
+        public decimal CalcMontosTotal(DataGridView tblVentas, string col)
         {
-            int total = 0;
+            decimal total = 0;
+
             foreach (DataGridViewRow row in tblVentas.Rows)
             {
-                if (row.Cells[col].Value != null && int.TryParse(row.Cells[col].Value.ToString(), out int valor))
+                if (row.IsNewRow) continue;
+
+                if (row.Cells[col].Value != null &&
+                    decimal.TryParse(row.Cells[col].Value.ToString(), out decimal valor))
                 {
                     total += valor;
                 }
             }
+
             return total;
         }
 

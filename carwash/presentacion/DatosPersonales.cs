@@ -41,9 +41,9 @@ namespace presentacion
 
         private void guardarDatos() {
 
-            infoEmpleado.Nombre = txtNombre.Text;
-            infoEmpleado.ApellidoPaterno = txtApellidoPaterno.Text;
-            infoEmpleado.ApellidoMaterno = txtApellidoMaterno.Text;
+            infoEmpleado.Nombre = txtNombre.Text.ToUpper();
+            infoEmpleado.ApellidoPaterno = txtApellidoPaterno.Text.ToUpper();
+            infoEmpleado.ApellidoMaterno = txtApellidoMaterno.Text.ToUpper();
             infoEmpleado.FechaNacimiento = dtFechaNacimiento.Value;
             infoEmpleado.NumTelefono = txtNumTelefono.Text;
             infoEmpleado.NumEmpleado = (int)nudNumEmpleado.Value;
@@ -128,11 +128,12 @@ namespace presentacion
             {
 
                 Domicilio vtnDomicilio = new Domicilio(infoEmpleado, accion, numEmpleadoActual);
+
                 //Cuando Domicilio lanza el evento, DatosPersonales también lo hace
                 vtnDomicilio.EmpleadoAgregado += (s, ev) => EmpleadoAgregado?.Invoke(this, ev);
-                this.Hide();
-                vtnDomicilio.ShowDialog();
-
+                this.Close();
+                vtnDomicilio.TopMost = true;
+                vtnDomicilio.Show();
             }
 
         }

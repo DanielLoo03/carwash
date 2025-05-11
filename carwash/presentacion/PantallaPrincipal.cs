@@ -14,10 +14,12 @@ namespace presentacion
     public partial class PantallaPrincipal : Form
     {
         private Autenticacion vtnAutenticacion;
+        private String nomUsuario;
 
-        public PantallaPrincipal(Autenticacion vtnAutenticacion)
+        public PantallaPrincipal(Autenticacion vtnAutenticacion, String nomUsuario)
         {
             this.vtnAutenticacion = vtnAutenticacion;
+            this.nomUsuario = nomUsuario;
             InitializeComponent();
 
             timer1.Interval = 1000;
@@ -128,6 +130,7 @@ namespace presentacion
         {
             lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
             CargarForm(new GestionEmpleado());
+            this.lblAdminActual.Text = this.nomUsuario;
         }
 
         private void timer1_Tick(object sender, EventArgs e)

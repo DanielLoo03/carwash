@@ -137,11 +137,11 @@
             lblAdminActual.AutoSize = true;
             lblAdminActual.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblAdminActual.ForeColor = Color.White;
-            lblAdminActual.Location = new Point(1610, 69);
+            lblAdminActual.Location = new Point(1623, 69);
             lblAdminActual.Name = "lblAdminActual";
-            lblAdminActual.Size = new Size(85, 20);
+            lblAdminActual.Size = new Size(54, 20);
             lblAdminActual.TabIndex = 14;
-            lblAdminActual.Text = "Daniel Loo";
+            lblAdminActual.Text = "Admin";
             // 
             // btnGestionInventario
             // 
@@ -261,7 +261,7 @@
             // imgAdminActual
             // 
             imgAdminActual.Image = (Image)resources.GetObject("imgAdminActual.Image");
-            imgAdminActual.Location = new Point(1627, 16);
+            imgAdminActual.Location = new Point(1623, 16);
             imgAdminActual.Name = "imgAdminActual";
             imgAdminActual.Size = new Size(50, 50);
             imgAdminActual.TabIndex = 7;

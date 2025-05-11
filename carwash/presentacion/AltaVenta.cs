@@ -17,6 +17,7 @@ namespace presentacion
 
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
+        public event EventHandler ventaAgregada;
         private InfoVenta infoVentaAlta = new InfoVenta();
         private Boolean cambioConTeclado = false;
         //Bandera para saber si se está ejecutando el código del método Load
@@ -208,6 +209,7 @@ namespace presentacion
             decimal.TryParse(txtCorresp.Text, out corresp);
             string nomCompleto = cbNomEmpleado.Text;
             int numEmp = int.Parse(cbNumEmpleado.Text);
+
             if (validacionesUI.EvalCamposObligatoriosVenta(precio, gan, corresp, nomCompleto, numEmp))
             {
                 Toast toast = new Toast("error", "Los campos obligatorios deben ser llenados (los que tienen el *)");
@@ -221,12 +223,14 @@ namespace presentacion
                 toast.Show();
                 errorCapturado = true;
             }
+
             if (validacionesUI.EvalMontos(gan))
             {
                 Toast toast = new Toast("error", "La ganancia no puede ser igual a 0 o negativo.");
                 toast.Show();
                 errorCapturado = true;
             }
+
             if (validacionesUI.EvalMontos(corresp))
             {
                 Toast toast = new Toast("error", "La correspondencia no puede ser igual a 0 o negativo.");
@@ -251,10 +255,12 @@ namespace presentacion
                 infoVentaAlta.Corresp = 0;
                 infoVentaAlta.NumEmp = 0;
 
+                ventaAgregada?.Invoke(this, EventArgs.Empty);
                 toast.Show();
                 this.Close();
 
             }
+
 
         }
 

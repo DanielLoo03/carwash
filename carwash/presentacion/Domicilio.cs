@@ -49,8 +49,8 @@ namespace presentacion
 
         private void guardarDatos() {
 
-            infoEmpleado.Calle = txtCalle.Text;
-            infoEmpleado.Colonia = txtColonia.Text;
+            infoEmpleado.Calle = txtCalle.Text.ToUpper();
+            infoEmpleado.Colonia = txtColonia.Text.ToUpper();
             infoEmpleado.NumInterior = txtNumInterior.Text;
             infoEmpleado.NumExterior = txtNumExterior.Text;
             infoEmpleado.CodigoPostal = txtCodigoPostal.Text;

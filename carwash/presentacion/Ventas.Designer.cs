@@ -34,6 +34,7 @@
             btnAltaVenta = new Button();
             lblVentas = new Label();
             pnlContenido = new Panel();
+            lblNoVentas = new Label();
             imgFechaVenta = new PictureBox();
             lblFechaVenta = new Label();
             dtFechaVenta = new DateTimePicker();
@@ -112,6 +113,7 @@
             // 
             pnlContenido.BackColor = SystemColors.Window;
             pnlContenido.BorderStyle = BorderStyle.FixedSingle;
+            pnlContenido.Controls.Add(lblNoVentas);
             pnlContenido.Controls.Add(imgFechaVenta);
             pnlContenido.Controls.Add(lblFechaVenta);
             pnlContenido.Controls.Add(dtFechaVenta);
@@ -129,6 +131,16 @@
             pnlContenido.Size = new Size(1820, 547);
             pnlContenido.TabIndex = 3;
             // 
+            // lblNoVentas
+            // 
+            lblNoVentas.AutoSize = true;
+            lblNoVentas.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNoVentas.Location = new Point(714, 298);
+            lblNoVentas.Name = "lblNoVentas";
+            lblNoVentas.Size = new Size(309, 32);
+            lblNoVentas.TabIndex = 12;
+            lblNoVentas.Text = "No hay ventas en el dia";
+            // 
             // imgFechaVenta
             // 
             imgFechaVenta.Image = (Image)resources.GetObject("imgFechaVenta.Image");
@@ -141,20 +153,21 @@
             // lblFechaVenta
             // 
             lblFechaVenta.AutoSize = true;
-            lblFechaVenta.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblFechaVenta.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblFechaVenta.Location = new Point(1102, 54);
             lblFechaVenta.Name = "lblFechaVenta";
-            lblFechaVenta.Size = new Size(112, 22);
+            lblFechaVenta.Size = new Size(111, 22);
             lblFechaVenta.TabIndex = 10;
             lblFechaVenta.Text = "Día de venta";
             // 
             // dtFechaVenta
             // 
-            dtFechaVenta.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtFechaVenta.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtFechaVenta.Location = new Point(1016, 88);
             dtFechaVenta.Name = "dtFechaVenta";
-            dtFechaVenta.Size = new Size(300, 29);
+            dtFechaVenta.Size = new Size(327, 28);
             dtFechaVenta.TabIndex = 9;
+            dtFechaVenta.ValueChanged += dtFechaVenta_ValueChanged;
             // 
             // separator1
             // 
@@ -168,8 +181,8 @@
             // lblCorrespMonto
             // 
             lblCorrespMonto.AutoSize = true;
-            lblCorrespMonto.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCorrespMonto.Location = new Point(1650, 119);
+            lblCorrespMonto.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCorrespMonto.Location = new Point(1632, 119);
             lblCorrespMonto.Name = "lblCorrespMonto";
             lblCorrespMonto.Size = new Size(28, 22);
             lblCorrespMonto.TabIndex = 7;
@@ -178,8 +191,8 @@
             // lblGanMonto
             // 
             lblGanMonto.AutoSize = true;
-            lblGanMonto.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGanMonto.Location = new Point(1524, 119);
+            lblGanMonto.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblGanMonto.Location = new Point(1505, 119);
             lblGanMonto.Name = "lblGanMonto";
             lblGanMonto.Size = new Size(28, 22);
             lblGanMonto.TabIndex = 6;
@@ -188,8 +201,8 @@
             // lblPrecioMonto
             // 
             lblPrecioMonto.AutoSize = true;
-            lblPrecioMonto.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPrecioMonto.Location = new Point(1414, 119);
+            lblPrecioMonto.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPrecioMonto.Location = new Point(1404, 119);
             lblPrecioMonto.Name = "lblPrecioMonto";
             lblPrecioMonto.Size = new Size(28, 22);
             lblPrecioMonto.TabIndex = 5;
@@ -198,40 +211,40 @@
             // lblCorresp
             // 
             lblCorresp.AutoSize = true;
-            lblCorresp.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCorresp.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblCorresp.Location = new Point(1593, 97);
             lblCorresp.Name = "lblCorresp";
-            lblCorresp.Size = new Size(152, 22);
+            lblCorresp.Size = new Size(147, 22);
             lblCorresp.TabIndex = 4;
             lblCorresp.Text = "Correspondencia";
             // 
             // lblGan
             // 
             lblGan.AutoSize = true;
-            lblGan.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblGan.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblGan.Location = new Point(1494, 97);
             lblGan.Name = "lblGan";
-            lblGan.Size = new Size(88, 22);
+            lblGan.Size = new Size(87, 22);
             lblGan.TabIndex = 3;
             lblGan.Text = "Ganancia";
             // 
             // lblPrecio
             // 
             lblPrecio.AutoSize = true;
-            lblPrecio.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblPrecio.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblPrecio.Location = new Point(1400, 97);
             lblPrecio.Name = "lblPrecio";
-            lblPrecio.Size = new Size(62, 22);
+            lblPrecio.Size = new Size(61, 22);
             lblPrecio.TabIndex = 2;
             lblPrecio.Text = "Precio";
             // 
             // lblTotales
             // 
             lblTotales.AutoSize = true;
-            lblTotales.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTotales.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTotales.Location = new Point(1502, 54);
             lblTotales.Name = "lblTotales";
-            lblTotales.Size = new Size(69, 22);
+            lblTotales.Size = new Size(70, 22);
             lblTotales.TabIndex = 1;
             lblTotales.Text = "Totales";
             // 
@@ -247,6 +260,7 @@
             tblVentas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             tblVentas.Size = new Size(1669, 321);
             tblVentas.TabIndex = 0;
+            tblVentas.Visible = false;
             // 
             // Ventas
             // 
@@ -259,7 +273,6 @@
             Name = "Ventas";
             Text = "Ventas";
             Load += Ventas_Load;
-            KeyDown += Ventas_KeyDown;
             pnlCabecera.ResumeLayout(false);
             pnlCabecera.PerformLayout();
             pnlContenido.ResumeLayout(false);
@@ -290,5 +303,6 @@
         private Label lblFechaVenta;
         private DateTimePicker dtFechaVenta;
         private PictureBox imgFechaVenta;
+        private Label lblNoVentas;
     }
 }
