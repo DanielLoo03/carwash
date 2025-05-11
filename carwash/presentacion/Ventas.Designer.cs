@@ -34,7 +34,9 @@
             btnAltaVenta = new Button();
             lblVentas = new Label();
             pnlContenido = new Panel();
+            pnlBorde = new Panel();
             lblNoVentas = new Label();
+            tblVentas = new DataGridView();
             imgFechaVenta = new PictureBox();
             lblFechaVenta = new Label();
             dtFechaVenta = new DateTimePicker();
@@ -46,11 +48,11 @@
             lblGan = new Label();
             lblPrecio = new Label();
             lblTotales = new Label();
-            tblVentas = new DataGridView();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imgFechaVenta).BeginInit();
+            pnlBorde.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tblVentas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgFechaVenta).BeginInit();
             SuspendLayout();
             // 
             // pnlCabecera
@@ -113,7 +115,7 @@
             // 
             pnlContenido.BackColor = SystemColors.Window;
             pnlContenido.BorderStyle = BorderStyle.FixedSingle;
-            pnlContenido.Controls.Add(lblNoVentas);
+            pnlContenido.Controls.Add(pnlBorde);
             pnlContenido.Controls.Add(imgFechaVenta);
             pnlContenido.Controls.Add(lblFechaVenta);
             pnlContenido.Controls.Add(dtFechaVenta);
@@ -125,21 +127,44 @@
             pnlContenido.Controls.Add(lblGan);
             pnlContenido.Controls.Add(lblPrecio);
             pnlContenido.Controls.Add(lblTotales);
-            pnlContenido.Controls.Add(tblVentas);
             pnlContenido.Location = new Point(0, 100);
             pnlContenido.Name = "pnlContenido";
             pnlContenido.Size = new Size(1820, 547);
             pnlContenido.TabIndex = 3;
             // 
+            // pnlBorde
+            // 
+            pnlBorde.BorderStyle = BorderStyle.FixedSingle;
+            pnlBorde.Controls.Add(lblNoVentas);
+            pnlBorde.Controls.Add(tblVentas);
+            pnlBorde.Location = new Point(76, 169);
+            pnlBorde.Name = "pnlBorde";
+            pnlBorde.Size = new Size(1669, 321);
+            pnlBorde.TabIndex = 13;
+            // 
             // lblNoVentas
             // 
             lblNoVentas.AutoSize = true;
             lblNoVentas.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNoVentas.Location = new Point(714, 298);
+            lblNoVentas.Location = new Point(686, 133);
             lblNoVentas.Name = "lblNoVentas";
             lblNoVentas.Size = new Size(309, 32);
             lblNoVentas.TabIndex = 12;
-            lblNoVentas.Text = "No hay ventas en el dia";
+            lblNoVentas.Text = "No hay ventas en el día";
+            // 
+            // tblVentas
+            // 
+            tblVentas.BackgroundColor = Color.White;
+            tblVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tblVentas.Location = new Point(-1, -1);
+            tblVentas.MultiSelect = false;
+            tblVentas.Name = "tblVentas";
+            tblVentas.ReadOnly = true;
+            tblVentas.RowHeadersWidth = 62;
+            tblVentas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            tblVentas.Size = new Size(1669, 321);
+            tblVentas.TabIndex = 0;
+            tblVentas.Visible = false;
             // 
             // imgFechaVenta
             // 
@@ -180,33 +205,33 @@
             // 
             // lblCorrespMonto
             // 
-            lblCorrespMonto.AutoSize = true;
             lblCorrespMonto.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCorrespMonto.Location = new Point(1632, 119);
+            lblCorrespMonto.Location = new Point(1623, 119);
             lblCorrespMonto.Name = "lblCorrespMonto";
-            lblCorrespMonto.Size = new Size(28, 22);
+            lblCorrespMonto.Size = new Size(82, 22);
             lblCorrespMonto.TabIndex = 7;
             lblCorrespMonto.Text = "---";
+            lblCorrespMonto.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblGanMonto
             // 
-            lblGanMonto.AutoSize = true;
             lblGanMonto.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGanMonto.Location = new Point(1505, 119);
+            lblGanMonto.Location = new Point(1501, 119);
             lblGanMonto.Name = "lblGanMonto";
-            lblGanMonto.Size = new Size(28, 22);
+            lblGanMonto.Size = new Size(77, 22);
             lblGanMonto.TabIndex = 6;
             lblGanMonto.Text = "---";
+            lblGanMonto.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblPrecioMonto
             // 
-            lblPrecioMonto.AutoSize = true;
             lblPrecioMonto.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPrecioMonto.Location = new Point(1404, 119);
+            lblPrecioMonto.Location = new Point(1392, 119);
             lblPrecioMonto.Name = "lblPrecioMonto";
-            lblPrecioMonto.Size = new Size(28, 22);
+            lblPrecioMonto.Size = new Size(77, 22);
             lblPrecioMonto.TabIndex = 5;
             lblPrecioMonto.Text = "---";
+            lblPrecioMonto.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblCorresp
             // 
@@ -248,20 +273,6 @@
             lblTotales.TabIndex = 1;
             lblTotales.Text = "Totales";
             // 
-            // tblVentas
-            // 
-            tblVentas.BackgroundColor = Color.White;
-            tblVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tblVentas.Location = new Point(76, 169);
-            tblVentas.MultiSelect = false;
-            tblVentas.Name = "tblVentas";
-            tblVentas.ReadOnly = true;
-            tblVentas.RowHeadersWidth = 62;
-            tblVentas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            tblVentas.Size = new Size(1669, 321);
-            tblVentas.TabIndex = 0;
-            tblVentas.Visible = false;
-            // 
             // Ventas
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -277,8 +288,10 @@
             pnlCabecera.PerformLayout();
             pnlContenido.ResumeLayout(false);
             pnlContenido.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imgFechaVenta).EndInit();
+            pnlBorde.ResumeLayout(false);
+            pnlBorde.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)tblVentas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgFechaVenta).EndInit();
             ResumeLayout(false);
         }
 
@@ -304,5 +317,6 @@
         private DateTimePicker dtFechaVenta;
         private PictureBox imgFechaVenta;
         private Label lblNoVentas;
+        private Panel pnlBorde;
     }
 }

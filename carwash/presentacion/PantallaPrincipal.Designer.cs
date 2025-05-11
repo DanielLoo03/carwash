@@ -102,7 +102,7 @@
             btnCerrarSesion.FlatStyle = FlatStyle.Flat;
             btnCerrarSesion.ForeColor = Color.FromArgb(17, 45, 78);
             btnCerrarSesion.Image = (Image)resources.GetObject("btnCerrarSesion.Image");
-            btnCerrarSesion.Location = new Point(1775, 16);
+            btnCerrarSesion.Location = new Point(1772, 15);
             btnCerrarSesion.Name = "btnCerrarSesion";
             btnCerrarSesion.Size = new Size(50, 50);
             btnCerrarSesion.TabIndex = 8;
@@ -134,14 +134,14 @@
             // 
             // lblAdminActual
             // 
-            lblAdminActual.AutoSize = true;
             lblAdminActual.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblAdminActual.ForeColor = Color.White;
-            lblAdminActual.Location = new Point(1623, 69);
+            lblAdminActual.Location = new Point(1595, 69);
             lblAdminActual.Name = "lblAdminActual";
-            lblAdminActual.Size = new Size(54, 20);
+            lblAdminActual.Size = new Size(109, 20);
             lblAdminActual.TabIndex = 14;
             lblAdminActual.Text = "Admin";
+            lblAdminActual.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnGestionInventario
             // 
@@ -251,7 +251,7 @@
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(1775, 16);
+            pictureBox3.Location = new Point(1776, 16);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(50, 50);
             pictureBox3.TabIndex = 8;

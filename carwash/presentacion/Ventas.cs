@@ -41,9 +41,9 @@ namespace presentacion
                     RenombrarEncabezados(tblVentas);
 
                     //Se calculan los montos totales del día
-                    lblPrecio.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "precio").ToString();
-                    lblGan.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "ganancia").ToString();
-                    lblCorresp.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "correspondencia").ToString();
+                    lblPrecioMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "precio").ToString("F2");
+                    lblGanMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "ganancia").ToString("F2");
+                    lblCorrespMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "correspondencia").ToString("F2");
 
                     lblNoVentas.Visible = false;
                     tblVentas.Visible = true;
@@ -62,9 +62,9 @@ namespace presentacion
                 RenombrarEncabezados(tblVentas);
 
                 //Se calculan los montos totales del día
-                lblPrecio.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "precio").ToString();
-                lblGan.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "ganancia").ToString();
-                lblCorresp.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "correspondencia").ToString();
+                lblPrecioMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "precio").ToString("F2");
+                lblGanMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "ganancia").ToString("F2");
+                lblCorrespMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "correspondencia").ToString("F2");
 
                 lblNoVentas.Visible = false;
                 tblVentas.Visible = true;
@@ -88,9 +88,9 @@ namespace presentacion
                 RenombrarEncabezados(tblVentas);
 
                 //Se calculan los montos totales del día
-                lblPrecio.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "precio").ToString();
-                lblGan.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "ganancia").ToString();
-                lblCorresp.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "correspondencia").ToString();
+                lblPrecioMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "precio").ToString("F2");
+                lblGanMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "ganancia").ToString("F2");
+                lblCorrespMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "correspondencia").ToString("F2");
 
                 lblNoVentas.Visible = false;
                 tblVentas.Visible = true;
@@ -106,6 +106,8 @@ namespace presentacion
 
         private void RenombrarEncabezados(DataGridView tblVentas)
         {
+
+            //Nombres de encabezados
             tblVentas.Columns["marcaCarro"].HeaderText = "Marca";
             tblVentas.Columns["modeloCarro"].HeaderText = "Modelo";
             tblVentas.Columns["colorCarro"].HeaderText = "Color";
@@ -119,8 +121,14 @@ namespace presentacion
             tblVentas.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             tblVentas.EnableHeadersVisualStyles = false;
 
+            //Formato a montos
+            tblVentas.Columns["precio"].DefaultCellStyle.Format = "C2";
+            tblVentas.Columns["ganancia"].DefaultCellStyle.Format = "C2";
+            tblVentas.Columns["correspondencia"].DefaultCellStyle.Format = "C2";
+
             // Ajuste automático del ancho de columnas
             tblVentas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
         }
 
         private void limpiarTotales()
