@@ -56,5 +56,10 @@ namespace negocios
         
         }
 
+        public DataTable ConsVentas(DateTime fecha)
+        {
+            return ventasDAO.ConsVentas(fecha);
+        }
+
     }
 }

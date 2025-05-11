@@ -118,10 +118,10 @@ namespace presentacion
         {
             for (int i = 0; i < valores.Length; i++) {
 
-                if (!float.TryParse(valores[i], out _))
+                if (!decimal.TryParse(valores[i], out _))
                 {
 
-                    //No pudo realizar un parse de string a float correctamente (algún valor no se traduce a un float)
+                    //No pudo realizar un parse de string a decimal correctamente (algún valor no se traduce a un decimal)
                     return true;
 
                 }

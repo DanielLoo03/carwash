@@ -119,18 +119,18 @@ namespace negocios
         }
 
         //Calcula la ganancia según el porcentaje de ganancia
-        public float CalcGan(float precio, int porGan) {
+        public int CalcGan(int precio, int porGan) {
 
-            float gan = precio * (porGan / 100f);
+            int gan = precio * (porGan / 100);
             return gan;
         
         }
 
         //Calcula la correspondencia según el porcentaje de correspondencia
-        public float CalcCorresp(float precio, int porCorresp)
+        public int CalcCorresp(int precio, int porCorresp)
         {
 
-            float corresp = precio * (porCorresp / 100f);
+            int corresp = precio * (porCorresp / 100);
             return corresp;
 
         }
@@ -202,6 +202,33 @@ namespace negocios
         
             return ventasService.ConsNomCompletos();
 
+        }
+
+        public Boolean ConsVentas(DataGridView tblVentas, DateTime fecha)
+        {
+            DataTable ventas = ventasService.ConsVentas(fecha);
+            tblVentas.DataSource = ventas;
+            if (ventas.Rows.Count != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public int CalcMontosTotal(DataGridView tblVentas, string col)
+        {
+            int total = 0;
+            foreach (DataGridViewRow row in tblVentas.Rows)
+            {
+                if (row.Cells[col].Value != null && int.TryParse(row.Cells[col].Value.ToString(), out int valor))
+                {
+                    total += valor;
+                }
+            }
+            return total;
         }
 
         //Formatea el número de teléfono con guiones

@@ -355,13 +355,13 @@ namespace presentacion
         private void txtPrecioCarro_TextChanged(object sender, EventArgs e)
         {
             int[] porcentajes = logicaNegocios.ConsPor();
-            float precio;
+            decimal precio;
 
-            if (float.TryParse(txtPrecioCarro.Text, out precio) && cambioConTeclado)
+            if (decimal.TryParse(txtPrecioCarro.Text, out precio) && cambioConTeclado)
             {
                 cambioConTeclado = false;
-                float ganCalculada = logicaNegocios.CalcGan(precio, porcentajes[0]);
-                float correspCalculada = logicaNegocios.CalcCorresp(precio, porcentajes[1]);
+                decimal ganCalculada = logicaNegocios.CalcGan(precio, porcentajes[0]);
+                decimal correspCalculada = logicaNegocios.CalcCorresp(precio, porcentajes[1]);
                 txtGanancia.Text = LimitarDecimales(ganCalculada.ToString());
                 txtCorresp.Text = LimitarDecimales(correspCalculada.ToString());
             }
@@ -385,19 +385,19 @@ namespace presentacion
 
         private void txtGanancia_TextChanged(object sender, EventArgs e)
         {
-            float gan;
-            float corresp = 0;
-            if (float.TryParse(txtGanancia.Text, out gan) && float.TryParse(txtCorresp.Text, out corresp) && cambioConTeclado)
+            decimal gan;
+            decimal corresp = 0;
+            if (decimal.TryParse(txtGanancia.Text, out gan) && decimal.TryParse(txtCorresp.Text, out corresp) && cambioConTeclado)
             {
                 cambioConTeclado = false;
-                float nuevoPrecio = gan + corresp;
+                decimal nuevoPrecio = gan + corresp;
                 txtPrecioCarro.Text = LimitarDecimales(nuevoPrecio.ToString());
             }
             else if (txtGanancia.Text.Equals(""))
             {
                 cambioConTeclado = false;
 
-                float.TryParse(txtCorresp.Text, out corresp);
+                decimal.TryParse(txtCorresp.Text, out corresp);
 
                 if (corresp != 0)
                 {
@@ -475,19 +475,19 @@ namespace presentacion
 
         private void txtCorresp_TextChanged(object sender, EventArgs e)
         {
-            float gan = 0;
-            float corresp;
-            if (float.TryParse(txtGanancia.Text, out gan) && float.TryParse(txtCorresp.Text, out corresp) && cambioConTeclado)
+            decimal gan = 0;
+            decimal corresp;
+            if (decimal.TryParse(txtGanancia.Text, out gan) && decimal.TryParse(txtCorresp.Text, out corresp) && cambioConTeclado)
             {
                 cambioConTeclado = false;
-                float nuevoPrecio = gan + corresp;
+                decimal nuevoPrecio = gan + corresp;
                 txtPrecioCarro.Text = LimitarDecimales(nuevoPrecio.ToString());
             }
             else if (txtCorresp.Text.Equals(""))
             {
                 cambioConTeclado = false;
 
-                float.TryParse(txtGanancia.Text, out gan);
+                decimal.TryParse(txtGanancia.Text, out gan);
 
                 if (gan != 0)
                 {
