@@ -45,7 +45,7 @@ namespace presentacion
             infoEmpleado.ApellidoPaterno = txtApellidoPaterno.Text.ToUpper();
             infoEmpleado.ApellidoMaterno = txtApellidoMaterno.Text.ToUpper();
             infoEmpleado.FechaNacimiento = dtFechaNacimiento.Value;
-            infoEmpleado.NumTelefono = txtNumTelefono.Text;
+            infoEmpleado.NumTelefono = mtxtNumTelefono.Text;
             infoEmpleado.NumEmpleado = (int)nudNumEmpleado.Value;
 
         }
@@ -59,8 +59,8 @@ namespace presentacion
             Boolean errorCapturado = false; //Bandera para decidir si pasar al siguiente formulario o no permitir el paso. 
 
             //Evaluación de campos obligatorios
-            TextBox[] textBoxes = { txtNombre, txtApellidoPaterno, txtApellidoMaterno, txtNumTelefono };
-            if (validacionesUI.EvalTxtVacios(textBoxes))
+            TextBox[] textBoxes = { txtNombre, txtApellidoPaterno, txtApellidoMaterno };
+            if (validacionesUI.EvalTxtVacios(textBoxes) || string.IsNullOrWhiteSpace(mtxtNumTelefono.Text))
             {
 
                 Toast toast = new Toast("error", "Los campos obligatorios deben ser llenados (los que tienen el *)");
@@ -79,7 +79,7 @@ namespace presentacion
 
             }
             //No se puede utilizar el validador de exceso de caracteres ya que necesitamos validar si el tamaño es de un valor exacto, no si excede cierto número.
-            if (txtNumTelefono.Text.Length != 10)
+            if (mtxtNumTelefono.Text.Length != 12)
             {
 
                 Toast toast = new Toast("error", "El número de teléfono debe ser de 10 dígitos.");
@@ -148,12 +148,12 @@ namespace presentacion
             if (string.IsNullOrEmpty(infoEmpleado.NumTelefono))
             {
 
-                txtNumTelefono.Text = infoEmpleado.NumTelefono;
+                mtxtNumTelefono.Text = infoEmpleado.NumTelefono;
 
             }
             else {
 
-                txtNumTelefono.Text = logicaNegocios.QuitarGuiones(infoEmpleado.NumTelefono);
+                mtxtNumTelefono.Text = logicaNegocios.QuitarGuiones(infoEmpleado.NumTelefono);
 
             }
             nudNumEmpleado.Text = infoEmpleado.NumEmpleado.ToString();

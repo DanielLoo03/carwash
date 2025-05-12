@@ -41,7 +41,6 @@
             txtApellidoPaterno = new TextBox();
             txtApellidoMaterno = new TextBox();
             dtFechaNacimiento = new DateTimePicker();
-            txtNumTelefono = new TextBox();
             nudNumEmpleado = new NumericUpDown();
             btnContinuar = new Button();
             obligatorio = new Label();
@@ -50,6 +49,7 @@
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
+            mtxtNumTelefono = new MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)nudNumEmpleado).BeginInit();
             SuspendLayout();
             // 
@@ -164,13 +164,6 @@
             dtFechaNacimiento.Size = new Size(557, 31);
             dtFechaNacimiento.TabIndex = 11;
             // 
-            // txtNumTelefono
-            // 
-            txtNumTelefono.Location = new Point(100, 665);
-            txtNumTelefono.Name = "txtNumTelefono";
-            txtNumTelefono.Size = new Size(557, 31);
-            txtNumTelefono.TabIndex = 12;
-            // 
             // nudNumEmpleado
             // 
             nudNumEmpleado.Location = new Point(100, 769);
@@ -257,12 +250,21 @@
             label5.TabIndex = 20;
             label5.Text = "*";
             // 
+            // mtxtNumTelefono
+            // 
+            mtxtNumTelefono.Location = new Point(100, 665);
+            mtxtNumTelefono.Mask = "000-000-0000";
+            mtxtNumTelefono.Name = "mtxtNumTelefono";
+            mtxtNumTelefono.Size = new Size(557, 31);
+            mtxtNumTelefono.TabIndex = 21;
+            // 
             // DatosPersonales
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(746, 908);
+            Controls.Add(mtxtNumTelefono);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -271,7 +273,6 @@
             Controls.Add(obligatorio);
             Controls.Add(btnContinuar);
             Controls.Add(nudNumEmpleado);
-            Controls.Add(txtNumTelefono);
             Controls.Add(dtFechaNacimiento);
             Controls.Add(txtApellidoMaterno);
             Controls.Add(txtApellidoPaterno);
@@ -310,7 +311,6 @@
         private TextBox txtApellidoPaterno;
         private TextBox txtApellidoMaterno;
         private DateTimePicker dtFechaNacimiento;
-        private TextBox txtNumTelefono;
         private NumericUpDown nudNumEmpleado;
         private Button btnContinuar;
         private Label obligatorio;
@@ -319,5 +319,6 @@
         private Label label3;
         private Label label4;
         private Label label5;
+        private MaskedTextBox mtxtNumTelefono;
     }
 }
