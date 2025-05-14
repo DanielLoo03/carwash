@@ -19,14 +19,14 @@ namespace persistencia
 
         //Se maneja el tipo de dato DateTime en vez de DateOnly ya que MySQL no soporta DateOnly. Cuando se pasa un tipo DateTime a un campo Date, MySQL recorta la hora automáticamente.
         //Los campos numTelefono, numExterior, numInterior y codigoPostal son string para evitar que se elimine el 0 inicial en alguno de los campos. 
-        public void InsertEmpleado(string nombre, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleado, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
+        public void InsertEmpleado(string nombres, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleado, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
 
             comando = new MySqlCommand();
 
             comando.Connection = conexion.AbrirConexion();
             comando.CommandText = "altaEmpleado";
             comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@nombre", nombre);
+            comando.Parameters.AddWithValue("@nombres", nombres);
             comando.Parameters.AddWithValue("@apellidoPaterno", apellidoPaterno);
             comando.Parameters.AddWithValue("@apellidoMaterno", apellidoMaterno);
             comando.Parameters.AddWithValue("@numTelefono", numTelefono);
@@ -75,14 +75,14 @@ namespace persistencia
 
         }
 
-        public void ModEmpleados(string nombre, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleado, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
+        public void ModEmpleados(string nombres, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleado, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
 
             comando = new MySqlCommand();
 
             comando.Connection = conexion.AbrirConexion();
             comando.CommandText = "modificarEmpleado";
             comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@nombreParam", nombre);
+            comando.Parameters.AddWithValue("@nombresParam", nombres);
             comando.Parameters.AddWithValue("@apellidoPaternoParam", apellidoPaterno);
             comando.Parameters.AddWithValue("@apellidoMaternoParam", apellidoMaterno);
             comando.Parameters.AddWithValue("@numTelefonoParam", numTelefono);

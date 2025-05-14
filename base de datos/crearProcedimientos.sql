@@ -8,7 +8,7 @@ END$$
 
 /*Alta de empleados*/
 CREATE PROCEDURE altaEmpleado(
-    IN nombre VARCHAR(50),
+    IN nombres VARCHAR(50),
     IN apellidoPaterno VARCHAR(50),
     IN apellidoMaterno VARCHAR(50),
     IN numTelefono VARCHAR(12),
@@ -22,7 +22,7 @@ CREATE PROCEDURE altaEmpleado(
 )
 BEGIN
     INSERT INTO Empleados (
-        nombre,
+        nombres,
         apellidoPaterno,
         apellidoMaterno,
         numTelefono,
@@ -35,7 +35,7 @@ BEGIN
         codigoPostal
     )
     VALUES (
-        nombre,
+        nombres,
         apellidoPaterno,
         apellidoMaterno,
         numTelefono,
@@ -52,14 +52,14 @@ END $$
 /*Consulta de empleados*/
 CREATE PROCEDURE consultarEmpleados()
 BEGIN
-    SELECT nombre, apellidoPaterno, apellidoMaterno, numEmpleado, numTelefono, fechaNacimiento, calle, colonia, codigoPostal, numInterior, numExterior  
+    SELECT nombres, apellidoPaterno, apellidoMaterno, numEmpleado, numTelefono, fechaNacimiento, calle, colonia, codigoPostal, numInterior, numExterior  
     FROM empleados
-    ORDER BY nombre ASC;
+    ORDER BY nombres ASC;
 END $$
 
 /*Modificación de empleados*/
 CREATE PROCEDURE modificarEmpleado(
-    IN nombreParam VARCHAR(50),
+    IN nombresParam VARCHAR(50),
     IN apellidoPaternoParam VARCHAR(50),
     IN apellidoMaternoParam VARCHAR(50),
     IN numTelefonoParam VARCHAR(12),
@@ -74,7 +74,7 @@ CREATE PROCEDURE modificarEmpleado(
 BEGIN
     UPDATE Empleados
     SET
-        nombre = nombreParam,
+        nombres = nombresParam,
         apellidoPaterno = apellidoPaternoParam,
         apellidoMaterno = apellidoMaternoParam,
         numTelefono = numTelefonoParam,
@@ -137,14 +137,14 @@ END $$
 
 /* Obtener número de empleado en base al nombre completo de empleado*/
 CREATE PROCEDURE obtenerNumEmpleado(
-    IN nombreParam VARCHAR(50),
+    IN nombresParam VARCHAR(50),
     IN apellidoPaternoParam VARCHAR(50),
     IN apellidoMaternoParam VARCHAR(50)
 )
 BEGIN 
     SELECT numEmpleado 
     FROM empleados
-    WHERE nombre = nombreParam
+    WHERE nombres = nombresParam
         AND apellidoPaterno = apellidoPaternoParam
         AND apellidoMaterno = apellidoMaternoParam;
 END $$
@@ -153,7 +153,7 @@ END $$
 CREATE PROCEDURE obtenerNombreEmpleado(IN numEmpleadoParam INT)
 BEGIN 
     SELECT 
-        CONCAT(nombre, ' ', apellidoPaterno, ' ', apellidoMaterno) AS nombreCompleto
+        CONCAT(nombres, ' ', apellidoPaterno, ' ', apellidoMaterno) AS nombreCompleto
     FROM empleados
     WHERE numEmpleado = numEmpleadoParam;
 END $$
@@ -184,14 +184,14 @@ END $$
 /* Consultar nombres completos de empleados */
 CREATE PROCEDURE consNomCompletos()
 BEGIN
-    SELECT CONCAT(nombre, ' ', apellidoPaterno, ' ', apellidoMaterno) as nomCompleto
+    SELECT CONCAT(nombres, ' ', apellidoPaterno, ' ', apellidoMaterno) as nomCompleto
     FROM empleados;
 END $$
 
 /* Consultar ventas según el día */
 CREATE PROCEDURE consVentas(IN fechaParam DATETIME)
 BEGIN
-    SELECT v.marcaCarro, v.modeloCarro, v.colorCarro, v.precio, v.ganancia, v.correspondencia, CONCAT(e.nombre, ' ', e.apellidoPaterno, ' ', e.apellidoMaterno) as nomCompleto
+    SELECT v.marcaCarro, v.modeloCarro, v.colorCarro, v.precio, v.ganancia, v.correspondencia, CONCAT(e.nombres, ' ', e.apellidoPaterno, ' ', e.apellidoMaterno) as nomCompleto
     FROM ventas v
     INNER JOIN empleados e ON v.numEmpleado = e.numEmpleado
     WHERE v.fechaVenta = fechaParam;

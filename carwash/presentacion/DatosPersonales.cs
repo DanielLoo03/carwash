@@ -41,7 +41,7 @@ namespace presentacion
 
         private void guardarDatos() {
 
-            infoEmpleado.Nombre = txtNombre.Text.ToUpper();
+            infoEmpleado.Nombres = txtNombre.Text.ToUpper();
             infoEmpleado.ApellidoPaterno = txtApellidoPaterno.Text.ToUpper();
             infoEmpleado.ApellidoMaterno = txtApellidoMaterno.Text.ToUpper();
             infoEmpleado.FechaNacimiento = dtFechaNacimiento.Value;
@@ -73,7 +73,7 @@ namespace presentacion
             if (validacionesUI.EvalTxtChars(textBoxes, 50))
             {
 
-                Toast toast = new Toast("error", "Los campos nombre, apellido paterno y apellido materno no admiten más de 50 caracteres");
+                Toast toast = new Toast("error", "Los campos nombres, apellido paterno y apellido materno no admiten más de 50 caracteres");
                 toast.Show();
                 errorCapturado = true;
 
@@ -92,7 +92,7 @@ namespace presentacion
             if (validacionesUI.EvalTxtCharsEspecial(textBoxes50))
             {
 
-                Toast toast = new Toast("error", "Los campos nombre, apellido paterno y apellido paterno no deben incluir caracteres especiales ni dígitos (!, @, #, 0, 1 etc.)");
+                Toast toast = new Toast("error", "Los campos nombres, apellido paterno y apellido paterno no deben incluir caracteres especiales ni dígitos (!, @, #, 0, 1 etc.)");
                 toast.Show();
                 errorCapturado = true;
 
@@ -141,7 +141,7 @@ namespace presentacion
         private void DatosPersonales_Load(object sender, EventArgs e)
         {
 
-            txtNombre.Text = infoEmpleado.Nombre;
+            txtNombre.Text = infoEmpleado.Nombres;
             txtApellidoPaterno.Text = infoEmpleado.ApellidoPaterno;
             txtApellidoMaterno.Text = infoEmpleado.ApellidoMaterno;
             dtFechaNacimiento.Text = infoEmpleado.FechaNacimiento.ToString("yyyy-MM-dd");

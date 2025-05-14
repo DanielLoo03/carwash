@@ -33,7 +33,7 @@ namespace presentacion
             {
 
                 //Se cargan propiedades para pasarlos a los formularios y se cargen los datos del empleado seleccionado
-                infoEmpleadoMod.Nombre = (string)filaSeleccionada.Cells["nombre"].Value;
+                infoEmpleadoMod.Nombres = (string)filaSeleccionada.Cells["nombre"].Value;
                 infoEmpleadoMod.ApellidoPaterno = (string)filaSeleccionada.Cells["apellidoPaterno"].Value;
                 infoEmpleadoMod.ApellidoMaterno = (string)filaSeleccionada.Cells["apellidoMaterno"].Value;
                 infoEmpleadoMod.NumTelefono = (string)filaSeleccionada.Cells["numTelefono"].Value;

@@ -49,7 +49,7 @@ namespace persistencia
                 CommandText = "obtenerNumEmpleado",
                 CommandType = CommandType.StoredProcedure
             };
-            comando.Parameters.AddWithValue("@nombreParam", nom);
+            comando.Parameters.AddWithValue("@nombresParam", nom);
             comando.Parameters.AddWithValue("@apellidoPaternoParam",apellidoPaterno);
             comando.Parameters.AddWithValue("@apellidoMaternoParam",apellidoMaterno);
 

@@ -20,7 +20,7 @@ CREATE TABLE articulo (
 
 CREATE TABLE empleados (
   id int NOT NULL AUTO_INCREMENT,
-  nombre varchar(50) NOT NULL,
+  nombres varchar(50) NOT NULL,
   apellidoPaterno varchar(50) NOT NULL,
   apellidoMaterno varchar(50) NOT NULL,
   numTelefono varchar(12) NOT NULL,

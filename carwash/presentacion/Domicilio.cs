@@ -141,7 +141,7 @@ namespace presentacion
                 {
                     case "agregar":
                         logicaNegocios.AltaEmpleado(
-                            infoEmpleado.Nombre,
+                            infoEmpleado.Nombres,
                             infoEmpleado.ApellidoPaterno,
                             infoEmpleado.ApellidoMaterno,
                             infoEmpleado.NumTelefono,
@@ -159,7 +159,7 @@ namespace presentacion
 
                     case "modificar":
                         logicaNegocios.ModEmpleados(
-                            infoEmpleado.Nombre,
+                            infoEmpleado.Nombres,
                             infoEmpleado.ApellidoPaterno,
                             infoEmpleado.ApellidoMaterno,
                             infoEmpleado.NumTelefono,
@@ -181,7 +181,7 @@ namespace presentacion
                 this.Close();
 
                 //Se limpian campos
-                infoEmpleado.Nombre = "";
+                infoEmpleado.Nombres = "";
                 infoEmpleado.ApellidoPaterno = "";
                 infoEmpleado.ApellidoMaterno = "";
                 infoEmpleado.NumTelefono = "";

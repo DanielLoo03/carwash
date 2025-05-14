@@ -81,9 +81,9 @@
             lblNombre.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblNombre.Location = new Point(100, 208);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(73, 22);
+            lblNombre.Size = new Size(82, 22);
             lblNombre.TabIndex = 2;
-            lblNombre.Text = "Nombre";
+            lblNombre.Text = "Nombres";
             // 
             // lblApellidoPaterno
             // 
@@ -194,7 +194,7 @@
             // 
             obligatorio.AutoSize = true;
             obligatorio.ForeColor = Color.Red;
-            obligatorio.Location = new Point(170, 205);
+            obligatorio.Location = new Point(175, 206);
             obligatorio.Name = "obligatorio";
             obligatorio.Size = new Size(20, 25);
             obligatorio.TabIndex = 15;
