@@ -44,7 +44,6 @@
             txtNumExterior = new TextBox();
             obligatorio = new Label();
             label1 = new Label();
-            label3 = new Label();
             label4 = new Label();
             SuspendLayout();
             // 
@@ -193,16 +192,6 @@
             label1.TabIndex = 32;
             label1.Text = "*";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.ForeColor = Color.Red;
-            label3.Location = new Point(253, 495);
-            label3.Name = "label3";
-            label3.Size = new Size(20, 25);
-            label3.TabIndex = 34;
-            label3.Text = "*";
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -220,7 +209,6 @@
             BackColor = SystemColors.Window;
             ClientSize = new Size(746, 908);
             Controls.Add(label4);
-            Controls.Add(label3);
             Controls.Add(label1);
             Controls.Add(obligatorio);
             Controls.Add(txtNumExterior);
@@ -264,7 +252,6 @@
         private TextBox txtNumExterior;
         private Label obligatorio;
         private Label label1;
-        private Label label3;
         private Label label4;
     }
 }

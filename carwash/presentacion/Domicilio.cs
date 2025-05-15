@@ -77,7 +77,7 @@ namespace presentacion
             }
 
             //Evaluación de campos obligatorios
-            TextBox[] textBoxes = { txtCalle, txtCodigoPostal, txtColonia, txtNumExterior };
+            TextBox[] textBoxes = { txtCalle, txtCodigoPostal, txtColonia };
             if (validacionesUI.EvalTxtVacios(textBoxes))
             {
 
