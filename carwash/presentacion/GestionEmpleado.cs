@@ -143,7 +143,7 @@ namespace presentacion
             }
 
             //Formateamos el nombre de cada columna
-            tblEmpleados.Columns["nombre"].HeaderText = "Nombre";
+            tblEmpleados.Columns["nombres"].HeaderText = "Nombres";
             tblEmpleados.Columns["apellidoPaterno"].HeaderText = "Apellido Paterno";
             tblEmpleados.Columns["apellidoMaterno"].HeaderText = "Apellido Materno";
             tblEmpleados.Columns["numTelefono"].HeaderText = "Número de Teléfono";

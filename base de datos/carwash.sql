@@ -28,7 +28,7 @@ CREATE TABLE empleados (
   fechaNacimiento date NOT NULL,
   calle varchar(50) NOT NULL,
   colonia varchar(50) NOT NULL,
-  numExterior varchar(4) NOT NULL,
+  numExterior varchar(4) DEFAULT NULL,
   numInterior varchar(4) DEFAULT NULL,
   codigoPostal varchar(5) NOT NULL,
   PRIMARY KEY (id),
