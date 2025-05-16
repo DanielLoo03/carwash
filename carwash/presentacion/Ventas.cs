@@ -15,7 +15,7 @@ namespace presentacion
     {
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
         private DateTime dtFechaActual = DateTime.Today.Date;
-
+        
         private InfoVenta infoVentaAlta = new InfoVenta();
 
         public Ventas()
@@ -33,22 +33,22 @@ namespace presentacion
         private void btnAddVenta_Click(object sender, EventArgs e)
         {
             AltaVenta vtnAltaVenta = new AltaVenta(infoVentaAlta);
-            vtnAltaVenta.ShowDialog();
             vtnAltaVenta.ventaAgregada += (s, e) =>
             {
-                if (logicaNegocios.ConsVentas(tblVentas, dtFechaActual))
-                {
-                    RenombrarEncabezados(tblVentas);
 
-                    //Se calculan los montos totales del día
-                    lblPrecioMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "precio").ToString("F2");
-                    lblGanMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "ganancia").ToString("F2");
-                    lblCorrespMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "correspondencia").ToString("F2");
+                logicaNegocios.ConsVentas(tblVentas, dtFechaActual);
+                RenombrarEncabezados(tblVentas);
 
-                    lblNoVentas.Visible = false;
-                    tblVentas.Visible = true;
-                }
+                //Se calculan los montos totales del día
+                lblPrecioMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "precio").ToString("F2");
+                lblGanMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "ganancia").ToString("F2");
+                lblCorrespMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "correspondencia").ToString("F2");
+
+                lblNoVentas.Visible = false;
+                tblVentas.Visible = true;
+                
             };
+            vtnAltaVenta.ShowDialog();
         }
 
         private void Ventas_Load(object sender, EventArgs e)
