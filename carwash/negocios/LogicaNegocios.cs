@@ -255,5 +255,13 @@ namespace negocios
         
         }
 
+        public void modVenta(int id, string marcaCarro, string modeloCarro, string colorCarro, int numEmp) {
+
+            string[] datosMayus = Mayusculas(marcaCarro, modeloCarro, colorCarro);
+
+            ventasService.ModVenta(id, datosMayus[0], datosMayus[1], datosMayus[2], numEmp);
+
+        }
+
     }
 }

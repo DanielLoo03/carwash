@@ -61,5 +61,11 @@ namespace negocios
             return ventasDAO.ConsVentas(fecha);
         }
 
+        public void ModVenta(int id, string marcaCarro, string modeloCarro, string colorCarro, int numEmp) {
+
+            ventasDAO.ModVenta(id, marcaCarro, modeloCarro, colorCarro, numEmp);
+        
+        }
+
     }
 }
