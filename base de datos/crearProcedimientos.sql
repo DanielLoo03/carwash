@@ -197,4 +197,23 @@ BEGIN
     WHERE v.fechaVenta = fechaParam;
 END $$
 
+/* Modificar venta */
+CREATE PROCEDURE modVenta(
+    IN idParam INT,
+    IN marcaCarroParam VARCHAR(50),
+    IN modeloCarroParam VARCHAR(50),
+    IN colorCarroParam VARCHAR(50),
+    IN numEmpParam int
+)
+BEGIN
+    UPDATE ventas
+    SET
+        marcaCarro = marcaCarroParam,
+        modeloCarro = modeloCarroParam,
+        colorCarro = colorCarroParam,
+        numEmpleado = numEmpParam
+    WHERE
+        id = idParam;
+END $$
+
 DELIMITER ;

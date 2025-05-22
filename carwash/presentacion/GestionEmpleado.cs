@@ -33,7 +33,7 @@ namespace presentacion
             {
 
                 //Se cargan propiedades para pasarlos a los formularios y se cargen los datos del empleado seleccionado
-                infoEmpleadoMod.Nombres = (string)filaSeleccionada.Cells["nombre"].Value;
+                infoEmpleadoMod.Nombres = (string)filaSeleccionada.Cells["nombres"].Value;
                 infoEmpleadoMod.ApellidoPaterno = (string)filaSeleccionada.Cells["apellidoPaterno"].Value;
                 infoEmpleadoMod.ApellidoMaterno = (string)filaSeleccionada.Cells["apellidoMaterno"].Value;
                 infoEmpleadoMod.NumTelefono = (string)filaSeleccionada.Cells["numTelefono"].Value;
@@ -69,7 +69,7 @@ namespace presentacion
             if (filaSeleccionada != null)
             {
 
-                MessageBoxConfirmar messageBoxConfirmar = new MessageBoxConfirmar("¿Está seguro de eliminar al empleado " + (int)filaSeleccionada.Cells["numEmpleado"].Value + " | " + (string)filaSeleccionada.Cells["nombre"].Value + " " + (string)filaSeleccionada.Cells["apellidoPaterno"].Value + " " + (string)filaSeleccionada.Cells["apellidoMaterno"].Value + "?");
+                MessageBoxConfirmar messageBoxConfirmar = new MessageBoxConfirmar("¿Está seguro de eliminar al empleado " + (int)filaSeleccionada.Cells["numEmpleado"].Value + " | " + (string)filaSeleccionada.Cells["nombres"].Value + " " + (string)filaSeleccionada.Cells["apellidoPaterno"].Value + " " + (string)filaSeleccionada.Cells["apellidoMaterno"].Value + "?");
                 messageBoxConfirmar.ConfirmarPresionado += (s, ev) =>
                 {
 
