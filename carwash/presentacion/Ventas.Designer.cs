@@ -48,6 +48,7 @@
             lblGan = new Label();
             lblPrecio = new Label();
             lblTotales = new Label();
+            btnModVenta = new Button();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
             pnlBorde.SuspendLayout();
@@ -58,6 +59,7 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
+            pnlCabecera.Controls.Add(btnModVenta);
             pnlCabecera.Controls.Add(btnConfigVentas);
             pnlCabecera.Controls.Add(btnAltaVenta);
             pnlCabecera.Controls.Add(lblVentas);
@@ -74,7 +76,7 @@
             btnConfigVentas.ForeColor = Color.White;
             btnConfigVentas.Image = (Image)resources.GetObject("btnConfigVentas.Image");
             btnConfigVentas.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConfigVentas.Location = new Point(1216, 32);
+            btnConfigVentas.Location = new Point(921, 32);
             btnConfigVentas.Name = "btnConfigVentas";
             btnConfigVentas.Size = new Size(225, 39);
             btnConfigVentas.TabIndex = 3;
@@ -273,6 +275,22 @@
             lblTotales.TabIndex = 1;
             lblTotales.Text = "Totales";
             // 
+            // btnModVenta
+            // 
+            btnModVenta.BackColor = Color.FromArgb(63, 114, 175);
+            btnModVenta.FlatStyle = FlatStyle.Popup;
+            btnModVenta.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnModVenta.ForeColor = Color.White;
+            btnModVenta.Image = (Image)resources.GetObject("btnModVenta.Image");
+            btnModVenta.ImageAlign = ContentAlignment.MiddleLeft;
+            btnModVenta.Location = new Point(1204, 32);
+            btnModVenta.Name = "btnModVenta";
+            btnModVenta.Size = new Size(225, 39);
+            btnModVenta.TabIndex = 4;
+            btnModVenta.Text = "Modificar Venta";
+            btnModVenta.TextAlign = ContentAlignment.MiddleRight;
+            btnModVenta.UseVisualStyleBackColor = false;
+            // 
             // Ventas
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -318,5 +336,6 @@
         private PictureBox imgFechaVenta;
         private Label lblNoVentas;
         private Panel pnlBorde;
+        private Button btnModVenta;
     }
 }
