@@ -15,8 +15,8 @@ namespace presentacion
     {
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
         private DateTime dtFechaActual = DateTime.Today.Date;
-        
         private InfoVenta infoVentaAlta = new InfoVenta();
+        private InfoVenta infoVentaMod = new InfoVenta();
 
         public Ventas()
         {
@@ -32,7 +32,7 @@ namespace presentacion
 
         private void btnAddVenta_Click(object sender, EventArgs e)
         {
-            AltaVenta vtnAltaVenta = new AltaVenta(infoVentaAlta);
+            AltaVenta vtnAltaVenta = new AltaVenta(infoVentaAlta, "alta");
             vtnAltaVenta.ventaAgregada += (s, e) =>
             {
 
@@ -46,15 +46,13 @@ namespace presentacion
 
                 lblNoVentas.Visible = false;
                 tblVentas.Visible = true;
-                
+
             };
             vtnAltaVenta.ShowDialog();
         }
 
         private void Ventas_Load(object sender, EventArgs e)
         {
-
-            this.ActiveControl = pnlContenido;
 
             //Condicion si hay ventas del día se muestran
             if (logicaNegocios.ConsVentas(tblVentas, dtFechaActual))
@@ -75,6 +73,7 @@ namespace presentacion
                 lblNoVentas.Visible = true;
                 tblVentas.Visible = false;
             }
+            this.ActiveControl = pnlContenido;
 
         }
 
@@ -151,7 +150,11 @@ namespace presentacion
                         break;
 
                     case Keys.C:
-                       btnConfigVentas.PerformClick();
+                        btnConfigVentas.PerformClick();
+                        break;
+
+                    case Keys.M:
+                        btnModVenta.PerformClick();
                         break;
 
                 }
@@ -159,5 +162,45 @@ namespace presentacion
             }
         }
 
+        private void btnModVenta_Click(object sender, EventArgs e)
+        {
+
+            DataGridViewRow filaSeleccionada = tblVentas.CurrentRow; //La venta seleccionada para modificar
+            //Condición: Si se seleccionó una venta/fila de la tabla
+            if (filaSeleccionada != null)
+            {
+
+                //Se cargan propiedades para pasarlos a los formularios y se cargen los datos de la venta seleccionada
+                infoVentaMod.Id = (int)filaSeleccionada.Cells["id"].Value;
+                infoVentaMod.ModeloCarro = (string)filaSeleccionada.Cells["modeloCarro"].Value;
+                infoVentaMod.MarcaCarro = (string)filaSeleccionada.Cells["marcaCarro"].Value;
+                infoVentaMod.ColorCarro = (string)filaSeleccionada.Cells["colorCarro"].Value;
+                infoVentaMod.Precio = (decimal)filaSeleccionada.Cells["precio"].Value;
+                infoVentaMod.Gan = (decimal)filaSeleccionada.Cells["ganancia"].Value;
+                infoVentaMod.Corresp = (decimal)filaSeleccionada.Cells["correspondencia"].Value;
+                //Se consulta el numEmpleado según el nombre completo obtenido de la fila seleccionada
+                string nomCompleto = (string)filaSeleccionada.Cells["nomCompleto"].Value;
+                string[] nomCompletoSplit = nomCompleto.Split(" ");
+                string nom = nomCompletoSplit[0];
+                string apellidoPaterno = nomCompletoSplit[1];
+                string apellidoMaterno = nomCompletoSplit[2];
+                infoVentaMod.NumEmp = logicaNegocios.ConsNumEmp(nom, apellidoPaterno, apellidoMaterno);
+
+                AltaVenta vtnModVenta = new AltaVenta(infoVentaMod, "mod");
+                vtnModVenta.ventaAgregada += (s, ev) =>
+                {
+                    logicaNegocios.ConsVentas(tblVentas, dtFechaVenta.Value.Date);
+                };
+                vtnModVenta.ShowDialog();
+
+            }
+            else
+            {
+
+                Toast toast = new Toast("error", "No has seleccionado ningún empleado");
+
+            }
+
+        }
     }
 }

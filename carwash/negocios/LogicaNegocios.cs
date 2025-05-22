@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace negocios
 {
@@ -208,6 +209,8 @@ namespace negocios
         {
             DataTable ventas = ventasService.ConsVentas(fecha);
             tblVentas.DataSource = ventas;
+            //Esconde el Id para que no lo vea el administrador
+            tblVentas.Columns["id"].Visible = false;
             if (ventas.Rows.Count != 0)
             {
                 return true;

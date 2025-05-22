@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ventas));
             pnlCabecera = new Panel();
+            btnModVenta = new Button();
             btnConfigVentas = new Button();
             btnAltaVenta = new Button();
             lblVentas = new Label();
@@ -48,7 +49,6 @@
             lblGan = new Label();
             lblPrecio = new Label();
             lblTotales = new Label();
-            btnModVenta = new Button();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
             pnlBorde.SuspendLayout();
@@ -67,6 +67,23 @@
             pnlCabecera.Name = "pnlCabecera";
             pnlCabecera.Size = new Size(1820, 100);
             pnlCabecera.TabIndex = 2;
+            // 
+            // btnModVenta
+            // 
+            btnModVenta.BackColor = Color.FromArgb(63, 114, 175);
+            btnModVenta.FlatStyle = FlatStyle.Popup;
+            btnModVenta.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnModVenta.ForeColor = Color.White;
+            btnModVenta.Image = (Image)resources.GetObject("btnModVenta.Image");
+            btnModVenta.ImageAlign = ContentAlignment.MiddleLeft;
+            btnModVenta.Location = new Point(1204, 32);
+            btnModVenta.Name = "btnModVenta";
+            btnModVenta.Size = new Size(225, 39);
+            btnModVenta.TabIndex = 4;
+            btnModVenta.Text = "Modificar Venta";
+            btnModVenta.TextAlign = ContentAlignment.MiddleRight;
+            btnModVenta.UseVisualStyleBackColor = false;
+            btnModVenta.Click += btnModVenta_Click;
             // 
             // btnConfigVentas
             // 
@@ -274,22 +291,6 @@
             lblTotales.Size = new Size(70, 22);
             lblTotales.TabIndex = 1;
             lblTotales.Text = "Totales";
-            // 
-            // btnModVenta
-            // 
-            btnModVenta.BackColor = Color.FromArgb(63, 114, 175);
-            btnModVenta.FlatStyle = FlatStyle.Popup;
-            btnModVenta.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnModVenta.ForeColor = Color.White;
-            btnModVenta.Image = (Image)resources.GetObject("btnModVenta.Image");
-            btnModVenta.ImageAlign = ContentAlignment.MiddleLeft;
-            btnModVenta.Location = new Point(1204, 32);
-            btnModVenta.Name = "btnModVenta";
-            btnModVenta.Size = new Size(225, 39);
-            btnModVenta.TabIndex = 4;
-            btnModVenta.Text = "Modificar Venta";
-            btnModVenta.TextAlign = ContentAlignment.MiddleRight;
-            btnModVenta.UseVisualStyleBackColor = false;
             // 
             // Ventas
             // 
