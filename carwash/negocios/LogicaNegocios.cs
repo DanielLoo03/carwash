@@ -229,7 +229,7 @@ namespace negocios
             {
                 if (row.IsNewRow) continue;
 
-                if (row.Cells[col].Value != null &&
+                if (row.Cells[col].Value != null && !(bool)row.Cells["cancelado"].Value &&
                     decimal.TryParse(row.Cells[col].Value.ToString(), out decimal valor))
                 {
                     total += valor;
@@ -264,6 +264,12 @@ namespace negocios
 
             ventasService.ModVenta(id, datosMayus[0], datosMayus[1], datosMayus[2], numEmp);
 
+        }
+
+        public void CanVenta(int id) {
+
+            ventasService.CanVenta(id);
+        
         }
 
     }

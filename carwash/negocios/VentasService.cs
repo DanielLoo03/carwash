@@ -67,5 +67,11 @@ namespace negocios
         
         }
 
+        public void CanVenta(int id) {
+
+            ventasDAO.CanVenta(id);
+        
+        }
+
     }
 }
