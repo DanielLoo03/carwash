@@ -203,6 +203,7 @@ namespace presentacion
             //Se guardan datos introducidos a objeto infoVentaAlta
             guardarDatos();
 
+
             if (validacionesUI.EvalCharsColor(colorCarro))
             {
                 Toast toast = new Toast("error", "El campo color de carro solo puede incluir letras");
@@ -210,10 +211,10 @@ namespace presentacion
                 errorCapturado = true;
             }
 
-            string[] posiblesNums = { txtPrecioCarro.Text, txtGanancia.Text, txtCorresp.Text };
-            if (validacionesUI.EvalSoloNums(posiblesNums))
+            TextBox[] posibleNumMax = { txtMarcaCarro, txtModeloCarro, txtColorCarro };
+            if (validacionesUI.EvalCampoLimite(posibleNumMax, 50))
             {
-                Toast toast = new Toast("error", "Los campos precio del carro, ganancia y correspondencia deben contener valores númericos.");
+                Toast toast = new Toast("error", "Los campos Marca, Modelo y Color del carro no deben exceder los 50 caracteres.");
                 toast.Show();
                 errorCapturado = true;
                 return;
@@ -233,6 +234,15 @@ namespace presentacion
                 Toast toast = new Toast("error", "Los campos obligatorios deben ser llenados (los que tienen el *)");
                 toast.Show();
                 errorCapturado = true;
+            }
+
+            string[] posiblesNums = { txtPrecioCarro.Text, txtGanancia.Text, txtCorresp.Text };
+            if (validacionesUI.EvalSoloNums(posiblesNums))
+            {
+                Toast toast = new Toast("error", "Los campos precio del carro, ganancia y correspondencia deben contener valores númericos.");
+                toast.Show();
+                errorCapturado = true;
+                return;
             }
 
             if (validacionesUI.EvalMontos(precio))
@@ -291,13 +301,23 @@ namespace presentacion
                     infoVenta.NumEmp = 0;
 
                 }
+
                 ventaAgregada?.Invoke(this, EventArgs.Empty);
-                Toast toastExito = new Toast("exito", "Venta registrada con éxito.");
-                toastExito.Show();
+
+                if (tipo.Equals("alta"))
+                {
+                    Toast toastExitoAlta = new Toast("exito", "Venta registrada con éxito.");
+                    toastExitoAlta.Show();
+                    
+                }
+                else
+                {
+                    Toast toastExitoMod = new Toast("exito", "Modificacion realizada con éxito.");
+                    toastExitoMod.Show();
+                }
+
                 this.Close();
-
             }
-
 
         }
 

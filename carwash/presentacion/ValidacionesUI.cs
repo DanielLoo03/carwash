@@ -179,5 +179,80 @@ namespace presentacion
 
         }
 
+        //Evalua si algun campo esta vacio
+        // campos = Arreglo de objetos (TextBox, Combobx, otros)
+        public bool EvalCamposVacios(object[] campos)
+        {
+            foreach (var campo in campos)
+            {
+                if (campo == null) return true;
+
+                string valor = null;
+
+                if (campo is TextBox txt)
+                    valor = txt.Text;
+                else if (campo is ComboBox cbx)
+                    valor = cbx.Text;
+                else
+                    valor = campo.ToString();
+
+                if (string.IsNullOrWhiteSpace(valor))
+                    return true; // Campo vacío o solo espacios
+            }
+
+            return false; // Todos los campos están llenos
+        }
+
+        // Evalua si algun campo supera el limite de caracteres
+        // campos = Arreglo de objetos (TextBox, Combobx, otros)
+        // limite = cantidad maxima de caracteres permitidos
+        public bool EvalCampoLimite(object[] campos, int limite)
+        {
+            foreach (var campo in campos)
+            {
+                if (campo == null) continue;
+
+                string valor = null;
+
+                if (campo is TextBox txt)
+                    valor = txt.Text;
+                else if (campo is ComboBox cbx)
+                    valor = cbx.Text;
+                else
+                    valor = campo.ToString();
+
+                if (valor.Length > limite)
+                    return true; // Supera el límite
+            }
+
+            return false; // Todos los campos están dentro del límite
+        }
+
+        // Evalua si alguno de los campos tiene caracteres especiales no permitidos
+        // campos = Arreglo de objetos (TextBox, Combobx, otros)
+        // regexNopermitidos = Rregex con caracteres no permitidos
+        public bool EvalCamposCharEsp(object[] campos, string regexNoPermitidos)
+        {
+            Regex regex = new Regex(regexNoPermitidos);
+
+            foreach (var campo in campos)
+            {
+                string valor = null;
+
+                if (campo == null) continue;
+
+                if (campo is TextBox txt)
+                    valor = txt.Text;
+                else if (campo is ComboBox cbx)
+                    valor = cbx.Text;
+                else
+                    valor = campo.ToString();
+
+                if (regex.IsMatch(valor))
+                    return true;
+            }
+
+            return false;
+        }
     }
 }
