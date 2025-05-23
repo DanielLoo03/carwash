@@ -57,13 +57,13 @@
             // 
             // lblVenta
             // 
-            lblVenta.AutoSize = true;
             lblVenta.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblVenta.Location = new Point(187, 45);
+            lblVenta.Location = new Point(67, 50);
             lblVenta.Name = "lblVenta";
-            lblVenta.Size = new Size(354, 46);
+            lblVenta.Size = new Size(598, 46);
             lblVenta.TabIndex = 1;
             lblVenta.Text = "Datos de la Venta";
+            lblVenta.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnRegresar
             // 

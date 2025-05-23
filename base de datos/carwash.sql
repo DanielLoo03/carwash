@@ -45,6 +45,7 @@ CREATE TABLE ventas (
   correspondencia decimal(7, 2) NOT NULL,
   numEmpleado int NOT NULL,
   fechaVenta datetime NOT NULL,
+  cancelado boolean NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (numEmpleado) REFERENCES empleados (numEmpleado) 
   ON DELETE CASCADE ON UPDATE CASCADE

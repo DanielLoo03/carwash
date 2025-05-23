@@ -18,16 +18,34 @@ namespace presentacion
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
         public event EventHandler ventaAgregada;
-        private InfoVenta infoVentaAlta = new InfoVenta();
+        private InfoVenta infoVenta = new InfoVenta();
         private Boolean cambioConTeclado = false;
         //Bandera para saber si se está ejecutando el código del método Load
         private bool cargando = true;
+        private string tipo = "";
 
-        public AltaVenta(InfoVenta infoVentaAlta)
+        public AltaVenta(InfoVenta infoVentaAlta, string tipo)
         {
-            this.infoVentaAlta = infoVentaAlta;
+            this.infoVenta = infoVentaAlta;
+            this.tipo = tipo;
             InitializeComponent();
             this.KeyPreview = true;
+
+            if (tipo.Equals("mod"))
+            {
+
+                txtPrecioCarro.Enabled = false;
+                txtGanancia.Enabled = false;
+                txtCorresp.Enabled = false;
+                lblVenta.Text = "Modificación de venta";
+
+            }
+            else if (tipo.Equals("alta")) {
+
+                lblVenta.Text = "Alta de venta";
+
+            }
+
         }
 
         private void AltaVenta_Load(object sender, EventArgs e)
@@ -44,16 +62,16 @@ namespace presentacion
 
             //Se cargan campos con los valores anteriormente introducidos (si se introdujeron datos anteriormente sin completar la alta)
             //Condición: Si se introdujo información y nunca se dió de alta
-            if (infoVentaAlta.NumEmp != 0)
+            if (infoVenta.NumEmp != 0)
             {
 
-                txtMarcaCarro.Text = infoVentaAlta.MarcaCarro;
-                txtModeloCarro.Text = infoVentaAlta.ModeloCarro;
-                txtColorCarro.Text = infoVentaAlta.ColorCarro;
-                if (infoVentaAlta.Precio != 0)
+                txtMarcaCarro.Text = infoVenta.MarcaCarro;
+                txtModeloCarro.Text = infoVenta.ModeloCarro;
+                txtColorCarro.Text = infoVenta.ColorCarro;
+                if (infoVenta.Precio != 0)
                 {
 
-                    txtPrecioCarro.Text = infoVentaAlta.Precio.ToString();
+                    txtPrecioCarro.Text = infoVenta.Precio.ToString();
 
                 }
                 else {
@@ -61,10 +79,10 @@ namespace presentacion
                     txtPrecioCarro.Text = "";
                 
                 }
-                if (infoVentaAlta.Gan != 0)
+                if (infoVenta.Gan != 0)
                 {
 
-                    txtGanancia.Text = infoVentaAlta.Gan.ToString();
+                    txtGanancia.Text = infoVenta.Gan.ToString();
 
                 }
                 else
@@ -73,10 +91,10 @@ namespace presentacion
                     txtPrecioCarro.Text = "";
 
                 }
-                if (infoVentaAlta.Corresp != 0)
+                if (infoVenta.Corresp != 0)
                 {
 
-                    txtCorresp.Text = infoVentaAlta.Corresp.ToString();
+                    txtCorresp.Text = infoVenta.Corresp.ToString();
 
                 }
                 else
@@ -85,7 +103,7 @@ namespace presentacion
                     txtPrecioCarro.Text = "";
 
                 }
-                cbNumEmpleado.SelectedValue = infoVentaAlta.NumEmp;
+                cbNumEmpleado.SelectedValue = infoVenta.NumEmp;
 
                 //Se carga nombre de empleado según el número de empleado seteado
                 int numSeleccionado;
@@ -138,40 +156,40 @@ namespace presentacion
         {
 
             //Se guardan valores en infoVentaAlta 
-            infoVentaAlta.MarcaCarro = txtMarcaCarro.Text;
-            infoVentaAlta.ModeloCarro = txtModeloCarro.Text;
-            infoVentaAlta.ColorCarro = txtColorCarro.Text;
+            infoVenta.MarcaCarro = txtMarcaCarro.Text;
+            infoVenta.ModeloCarro = txtModeloCarro.Text;
+            infoVenta.ColorCarro = txtColorCarro.Text;
             //temp = variable temporal que almacena el resultado del tryParse
             int temp;
             //Condición: Si se puede realizar la conversión del string a int
             if (int.TryParse(txtPrecioCarro.Text, out temp))
             {
-                infoVentaAlta.Precio = temp;
+                infoVenta.Precio = temp;
             }
             else {
 
-                infoVentaAlta.Precio = 0;
+                infoVenta.Precio = 0;
             
             }
             if (int.TryParse(txtGanancia.Text, out temp))
             {
-                infoVentaAlta.Gan = temp;
+                infoVenta.Gan = temp;
             }
             else {
 
-                infoVentaAlta.Gan = 0;
+                infoVenta.Gan = 0;
 
             }
             if (int.TryParse(txtCorresp.Text, out temp))
             {
-                infoVentaAlta.Corresp = temp;
+                infoVenta.Corresp = temp;
             }
             else {
 
-                infoVentaAlta.Corresp = 0;
+                infoVenta.Corresp = 0;
 
             }
-            infoVentaAlta.NumEmp = Convert.ToInt32(cbNumEmpleado.SelectedValue);
+            infoVenta.NumEmp = Convert.ToInt32(cbNumEmpleado.SelectedValue);
 
         }
 
@@ -185,6 +203,7 @@ namespace presentacion
             //Se guardan datos introducidos a objeto infoVentaAlta
             guardarDatos();
 
+
             if (validacionesUI.EvalCharsColor(colorCarro))
             {
                 Toast toast = new Toast("error", "El campo color de carro solo puede incluir letras");
@@ -192,10 +211,10 @@ namespace presentacion
                 errorCapturado = true;
             }
 
-            string[] posiblesNums = { txtPrecioCarro.Text, txtGanancia.Text, txtCorresp.Text };
-            if (validacionesUI.EvalSoloNums(posiblesNums))
+            TextBox[] posibleNumMax = { txtMarcaCarro, txtModeloCarro, txtColorCarro };
+            if (validacionesUI.EvalCampoLimite(posibleNumMax, 50))
             {
-                Toast toast = new Toast("error", "Los campos precio del carro, ganancia y correspondencia deben contener valores númericos.");
+                Toast toast = new Toast("error", "Los campos Marca, Modelo y Color del carro no deben exceder los 50 caracteres.");
                 toast.Show();
                 errorCapturado = true;
                 return;
@@ -215,6 +234,15 @@ namespace presentacion
                 Toast toast = new Toast("error", "Los campos obligatorios deben ser llenados (los que tienen el *)");
                 toast.Show();
                 errorCapturado = true;
+            }
+
+            string[] posiblesNums = { txtPrecioCarro.Text, txtGanancia.Text, txtCorresp.Text };
+            if (validacionesUI.EvalSoloNums(posiblesNums))
+            {
+                Toast toast = new Toast("error", "Los campos precio del carro, ganancia y correspondencia deben contener valores númericos.");
+                toast.Show();
+                errorCapturado = true;
+                return;
             }
 
             if (validacionesUI.EvalMontos(precio))
@@ -241,26 +269,55 @@ namespace presentacion
             if (!errorCapturado)
             {
 
-                DateTime fechaVenta = DateTime.Today;
+                if (tipo.Equals("alta"))
+                {
 
-                logicaNegocios.AltaVenta(marcaCarro, modeloCarro, colorCarro, precio, gan, corresp, numEmp, fechaVenta);
-                Toast toast = new Toast("exito", "Venta registrada con éxito.");
+                    DateTime fechaVenta = DateTime.Today;
 
-                //Se limpian campos de InfoVenta
-                infoVentaAlta.MarcaCarro = "";
-                infoVentaAlta.ModeloCarro = "";
-                infoVentaAlta.ColorCarro = "";
-                infoVentaAlta.Precio = 0;
-                infoVentaAlta.Gan = 0;
-                infoVentaAlta.Corresp = 0;
-                infoVentaAlta.NumEmp = 0;
+                    logicaNegocios.AltaVenta(marcaCarro, modeloCarro, colorCarro, precio, gan, corresp, numEmp, fechaVenta);
+
+                    //Se limpian campos de InfoVentaAlta
+                    infoVenta.MarcaCarro = "";
+                    infoVenta.ModeloCarro = "";
+                    infoVenta.ColorCarro = "";
+                    infoVenta.Precio = 0;
+                    infoVenta.Gan = 0;
+                    infoVenta.Corresp = 0;
+                    infoVenta.NumEmp = 0;
+
+                }
+                //Es una modificación
+                else {
+
+                    logicaNegocios.modVenta(infoVenta.Id, marcaCarro, modeloCarro, colorCarro, numEmp);
+
+                    //Se limpian campos de InfoVentaMod
+                    infoVenta.MarcaCarro = "";
+                    infoVenta.ModeloCarro = "";
+                    infoVenta.ColorCarro = "";
+                    infoVenta.Precio = 0;
+                    infoVenta.Gan = 0;
+                    infoVenta.Corresp = 0;
+                    infoVenta.NumEmp = 0;
+
+                }
 
                 ventaAgregada?.Invoke(this, EventArgs.Empty);
-                toast.Show();
+
+                if (tipo.Equals("alta"))
+                {
+                    Toast toastExitoAlta = new Toast("exito", "Venta registrada con éxito.");
+                    toastExitoAlta.Show();
+                    
+                }
+                else
+                {
+                    Toast toastExitoMod = new Toast("exito", "Modificacion realizada con éxito.");
+                    toastExitoMod.Show();
+                }
+
                 this.Close();
-
             }
-
 
         }
 

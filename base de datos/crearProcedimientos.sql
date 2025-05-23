@@ -191,10 +191,29 @@ END $$
 /* Consultar ventas según el día */
 CREATE PROCEDURE consVentas(IN fechaParam DATETIME)
 BEGIN
-    SELECT v.marcaCarro, v.modeloCarro, v.colorCarro, v.precio, v.ganancia, v.correspondencia, CONCAT(e.nombres, ' ', e.apellidoPaterno, ' ', e.apellidoMaterno) as nomCompleto
+    SELECT v.id, v.marcaCarro, v.modeloCarro, v.colorCarro, v.precio, v.ganancia, v.correspondencia, CONCAT(e.nombres, ' ', e.apellidoPaterno, ' ', e.apellidoMaterno) as nomCompleto
     FROM ventas v
     INNER JOIN empleados e ON v.numEmpleado = e.numEmpleado
     WHERE v.fechaVenta = fechaParam;
+END $$
+
+/* Modificar venta */
+CREATE PROCEDURE modVenta(
+    IN idParam INT,
+    IN marcaCarroParam VARCHAR(50),
+    IN modeloCarroParam VARCHAR(50),
+    IN colorCarroParam VARCHAR(50),
+    IN numEmpParam int
+)
+BEGIN
+    UPDATE ventas
+    SET
+        marcaCarro = marcaCarroParam,
+        modeloCarro = modeloCarroParam,
+        colorCarro = colorCarroParam,
+        numEmpleado = numEmpParam
+    WHERE
+        id = idParam;
 END $$
 
 DELIMITER ;

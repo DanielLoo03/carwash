@@ -11,12 +11,13 @@ namespace presentacion
 
         //Son propiedades: crean las variables junto con sus getters y setters en una línea
 
-        public string ModeloCarro {  get; set; }
-        public string MarcaCarro {  get; set; }
+        public int Id { get; set; }
+        public string ModeloCarro { get; set; }
+        public string MarcaCarro { get; set; }
         public string ColorCarro { get; set; }
-        public int Precio { get; set; }
-        public int Gan { get; set; }
-        public int Corresp { get; set; }
+        public decimal Precio { get; set; }
+        public decimal Gan { get; set; }
+        public decimal Corresp { get; set; }
         public int NumEmp { get; set; }
         public DateTime FechaVenta { get; set; }
 

@@ -158,6 +158,24 @@ namespace persistencia
             return tabla;
         }
 
+        public void ModVenta(int id, string marcaCarro, string modeloCarro,  string colorCarro, int numEmp) {
+
+            comando = new MySqlCommand();
+
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "modVenta";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idParam", id);
+            comando.Parameters.AddWithValue("@marcaCarroParam", marcaCarro);
+            comando.Parameters.AddWithValue("@modeloCarroParam", modeloCarro);
+            comando.Parameters.AddWithValue("@colorCarroParam", colorCarro);
+            comando.Parameters.AddWithValue("@numEmpParam", numEmp);
+
+            comando.ExecuteNonQuery(); //Es NonQuery ya que un UPDATE no regresa valores como lo haría un SELECT
+            comando.Parameters.Clear();
+            conexion.CerrarConexion();
+
+        }
 
     }
 }
