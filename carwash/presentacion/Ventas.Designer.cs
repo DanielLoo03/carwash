@@ -49,6 +49,8 @@
             lblGan = new Label();
             lblPrecio = new Label();
             lblTotales = new Label();
+            button1 = new Button();
+            button2 = new Button();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
             pnlBorde.SuspendLayout();
@@ -59,6 +61,8 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
+            pnlCabecera.Controls.Add(button2);
+            pnlCabecera.Controls.Add(button1);
             pnlCabecera.Controls.Add(btnModVenta);
             pnlCabecera.Controls.Add(btnConfigVentas);
             pnlCabecera.Controls.Add(btnAltaVenta);
@@ -292,6 +296,38 @@
             lblTotales.TabIndex = 1;
             lblTotales.Text = "Totales";
             // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(63, 114, 175);
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.White;
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.Location = new Point(644, 31);
+            button1.Name = "button1";
+            button1.Size = new Size(225, 39);
+            button1.TabIndex = 5;
+            button1.Text = "Cancelar venta";
+            button1.TextAlign = ContentAlignment.MiddleRight;
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.FromArgb(63, 114, 175);
+            button2.FlatStyle = FlatStyle.Popup;
+            button2.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button2.ForeColor = Color.White;
+            button2.Image = (Image)resources.GetObject("button2.Image");
+            button2.ImageAlign = ContentAlignment.MiddleLeft;
+            button2.Location = new Point(317, 32);
+            button2.Name = "button2";
+            button2.Size = new Size(273, 39);
+            button2.TabIndex = 6;
+            button2.Text = "Mostrar ventas canceladas";
+            button2.TextAlign = ContentAlignment.MiddleRight;
+            button2.UseVisualStyleBackColor = false;
+            // 
             // Ventas
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -338,5 +374,7 @@
         private Label lblNoVentas;
         private Panel pnlBorde;
         private Button btnModVenta;
+        private Button button2;
+        private Button button1;
     }
 }
