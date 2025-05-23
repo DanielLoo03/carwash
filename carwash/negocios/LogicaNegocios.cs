@@ -266,5 +266,11 @@ namespace negocios
 
         }
 
+        public Boolean AltaAdmin(string nombreUsuario, string contrasena)
+        {
+            adminsService.AltaAdmin(nombreUsuario, contrasena);
+            return true;
+        }
+
     }
 }
