@@ -312,7 +312,7 @@ namespace presentacion
                 }
                 else
                 {
-                    Toast toastExitoMod = new Toast("exito", "Modificacion realizada con éxito.");
+                    Toast toastExitoMod = new Toast("exito", "Venta modificada con éxito.");
                     toastExitoMod.Show();
                 }
 
