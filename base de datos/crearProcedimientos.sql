@@ -6,6 +6,22 @@ BEGIN
     SELECT nombreUsuario, contrasena FROM administradores;
 END$$
 
+/* Alta de administradores */
+CREATE PROCEDURE altaAdministrador(
+    IN nombreUsuarioParam VARCHAR(50),
+    IN contrasenaParam    VARCHAR(50)
+)
+BEGIN
+    INSERT INTO administradores (
+        nombreUsuario,
+        contrasena
+    )
+    VALUES (
+        nombreUsuarioParam,
+        contrasenaParam
+    );
+END $$
+
 /*Alta de empleados*/
 CREATE PROCEDURE altaEmpleado(
     IN nombres VARCHAR(50),
@@ -216,4 +232,4 @@ BEGIN
         id = idParam;
 END $$
 
-DELIMITER ;
+DELIMITER ;   
