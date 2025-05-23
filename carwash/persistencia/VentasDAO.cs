@@ -177,5 +177,21 @@ namespace persistencia
 
         }
 
+        public void CanVenta(int id)
+        {
+
+            comando = new MySqlCommand();
+
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "canVenta";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idParam", id);
+
+            comando.ExecuteNonQuery(); //Es NonQuery ya que un UPDATE no regresa valores como lo haría un SELECT
+            comando.Parameters.Clear();
+            conexion.CerrarConexion();
+
+        }
+
     }
 }

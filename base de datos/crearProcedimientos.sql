@@ -216,4 +216,16 @@ BEGIN
         id = idParam;
 END $$
 
+/* Cancelar venta */
+CREATE PROCEDURE canVenta(
+    IN idParam INT
+)
+BEGIN
+    UPDATE ventas
+    SET
+        cancelado = TRUE
+    WHERE
+        id = idParam;
+END $$
+
 DELIMITER ;
