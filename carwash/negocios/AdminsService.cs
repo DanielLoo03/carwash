@@ -17,5 +17,11 @@ namespace negocios
         {
             return adminsDAO.GetAdmins();
         }
+
+        public void AltaAdmin(string nombreUsuario, string contrasena)
+        {
+            adminsDAO.AltaAdmin(nombreUsuario, contrasena);
+        }
+
     }
 }
