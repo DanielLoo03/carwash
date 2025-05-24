@@ -297,23 +297,6 @@ namespace presentacion
                 infoVenta.Corresp = 0;
                 infoVenta.NumEmp = 0;
 
-                }
-
-                ventaAgregada?.Invoke(this, EventArgs.Empty);
-
-                if (tipo.Equals("alta"))
-                {
-                    Toast toastExitoAlta = new Toast("exito", "Venta registrada con éxito.");
-                    toastExitoAlta.Show();
-                    
-                }
-                else
-                {
-                    Toast toastExitoMod = new Toast("exito", "Venta modificada con éxito.");
-                    toastExitoMod.Show();
-                }
-
-                this.Close();
             }
 
         }
