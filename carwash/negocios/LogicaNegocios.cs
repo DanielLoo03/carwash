@@ -31,6 +31,10 @@ namespace negocios
             return false;
 
         }
+        public DataTable GetAdmins()
+        {
+            return adminsService.GetAdmins();
+        }
 
         //Convertir datos a mayúsculas
         public string[] Mayusculas(params string[] datos) {

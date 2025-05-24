@@ -375,11 +375,16 @@ namespace presentacion
             string confirm = txtConfCont.Text;
 
             //Si los campos obligatorios estan vacios, marca error
-            if (string.IsNullOrWhiteSpace(usuario) ||
-                string.IsNullOrWhiteSpace(contrasena) ||
-                string.IsNullOrWhiteSpace(confirm))
+            TextBox[] obligatorios = { txtNomUsuario, txtCont, txtConfCont };
+            if (validacionesUI.EvalTxtVacios(obligatorios))
             {
                 new Toast("error", "Todos los campos son obligatorios.").MostrarToast();
+                return;
+            }
+
+            if (validacionesUI.EvalCamposCharEsp(new object[] { txtNomUsuario }, "[^a-zA-Z.\\-_]"))
+            {
+                new Toast("error", "El nombre de usuario solo permite letras, punto (.), guión medio (-) y guión bajo (_).").MostrarToast();
                 return;
             }
 
@@ -387,6 +392,19 @@ namespace presentacion
             if (!contrasena.Equals(confirm))
             {
                 new Toast("error", "Las contraseñas no coinciden.").MostrarToast();
+                return;
+            }
+
+            TextBox[] passBoxes = { txtCont };
+            if (validacionesUI.EvalTxtChars(passBoxes, 50))
+            {
+                new Toast("error", "La contraseña no puede exceder 50 caracteres.").MostrarToast();
+                return;
+            }
+
+            if (new ValidacionesUI().EvalUsuarioExistente(usuario))
+            {
+                new Toast("error", "El nombre de usuario ya existe.").MostrarToast();
                 return;
             }
 
