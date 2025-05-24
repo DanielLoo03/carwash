@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ namespace presentacion
         private DateTime dtFechaActual = DateTime.Today.Date;
         private InfoVenta infoVentaAlta = new InfoVenta();
         private InfoVenta infoVentaMod = new InfoVenta();
+        private Boolean verVentasCan = false;
 
         public Ventas()
         {
@@ -36,16 +38,17 @@ namespace presentacion
             vtnAltaVenta.ventaAgregada += (s, e) =>
             {
 
-                logicaNegocios.ConsVentas(tblVentas, dtFechaActual);
-                RenombrarEncabezados(tblVentas);
+                logicaNegocios.DecidirConsVenta(tblVentas, dtFechaActual, verVentasCan);
+                RecargarTbl();
 
-                //Se calculan los montos totales del día
-                lblPrecioMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "precio").ToString("F2");
-                lblGanMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "ganancia").ToString("F2");
-                lblCorrespMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "correspondencia").ToString("F2");
 
-                lblNoVentas.Visible = false;
-                tblVentas.Visible = true;
+                if (lblNoVentas.Visible == true)
+                {
+
+                    lblNoVentas.Visible = false;
+                    tblVentas.Visible = true;
+
+                }
 
             };
             vtnAltaVenta.ShowDialog();
@@ -54,24 +57,22 @@ namespace presentacion
         private void Ventas_Load(object sender, EventArgs e)
         {
 
-            //Condicion si hay ventas del día se muestran
-            if (logicaNegocios.ConsVentas(tblVentas, dtFechaActual))
+            //Condición: si hay ventas del día se muestran
+            if (logicaNegocios.DecidirConsVenta(tblVentas, dtFechaActual, verVentasCan))
             {
-                RenombrarEncabezados(tblVentas);
 
-                //Se calculan los montos totales del día
-                lblPrecioMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "precio").ToString("F2");
-                lblGanMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "ganancia").ToString("F2");
-                lblCorrespMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "correspondencia").ToString("F2");
-
+                RecargarTbl();
                 lblNoVentas.Visible = false;
                 tblVentas.Visible = true;
+
             }
             else
             {
+
                 limpiarTotales();
                 lblNoVentas.Visible = true;
                 tblVentas.Visible = false;
+
             }
             this.ActiveControl = pnlContenido;
 
@@ -82,14 +83,10 @@ namespace presentacion
             DateTime fechaSeleccionada = dtFechaVenta.Value.Date;
 
             //Condicion si hay ventas del dia se muestran
-            if (logicaNegocios.ConsVentas(tblVentas, fechaSeleccionada))
+            if (logicaNegocios.DecidirConsVenta(tblVentas, fechaSeleccionada, verVentasCan))
             {
-                RenombrarEncabezados(tblVentas);
 
-                //Se calculan los montos totales del día
-                lblPrecioMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "precio").ToString("F2");
-                lblGanMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "ganancia").ToString("F2");
-                lblCorrespMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "correspondencia").ToString("F2");
+                RecargarTbl();
 
                 lblNoVentas.Visible = false;
                 tblVentas.Visible = true;
@@ -157,9 +154,26 @@ namespace presentacion
                         btnModVenta.PerformClick();
                         break;
 
+                    case Keys.V:
+                        btnVerVentasCan.PerformClick();
+                        break;
+
                 }
 
             }
+            else if (e.Alt)
+            {
+
+                if (e.KeyCode == Keys.C)
+                {
+
+                    btnCanVenta.PerformClick();
+
+                }
+
+            }
+
+
         }
 
         private void btnModVenta_Click(object sender, EventArgs e)
@@ -189,7 +203,7 @@ namespace presentacion
                 AltaVenta vtnModVenta = new AltaVenta(infoVentaMod, "mod");
                 vtnModVenta.ventaAgregada += (s, ev) =>
                 {
-                    logicaNegocios.ConsVentas(tblVentas, dtFechaVenta.Value.Date);
+                    logicaNegocios.DecidirConsVenta(tblVentas, dtFechaActual, verVentasCan);
                 };
                 vtnModVenta.ShowDialog();
 
@@ -202,5 +216,118 @@ namespace presentacion
             }
 
         }
+
+        private void btnCanVenta_Click(object sender, EventArgs e)
+        {
+
+            DataGridViewRow filaSeleccionada = tblVentas.CurrentRow;//La venta seleccionada para cancelar
+            //Condición: Si seleccionó una venta/fila de la tabla
+            if (filaSeleccionada != null)
+            {
+
+                //Condición: Si la venta ya se encuentra cancelada
+                if (logicaNegocios.VentaEsCan(filaSeleccionada))
+                {
+
+                    MessageBox.Show("La venta seleccionada ya se encuentra cancelada");
+
+                }
+                //Condición: Si la venta todavía no se encuentra cancelada, entonces cancela la venta
+                else
+                {
+
+                    MessageBoxConfirmar messageBoxConfirmar = new MessageBoxConfirmar("¿Está seguro de cancelar la venta seleccionada?\n\n" +
+                        "Información de venta\n" +
+                        "Marca de carro: " + filaSeleccionada.Cells["marcaCarro"].Value + "\n" +
+                        "Modelo de carro: " + filaSeleccionada.Cells["modeloCarro"].Value + "\n" +
+                        "Color de carro: " + filaSeleccionada.Cells["colorCarro"].Value + "\n" +
+                        "Precio: $" + filaSeleccionada.Cells["precio"].Value + "\n" +
+                        "Ganancia: $" + filaSeleccionada.Cells["ganancia"].Value + "\n" +
+                        "Correspondencia: $" + filaSeleccionada.Cells["correspondencia"].Value + "\n" +
+                        "Empleado encargado: " + filaSeleccionada.Cells["nomCompleto"].Value
+                        );
+                    //Codigo que se ejecuta si se dispara el evento al presionar el botón confirmar
+                    messageBoxConfirmar.ConfirmarPresionado += (s, ev) =>
+                    {
+
+                        logicaNegocios.CanVenta((int)filaSeleccionada.Cells["id"].Value);
+                        Toast toast = new Toast("exito", "Venta cancelada con éxito.");
+                        toast.MostrarToast();
+                        if (!logicaNegocios.DecidirConsVenta(tblVentas, dtFechaVenta.Value.Date, verVentasCan)) {
+
+                            limpiarTotales();
+                            lblNoVentas.Visible = true;
+                            tblVentas.Visible = false;
+                        
+                        }
+                        else
+                        {
+
+                            RecargarTbl();
+                            lblNoVentas.Visible = false;
+                            tblVentas.Visible = true;
+
+                        }
+
+                    };
+                    messageBoxConfirmar.mostrarMessageBox();
+
+                }
+
+            }
+            else
+            {
+
+                Toast toast = new Toast("error", "No has seleccionado ninguna venta.");
+
+            }
+
+        }
+
+        private void btnVerVentasCan_Click(object sender, EventArgs e)
+        {
+
+            verVentasCan = !verVentasCan;
+
+            if (verVentasCan)
+            {
+                btnVerVentasCan.Image = Image.FromFile("../../../recursos/imagenes/esconderContrasena.png");
+                btnVerVentasCan.Text = "Esconder ventas canceladas";
+            }
+            else
+            {
+                btnVerVentasCan.Image = Image.FromFile("../../../recursos/imagenes/mostrarContrasena.png");
+                btnVerVentasCan.Text = "Mostrar ventas canceladas";
+            }
+
+            bool hayVentas = logicaNegocios.DecidirConsVenta(tblVentas, dtFechaVenta.Value.Date, verVentasCan);
+
+            if (hayVentas)
+            {
+                RecargarTbl();
+                lblNoVentas.Visible = false;
+                tblVentas.Visible = true;
+            }
+            else
+            {
+                limpiarTotales();
+                lblNoVentas.Visible = true;
+                tblVentas.Visible = false;
+            }
+
+        }
+
+        private void RecargarTbl()
+        {
+
+            RenombrarEncabezados(tblVentas);
+
+            //Se calculan los montos totales del día
+            lblPrecioMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "precio").ToString("F2");
+            lblGanMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "ganancia").ToString("F2");
+            lblCorrespMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "correspondencia").ToString("F2");
+
+        }
+
     }
 }

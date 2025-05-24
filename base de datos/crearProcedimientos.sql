@@ -188,13 +188,25 @@ BEGIN
     FROM empleados;
 END $$
 
-/* Consultar ventas según el día */
+/* Consultar todas las ventas según el día */
 CREATE PROCEDURE consVentas(IN fechaParam DATETIME)
 BEGIN
-    SELECT v.id, v.marcaCarro, v.modeloCarro, v.colorCarro, v.precio, v.ganancia, v.correspondencia, CONCAT(e.nombres, ' ', e.apellidoPaterno, ' ', e.apellidoMaterno) as nomCompleto
+    SELECT v.id, v.marcaCarro, v.modeloCarro, v.colorCarro, v.precio, v.ganancia, v.correspondencia, v.cancelado, CONCAT(e.nombres, ' ', e.apellidoPaterno, ' ', e.apellidoMaterno) as nomCompleto
     FROM ventas v
     INNER JOIN empleados e ON v.numEmpleado = e.numEmpleado
-    WHERE v.fechaVenta = fechaParam;
+    WHERE v.fechaVenta = fechaParam
+    ORDER BY v.id;
+END $$
+
+/* Consultar ventas (sin incluir las canceladas) según el día */
+CREATE PROCEDURE consVentasNoCan(IN fechaParam DATETIME)
+BEGIN
+    SELECT v.id, v.marcaCarro, v.modeloCarro, v.colorCarro, v.precio, v.ganancia, v.correspondencia, v.cancelado, CONCAT(e.nombres, ' ', e.apellidoPaterno, ' ', e.apellidoMaterno) as nomCompleto
+    FROM ventas v
+    INNER JOIN empleados e ON v.numEmpleado = e.numEmpleado
+    WHERE v.fechaVenta = fechaParam
+        AND v.cancelado = FALSE
+    ORDER BY v.id;
 END $$
 
 /* Modificar venta */

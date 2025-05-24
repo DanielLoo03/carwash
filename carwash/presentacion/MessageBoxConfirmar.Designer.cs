@@ -50,7 +50,7 @@
             lblMensaje.Font = new Font("Inter", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblMensaje.Location = new Point(111, 40);
             lblMensaje.Name = "lblMensaje";
-            lblMensaje.Size = new Size(518, 93);
+            lblMensaje.Size = new Size(518, 88);
             lblMensaje.TabIndex = 1;
             // 
             // btnConfirmar

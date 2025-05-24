@@ -158,6 +158,25 @@ namespace persistencia
             return tabla;
         }
 
+        public DataTable ConsVentasNoCan(DateTime fecha)
+        {
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consVentasNoCan",
+                CommandType = CommandType.StoredProcedure
+            };
+            comando.Parameters.AddWithValue("@fechaParam", fecha);
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            comando.Parameters.Clear();
+
+            return tabla;
+        }
+
         public void ModVenta(int id, string marcaCarro, string modeloCarro,  string colorCarro, int numEmp) {
 
             comando = new MySqlCommand();

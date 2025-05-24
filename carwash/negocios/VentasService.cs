@@ -61,6 +61,12 @@ namespace negocios
             return ventasDAO.ConsVentas(fecha);
         }
 
+        public DataTable ConsVentasNoCan(DateTime fecha) {
+
+            return ventasDAO.ConsVentasNoCan(fecha);
+        
+        }
+
         public void ModVenta(int id, string marcaCarro, string modeloCarro, string colorCarro, int numEmp) {
 
             ventasDAO.ModVenta(id, marcaCarro, modeloCarro, colorCarro, numEmp);

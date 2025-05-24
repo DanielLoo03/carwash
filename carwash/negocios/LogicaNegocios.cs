@@ -209,16 +209,51 @@ namespace negocios
         {
             DataTable ventas = ventasService.ConsVentas(fecha);
             tblVentas.DataSource = ventas;
-            //Esconde el Id para que no lo vea el administrador
-            tblVentas.Columns["id"].Visible = false;
             if (ventas.Rows.Count != 0)
             {
+                //Esconde el Id y el estado de cancelado para que no lo vea el administrador
+                tblVentas.Columns["id"].Visible = false;
+                tblVentas.Columns["cancelado"].Visible = false;
                 return true;
             }
             else
             {
                 return false;
             }
+        }
+
+        public Boolean ConsVentasNoCan(DataGridView tblVentas, DateTime fecha)
+        {
+            DataTable ventas = ventasService.ConsVentasNoCan(fecha);
+            tblVentas.DataSource = ventas;
+            if (ventas.Rows.Count != 0)
+            {
+                //Esconde el Id y el estado de cancelado para que no lo vea el administrador
+                tblVentas.Columns["id"].Visible = false;
+                tblVentas.Columns["cancelado"].Visible = false;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool DecidirConsVenta(DataGridView tblVentas, DateTime fecha, bool canceladas) {
+
+            //Si se quiere mostrar las ventas incluidas las canceladas
+            if (canceladas) {
+
+                return ConsVentas(tblVentas, fecha);
+
+            }
+            //Si se quieren mostrar las ventas salvo las canceladas
+            else {
+
+                return ConsVentasNoCan(tblVentas, fecha);
+
+            }
+        
         }
 
         public decimal CalcMontosTotal(DataGridView tblVentas, string col)
@@ -269,6 +304,22 @@ namespace negocios
         public void CanVenta(int id) {
 
             ventasService.CanVenta(id);
+        
+        }
+
+        //Consultar si una venta ya se encuentra cancelada
+        public Boolean VentaEsCan(DataGridViewRow fila) {
+
+            if ((bool)fila.Cells["cancelado"].Value) {
+
+                return true;
+
+            }
+            else {
+
+                return false;
+            
+            }
         
         }
 

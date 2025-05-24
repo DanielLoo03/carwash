@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ventas));
             pnlCabecera = new Panel();
+            btnVerVentasCan = new Button();
+            btnCanVenta = new Button();
             btnModVenta = new Button();
             btnConfigVentas = new Button();
             btnAltaVenta = new Button();
@@ -49,8 +51,6 @@
             lblGan = new Label();
             lblPrecio = new Label();
             lblTotales = new Label();
-            button1 = new Button();
-            button2 = new Button();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
             pnlBorde.SuspendLayout();
@@ -61,8 +61,8 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
-            pnlCabecera.Controls.Add(button2);
-            pnlCabecera.Controls.Add(button1);
+            pnlCabecera.Controls.Add(btnVerVentasCan);
+            pnlCabecera.Controls.Add(btnCanVenta);
             pnlCabecera.Controls.Add(btnModVenta);
             pnlCabecera.Controls.Add(btnConfigVentas);
             pnlCabecera.Controls.Add(btnAltaVenta);
@@ -72,6 +72,40 @@
             pnlCabecera.Size = new Size(1820, 100);
             pnlCabecera.TabIndex = 2;
             // 
+            // btnVerVentasCan
+            // 
+            btnVerVentasCan.BackColor = Color.FromArgb(63, 114, 175);
+            btnVerVentasCan.FlatStyle = FlatStyle.Popup;
+            btnVerVentasCan.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnVerVentasCan.ForeColor = Color.White;
+            btnVerVentasCan.Image = (Image)resources.GetObject("btnVerVentasCan.Image");
+            btnVerVentasCan.ImageAlign = ContentAlignment.MiddleLeft;
+            btnVerVentasCan.Location = new Point(373, 31);
+            btnVerVentasCan.Name = "btnVerVentasCan";
+            btnVerVentasCan.Size = new Size(273, 39);
+            btnVerVentasCan.TabIndex = 6;
+            btnVerVentasCan.Text = "Mostrar ventas canceladas";
+            btnVerVentasCan.TextAlign = ContentAlignment.MiddleRight;
+            btnVerVentasCan.UseVisualStyleBackColor = false;
+            btnVerVentasCan.Click += btnVerVentasCan_Click;
+            // 
+            // btnCanVenta
+            // 
+            btnCanVenta.BackColor = Color.FromArgb(63, 114, 175);
+            btnCanVenta.FlatStyle = FlatStyle.Popup;
+            btnCanVenta.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCanVenta.ForeColor = Color.White;
+            btnCanVenta.Image = (Image)resources.GetObject("btnCanVenta.Image");
+            btnCanVenta.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCanVenta.Location = new Point(1220, 32);
+            btnCanVenta.Name = "btnCanVenta";
+            btnCanVenta.Size = new Size(225, 39);
+            btnCanVenta.TabIndex = 5;
+            btnCanVenta.Text = "Cancelar venta";
+            btnCanVenta.TextAlign = ContentAlignment.MiddleRight;
+            btnCanVenta.UseVisualStyleBackColor = false;
+            btnCanVenta.Click += btnCanVenta_Click;
+            // 
             // btnModVenta
             // 
             btnModVenta.BackColor = Color.FromArgb(63, 114, 175);
@@ -80,7 +114,7 @@
             btnModVenta.ForeColor = Color.White;
             btnModVenta.Image = (Image)resources.GetObject("btnModVenta.Image");
             btnModVenta.ImageAlign = ContentAlignment.MiddleLeft;
-            btnModVenta.Location = new Point(1204, 32);
+            btnModVenta.Location = new Point(955, 32);
             btnModVenta.Name = "btnModVenta";
             btnModVenta.Size = new Size(225, 39);
             btnModVenta.TabIndex = 4;
@@ -97,7 +131,7 @@
             btnConfigVentas.ForeColor = Color.White;
             btnConfigVentas.Image = (Image)resources.GetObject("btnConfigVentas.Image");
             btnConfigVentas.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConfigVentas.Location = new Point(921, 32);
+            btnConfigVentas.Location = new Point(688, 31);
             btnConfigVentas.Name = "btnConfigVentas";
             btnConfigVentas.Size = new Size(225, 39);
             btnConfigVentas.TabIndex = 3;
@@ -296,38 +330,6 @@
             lblTotales.TabIndex = 1;
             lblTotales.Text = "Totales";
             // 
-            // button1
-            // 
-            button1.BackColor = Color.FromArgb(63, 114, 175);
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(644, 31);
-            button1.Name = "button1";
-            button1.Size = new Size(225, 39);
-            button1.TabIndex = 5;
-            button1.Text = "Cancelar venta";
-            button1.TextAlign = ContentAlignment.MiddleRight;
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            button2.BackColor = Color.FromArgb(63, 114, 175);
-            button2.FlatStyle = FlatStyle.Popup;
-            button2.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button2.ForeColor = Color.White;
-            button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(317, 32);
-            button2.Name = "button2";
-            button2.Size = new Size(273, 39);
-            button2.TabIndex = 6;
-            button2.Text = "Mostrar ventas canceladas";
-            button2.TextAlign = ContentAlignment.MiddleRight;
-            button2.UseVisualStyleBackColor = false;
-            // 
             // Ventas
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -374,7 +376,7 @@
         private Label lblNoVentas;
         private Panel pnlBorde;
         private Button btnModVenta;
-        private Button button2;
-        private Button button1;
+        private Button btnVerVentasCan;
+        private Button btnCanVenta;
     }
 }
