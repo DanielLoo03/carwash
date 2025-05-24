@@ -18,7 +18,7 @@ namespace presentacion
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
         public event EventHandler ventaAgregada;
-        private InfoVenta infoVenta = new InfoVenta();
+        private InfoVenta infoVenta;
         private Boolean cambioConTeclado = false;
         //Bandera para saber si se está ejecutando el código del método Load
         private bool cargando = true;
@@ -266,29 +266,11 @@ namespace presentacion
 
                     logicaNegocios.AltaVenta(marcaCarro, modeloCarro, colorCarro, precio, gan, corresp, numEmp, fechaVenta);
 
-                    //Se limpian campos de InfoVentaAlta
-                    infoVenta.MarcaCarro = "";
-                    infoVenta.ModeloCarro = "";
-                    infoVenta.ColorCarro = "";
-                    infoVenta.Precio = 0;
-                    infoVenta.Gan = 0;
-                    infoVenta.Corresp = 0;
-                    infoVenta.NumEmp = 0;
-
                 }
                 //Es una modificación
                 else {
 
                     logicaNegocios.modVenta(infoVenta.Id, marcaCarro, modeloCarro, colorCarro, numEmp);
-
-                    //Se limpian campos de InfoVentaMod
-                    infoVenta.MarcaCarro = "";
-                    infoVenta.ModeloCarro = "";
-                    infoVenta.ColorCarro = "";
-                    infoVenta.Precio = 0;
-                    infoVenta.Gan = 0;
-                    infoVenta.Corresp = 0;
-                    infoVenta.NumEmp = 0;
 
                 }
                 ventaAgregada?.Invoke(this, EventArgs.Empty);
@@ -296,8 +278,16 @@ namespace presentacion
                 toastExito.Show();
                 this.Close();
 
-            }
+                //Se limpian campos de InfoVentaAlta / InfoVentaMod
+                infoVenta.MarcaCarro = "";
+                infoVenta.ModeloCarro = "";
+                infoVenta.ColorCarro = "";
+                infoVenta.Precio = 0;
+                infoVenta.Gan = 0;
+                infoVenta.Corresp = 0;
+                infoVenta.NumEmp = 0;
 
+            }
 
         }
 
