@@ -341,6 +341,7 @@
             Name = "Ventas";
             Text = "Ventas";
             Load += Ventas_Load;
+            KeyDown += Ventas_KeyDown_1;
             pnlCabecera.ResumeLayout(false);
             pnlCabecera.PerformLayout();
             pnlContenido.ResumeLayout(false);

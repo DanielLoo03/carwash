@@ -136,43 +136,6 @@ namespace presentacion
 
         private void Ventas_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Shift)
-            {
-
-                switch (e.KeyCode)
-                {
-
-                    case Keys.A:
-                        btnAltaVenta.PerformClick();
-                        break;
-
-                    case Keys.C:
-                        btnConfigVentas.PerformClick();
-                        break;
-
-                    case Keys.M:
-                        btnModVenta.PerformClick();
-                        break;
-
-                    case Keys.V:
-                        btnVerVentasCan.PerformClick();
-                        break;
-
-                }
-
-            }
-            else if (e.Alt)
-            {
-
-                if (e.KeyCode == Keys.C)
-                {
-
-                    btnCanVenta.PerformClick();
-
-                }
-
-            }
-
 
         }
 
@@ -253,12 +216,13 @@ namespace presentacion
                         logicaNegocios.CanVenta((int)filaSeleccionada.Cells["id"].Value);
                         Toast toast = new Toast("exito", "Venta cancelada con éxito.");
                         toast.MostrarToast();
-                        if (!logicaNegocios.DecidirConsVenta(tblVentas, dtFechaVenta.Value.Date, verVentasCan)) {
+                        if (!logicaNegocios.DecidirConsVenta(tblVentas, dtFechaVenta.Value.Date, verVentasCan))
+                        {
 
                             limpiarTotales();
                             lblNoVentas.Visible = true;
                             tblVentas.Visible = false;
-                        
+
                         }
                         else
                         {
@@ -329,5 +293,46 @@ namespace presentacion
 
         }
 
+        private void Ventas_KeyDown_1(object sender, KeyEventArgs e)
+        {
+
+            if (e.Shift)
+            {
+
+                switch (e.KeyCode)
+                {
+
+                    case Keys.A:
+                        btnAltaVenta.PerformClick();
+                        break;
+
+                    case Keys.C:
+                        btnConfigVentas.PerformClick();
+                        break;
+
+                    case Keys.M:
+                        btnModVenta.PerformClick();
+                        break;
+
+                    case Keys.V:
+                        btnVerVentasCan.PerformClick();
+                        break;
+
+                }
+
+            }
+            else if (e.Alt)
+            {
+
+                if (e.KeyCode == Keys.C)
+                {
+
+                    btnCanVenta.PerformClick();
+
+                }
+
+            }
+
+        }
     }
 }
