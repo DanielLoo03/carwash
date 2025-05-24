@@ -28,8 +28,10 @@ namespace presentacion
         private Label label2;
         private Label lblCont;
         private Label camposOblig;
-        private Button btnConfirmarVenta;
-        private Button btnBajaEmpleado;
+        private Button btnConfirAlta;
+        private Button btnMostrarPwd1;
+        private Button btnMostrarPwd2;
+        private Button btnCanAlta;
 
         public GestionAdmins()
         {
@@ -45,8 +47,10 @@ namespace presentacion
             lblAdmins = new Label();
             pnlContenido = new Panel();
             pnlBorde = new Panel();
-            btnBajaEmpleado = new Button();
-            btnConfirmarVenta = new Button();
+            btnMostrarPwd2 = new Button();
+            btnMostrarPwd1 = new Button();
+            btnCanAlta = new Button();
+            btnConfirAlta = new Button();
             camposOblig = new Label();
             txtConfCont = new TextBox();
             label1 = new Label();
@@ -114,8 +118,10 @@ namespace presentacion
             // pnlBorde
             // 
             pnlBorde.BorderStyle = BorderStyle.FixedSingle;
-            pnlBorde.Controls.Add(btnBajaEmpleado);
-            pnlBorde.Controls.Add(btnConfirmarVenta);
+            pnlBorde.Controls.Add(btnMostrarPwd2);
+            pnlBorde.Controls.Add(btnMostrarPwd1);
+            pnlBorde.Controls.Add(btnCanAlta);
+            pnlBorde.Controls.Add(btnConfirAlta);
             pnlBorde.Controls.Add(camposOblig);
             pnlBorde.Controls.Add(txtConfCont);
             pnlBorde.Controls.Add(label1);
@@ -134,41 +140,67 @@ namespace presentacion
             pnlBorde.Size = new Size(1165, 288);
             pnlBorde.TabIndex = 13;
             // 
-            // btnBajaEmpleado
+            // btnMostrarPwd2
             // 
-            btnBajaEmpleado.BackColor = Color.FromArgb(63, 114, 175);
-            btnBajaEmpleado.FlatStyle = FlatStyle.Popup;
-            btnBajaEmpleado.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnBajaEmpleado.ForeColor = Color.White;
-            btnBajaEmpleado.Image = (Image)resources.GetObject("btnBajaEmpleado.Image");
-            btnBajaEmpleado.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBajaEmpleado.Location = new Point(49, 241);
-            btnBajaEmpleado.Margin = new Padding(2);
-            btnBajaEmpleado.Name = "btnBajaEmpleado";
-            btnBajaEmpleado.Size = new Size(144, 23);
-            btnBajaEmpleado.TabIndex = 46;
-            btnBajaEmpleado.Text = "Cancelar Registro";
-            btnBajaEmpleado.TextAlign = ContentAlignment.MiddleRight;
-            btnBajaEmpleado.UseVisualStyleBackColor = false;
-            btnBajaEmpleado.Click += btnBajaEmpleado_Click;
+            btnMostrarPwd2.FlatStyle = FlatStyle.Flat;
+            btnMostrarPwd2.ForeColor = SystemColors.Window;
+            btnMostrarPwd2.Image = (Image)resources.GetObject("btnMostrarPwd2.Image");
+            btnMostrarPwd2.Location = new Point(453, 197);
+            btnMostrarPwd2.Margin = new Padding(2);
+            btnMostrarPwd2.Name = "btnMostrarPwd2";
+            btnMostrarPwd2.Size = new Size(26, 16);
+            btnMostrarPwd2.TabIndex = 48;
+            btnMostrarPwd2.UseVisualStyleBackColor = true;
+            btnMostrarPwd2.Click += btnMostrarPwd2_Click;
             // 
-            // btnConfirmarVenta
+            // btnMostrarPwd1
             // 
-            btnConfirmarVenta.BackColor = Color.FromArgb(63, 114, 175);
-            btnConfirmarVenta.FlatStyle = FlatStyle.Flat;
-            btnConfirmarVenta.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnConfirmarVenta.ForeColor = SystemColors.Window;
-            btnConfirmarVenta.Image = (Image)resources.GetObject("btnConfirmarVenta.Image");
-            btnConfirmarVenta.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConfirmarVenta.Location = new Point(295, 241);
-            btnConfirmarVenta.Margin = new Padding(2);
-            btnConfirmarVenta.Name = "btnConfirmarVenta";
-            btnConfirmarVenta.Size = new Size(145, 26);
-            btnConfirmarVenta.TabIndex = 45;
-            btnConfirmarVenta.Text = "Confirmar Alta";
-            btnConfirmarVenta.TextAlign = ContentAlignment.MiddleRight;
-            btnConfirmarVenta.UseVisualStyleBackColor = false;
-            btnConfirmarVenta.Click += btnConfirmarVenta_Click;
+            btnMostrarPwd1.FlatStyle = FlatStyle.Flat;
+            btnMostrarPwd1.ForeColor = SystemColors.Window;
+            btnMostrarPwd1.Image = (Image)resources.GetObject("btnMostrarPwd1.Image");
+            btnMostrarPwd1.Location = new Point(453, 139);
+            btnMostrarPwd1.Margin = new Padding(2);
+            btnMostrarPwd1.Name = "btnMostrarPwd1";
+            btnMostrarPwd1.Size = new Size(26, 16);
+            btnMostrarPwd1.TabIndex = 47;
+            btnMostrarPwd1.UseVisualStyleBackColor = true;
+            btnMostrarPwd1.Click += btnMostrarPwd1_Click;
+            // 
+            // btnCanAlta
+            // 
+            btnCanAlta.BackColor = Color.FromArgb(63, 114, 175);
+            btnCanAlta.FlatStyle = FlatStyle.Popup;
+            btnCanAlta.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCanAlta.ForeColor = Color.White;
+            btnCanAlta.Image = (Image)resources.GetObject("btnCanAlta.Image");
+            btnCanAlta.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCanAlta.Location = new Point(49, 241);
+            btnCanAlta.Margin = new Padding(2);
+            btnCanAlta.Name = "btnCanAlta";
+            btnCanAlta.Size = new Size(144, 23);
+            btnCanAlta.TabIndex = 46;
+            btnCanAlta.Text = "Cancelar Registro";
+            btnCanAlta.TextAlign = ContentAlignment.MiddleRight;
+            btnCanAlta.UseVisualStyleBackColor = false;
+            btnCanAlta.Click += btnCanAlta_Click;
+            // 
+            // btnConfirAlta
+            // 
+            btnConfirAlta.BackColor = Color.FromArgb(63, 114, 175);
+            btnConfirAlta.FlatStyle = FlatStyle.Flat;
+            btnConfirAlta.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnConfirAlta.ForeColor = SystemColors.Window;
+            btnConfirAlta.Image = (Image)resources.GetObject("btnConfirAlta.Image");
+            btnConfirAlta.ImageAlign = ContentAlignment.MiddleLeft;
+            btnConfirAlta.Location = new Point(295, 241);
+            btnConfirAlta.Margin = new Padding(2);
+            btnConfirAlta.Name = "btnConfirAlta";
+            btnConfirAlta.Size = new Size(145, 26);
+            btnConfirAlta.TabIndex = 45;
+            btnConfirAlta.Text = "Confirmar Alta";
+            btnConfirAlta.TextAlign = ContentAlignment.MiddleRight;
+            btnConfirAlta.UseVisualStyleBackColor = false;
+            btnConfirAlta.Click += btnConfirAlta_Click;
             // 
             // camposOblig
             // 
@@ -189,6 +221,7 @@ namespace presentacion
             txtConfCont.Name = "txtConfCont";
             txtConfCont.Size = new Size(390, 23);
             txtConfCont.TabIndex = 23;
+            txtConfCont.UseSystemPasswordChar = true;
             // 
             // label1
             // 
@@ -219,6 +252,7 @@ namespace presentacion
             txtCont.Name = "txtCont";
             txtCont.Size = new Size(390, 23);
             txtCont.TabIndex = 20;
+            txtCont.UseSystemPasswordChar = true;
             // 
             // label2
             // 
@@ -334,14 +368,74 @@ namespace presentacion
 
         }
 
-        private void btnConfirmarVenta_Click(object sender, EventArgs e)
+        private void btnConfirAlta_Click(object sender, EventArgs e)
         {
+            string usuario = txtNomUsuario.Text.Trim();
+            string contrasena = txtCont.Text;
+            string confirm = txtConfCont.Text;
+
+            //Si los campos obligatorios estan vacios, marca error
+            if (string.IsNullOrWhiteSpace(usuario) ||
+                string.IsNullOrWhiteSpace(contrasena) ||
+                string.IsNullOrWhiteSpace(confirm))
+            {
+                new Toast("error", "Todos los campos son obligatorios.").MostrarToast();
+                return;
+            }
+
+            //Si la contraseña ingresada en confirmacion no coincide, marca error
+            if (!contrasena.Equals(confirm))
+            {
+                new Toast("error", "Las contraseñas no coinciden.").MostrarToast();
+                return;
+            }
+
+            //Si todo esta ingresado de forma correcta, se agrega a administrador
+            infoAdminAlta.NombreUsuario = usuario;
+            infoAdminAlta.Contrasena = contrasena;
+
+            logicaNegocios.AltaAdmin(usuario, contrasena);
+            txtNomUsuario.Clear();
+            txtCont.Clear();
+            txtConfCont.Clear();
+            new Toast("exito", "Administrador creado exitosamente.").MostrarToast();
+        }
+
+        private void btnCanAlta_Click(object sender, EventArgs e)
+        {
+            new Toast("error", "Alta de administrador cancelado.").MostrarToast();
+            txtNomUsuario.Clear();
+            txtCont.Clear();
+            txtConfCont.Clear();
 
         }
 
-        private void btnBajaEmpleado_Click(object sender, EventArgs e)
+        private void btnMostrarPwd1_Click(object sender, EventArgs e)
         {
+            if (txtCont.UseSystemPasswordChar == true)
+            {
+                txtCont.UseSystemPasswordChar = false;
+                btnMostrarPwd1.Image = Image.FromFile("../../../recursos/imagenes/esconderContrasena.png");
+            }
+            else
+            {
+                txtCont.UseSystemPasswordChar = true;
+                btnMostrarPwd1.Image = Image.FromFile("../../../recursos/imagenes/mostrarContrasena.png");
+            }
+        }
 
+        private void btnMostrarPwd2_Click(object sender, EventArgs e)
+        {
+            if (txtConfCont.UseSystemPasswordChar == true)
+            {
+                txtConfCont.UseSystemPasswordChar = false;
+                btnMostrarPwd2.Image = Image.FromFile("../../../recursos/imagenes/esconderContrasena.png");
+            }
+            else
+            {
+                txtConfCont.UseSystemPasswordChar = true;
+                btnMostrarPwd2.Image = Image.FromFile("../../../recursos/imagenes/mostrarContrasena.png");
+            }
         }
     }
 }
