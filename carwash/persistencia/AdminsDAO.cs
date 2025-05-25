@@ -49,5 +49,20 @@ namespace persistencia
 
         }
 
+        public DataTable ConsAdmins()
+        {
+            tabla = new DataTable();
+            comando = new MySqlCommand();
+
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "consAdmins";
+            comando.CommandType = CommandType.StoredProcedure;
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+
+            return tabla;
+        }
     }
 }
