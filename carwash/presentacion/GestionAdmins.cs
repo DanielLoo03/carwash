@@ -75,9 +75,8 @@ namespace presentacion
             pnlCabecera.Controls.Add(lblGestionDe);
             pnlCabecera.Controls.Add(lblAdmins);
             pnlCabecera.Location = new Point(0, 0);
-            pnlCabecera.Margin = new Padding(2);
             pnlCabecera.Name = "pnlCabecera";
-            pnlCabecera.Size = new Size(1274, 60);
+            pnlCabecera.Size = new Size(1820, 100);
             pnlCabecera.TabIndex = 3;
             // 
             // lblGestionDe
@@ -85,10 +84,9 @@ namespace presentacion
             lblGestionDe.AutoSize = true;
             lblGestionDe.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblGestionDe.ForeColor = Color.White;
-            lblGestionDe.Location = new Point(11, 16);
-            lblGestionDe.Margin = new Padding(2, 0, 2, 0);
+            lblGestionDe.Location = new Point(16, 27);
             lblGestionDe.Name = "lblGestionDe";
-            lblGestionDe.Size = new Size(163, 31);
+            lblGestionDe.Size = new Size(235, 46);
             lblGestionDe.TabIndex = 2;
             lblGestionDe.Text = "Gestión de ";
             // 
@@ -97,10 +95,9 @@ namespace presentacion
             lblAdmins.AutoSize = true;
             lblAdmins.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblAdmins.ForeColor = Color.FromArgb(63, 114, 175);
-            lblAdmins.Location = new Point(173, 17);
-            lblAdmins.Margin = new Padding(2, 0, 2, 0);
+            lblAdmins.Location = new Point(247, 28);
             lblAdmins.Name = "lblAdmins";
-            lblAdmins.Size = new Size(225, 31);
+            lblAdmins.Size = new Size(323, 46);
             lblAdmins.TabIndex = 1;
             lblAdmins.Text = "Administradores";
             // 
@@ -109,10 +106,9 @@ namespace presentacion
             pnlContenido.BackColor = SystemColors.Window;
             pnlContenido.BorderStyle = BorderStyle.FixedSingle;
             pnlContenido.Controls.Add(pnlBorde);
-            pnlContenido.Location = new Point(0, 60);
-            pnlContenido.Margin = new Padding(2);
+            pnlContenido.Location = new Point(0, 100);
             pnlContenido.Name = "pnlContenido";
-            pnlContenido.Size = new Size(1274, 329);
+            pnlContenido.Size = new Size(1819, 547);
             pnlContenido.TabIndex = 4;
             // 
             // pnlBorde
@@ -134,10 +130,9 @@ namespace presentacion
             pnlBorde.Controls.Add(lblNombre);
             pnlBorde.Controls.Add(lblDatosUsuario);
             pnlBorde.Controls.Add(tblAdmins);
-            pnlBorde.Location = new Point(53, 28);
-            pnlBorde.Margin = new Padding(2);
+            pnlBorde.Location = new Point(76, 47);
             pnlBorde.Name = "pnlBorde";
-            pnlBorde.Size = new Size(1165, 288);
+            pnlBorde.Size = new Size(1663, 479);
             pnlBorde.TabIndex = 13;
             // 
             // btnMostrarPwd2
@@ -145,10 +140,9 @@ namespace presentacion
             btnMostrarPwd2.FlatStyle = FlatStyle.Flat;
             btnMostrarPwd2.ForeColor = SystemColors.Window;
             btnMostrarPwd2.Image = (Image)resources.GetObject("btnMostrarPwd2.Image");
-            btnMostrarPwd2.Location = new Point(453, 197);
-            btnMostrarPwd2.Margin = new Padding(2);
+            btnMostrarPwd2.Location = new Point(647, 328);
             btnMostrarPwd2.Name = "btnMostrarPwd2";
-            btnMostrarPwd2.Size = new Size(26, 16);
+            btnMostrarPwd2.Size = new Size(37, 27);
             btnMostrarPwd2.TabIndex = 48;
             btnMostrarPwd2.UseVisualStyleBackColor = true;
             btnMostrarPwd2.Click += btnMostrarPwd2_Click;
@@ -158,10 +152,9 @@ namespace presentacion
             btnMostrarPwd1.FlatStyle = FlatStyle.Flat;
             btnMostrarPwd1.ForeColor = SystemColors.Window;
             btnMostrarPwd1.Image = (Image)resources.GetObject("btnMostrarPwd1.Image");
-            btnMostrarPwd1.Location = new Point(453, 139);
-            btnMostrarPwd1.Margin = new Padding(2);
+            btnMostrarPwd1.Location = new Point(647, 232);
             btnMostrarPwd1.Name = "btnMostrarPwd1";
-            btnMostrarPwd1.Size = new Size(26, 16);
+            btnMostrarPwd1.Size = new Size(37, 27);
             btnMostrarPwd1.TabIndex = 47;
             btnMostrarPwd1.UseVisualStyleBackColor = true;
             btnMostrarPwd1.Click += btnMostrarPwd1_Click;
@@ -174,10 +167,9 @@ namespace presentacion
             btnCanAlta.ForeColor = Color.White;
             btnCanAlta.Image = (Image)resources.GetObject("btnCanAlta.Image");
             btnCanAlta.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCanAlta.Location = new Point(49, 241);
-            btnCanAlta.Margin = new Padding(2);
+            btnCanAlta.Location = new Point(70, 402);
             btnCanAlta.Name = "btnCanAlta";
-            btnCanAlta.Size = new Size(144, 23);
+            btnCanAlta.Size = new Size(206, 38);
             btnCanAlta.TabIndex = 46;
             btnCanAlta.Text = "Cancelar Registro";
             btnCanAlta.TextAlign = ContentAlignment.MiddleRight;
@@ -192,10 +184,9 @@ namespace presentacion
             btnConfirAlta.ForeColor = SystemColors.Window;
             btnConfirAlta.Image = (Image)resources.GetObject("btnConfirAlta.Image");
             btnConfirAlta.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConfirAlta.Location = new Point(295, 241);
-            btnConfirAlta.Margin = new Padding(2);
+            btnConfirAlta.Location = new Point(421, 402);
             btnConfirAlta.Name = "btnConfirAlta";
-            btnConfirAlta.Size = new Size(145, 26);
+            btnConfirAlta.Size = new Size(207, 43);
             btnConfirAlta.TabIndex = 45;
             btnConfirAlta.Text = "Confirmar Alta";
             btnConfirAlta.TextAlign = ContentAlignment.MiddleRight;
@@ -207,19 +198,17 @@ namespace presentacion
             camposOblig.AutoSize = true;
             camposOblig.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             camposOblig.ForeColor = SystemColors.Desktop;
-            camposOblig.Location = new Point(306, 51);
-            camposOblig.Margin = new Padding(2, 0, 2, 0);
+            camposOblig.Location = new Point(437, 85);
             camposOblig.Name = "camposOblig";
-            camposOblig.Size = new Size(130, 15);
+            camposOblig.Size = new Size(189, 22);
             camposOblig.TabIndex = 24;
             camposOblig.Text = "* Campos Obligatorios";
             // 
             // txtConfCont
             // 
-            txtConfCont.Location = new Point(49, 193);
-            txtConfCont.Margin = new Padding(2);
+            txtConfCont.Location = new Point(70, 322);
             txtConfCont.Name = "txtConfCont";
-            txtConfCont.Size = new Size(390, 23);
+            txtConfCont.Size = new Size(555, 31);
             txtConfCont.TabIndex = 23;
             txtConfCont.UseSystemPasswordChar = true;
             // 
@@ -227,10 +216,9 @@ namespace presentacion
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.Red;
-            label1.Location = new Point(174, 177);
-            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Location = new Point(249, 295);
             label1.Name = "label1";
-            label1.Size = new Size(12, 15);
+            label1.Size = new Size(20, 25);
             label1.TabIndex = 22;
             label1.Text = "*";
             // 
@@ -238,19 +226,17 @@ namespace presentacion
             // 
             lblConfCont.AutoSize = true;
             lblConfCont.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblConfCont.Location = new Point(50, 176);
-            lblConfCont.Margin = new Padding(2, 0, 2, 0);
+            lblConfCont.Location = new Point(71, 293);
             lblConfCont.Name = "lblConfCont";
-            lblConfCont.Size = new Size(127, 15);
+            lblConfCont.Size = new Size(186, 22);
             lblConfCont.TabIndex = 21;
             lblConfCont.Text = "Confirmar Contraseña";
             // 
             // txtCont
             // 
-            txtCont.Location = new Point(50, 137);
-            txtCont.Margin = new Padding(2);
+            txtCont.Location = new Point(71, 228);
             txtCont.Name = "txtCont";
-            txtCont.Size = new Size(390, 23);
+            txtCont.Size = new Size(555, 31);
             txtCont.TabIndex = 20;
             txtCont.UseSystemPasswordChar = true;
             // 
@@ -258,10 +244,9 @@ namespace presentacion
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.Red;
-            label2.Location = new Point(114, 119);
-            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Location = new Point(163, 198);
             label2.Name = "label2";
-            label2.Size = new Size(12, 15);
+            label2.Size = new Size(20, 25);
             label2.TabIndex = 19;
             label2.Text = "*";
             // 
@@ -269,29 +254,26 @@ namespace presentacion
             // 
             lblCont.AutoSize = true;
             lblCont.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCont.Location = new Point(49, 118);
-            lblCont.Margin = new Padding(2, 0, 2, 0);
+            lblCont.Location = new Point(70, 197);
             lblCont.Name = "lblCont";
-            lblCont.Size = new Size(70, 15);
+            lblCont.Size = new Size(103, 22);
             lblCont.TabIndex = 18;
             lblCont.Text = "Contraseña";
             // 
             // txtNomUsuario
             // 
-            txtNomUsuario.Location = new Point(50, 80);
-            txtNomUsuario.Margin = new Padding(2);
+            txtNomUsuario.Location = new Point(71, 133);
             txtNomUsuario.Name = "txtNomUsuario";
-            txtNomUsuario.Size = new Size(390, 23);
+            txtNomUsuario.Size = new Size(555, 31);
             txtNomUsuario.TabIndex = 17;
             // 
             // obligatorio
             // 
             obligatorio.AutoSize = true;
             obligatorio.ForeColor = Color.Red;
-            obligatorio.Location = new Point(160, 64);
-            obligatorio.Margin = new Padding(2, 0, 2, 0);
+            obligatorio.Location = new Point(229, 107);
             obligatorio.Name = "obligatorio";
-            obligatorio.Size = new Size(12, 15);
+            obligatorio.Size = new Size(20, 25);
             obligatorio.TabIndex = 16;
             obligatorio.Text = "*";
             // 
@@ -299,10 +281,9 @@ namespace presentacion
             // 
             lblNombre.AutoSize = true;
             lblNombre.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNombre.Location = new Point(50, 63);
-            lblNombre.Margin = new Padding(2, 0, 2, 0);
+            lblNombre.Location = new Point(71, 105);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(113, 15);
+            lblNombre.Size = new Size(162, 22);
             lblNombre.TabIndex = 3;
             lblNombre.Text = "Nombre de usuario";
             // 
@@ -310,10 +291,9 @@ namespace presentacion
             // 
             lblDatosUsuario.AutoSize = true;
             lblDatosUsuario.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDatosUsuario.Location = new Point(103, 10);
-            lblDatosUsuario.Margin = new Padding(2, 0, 2, 0);
+            lblDatosUsuario.Location = new Point(147, 17);
             lblDatosUsuario.Name = "lblDatosUsuario";
-            lblDatosUsuario.Size = new Size(284, 31);
+            lblDatosUsuario.Size = new Size(408, 46);
             lblDatosUsuario.TabIndex = 1;
             lblDatosUsuario.Text = "Alta Administradores";
             // 
@@ -321,25 +301,25 @@ namespace presentacion
             // 
             tblAdmins.BackgroundColor = Color.White;
             tblAdmins.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tblAdmins.Location = new Point(614, -1);
-            tblAdmins.Margin = new Padding(2);
+            tblAdmins.Location = new Point(830, -2);
             tblAdmins.MultiSelect = false;
             tblAdmins.Name = "tblAdmins";
             tblAdmins.ReadOnly = true;
             tblAdmins.RowHeadersWidth = 62;
             tblAdmins.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            tblAdmins.Size = new Size(547, 288);
+            tblAdmins.Size = new Size(832, 480);
             tblAdmins.TabIndex = 0;
             tblAdmins.Visible = false;
             // 
             // GestionAdmins
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1274, 388);
+            ClientSize = new Size(1820, 647);
             Controls.Add(pnlContenido);
             Controls.Add(pnlCabecera);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(4, 5, 4, 5);
             Name = "GestionAdmins";
             Text = "Administradores";
             pnlCabecera.ResumeLayout(false);
@@ -360,7 +340,20 @@ namespace presentacion
 
         private void GestionAdmins_Load(object sender, EventArgs e)
         {
+            CargarAdministradores();
+        }
 
+        private void CargarAdministradores()
+        {
+            tblAdmins.DataSource = null;
+            tblAdmins.DataSource = logicaNegocios.GetAdmins();
+            tblAdmins.Refresh();
+            tblAdmins.Visible = true;
+            tblAdmins.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            foreach (DataGridViewColumn col in tblAdmins.Columns)
+                col.Width = 395;
+            tblAdmins.Columns["nombreUsuario"].HeaderText = "Nombre de Usuario";
+            tblAdmins.Columns["contrasena"].HeaderText = "Contraseña";
         }
 
         private void pnlCabecera_Paint(object sender, PaintEventArgs e)
@@ -416,6 +409,7 @@ namespace presentacion
             txtNomUsuario.Clear();
             txtCont.Clear();
             txtConfCont.Clear();
+            CargarAdministradores();
             new Toast("exito", "Administrador creado exitosamente.").MostrarToast();
         }
 
