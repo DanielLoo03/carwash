@@ -256,4 +256,12 @@ BEGIN
         id = idParam;
 END $$
 
+/* Consulta de administradores */
+CREATE PROCEDURE consAdmins()
+BEGIN
+    SELECT nombreUsuario, contrasena
+    FROM administradores
+    ORDER BY nombreUsuario ASC;
+END $$
+
 DELIMITER ;
