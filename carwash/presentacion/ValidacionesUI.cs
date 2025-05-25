@@ -254,5 +254,20 @@ namespace presentacion
 
             return false;
         }
+
+        public bool EvalUsuarioExistente(string nombreUsuario)
+        {
+            DataTable admins = logicaNegocios.GetAdmins();
+
+            foreach (DataRow admin in admins.Rows)
+            {
+                if (admin["nombreUsuario"].ToString().Equals(nombreUsuario, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true; // El usuario ya existe
+                }
+            }
+
+            return false; // El usuario no existe
+        }
     }
 }

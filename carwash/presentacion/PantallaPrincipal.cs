@@ -58,7 +58,7 @@ namespace presentacion
 
         private void imgGestionAdmins_Click(object sender, EventArgs e)
         {
-            //CargarForm(new GestionInventario());
+            CargarForm(new GestionAdmins());
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)

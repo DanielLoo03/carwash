@@ -68,8 +68,9 @@
             pnlCabecera.Controls.Add(btnAltaVenta);
             pnlCabecera.Controls.Add(lblVentas);
             pnlCabecera.Location = new Point(0, 0);
+            pnlCabecera.Margin = new Padding(2, 2, 2, 2);
             pnlCabecera.Name = "pnlCabecera";
-            pnlCabecera.Size = new Size(1820, 100);
+            pnlCabecera.Size = new Size(1274, 60);
             pnlCabecera.TabIndex = 2;
             // 
             // btnVerVentasCan
@@ -116,7 +117,7 @@
             btnModVenta.ImageAlign = ContentAlignment.MiddleLeft;
             btnModVenta.Location = new Point(955, 32);
             btnModVenta.Name = "btnModVenta";
-            btnModVenta.Size = new Size(225, 39);
+            btnModVenta.Size = new Size(158, 23);
             btnModVenta.TabIndex = 4;
             btnModVenta.Text = "Modificar Venta";
             btnModVenta.TextAlign = ContentAlignment.MiddleRight;
@@ -133,7 +134,7 @@
             btnConfigVentas.ImageAlign = ContentAlignment.MiddleLeft;
             btnConfigVentas.Location = new Point(688, 31);
             btnConfigVentas.Name = "btnConfigVentas";
-            btnConfigVentas.Size = new Size(225, 39);
+            btnConfigVentas.Size = new Size(158, 23);
             btnConfigVentas.TabIndex = 3;
             btnConfigVentas.Text = "Configuraciones";
             btnConfigVentas.TextAlign = ContentAlignment.MiddleRight;
@@ -148,9 +149,10 @@
             btnAltaVenta.ForeColor = Color.White;
             btnAltaVenta.Image = (Image)resources.GetObject("btnAltaVenta.Image");
             btnAltaVenta.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAltaVenta.Location = new Point(1487, 32);
+            btnAltaVenta.Location = new Point(1041, 19);
+            btnAltaVenta.Margin = new Padding(2, 2, 2, 2);
             btnAltaVenta.Name = "btnAltaVenta";
-            btnAltaVenta.Size = new Size(225, 39);
+            btnAltaVenta.Size = new Size(158, 23);
             btnAltaVenta.TabIndex = 2;
             btnAltaVenta.Text = "Agregar Venta";
             btnAltaVenta.TextAlign = ContentAlignment.MiddleRight;
@@ -162,9 +164,10 @@
             lblVentas.AutoSize = true;
             lblVentas.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblVentas.ForeColor = Color.FromArgb(63, 114, 175);
-            lblVentas.Location = new Point(43, 28);
+            lblVentas.Location = new Point(30, 17);
+            lblVentas.Margin = new Padding(2, 0, 2, 0);
             lblVentas.Name = "lblVentas";
-            lblVentas.Size = new Size(150, 46);
+            lblVentas.Size = new Size(105, 31);
             lblVentas.TabIndex = 1;
             lblVentas.Text = "Ventas";
             // 
@@ -184,9 +187,10 @@
             pnlContenido.Controls.Add(lblGan);
             pnlContenido.Controls.Add(lblPrecio);
             pnlContenido.Controls.Add(lblTotales);
-            pnlContenido.Location = new Point(0, 100);
+            pnlContenido.Location = new Point(0, 60);
+            pnlContenido.Margin = new Padding(2, 2, 2, 2);
             pnlContenido.Name = "pnlContenido";
-            pnlContenido.Size = new Size(1820, 547);
+            pnlContenido.Size = new Size(1275, 329);
             pnlContenido.TabIndex = 3;
             // 
             // pnlBorde
@@ -194,18 +198,20 @@
             pnlBorde.BorderStyle = BorderStyle.FixedSingle;
             pnlBorde.Controls.Add(lblNoVentas);
             pnlBorde.Controls.Add(tblVentas);
-            pnlBorde.Location = new Point(76, 169);
+            pnlBorde.Location = new Point(53, 101);
+            pnlBorde.Margin = new Padding(2, 2, 2, 2);
             pnlBorde.Name = "pnlBorde";
-            pnlBorde.Size = new Size(1669, 321);
+            pnlBorde.Size = new Size(1169, 193);
             pnlBorde.TabIndex = 13;
             // 
             // lblNoVentas
             // 
             lblNoVentas.AutoSize = true;
             lblNoVentas.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNoVentas.Location = new Point(686, 133);
+            lblNoVentas.Location = new Point(480, 80);
+            lblNoVentas.Margin = new Padding(2, 0, 2, 0);
             lblNoVentas.Name = "lblNoVentas";
-            lblNoVentas.Size = new Size(309, 32);
+            lblNoVentas.Size = new Size(206, 24);
             lblNoVentas.TabIndex = 12;
             lblNoVentas.Text = "No hay ventas en el día";
             // 
@@ -214,21 +220,23 @@
             tblVentas.BackgroundColor = Color.White;
             tblVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tblVentas.Location = new Point(-1, -1);
+            tblVentas.Margin = new Padding(2, 2, 2, 2);
             tblVentas.MultiSelect = false;
             tblVentas.Name = "tblVentas";
             tblVentas.ReadOnly = true;
             tblVentas.RowHeadersWidth = 62;
             tblVentas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            tblVentas.Size = new Size(1669, 321);
+            tblVentas.Size = new Size(1168, 193);
             tblVentas.TabIndex = 0;
             tblVentas.Visible = false;
             // 
             // imgFechaVenta
             // 
             imgFechaVenta.Image = (Image)resources.GetObject("imgFechaVenta.Image");
-            imgFechaVenta.Location = new Point(1060, 54);
+            imgFechaVenta.Location = new Point(742, 32);
+            imgFechaVenta.Margin = new Padding(2, 2, 2, 2);
             imgFechaVenta.Name = "imgFechaVenta";
-            imgFechaVenta.Size = new Size(24, 24);
+            imgFechaVenta.Size = new Size(17, 14);
             imgFechaVenta.TabIndex = 11;
             imgFechaVenta.TabStop = false;
             // 
@@ -236,36 +244,40 @@
             // 
             lblFechaVenta.AutoSize = true;
             lblFechaVenta.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblFechaVenta.Location = new Point(1102, 54);
+            lblFechaVenta.Location = new Point(771, 32);
+            lblFechaVenta.Margin = new Padding(2, 0, 2, 0);
             lblFechaVenta.Name = "lblFechaVenta";
-            lblFechaVenta.Size = new Size(111, 22);
+            lblFechaVenta.Size = new Size(75, 15);
             lblFechaVenta.TabIndex = 10;
             lblFechaVenta.Text = "Día de venta";
             // 
             // dtFechaVenta
             // 
             dtFechaVenta.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtFechaVenta.Location = new Point(1016, 88);
+            dtFechaVenta.Location = new Point(711, 53);
+            dtFechaVenta.Margin = new Padding(2, 2, 2, 2);
             dtFechaVenta.Name = "dtFechaVenta";
-            dtFechaVenta.Size = new Size(327, 28);
+            dtFechaVenta.Size = new Size(230, 21);
             dtFechaVenta.TabIndex = 9;
             dtFechaVenta.ValueChanged += dtFechaVenta_ValueChanged;
             // 
             // separator1
             // 
             separator1.LineColor = Color.LightGray;
-            separator1.Location = new Point(1400, 79);
+            separator1.Location = new Point(980, 47);
+            separator1.Margin = new Padding(2, 2, 2, 2);
             separator1.Name = "separator1";
-            separator1.Size = new Size(345, 15);
+            separator1.Size = new Size(242, 9);
             separator1.TabIndex = 8;
             separator1.Text = "sepTotales";
             // 
             // lblCorrespMonto
             // 
             lblCorrespMonto.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCorrespMonto.Location = new Point(1623, 119);
+            lblCorrespMonto.Location = new Point(1136, 71);
+            lblCorrespMonto.Margin = new Padding(2, 0, 2, 0);
             lblCorrespMonto.Name = "lblCorrespMonto";
-            lblCorrespMonto.Size = new Size(82, 22);
+            lblCorrespMonto.Size = new Size(57, 13);
             lblCorrespMonto.TabIndex = 7;
             lblCorrespMonto.Text = "---";
             lblCorrespMonto.TextAlign = ContentAlignment.MiddleCenter;
@@ -273,9 +285,10 @@
             // lblGanMonto
             // 
             lblGanMonto.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGanMonto.Location = new Point(1501, 119);
+            lblGanMonto.Location = new Point(1051, 71);
+            lblGanMonto.Margin = new Padding(2, 0, 2, 0);
             lblGanMonto.Name = "lblGanMonto";
-            lblGanMonto.Size = new Size(77, 22);
+            lblGanMonto.Size = new Size(54, 13);
             lblGanMonto.TabIndex = 6;
             lblGanMonto.Text = "---";
             lblGanMonto.TextAlign = ContentAlignment.MiddleCenter;
@@ -283,9 +296,10 @@
             // lblPrecioMonto
             // 
             lblPrecioMonto.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPrecioMonto.Location = new Point(1392, 119);
+            lblPrecioMonto.Location = new Point(974, 71);
+            lblPrecioMonto.Margin = new Padding(2, 0, 2, 0);
             lblPrecioMonto.Name = "lblPrecioMonto";
-            lblPrecioMonto.Size = new Size(77, 22);
+            lblPrecioMonto.Size = new Size(54, 13);
             lblPrecioMonto.TabIndex = 5;
             lblPrecioMonto.Text = "---";
             lblPrecioMonto.TextAlign = ContentAlignment.MiddleCenter;
@@ -294,9 +308,10 @@
             // 
             lblCorresp.AutoSize = true;
             lblCorresp.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCorresp.Location = new Point(1593, 97);
+            lblCorresp.Location = new Point(1115, 58);
+            lblCorresp.Margin = new Padding(2, 0, 2, 0);
             lblCorresp.Name = "lblCorresp";
-            lblCorresp.Size = new Size(147, 22);
+            lblCorresp.Size = new Size(101, 15);
             lblCorresp.TabIndex = 4;
             lblCorresp.Text = "Correspondencia";
             // 
@@ -304,9 +319,10 @@
             // 
             lblGan.AutoSize = true;
             lblGan.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGan.Location = new Point(1494, 97);
+            lblGan.Location = new Point(1046, 58);
+            lblGan.Margin = new Padding(2, 0, 2, 0);
             lblGan.Name = "lblGan";
-            lblGan.Size = new Size(87, 22);
+            lblGan.Size = new Size(60, 15);
             lblGan.TabIndex = 3;
             lblGan.Text = "Ganancia";
             // 
@@ -314,9 +330,10 @@
             // 
             lblPrecio.AutoSize = true;
             lblPrecio.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPrecio.Location = new Point(1400, 97);
+            lblPrecio.Location = new Point(980, 58);
+            lblPrecio.Margin = new Padding(2, 0, 2, 0);
             lblPrecio.Name = "lblPrecio";
-            lblPrecio.Size = new Size(61, 22);
+            lblPrecio.Size = new Size(42, 15);
             lblPrecio.TabIndex = 2;
             lblPrecio.Text = "Precio";
             // 
@@ -324,20 +341,22 @@
             // 
             lblTotales.AutoSize = true;
             lblTotales.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTotales.Location = new Point(1502, 54);
+            lblTotales.Location = new Point(1051, 32);
+            lblTotales.Margin = new Padding(2, 0, 2, 0);
             lblTotales.Name = "lblTotales";
-            lblTotales.Size = new Size(70, 22);
+            lblTotales.Size = new Size(47, 15);
             lblTotales.TabIndex = 1;
             lblTotales.Text = "Totales";
             // 
             // Ventas
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1820, 647);
+            ClientSize = new Size(1274, 388);
             Controls.Add(pnlContenido);
             Controls.Add(pnlCabecera);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(2, 2, 2, 2);
             Name = "Ventas";
             Text = "Ventas";
             Load += Ventas_Load;

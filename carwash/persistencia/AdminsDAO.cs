@@ -16,6 +16,22 @@ namespace persistencia
         private DataTable tabla;
         private MySqlCommand comando;
 
+        public void AltaAdmin(string nombreUsuario, string contrasena)
+        {
+
+            comando = new MySqlCommand();
+
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "altaAdministrador";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@nombreUsuarioParam", nombreUsuario);
+            comando.Parameters.AddWithValue("@contrasenaParam", contrasena);
+
+            comando.ExecuteNonQuery(); 
+            comando.Parameters.Clear();
+            conexion.CerrarConexion();
+
+        }
         public DataTable GetAdmins()
         {
 
