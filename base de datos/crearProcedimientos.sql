@@ -240,4 +240,40 @@ BEGIN
         id = idParam;
 END $$
 
+/*Realización de corte de caja*/
+CREATE PROCEDURE realizarCorte(
+    IN fechaCorteParam DATE,
+    IN idAdminParam INT,
+    IN contadoParam DECIMAL (7, 2),
+    IN calculadoParam DECIMAL (7, 2),
+    IN diferenciaParam DECIMAL (7, 2)
+    
+)
+BEGIN
+    INSERT INTO cortecaja (
+        fechaCorte,
+        idAdmin,
+        contado, 
+        calculado,
+        diferencia
+    )
+    VALUES (
+       fechaCorteParam,
+       idAdminParam,
+       contadoParam,
+       calculadoParam,
+       diferenciaParam
+    );
+END $$
+
+/* Obtener el id del administrador para registrar quien realizó el corte de caja */
+CREATE PROCEDURE obtenerIdAdmin (
+    IN nombreUsuarioParam varchar(50)
+)
+BEGIN
+    SELECT id
+    FROM administradores
+    WHERE nombreUsuario = nombreUsuarioParam;
+END $$
+
 DELIMITER ;
