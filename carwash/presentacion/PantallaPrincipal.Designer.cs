@@ -177,6 +177,7 @@
             btnCorteCaja.Size = new Size(55, 55);
             btnCorteCaja.TabIndex = 5;
             btnCorteCaja.UseVisualStyleBackColor = false;
+            btnCorteCaja.Click += imgCorteCaja_Click;
             // 
             // lblGestionInventario
             // 
