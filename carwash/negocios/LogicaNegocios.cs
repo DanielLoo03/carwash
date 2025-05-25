@@ -13,6 +13,7 @@ namespace negocios
         private AdminsService adminsService = new AdminsService();
         private EmpleadosService empleadosService = new EmpleadosService();
         private VentasService ventasService = new VentasService();
+        private CorteService corteService = new CorteService();
 
         //Valor de retorno: booleano que determina si el login fue exitoso o no exitoso
         public Boolean Login(String nombreUsuario, String contrasena)
@@ -321,6 +322,58 @@ namespace negocios
             
             }
         
+        }
+
+        public void AltaCorte(DateTime fechaCorte, int idAdmin, decimal contado, decimal calculado, decimal diferencia)
+        {
+
+            corteService.AltaCorte(fechaCorte, idAdmin, contado, calculado, diferencia);
+
+        }
+
+        //Obtener Id del admin que realiza el corte de caja
+        public DataTable ObtenerIdAdmin(string nombreUsuario) {
+
+            return corteService.ObtenerIdAdmin(nombreUsuario);
+        
+        }
+
+        //Calcular la diferencia entre el monto contado por el admin y el monto calculado por el sistema
+        public decimal CalcDif(decimal contado, decimal calculado) {
+
+            decimal diferencia = contado - calculado;
+            return diferencia;
+        
+        }
+
+        //Determina el estado de la diferencia, es decir, 
+        //NOTA: No se usa switch porque no se pueden usar operadores relacionales en los casos
+        public string EstadoDif(decimal diferencia) {
+
+
+            if (diferencia == 0)
+            {
+
+                return "cuadrada";
+
+            }
+            else if (diferencia < 0) {
+
+                return "faltante";
+
+            }
+            else if (diferencia > 0) {
+
+                return "sobrante";
+
+            }
+            else {
+
+                return "Valor inesperado";
+
+            }
+                
+
         }
 
     }
