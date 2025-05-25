@@ -332,5 +332,9 @@ namespace negocios
             return true;
         }
 
+        public DataTable ConsAdmins()
+        {
+            return adminsService.ConsAdmins();
+        }
     }
 }

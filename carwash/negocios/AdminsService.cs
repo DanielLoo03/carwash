@@ -23,5 +23,9 @@ namespace negocios
             adminsDAO.AltaAdmin(nombreUsuario, contrasena);
         }
 
+        public DataTable ConsAdmins()
+        {
+            return adminsDAO.ConsAdmins();
+        }
     }
 }
