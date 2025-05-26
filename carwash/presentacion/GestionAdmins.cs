@@ -346,7 +346,7 @@ namespace presentacion
         private void CargarAdministradores()
         {
             tblAdmins.DataSource = null;
-            tblAdmins.DataSource = logicaNegocios.GetAdmins();
+            tblAdmins.DataSource = logicaNegocios.ConsAdmins();
             tblAdmins.Refresh();
             tblAdmins.Visible = true;
             tblAdmins.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
