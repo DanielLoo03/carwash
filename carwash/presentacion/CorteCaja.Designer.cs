@@ -35,8 +35,10 @@
             lblCorte = new Label();
             pnlContenido = new Panel();
             pnlBorde = new Panel();
+            txtContado = new TextBox();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
+            pnlBorde.SuspendLayout();
             SuspendLayout();
             // 
             // pnlCabecera
@@ -76,6 +78,7 @@
             btnRealizarCorte.Text = "Realizar corte";
             btnRealizarCorte.TextAlign = ContentAlignment.MiddleRight;
             btnRealizarCorte.UseVisualStyleBackColor = false;
+            btnRealizarCorte.Click += btnRealizarCorte_Click;
             // 
             // lblCorte
             // 
@@ -101,10 +104,18 @@
             // pnlBorde
             // 
             pnlBorde.BorderStyle = BorderStyle.FixedSingle;
+            pnlBorde.Controls.Add(txtContado);
             pnlBorde.Location = new Point(76, 169);
             pnlBorde.Name = "pnlBorde";
             pnlBorde.Size = new Size(1669, 321);
             pnlBorde.TabIndex = 13;
+            // 
+            // txtContado
+            // 
+            txtContado.Location = new Point(38, 43);
+            txtContado.Name = "txtContado";
+            txtContado.Size = new Size(150, 31);
+            txtContado.TabIndex = 14;
             // 
             // CorteCaja
             // 
@@ -116,9 +127,12 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "CorteCaja";
             Text = "CorteCaja";
+            KeyDown += CorteCaja_KeyDown;
             pnlCabecera.ResumeLayout(false);
             pnlCabecera.PerformLayout();
             pnlContenido.ResumeLayout(false);
+            pnlBorde.ResumeLayout(false);
+            pnlBorde.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -134,5 +148,6 @@
         private Label lblCorte;
         private Panel pnlContenido;
         private Panel pnlBorde;
+        private TextBox txtContado;
     }
 }

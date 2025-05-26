@@ -240,6 +240,11 @@ namespace negocios
             }
         }
 
+        public DataTable ConsVentasNoCan(DateTime fecha)
+        {
+            return ventasService.ConsVentasNoCan(fecha);
+        }
+
         public bool DecidirConsVenta(DataGridView tblVentas, DateTime fecha, bool canceladas) {
 
             //Si se quiere mostrar las ventas incluidas las canceladas
@@ -338,6 +343,37 @@ namespace negocios
         
         }
 
+        //Calcular el monto total de ventas en el día
+        public decimal CalcSistema(DataTable ventasNoCan) {
+
+            decimal totalVentas = 0;
+
+            //Si no hubo ventas en el día
+            if (ventasNoCan.Rows.Count == 0) {
+
+                return totalVentas;
+
+            }
+            //Si hubo al menos una venta en el día
+            else {
+
+                //Cicla por cada venta del día
+                foreach (DataRow venta in ventasNoCan.Rows)
+                {
+
+                    if (decimal.TryParse(venta["precio"].ToString(), out decimal precio))
+                    {
+                        totalVentas += precio;
+                    }
+
+                }
+
+            }
+
+            return totalVentas;
+        
+        }
+
         //Calcular la diferencia entre el monto contado por el admin y el monto calculado por el sistema
         public decimal CalcDif(decimal contado, decimal calculado) {
 
@@ -373,6 +409,27 @@ namespace negocios
 
             }
                 
+
+        }
+
+        //Para saber si ya se realizó un corte en el día seleccionado
+        public Boolean YaHayCorte(TextBox contado)
+        {
+
+            //Condición: Si el campo de contado (en la consulta de corte) se encuentra vacío, entonces todavía no se ha realizado corte
+            if (string.IsNullOrEmpty(contado.Text))
+            {
+
+                return false;
+
+            }
+            //Condición: Si el campo de contado (en la consulta de corte) se encuentra lleno, entonces ya se realizó un corte
+            else
+            {
+
+                return true;
+
+            }
 
         }
 

@@ -25,8 +25,8 @@ namespace persistencia
             comando.CommandText = "realizarCorte";
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("fechaCorteParam", fechaCorte);
-            comando.Parameters.AddWithValue("@idAdminCarroParam", idAdmin);
-            comando.Parameters.AddWithValue("@contadoCarroParam", contado);
+            comando.Parameters.AddWithValue("@idAdminParam", idAdmin);
+            comando.Parameters.AddWithValue("@contadoParam", contado);
             comando.Parameters.AddWithValue("@calculadoParam", calculado);
             comando.Parameters.AddWithValue("@diferenciaParam", diferencia);
 
@@ -45,6 +45,7 @@ namespace persistencia
             comando.Connection = conexion.AbrirConexion();
             comando.CommandText = "obtenerIdAdmin";
             comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@nombreUsuarioParam", nombreUsuario);
             MySqlDataReader leer = comando.ExecuteReader();
             tabla.Load(leer);
             conexion.CerrarConexion();

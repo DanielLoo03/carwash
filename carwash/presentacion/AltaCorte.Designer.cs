@@ -38,6 +38,7 @@
             txtCalculado = new TextBox();
             txtDiferencia = new TextBox();
             btnConfirmar = new Button();
+            label3 = new Label();
             SuspendLayout();
             // 
             // lblCorteCaja
@@ -60,6 +61,7 @@
             btnRegresar.Size = new Size(40, 40);
             btnRegresar.TabIndex = 18;
             btnRegresar.UseVisualStyleBackColor = true;
+            btnRegresar.Click += btnRegresar_Click;
             // 
             // lblContado
             // 
@@ -97,22 +99,26 @@
             txtContado.Name = "txtContado";
             txtContado.Size = new Size(200, 31);
             txtContado.TabIndex = 29;
+            txtContado.TextChanged += txtContado_TextChanged;
+            txtContado.KeyDown += txtContado_KeyDown;
+            txtContado.KeyPress += txtContado_KeyPress;
             // 
             // txtCalculado
             // 
-            txtCalculado.Enabled = false;
             txtCalculado.Location = new Point(332, 209);
             txtCalculado.Name = "txtCalculado";
+            txtCalculado.ReadOnly = true;
             txtCalculado.Size = new Size(200, 31);
             txtCalculado.TabIndex = 30;
             // 
             // txtDiferencia
             // 
-            txtDiferencia.Enabled = false;
             txtDiferencia.Location = new Point(593, 209);
             txtDiferencia.Name = "txtDiferencia";
             txtDiferencia.Size = new Size(200, 31);
             txtDiferencia.TabIndex = 31;
+            txtDiferencia.KeyDown += txtDiferencia_KeyDown;
+            txtDiferencia.KeyPress += txtDiferencia_KeyPress;
             // 
             // btnConfirmar
             // 
@@ -129,6 +135,17 @@
             btnConfirmar.Text = "Confirmar";
             btnConfirmar.TextAlign = ContentAlignment.MiddleRight;
             btnConfirmar.UseVisualStyleBackColor = false;
+            btnConfirmar.Click += btnConfirmar_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.ForeColor = Color.Red;
+            label3.Location = new Point(204, 162);
+            label3.Name = "label3";
+            label3.Size = new Size(20, 25);
+            label3.TabIndex = 46;
+            label3.Text = "*";
             // 
             // AltaCorte
             // 
@@ -136,6 +153,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(878, 394);
+            Controls.Add(label3);
             Controls.Add(btnConfirmar);
             Controls.Add(txtDiferencia);
             Controls.Add(txtCalculado);
@@ -149,6 +167,7 @@
             Name = "AltaCorte";
             Text = "Car Wash Leo";
             Load += AltaCorte_Load;
+            KeyDown += AltaCorte_KeyDown;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -164,5 +183,6 @@
         private TextBox txtCalculado;
         private TextBox txtDiferencia;
         private Button btnConfirmar;
+        private Label label3;
     }
 }

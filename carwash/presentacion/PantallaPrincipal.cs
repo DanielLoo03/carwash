@@ -45,7 +45,7 @@ namespace presentacion
         private void imgCorteCaja_Click(object sender, EventArgs e)
         {
 
-            CargarForm(new CorteCaja());
+            CargarForm(new CorteCaja(nomUsuario));
 
         }
 
