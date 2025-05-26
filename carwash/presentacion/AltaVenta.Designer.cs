@@ -327,6 +327,7 @@
             Controls.Add(lblVenta);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "AltaVenta";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Car Wash Leo";
             FormClosing += AltaVenta_FormClosing;
             Load += AltaVenta_Load;

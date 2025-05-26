@@ -227,6 +227,7 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             MaximizeBox = false;
             Name = "Domicilio";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Car Wash Leo";
             FormClosing += Domicilio_FormClosing;
             Load += Domicilio_Load;

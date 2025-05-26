@@ -165,6 +165,7 @@
             Controls.Add(lblCorteCaja);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "AltaCorte";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Car Wash Leo";
             FormClosing += AltaCorte_FormClosing;
             Load += AltaCorte_Load;
