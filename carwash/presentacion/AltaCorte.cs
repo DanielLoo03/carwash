@@ -39,9 +39,6 @@ namespace presentacion
             calculado = logicaNegocios.CalcSistema(logicaNegocios.ConsVentasNoCan(DateTime.Today));
             txtCalculado.Text = LimitarDecimales(calculado.ToString());
 
-            txtContado.Text = infoCorte.Contado.ToString();
-            txtDiferencia.Text = infoCorte.Diferencia.ToString();
-
             //Si hay dato cargado (no 0) en infoCorte, se carga el monto en el campo correspondiente
             if (infoCorte.Contado != 0)
             {
@@ -168,6 +165,9 @@ namespace presentacion
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
+
+            GuardarDatos();
+
             System.Windows.Forms.TextBox[] campoContado = { txtContado };
             if (validacionesUI.EvalTxtVacios(campoContado))
             {
@@ -192,7 +192,22 @@ namespace presentacion
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
+            GuardarDatos();
             this.Close();
         }
+
+        private void AltaCorte_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            GuardarDatos();
+        }
+
+        private void GuardarDatos() {
+
+            decimal temp;
+            decimal.TryParse(txtContado.Text, out temp);
+            infoCorte.Contado = temp;
+        
+        }
+
     }
 }

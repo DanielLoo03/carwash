@@ -28,17 +28,29 @@ namespace presentacion
             lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
             lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
 
+            lblGestionEmpleados.Font = new Font(btnGestionEmpleados.Font, FontStyle.Underline);
+
         }
 
         private void imgGestionEmpleados_Click(object sender, EventArgs e)
         {
             CargarForm(new GestionEmpleado());
+            lblGestionEmpleados.Font = new Font(btnGestionEmpleados.Font, FontStyle.Underline);
+            lblVentas.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblCorteCaja.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblGastos.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblGestionAdmins.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
         }
 
         private void imgVentas_Click(object sender, EventArgs e)
         {
 
             CargarForm(new Ventas());
+            lblGestionEmpleados.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblVentas.Font = new Font(btnGestionEmpleados.Font, FontStyle.Underline);
+            lblCorteCaja.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblGastos.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblGestionAdmins.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
 
         }
 
@@ -46,19 +58,36 @@ namespace presentacion
         {
 
             CargarForm(new CorteCaja(nomUsuario));
+            lblGestionEmpleados.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblVentas.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblCorteCaja.Font = new Font(btnGestionEmpleados.Font, FontStyle.Underline);
+            lblGastos.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblGestionAdmins.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
 
         }
 
         private void imgGestionInventario_Click(object sender, EventArgs e)
         {
-
-            //CargarForm(new GestionInventario());
-
+            /*
+            CargarForm(new GestionInventario());
+            lblGestionEmpleados.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblVentas.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblCorteCaja.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblGastos.Font = new Font(btnGestionEmpleados.Font, FontStyle.Underline);
+            lblGestionAdmins.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            */
         }
 
         private void imgGestionAdmins_Click(object sender, EventArgs e)
         {
-            //CargarForm(new GestionInventario());
+            /*
+            CargarForm(new GestionInventario());
+            lblGestionEmpleados.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblVentas.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblCorteCaja.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblGastos.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblGestionAdmins.Font = new Font(btnGestionEmpleados.Font, FontStyle.Underline);
+            */
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
@@ -86,7 +115,7 @@ namespace presentacion
                     break;
 
                 case Keys.F4:
-                    btnGestionInventario.PerformClick();
+                    btnGastos.PerformClick();
                     break;
 
                 case Keys.F5:

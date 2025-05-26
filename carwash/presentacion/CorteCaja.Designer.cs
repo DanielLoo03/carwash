@@ -127,6 +127,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "CorteCaja";
             Text = "CorteCaja";
+            Load += CorteCaja_Load;
             KeyDown += CorteCaja_KeyDown;
             pnlCabecera.ResumeLayout(false);
             pnlCabecera.PerformLayout();

@@ -51,13 +51,21 @@ namespace presentacion
             if (e.Shift)
             {
 
-                if (e.KeyCode == Keys.R) {
+                if (e.KeyCode == Keys.R)
+                {
 
                     btnRealizarCorte.PerformClick();
-                
+
                 }
 
             }
+        }
+
+        private void CorteCaja_Load(object sender, EventArgs e)
+        {
+            //Pone el foco en CorteCaja para que funcionen los atajos con el teclado
+            this.Activate(); 
+            this.Focus();
         }
     }
 }

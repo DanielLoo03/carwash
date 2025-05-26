@@ -166,6 +166,7 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "AltaCorte";
             Text = "Car Wash Leo";
+            FormClosing += AltaCorte_FormClosing;
             Load += AltaCorte_Load;
             KeyDown += AltaCorte_KeyDown;
             ResumeLayout(false);
