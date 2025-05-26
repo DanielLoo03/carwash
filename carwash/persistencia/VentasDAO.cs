@@ -37,6 +37,7 @@ namespace persistencia
             comando.ExecuteNonQuery(); 
             comando.Parameters.Clear();
             conexion.CerrarConexion();
+
         }
 
 

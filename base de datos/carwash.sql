@@ -3,18 +3,8 @@ USE carwash;
 
 CREATE TABLE administradores (
   id int NOT NULL AUTO_INCREMENT,
-  nombreUsuario varchar(50) NOT NULL,
+  nombreUsuario varchar(50) NOT NULL UNIQUE,
   contrasena varchar(50) NOT NULL,
-  PRIMARY KEY (id)
-);
-
-CREATE TABLE articulo (
-  id int NOT NULL AUTO_INCREMENT,
-  nombre varchar(50) NOT NULL,
-  descripcion varchar(200) DEFAULT NULL,
-  unidadesDisponibles int NOT NULL,
-  costoUnidad decimal(7,2) DEFAULT NULL,
-  stockBajo int DEFAULT NULL,
   PRIMARY KEY (id)
 );
 
@@ -55,4 +45,15 @@ CREATE TABLE configVentas (
   tipoConfig varchar(50) NOT NULL,
   porcentaje int NOT NULL, 
   PRIMARY KEY (tipoConfig)
+);
+
+CREATE TABLE cortecaja (
+  id int NOT NULL AUTO_INCREMENT,
+  fechaCorte datetime NOT NULL UNIQUE,
+  idAdmin int NOT NULL UNIQUE,
+  contado decimal (7, 2) NOT NULL,
+  calculado decimal (7, 2) NOT NULL,
+  diferencia decimal (7, 2) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (idAdmin) REFERENCES administradores (id)
 );

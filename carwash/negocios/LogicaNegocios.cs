@@ -13,6 +13,7 @@ namespace negocios
         private AdminsService adminsService = new AdminsService();
         private EmpleadosService empleadosService = new EmpleadosService();
         private VentasService ventasService = new VentasService();
+        private CorteService corteService = new CorteService();
 
         //Valor de retorno: booleano que determina si el login fue exitoso o no exitoso
         public Boolean Login(String nombreUsuario, String contrasena)
@@ -243,6 +244,11 @@ namespace negocios
             }
         }
 
+        public DataTable ConsVentasNoCan(DateTime fecha)
+        {
+            return ventasService.ConsVentasNoCan(fecha);
+        }
+
         public bool DecidirConsVenta(DataGridView tblVentas, DateTime fecha, bool canceladas) {
 
             //Si se quiere mostrar las ventas incluidas las canceladas
@@ -324,6 +330,111 @@ namespace negocios
                 return false;
             
             }
+        
+        }
+
+        public void AltaCorte(DateTime fechaCorte, int idAdmin, decimal contado, decimal calculado, decimal diferencia)
+        {
+
+            corteService.AltaCorte(fechaCorte, idAdmin, contado, calculado, diferencia);
+
+        }
+
+        //Obtener Id del admin que realiza el corte de caja
+        public DataTable ObtenerIdAdmin(string nombreUsuario) {
+
+            return corteService.ObtenerIdAdmin(nombreUsuario);
+        
+        }
+
+        //Calcular el monto total de ventas en el día
+        public decimal CalcSistema(DataTable ventasNoCan) {
+
+            decimal totalVentas = 0;
+
+            //Si no hubo ventas en el día
+            if (ventasNoCan.Rows.Count == 0) {
+
+                return totalVentas;
+
+            }
+            //Si hubo al menos una venta en el día
+            else {
+
+                //Cicla por cada venta del día
+                foreach (DataRow venta in ventasNoCan.Rows)
+                {
+
+                    if (decimal.TryParse(venta["precio"].ToString(), out decimal precio))
+                    {
+                        totalVentas += precio;
+                    }
+
+                }
+
+            }
+
+            return totalVentas;
+        
+        }
+
+        //Calcular la diferencia entre el monto contado por el admin y el monto calculado por el sistema
+        public decimal CalcDif(decimal contado, decimal calculado) {
+
+            decimal diferencia = contado - calculado;
+            return diferencia;
+        
+        }
+
+        //Determina el estado de la diferencia, es decir, 
+        //NOTA: No se usa switch porque no se pueden usar operadores relacionales en los casos
+        public string EstadoDif(decimal diferencia) {
+
+
+            if (diferencia == 0)
+            {
+
+                return "cuadrada";
+
+            }
+            else if (diferencia < 0) {
+
+                return "faltante";
+
+            }
+            else if (diferencia > 0) {
+
+                return "sobrante";
+
+            }
+            else {
+
+                return "Valor inesperado";
+
+            }
+                
+
+        }
+
+        //Para saber si ya se realizó un corte en el día seleccionado
+        public Boolean YaHayCorte(TextBox contado)
+        {
+
+            //Condición: Si el campo de contado (en la consulta de corte) se encuentra vacío, entonces todavía no se ha realizado corte
+            if (string.IsNullOrEmpty(contado.Text))
+            {
+
+                return false;
+
+            }
+            //Condición: Si el campo de contado (en la consulta de corte) se encuentra lleno, entonces ya se realizó un corte
+            else
+            {
+
+                return true;
+
+            }
+
         }
 
         public Boolean AltaAdmin(string nombreUsuario, string contrasena)

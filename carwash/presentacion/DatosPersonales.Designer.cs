@@ -288,6 +288,7 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             MaximizeBox = false;
             Name = "DatosPersonales";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Car Wash Leo";
             FormClosing += DatosPersonales_FormClosing;
             Load += DatosPersonales_Load;

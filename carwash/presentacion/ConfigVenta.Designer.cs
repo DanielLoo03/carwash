@@ -153,6 +153,7 @@
             Controls.Add(lblConfigVenta);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "ConfigVenta";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Car Wash Leo";
             Load += ConfigVenta_Load;
             KeyDown += ConfigVenta_KeyDown;
