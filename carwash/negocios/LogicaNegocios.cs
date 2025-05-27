@@ -336,5 +336,11 @@ namespace negocios
         {
             return adminsService.ConsAdmins();
         }
+
+        public Boolean ModAdmin(int idAdmin, string nombreUsuario, string contrasena)
+        {
+            adminsService.ModAdmin(idAdmin, nombreUsuario, contrasena);
+            return true;
+        }
     }
 }
