@@ -259,9 +259,23 @@ END $$
 /* Consulta de administradores */
 CREATE PROCEDURE consAdmins()
 BEGIN
-    SELECT nombreUsuario, contrasena
+    SELECT id, nombreUsuario, contrasena
     FROM administradores
     ORDER BY nombreUsuario ASC;
+END $$
+
+CREATE PROCEDURE modAdmin(
+    IN idParam             INT,
+    IN nombreUsuarioParam  VARCHAR(50),
+    IN contrasenaParam     VARCHAR(50)
+)
+BEGIN
+    UPDATE administradores
+    SET
+        nombreUsuario = nombreUsuarioParam,
+        contrasena    = contrasenaParam
+    WHERE
+        id = idParam;
 END $$
 
 DELIMITER ;
