@@ -27,5 +27,17 @@ namespace negocios
 
         }
 
+        public DataTable ConsCorte(DateTime fechaCorte) {
+
+            return corteDAO.ConsCorte(fechaCorte);
+        
+        }
+
+        public DataTable ObtNomUsuario(int id) {
+
+            return corteDAO.ObtNomUsuario(id);
+        
+        }
+
     }
 }

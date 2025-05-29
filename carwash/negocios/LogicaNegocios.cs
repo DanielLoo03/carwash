@@ -433,5 +433,39 @@ namespace negocios
 
         }
 
+        //Consulta del corte de caja según el día seleccionado
+        public Boolean ConsCorte(DataGridView tblCorte, DateTime fechaCorte) {
+
+            DataTable corte = corteService.ConsCorte(fechaCorte);
+
+            //Si hay corte el día seleccionado
+            if (corte.Rows.Count != 0) {
+
+                tblCorte.DataSource = corte;
+                //Esconde el Id para que no lo vea el administrador
+                tblCorte.Columns["idAdmin"].Visible = false;
+                return true;
+
+            }
+            //No hay corte el día seleccionado
+            else {
+
+                return false;
+            
+            }
+
+        }
+
+        //Se obtiene el nombre de usuario según el id de administrador
+        public string ObtNomUsuario(int id) {
+
+            //Se obtiene el resultado del query
+            DataTable nomUsuario = corteService.ObtNomUsuario(id);
+            //Se convierte resultado de query a string (siempre regresa una sola fila)
+            return nomUsuario.Rows[0]["nombreUsuario"].ToString();
+            //Nunca regresa nulo, el atributo es NOT NULL en la base de datos
+
+        }
+
     }
 }
