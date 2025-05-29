@@ -276,4 +276,25 @@ BEGIN
     WHERE nombreUsuario = nombreUsuarioParam;
 END $$
 
+/* Consultar el corte de caja realizado según el día */
+CREATE PROCEDURE consCorte(
+    IN fechaCorteParam DATETIME
+)
+BEGIN
+    SELECT idAdmin, contado, calculado, diferencia 
+    FROM cortecaja
+    WHERE fechaCorte = fechaCorteParam;
+END $$
+
+/* Obtener el nombre de usuario según el id */
+CREATE PROCEDURE obtenerNomUsuario(
+    IN idParam INT
+)
+BEGIN
+    SELECT nombreUsuario 
+    FROM administradores
+    WHERE id = idParam;
+END $$
+
+
 DELIMITER ;

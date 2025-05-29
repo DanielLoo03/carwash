@@ -54,5 +54,41 @@ namespace persistencia
 
         }
 
+        public DataTable ConsCorte(DateTime fechaCorte) {
+
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consCorte",
+                CommandType = CommandType.StoredProcedure
+            };
+            comando.Parameters.AddWithValue("@fechaCorteParam", fechaCorte);
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            return tabla;
+
+        }
+
+        public DataTable ObtNomUsuario(int id) {
+
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "obtenerNomUsuario",
+                CommandType = CommandType.StoredProcedure
+            };
+            comando.Parameters.AddWithValue("@idParam", id);
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            return tabla;
+
+        }
+
     }
 }
