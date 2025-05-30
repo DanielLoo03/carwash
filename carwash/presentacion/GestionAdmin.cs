@@ -135,6 +135,13 @@ namespace presentacion
 
                 if (row is not null)
                 {
+                    int idUsuario = row.Field<int>("id");
+
+                    if (validacionesUI.EvalUsuarioInicial(idUsuario, nombreUsuario))
+                    {
+                        new Toast("error", "No se puede modificar los datos del usuario inicial.").MostrarToast();
+                        return;
+                    }
                     // se cargar el InfoAdministrador con el id y datos
                     infoAdminAlta.Id = row.Field<int>("id");
                     infoAdminAlta.NombreUsuario = nombreUsuario;
@@ -155,9 +162,18 @@ namespace presentacion
                         paginaFinal = (int)Math.Ceiling((double)total / numFilas);
                         txtPaginaFinal.Text = paginaFinal.ToString();
 
+                        int paginaSeleccionada = numPagina;
+
+                        // Se vuelve a llenar el ComboBox
                         cbPagina.Items.Clear();
                         for (int i = 1; i <= paginaFinal; i++)
                             cbPagina.Items.Add(i);
+
+                        // Se restaurar la página seleccionada si es válida
+                        if (paginaSeleccionada <= paginaFinal)
+                            cbPagina.SelectedItem = paginaSeleccionada;
+                        else
+                            cbPagina.SelectedItem = paginaFinal;
                     };
                     ventanaModificar.ShowDialog();
                 }

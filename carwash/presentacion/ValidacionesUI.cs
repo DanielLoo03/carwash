@@ -269,5 +269,10 @@ namespace presentacion
 
             return false; // El usuario no existe
         }
+
+        public bool EvalUsuarioInicial(int id, string nombreUsuario)
+        {
+            return id == 1 && nombreUsuario == "Jesus-Cardona";
+        }
     }
 }
