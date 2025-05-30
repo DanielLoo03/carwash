@@ -64,5 +64,20 @@ namespace persistencia
 
             return tabla;
         }
+
+        public void ModAdmin(int idAdmin, string nombreUsuario, string contrasena)
+        {
+            comando = new MySqlCommand();
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "modAdmin";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idParam", idAdmin);
+            comando.Parameters.AddWithValue("@nombreUsuarioParam", nombreUsuario);
+            comando.Parameters.AddWithValue("@contrasenaParam", contrasena);
+
+            comando.ExecuteNonQuery();
+            comando.Parameters.Clear();
+            conexion.CerrarConexion();
+        }
     }
 }

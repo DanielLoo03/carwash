@@ -27,5 +27,10 @@ namespace negocios
         {
             return adminsDAO.ConsAdmins();
         }
+
+        public void ModAdmin(int idAdmin, string nombreUsuario, string contrasena)
+        {
+            adminsDAO.ModAdmin(idAdmin, nombreUsuario, contrasena);
+        }
     }
 }
