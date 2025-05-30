@@ -261,9 +261,10 @@ namespace presentacion
 
             foreach (DataRow admin in admins.Rows)
             {
-                if (admin["nombreUsuario"].ToString().Equals(nombreUsuario, StringComparison.OrdinalIgnoreCase))
+                // Comparación estricta (sensible a mayúsculas y minúsculas)
+                if (admin["nombreUsuario"].ToString().Equals(nombreUsuario))
                 {
-                    return true; // El usuario ya existe
+                    return true; // El usuario ya existe 
                 }
             }
 
