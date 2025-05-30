@@ -82,7 +82,7 @@ namespace presentacion
         {
             DateTime fechaSeleccionada = dtFechaVenta.Value.Date;
 
-            //Condicion si hay ventas del dia se muestran
+            //Condicion si hay ventas el día seleccionado, se muestran
             if (logicaNegocios.DecidirConsVenta(tblVentas, fechaSeleccionada, verVentasCan))
             {
 

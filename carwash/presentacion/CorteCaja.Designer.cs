@@ -34,6 +34,8 @@
             btnRealizarCorte = new Button();
             lblCorte = new Label();
             pnlContenido = new Panel();
+            lblNoCorte = new Label();
+            tblCorte = new DataGridView();
             dtFecha = new DateTimePicker();
             imgFecha = new PictureBox();
             txtAdmin = new TextBox();
@@ -48,6 +50,7 @@
             txtContado = new TextBox();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)tblCorte).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgFecha).BeginInit();
             SuspendLayout();
             // 
@@ -105,6 +108,8 @@
             // 
             pnlContenido.BackColor = SystemColors.Window;
             pnlContenido.BorderStyle = BorderStyle.FixedSingle;
+            pnlContenido.Controls.Add(lblNoCorte);
+            pnlContenido.Controls.Add(tblCorte);
             pnlContenido.Controls.Add(dtFecha);
             pnlContenido.Controls.Add(imgFecha);
             pnlContenido.Controls.Add(txtAdmin);
@@ -122,12 +127,37 @@
             pnlContenido.Size = new Size(1820, 545);
             pnlContenido.TabIndex = 4;
             // 
+            // lblNoCorte
+            // 
+            lblNoCorte.AutoSize = true;
+            lblNoCorte.Font = new Font("Nacelle", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNoCorte.Location = new Point(473, 251);
+            lblNoCorte.Name = "lblNoCorte";
+            lblNoCorte.Size = new Size(742, 34);
+            lblNoCorte.TabIndex = 27;
+            lblNoCorte.Text = "No se ha realizado un corte de caja en el día seleccionado.";
+            lblNoCorte.Visible = false;
+            // 
+            // tblCorte
+            // 
+            tblCorte.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tblCorte.Enabled = false;
+            tblCorte.Location = new Point(28, 15);
+            tblCorte.Name = "tblCorte";
+            tblCorte.RowHeadersWidth = 62;
+            tblCorte.Size = new Size(13, 15);
+            tblCorte.TabIndex = 26;
+            tblCorte.Visible = false;
+            // 
             // dtFecha
             // 
             dtFecha.Location = new Point(1442, 97);
+            dtFecha.MaxDate = new DateTime(2025, 5, 29, 0, 0, 0, 0);
             dtFecha.Name = "dtFecha";
             dtFecha.Size = new Size(332, 31);
             dtFecha.TabIndex = 25;
+            dtFecha.Value = new DateTime(2025, 5, 29, 0, 0, 0, 0);
+            dtFecha.ValueChanged += dtFecha_ValueChanged;
             // 
             // imgFecha
             // 
@@ -142,6 +172,7 @@
             // 
             txtAdmin.Location = new Point(1123, 295);
             txtAdmin.Name = "txtAdmin";
+            txtAdmin.ReadOnly = true;
             txtAdmin.Size = new Size(227, 31);
             txtAdmin.TabIndex = 23;
             // 
@@ -151,11 +182,14 @@
             txtDiferencia.Name = "txtDiferencia";
             txtDiferencia.Size = new Size(227, 31);
             txtDiferencia.TabIndex = 22;
+            txtDiferencia.KeyDown += txtDiferencia_KeyDown;
+            txtDiferencia.KeyPress += txtDiferencia_KeyPress;
             // 
             // txtCalculado
             // 
             txtCalculado.Location = new Point(596, 295);
             txtCalculado.Name = "txtCalculado";
+            txtCalculado.ReadOnly = true;
             txtCalculado.Size = new Size(227, 31);
             txtCalculado.TabIndex = 21;
             // 
@@ -223,6 +257,7 @@
             // 
             txtContado.Location = new Point(329, 295);
             txtContado.Name = "txtContado";
+            txtContado.ReadOnly = true;
             txtContado.Size = new Size(227, 31);
             txtContado.TabIndex = 14;
             // 
@@ -242,6 +277,7 @@
             pnlCabecera.PerformLayout();
             pnlContenido.ResumeLayout(false);
             pnlContenido.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)tblCorte).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgFecha).EndInit();
             ResumeLayout(false);
         }
@@ -269,5 +305,7 @@
         private TextBox txtContado;
         private DateTimePicker dtFecha;
         private PictureBox imgFecha;
+        private DataGridView tblCorte;
+        private Label lblNoCorte;
     }
 }
