@@ -47,7 +47,6 @@ namespace presentacion
             string contrasena = txtCont.Text;
             string confirm = txtConfCont.Text;
 
-            ///////
 
             //Si los campos obligatorios estan vacios, marca error
             TextBox[] nomUsuario = { txtNomUsuario };
@@ -70,7 +69,6 @@ namespace presentacion
                 return;
             }
 
-            //////////
 
             if (validacionesUI.EvalCamposCharEsp(new object[] { txtNomUsuario }, "[^a-zA-Z.\\-_]"))
             {
@@ -85,6 +83,7 @@ namespace presentacion
                 return;
             }
 
+            // si se ingresan mas de 50 caracteres en la contrasena
             TextBox[] passBoxes = { txtCont };
             if (validacionesUI.EvalTxtChars(passBoxes, 50))
             {
@@ -92,7 +91,15 @@ namespace presentacion
                 return;
             }
 
-            if (new ValidacionesUI().EvalUsuarioExistente(usuario))
+            //Se valida que el nombre ingresado ya esta en uso
+            if (accion == "alta" && new ValidacionesUI().EvalUsuarioExistente(usuario))
+            {
+                new Toast("error", "El nombre de usuario ya existe.").MostrarToast();
+                return;
+            }
+
+            //Se valida que el nombre ingresado ya esta en uso
+            if (accion == "modificar" && new ValidacionesUI().EvalUsuarioExistente(usuario))
             {
                 new Toast("error", "El nombre de usuario ya existe.").MostrarToast();
                 return;
@@ -102,13 +109,22 @@ namespace presentacion
             infoAdmin.NombreUsuario = usuario;
             infoAdmin.Contrasena = contrasena;
 
-            logicaNegocios.AltaAdmin(usuario, contrasena);
+            //Se indica si la accion a realizar es una alta o modificacion
+            if (accion == "alta")
+            {
+                logicaNegocios.AltaAdmin(usuario, contrasena);
+                new Toast("exito", "Administrador creado exitosamente.").MostrarToast();
+            }
+            else if (accion == "modificar")
+            {
+                logicaNegocios.ModAdmin(infoAdmin.Id, usuario, contrasena);
+                new Toast("exito", "Administrador modificado exitosamente.").MostrarToast();
+            }
 
             txtNomUsuario.Clear();
             txtCont.Clear();
             txtConfCont.Clear();
 
-            new Toast("exito", "Administrador creado exitosamente.").MostrarToast();
             AdminAgregado?.Invoke(this, EventArgs.Empty);
             this.Close();
         }
@@ -165,6 +181,11 @@ namespace presentacion
         {
             guardarDatos();
             this.Close();
+        }
+
+        private void AltaAdmin_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

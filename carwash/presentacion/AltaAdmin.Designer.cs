@@ -247,6 +247,7 @@
             Text = "Car Wash Leo";
             FormClosing += AltaAdmin_FormClosing;
             Load += AltaAdmin_Load;
+            KeyDown += AltaAdmin_KeyDown;
             ResumeLayout(false);
             PerformLayout();
         }
