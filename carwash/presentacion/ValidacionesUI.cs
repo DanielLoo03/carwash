@@ -298,5 +298,24 @@ namespace presentacion
 
             return false; 
         }
+
+        public Boolean EvalLongCont(TextBox[] textBoxesEvaluar, int limite)
+        {
+
+            foreach (TextBox txt in textBoxesEvaluar)
+            {
+
+                if (txt.Text.Length < limite)
+                {
+
+                    return true;
+
+                }
+
+            }// fin foreach
+            return false;
+
+        }
+
     }
 }

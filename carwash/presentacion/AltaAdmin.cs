@@ -74,12 +74,6 @@ namespace presentacion
                 return;
             }
 
-            TextBox[] passBoxes = { txtCont };
-            if (validacionesUI.EvalTxtChars(passBoxes, 50))
-            {
-                new Toast("error", "La contraseña no puede exceder 50 caracteres.").MostrarToast();
-                return;
-            }
 
             TextBox[] cont = { txtCont };
             if (validacionesUI.EvalTxtVacios(cont))
@@ -87,6 +81,19 @@ namespace presentacion
                 new Toast("error", "El campo de contraseña es obligatorio (debe ser llenado).").MostrarToast();
                 return;
             }
+
+            if (validacionesUI.EvalLongCont(cont, 5))
+            {
+                new Toast("error", "La contraseña tiene que tener un minimo de 5 caracteres.").MostrarToast();
+                return;
+            }
+
+            if (validacionesUI.EvalTxtChars(cont, 50))
+            {
+                new Toast("error", "La contraseña no puede exceder 50 caracteres.").MostrarToast();
+                return;
+            }
+
             TextBox[] contConfir = { txtNomUsuario, txtCont, txtConfCont };
             if (validacionesUI.EvalTxtVacios(contConfir))
             {
