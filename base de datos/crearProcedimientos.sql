@@ -314,5 +314,13 @@ BEGIN
         id = idParam;
 END $$
 
+CREATE PROCEDURE bajaAdmin(
+    IN idParam INT
+)
+BEGIN
+    DELETE FROM administradores
+    WHERE id = idParam;
+END $$
+
 DELIMITER ;
 
