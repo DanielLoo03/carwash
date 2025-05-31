@@ -79,5 +79,18 @@ namespace persistencia
             comando.Parameters.Clear();
             conexion.CerrarConexion();
         }
+
+        public void BajaAdmin(int idAdmin)
+        {
+            comando = new MySqlCommand();
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "bajaAdmin";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idParam", idAdmin);
+
+            comando.ExecuteNonQuery();
+            comando.Parameters.Clear();
+            conexion.CerrarConexion();
+        }
     }
 }
