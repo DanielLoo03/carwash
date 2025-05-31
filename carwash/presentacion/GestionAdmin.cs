@@ -1,4 +1,5 @@
 ﻿using negocios;
+using Org.BouncyCastle.Tls.Crypto.Impl.BC;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,13 +22,15 @@ namespace presentacion
         int numFilas = 12;
         int paginaFinal;
         private DataTable dtCompleto;
+        private string usuarioAct;
 
-        public GestionAdmin()
+        public GestionAdmin(string usuarioActual)
         {
             InitializeComponent();
             this.KeyPreview = true;
             this.Load += GestionAdmin_Load;
             cbPagina.SelectedIndexChanged += cbPagina_SelectedIndexChanged;
+            usuarioAct = usuarioActual;
         }
 
         private void GestionAdmin_Load(object sender, EventArgs e)
@@ -196,16 +199,24 @@ namespace presentacion
                 string nombreUsuario = tblAdmins.CurrentRow.Cells["nombreUsuario"].Value.ToString()!;
                 string contrasena = tblAdmins.CurrentRow.Cells["contrasena"].Value.ToString()!;
 
-                // Se buscar la fila completa en dtCompleto para obtener el id
-                DataRow? fila = dtCompleto.AsEnumerable()
-                    .FirstOrDefault(r =>
-                        r.Field<string>("nombreUsuario") == nombreUsuario &&
-                        r.Field<string>("contrasena") == contrasena
-                    );
+                // se buscar el DataRow completo (que incluye el "id")
+                DataRow? row = dtCompleto.AsEnumerable().FirstOrDefault(r => r.Field<string>("nombreUsuario") == nombreUsuario
+                     && r.Field<string>("contrasena") == contrasena);
 
-                if (fila is not null)
+                if (row is not null)
                 {
-                    int idAdmin = fila.Field<int>("id");
+                    int idAdmin = row.Field<int>("id");
+                    if (validacionesUI.EvalUsuarioInicial(idAdmin, nombreUsuario))
+                    {
+                        new Toast("error", "No se puede eliminar al administrador inicial.").MostrarToast();
+                        return;
+                    }
+
+                    if (nombreUsuario == usuarioAct)
+                    {
+                        new Toast("error", "No puedes eliminar tu propia cuenta de usuario.").MostrarToast();
+                        return;
+                    }
 
                     MessageBoxConfirmar confirmBox = new MessageBoxConfirmar(
                         $"¿Está seguro de eliminar al administrador \"{nombreUsuario}\"?"
@@ -268,6 +279,9 @@ namespace presentacion
                         break;
                     case Keys.M:
                         btnModAdmin.PerformClick();
+                        break;
+                    case Keys.E:
+                        btnBajaAdmins.PerformClick();
                         break;
                 }
 
