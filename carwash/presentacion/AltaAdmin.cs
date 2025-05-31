@@ -56,6 +56,31 @@ namespace presentacion
                 return;
             }
 
+            if (accion == "alta" && new ValidacionesUI().EvalUsuarioExistente(usuario))
+            {
+                new Toast("error", "El nombre de usuario ya existe.").MostrarToast();
+                return;
+            }
+
+            if (validacionesUI.EvalNombreUsuarioLongitud(usuario))
+            {
+                new Toast("error", "El nombre de usuario debe tener entre 5 y 20 caracteres.").MostrarToast();
+                return;
+            }
+
+            if (validacionesUI.EvalNomCharsEspeciales(usuario))
+            {
+                new Toast("error", "El nombre de usuario no puede estar formado únicamente por '.', '-' o '_', ni contenerlos antes de tener 3 letras.").MostrarToast();
+                return;
+            }
+
+            TextBox[] passBoxes = { txtCont };
+            if (validacionesUI.EvalTxtChars(passBoxes, 50))
+            {
+                new Toast("error", "La contraseña no puede exceder 50 caracteres.").MostrarToast();
+                return;
+            }
+
             TextBox[] cont = { txtCont };
             if (validacionesUI.EvalTxtVacios(cont))
             {
@@ -83,23 +108,8 @@ namespace presentacion
                 return;
             }
 
-            // si se ingresan mas de 50 caracteres en la contrasena
-            TextBox[] passBoxes = { txtCont };
-            if (validacionesUI.EvalTxtChars(passBoxes, 50))
-            {
-                new Toast("error", "La contraseña no puede exceder 50 caracteres.").MostrarToast();
-                return;
-            }
-
             //Se valida que el nombre ingresado ya esta en uso
             if (accion == "alta" && new ValidacionesUI().EvalUsuarioExistente(usuario))
-            {
-                new Toast("error", "El nombre de usuario ya existe.").MostrarToast();
-                return;
-            }
-
-            //Se valida que el nombre ingresado ya esta en uso
-            if (accion == "modificar" && new ValidacionesUI().EvalUsuarioExistente(usuario))
             {
                 new Toast("error", "El nombre de usuario ya existe.").MostrarToast();
                 return;
