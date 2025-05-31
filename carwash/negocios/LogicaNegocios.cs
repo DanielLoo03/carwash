@@ -453,5 +453,10 @@ namespace negocios
             adminsService.ModAdmin(idAdmin, nombreUsuario, contrasena);
             return true;
         }
+
+        public void BajaAdmin(int idAdmin)
+        {
+            adminsService.BajaAdmin(idAdmin);
+        }
     }
 }
