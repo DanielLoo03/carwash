@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionAdmin));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             pnlCabecera = new Panel();
             btnAltaAdmin = new Button();
             btnModAdmin = new Button();
@@ -44,6 +44,7 @@
             lblPagina = new Label();
             lblNumRegistro = new Label();
             tblAdmins = new DataGridView();
+            btnBajaAdmins = new Button();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
             pnlBorde.SuspendLayout();
@@ -53,6 +54,7 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
+            pnlCabecera.Controls.Add(btnBajaAdmins);
             pnlCabecera.Controls.Add(btnAltaAdmin);
             pnlCabecera.Controls.Add(btnModAdmin);
             pnlCabecera.Controls.Add(lblGestionDe);
@@ -201,14 +203,14 @@
             tblAdmins.AllowUserToAddRows = false;
             tblAdmins.AllowUserToDeleteRows = false;
             tblAdmins.BackgroundColor = Color.White;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            tblAdmins.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            tblAdmins.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tblAdmins.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tblAdmins.Location = new Point(392, -1);
             tblAdmins.MultiSelect = false;
@@ -219,6 +221,22 @@
             tblAdmins.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             tblAdmins.Size = new Size(782, 431);
             tblAdmins.TabIndex = 0;
+            // 
+            // btnBajaAdmins
+            // 
+            btnBajaAdmins.BackColor = Color.FromArgb(63, 114, 175);
+            btnBajaAdmins.FlatStyle = FlatStyle.Popup;
+            btnBajaAdmins.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnBajaAdmins.ForeColor = Color.White;
+            btnBajaAdmins.Image = (Image)resources.GetObject("btnBajaAdmins.Image");
+            btnBajaAdmins.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBajaAdmins.Location = new Point(979, 27);
+            btnBajaAdmins.Name = "btnBajaAdmins";
+            btnBajaAdmins.Size = new Size(225, 39);
+            btnBajaAdmins.TabIndex = 6;
+            btnBajaAdmins.Text = "Eliminar Administrador";
+            btnBajaAdmins.TextAlign = ContentAlignment.MiddleRight;
+            btnBajaAdmins.UseVisualStyleBackColor = false;
             // 
             // GestionAdmin
             // 
@@ -257,5 +275,6 @@
         private TextBox txtNumregistros;
         private ComboBox cbPagina;
         private TextBox txtPaginaFinal;
+        private Button btnBajaAdmins;
     }
 }
