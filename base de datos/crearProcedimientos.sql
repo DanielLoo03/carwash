@@ -296,5 +296,13 @@ BEGIN
     WHERE id = idParam;
 END $$
 
+/* Consultar el monto contado que existe en caja según el último corte de caja */
+CREATE PROCEDURE consCaja()
+BEGIN 
+    SELECT contado 
+    FROM cortecaja
+    ORDER BY id DESC
+    LIMIT 1;  
+END $$
 
 DELIMITER ;

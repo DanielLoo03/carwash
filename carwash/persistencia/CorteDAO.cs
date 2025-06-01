@@ -90,5 +90,22 @@ namespace persistencia
 
         }
 
+        public DataTable ConsCaja() {
+
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consCaja",
+                CommandType = CommandType.StoredProcedure
+            };
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            return tabla;
+
+        }
+
     }
 }
