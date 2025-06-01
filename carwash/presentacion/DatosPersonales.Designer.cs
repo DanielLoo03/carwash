@@ -138,6 +138,7 @@
             // 
             // txtNombre
             // 
+            txtNombre.CharacterCasing = CharacterCasing.Upper;
             txtNombre.Location = new Point(100, 245);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(557, 31);
@@ -145,6 +146,7 @@
             // 
             // txtApellidoPaterno
             // 
+            txtApellidoPaterno.CharacterCasing = CharacterCasing.Upper;
             txtApellidoPaterno.Location = new Point(100, 351);
             txtApellidoPaterno.Name = "txtApellidoPaterno";
             txtApellidoPaterno.Size = new Size(557, 31);
@@ -152,6 +154,7 @@
             // 
             // txtApellidoMaterno
             // 
+            txtApellidoMaterno.CharacterCasing = CharacterCasing.Upper;
             txtApellidoMaterno.Location = new Point(100, 454);
             txtApellidoMaterno.Name = "txtApellidoMaterno";
             txtApellidoMaterno.Size = new Size(557, 31);

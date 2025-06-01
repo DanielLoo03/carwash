@@ -80,6 +80,7 @@
             // 
             // txtColonia
             // 
+            txtColonia.CharacterCasing = CharacterCasing.Upper;
             txtColonia.Location = new Point(117, 326);
             txtColonia.Name = "txtColonia";
             txtColonia.Size = new Size(557, 31);
@@ -87,6 +88,7 @@
             // 
             // txtCalle
             // 
+            txtCalle.CharacterCasing = CharacterCasing.Upper;
             txtCalle.Location = new Point(117, 220);
             txtCalle.Name = "txtCalle";
             txtCalle.Size = new Size(557, 31);
