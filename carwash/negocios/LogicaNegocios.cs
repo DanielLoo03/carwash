@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Org.BouncyCastle.Tls.Crypto.Impl.BC;
 
 namespace negocios
 {
@@ -368,6 +369,16 @@ namespace negocios
 
                 }
 
+                //Considera el monto en caja contado en el corte anterior
+                decimal montoCaja = ConsCaja();
+                //Si hubo un corte de caja anterior
+                if (montoCaja != -1)
+                {
+
+                    totalVentas += montoCaja;
+
+                }
+
             }
 
             return totalVentas;
@@ -464,6 +475,60 @@ namespace negocios
             //Se convierte resultado de query a string (siempre regresa una sola fila)
             return nomUsuario.Rows[0]["nombreUsuario"].ToString();
             //Nunca regresa nulo, el atributo es NOT NULL en la base de datos
+
+        }
+
+        //Se consulta el dato Contado del último corte de caja realizado
+        public decimal ConsCaja()
+        {
+
+            //El resultado del query
+            DataTable resultado = corteService.ConsCaja();
+
+            //Si no hay ningún corte de caja realizado anteriormente
+            if (resultado.Rows.Count == 0) {
+
+                return -1;
+
+            }
+            //Hay un corte de caja realizado anteriormente
+            else {
+
+                //Se convierte el resultado al tipo de dato decimal
+                decimal contado = (decimal)(resultado.Rows[0]["contado"]);
+                return contado;
+
+            }
+
+        }
+
+        //Bloquear opciones de alta/mod/baja/cancelación en módulos de ventas y gastos al realizar corte
+        public void BloqModulos(Button[] btns)
+        {
+            ToolTip toolTip = new ToolTip();
+
+            foreach (Button btn in btns) {
+
+                btn.Enabled = false;
+                toolTip.SetToolTip(btn, "Para habilitar la opción, debe reabrir caja.");
+
+            }
+
+        }
+
+        //Rehabilitar opciones de alta/mod/baja/cancelación en módulos de ventas y gastos al reabrir caja
+        public void AbrirModulos(Button[] btns) {
+
+            ToolTip toolTip = new ToolTip();
+
+            foreach (Button btn in btns)
+            {
+
+                btn.Enabled = true;
+                //Se "elimina" el tooltip
+                toolTip.SetToolTip(btn, null);
+
+            }
 
         }
 

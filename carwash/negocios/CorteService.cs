@@ -39,5 +39,11 @@ namespace negocios
         
         }
 
+        public DataTable ConsCaja() {
+
+            return corteDAO.ConsCaja();
+        
+        }
+
     }
 }
