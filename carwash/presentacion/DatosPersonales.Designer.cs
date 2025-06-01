@@ -163,9 +163,12 @@
             // dtFechaNacimiento
             // 
             dtFechaNacimiento.Location = new Point(100, 563);
+            dtFechaNacimiento.MaxDate = new DateTime(2007, 12, 31, 0, 0, 0, 0);
+            dtFechaNacimiento.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             dtFechaNacimiento.Name = "dtFechaNacimiento";
             dtFechaNacimiento.Size = new Size(557, 31);
             dtFechaNacimiento.TabIndex = 11;
+            dtFechaNacimiento.Value = new DateTime(1950, 5, 31, 0, 0, 0, 0);
             // 
             // nudNumEmpleado
             // 
