@@ -92,9 +92,8 @@
             panel1.Controls.Add(lblLeo);
             panel1.Controls.Add(lblCarWash);
             panel1.Location = new Point(0, 0);
-            panel1.Margin = new Padding(2, 2, 2, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1344, 60);
+            panel1.Size = new Size(1920, 100);
             panel1.TabIndex = 0;
             // 
             // btnCerrarSesion
@@ -105,7 +104,7 @@
             btnCerrarSesion.Image = (Image)resources.GetObject("btnCerrarSesion.Image");
             btnCerrarSesion.Location = new Point(1772, 13);
             btnCerrarSesion.Name = "btnCerrarSesion";
-            btnCerrarSesion.Size = new Size(35, 30);
+            btnCerrarSesion.Size = new Size(50, 50);
             btnCerrarSesion.TabIndex = 8;
             btnCerrarSesion.UseVisualStyleBackColor = false;
             btnCerrarSesion.Click += btnCerrarSesion_Click;
@@ -117,7 +116,7 @@
             lblCerrarSesion.ForeColor = Color.White;
             lblCerrarSesion.Location = new Point(1746, 67);
             lblCerrarSesion.Name = "lblCerrarSesion";
-            lblCerrarSesion.Size = new Size(70, 13);
+            lblCerrarSesion.Size = new Size(106, 20);
             lblCerrarSesion.TabIndex = 15;
             lblCerrarSesion.Text = "Cerrar Sesión";
             // 
@@ -129,10 +128,9 @@
             btnGestionAdmins.Image = (Image)resources.GetObject("btnGestionAdmins.Image");
             btnGestionAdmins.Location = new Point(1173, 15);
             btnGestionAdmins.Name = "btnGestionAdmins";
-            btnGestionAdmins.Size = new Size(35, 30);
+            btnGestionAdmins.Size = new Size(50, 50);
             btnGestionAdmins.TabIndex = 7;
             btnGestionAdmins.UseVisualStyleBackColor = false;
-            btnGestionAdmins.Click += imgGestionAdmins_Click;
             // 
             // lblAdminActual
             // 
@@ -140,7 +138,7 @@
             lblAdminActual.ForeColor = Color.White;
             lblAdminActual.Location = new Point(1595, 67);
             lblAdminActual.Name = "lblAdminActual";
-            lblAdminActual.Size = new Size(76, 12);
+            lblAdminActual.Size = new Size(109, 20);
             lblAdminActual.TabIndex = 14;
             lblAdminActual.Text = "Admin";
             lblAdminActual.TextAlign = ContentAlignment.MiddleCenter;
@@ -164,7 +162,7 @@
             lblGestionAdmins.ForeColor = Color.White;
             lblGestionAdmins.Location = new Point(1092, 68);
             lblGestionAdmins.Name = "lblGestionAdmins";
-            lblGestionAdmins.Size = new Size(135, 13);
+            lblGestionAdmins.Size = new Size(206, 20);
             lblGestionAdmins.TabIndex = 13;
             lblGestionAdmins.Text = "Gestión de Administradores";
             // 
@@ -176,7 +174,7 @@
             btnCorteCaja.Image = (Image)resources.GetObject("btnCorteCaja.Image");
             btnCorteCaja.Location = new Point(811, 9);
             btnCorteCaja.Name = "btnCorteCaja";
-            btnCorteCaja.Size = new Size(38, 33);
+            btnCorteCaja.Size = new Size(55, 55);
             btnCorteCaja.TabIndex = 5;
             btnCorteCaja.UseVisualStyleBackColor = false;
             btnCorteCaja.Click += imgCorteCaja_Click;
@@ -200,7 +198,7 @@
             btnVentas.Image = (Image)resources.GetObject("btnVentas.Image");
             btnVentas.Location = new Point(665, 14);
             btnVentas.Name = "btnVentas";
-            btnVentas.Size = new Size(35, 30);
+            btnVentas.Size = new Size(50, 50);
             btnVentas.TabIndex = 4;
             btnVentas.UseVisualStyleBackColor = false;
             btnVentas.Click += imgVentas_Click;
@@ -213,7 +211,7 @@
             btnGestionEmpleados.Image = (Image)resources.GetObject("btnGestionEmpleados.Image");
             btnGestionEmpleados.Location = new Point(491, 14);
             btnGestionEmpleados.Name = "btnGestionEmpleados";
-            btnGestionEmpleados.Size = new Size(35, 30);
+            btnGestionEmpleados.Size = new Size(50, 50);
             btnGestionEmpleados.TabIndex = 3;
             btnGestionEmpleados.UseVisualStyleBackColor = false;
             btnGestionEmpleados.Click += imgGestionEmpleados_Click;
@@ -225,7 +223,7 @@
             lblCorteCaja.ForeColor = Color.White;
             lblCorteCaja.Location = new Point(787, 68);
             lblCorteCaja.Name = "lblCorteCaja";
-            lblCorteCaja.Size = new Size(71, 13);
+            lblCorteCaja.Size = new Size(106, 20);
             lblCorteCaja.TabIndex = 11;
             lblCorteCaja.Text = "Corte de Caja";
             // 
@@ -236,7 +234,7 @@
             lblVentas.ForeColor = Color.White;
             lblVentas.Location = new Point(660, 67);
             lblVentas.Name = "lblVentas";
-            lblVentas.Size = new Size(40, 13);
+            lblVentas.Size = new Size(60, 20);
             lblVentas.TabIndex = 10;
             lblVentas.Text = "Ventas";
             // 
@@ -247,7 +245,7 @@
             lblGestionEmpleados.ForeColor = Color.White;
             lblGestionEmpleados.Location = new Point(427, 67);
             lblGestionEmpleados.Name = "lblGestionEmpleados";
-            lblGestionEmpleados.Size = new Size(113, 13);
+            lblGestionEmpleados.Size = new Size(171, 20);
             lblGestionEmpleados.TabIndex = 9;
             lblGestionEmpleados.Text = "Gestión de Empleados";
             // 
@@ -256,7 +254,7 @@
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
             pictureBox3.Location = new Point(1776, 14);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(35, 30);
+            pictureBox3.Size = new Size(50, 50);
             pictureBox3.TabIndex = 8;
             pictureBox3.TabStop = false;
             pictureBox3.Click += pictureBox3_Click;
@@ -266,7 +264,7 @@
             imgAdminActual.Image = (Image)resources.GetObject("imgAdminActual.Image");
             imgAdminActual.Location = new Point(1623, 14);
             imgAdminActual.Name = "imgAdminActual";
-            imgAdminActual.Size = new Size(35, 30);
+            imgAdminActual.Size = new Size(50, 50);
             imgAdminActual.TabIndex = 7;
             imgAdminActual.TabStop = false;
             // 
@@ -275,7 +273,7 @@
             imgGestionAdmins.Image = (Image)resources.GetObject("imgGestionAdmins.Image");
             imgGestionAdmins.Location = new Point(1173, 15);
             imgGestionAdmins.Name = "imgGestionAdmins";
-            imgGestionAdmins.Size = new Size(35, 30);
+            imgGestionAdmins.Size = new Size(50, 50);
             imgGestionAdmins.TabIndex = 6;
             imgGestionAdmins.TabStop = false;
             imgGestionAdmins.Click += imgGestionAdmins_Click;
@@ -285,7 +283,7 @@
             imgGestionInventario.Image = (Image)resources.GetObject("imgGestionInventario.Image");
             imgGestionInventario.Location = new Point(971, 16);
             imgGestionInventario.Name = "imgGestionInventario";
-            imgGestionInventario.Size = new Size(35, 30);
+            imgGestionInventario.Size = new Size(50, 50);
             imgGestionInventario.TabIndex = 5;
             imgGestionInventario.TabStop = false;
             imgGestionInventario.Click += imgGestionInventario_Click;
@@ -295,7 +293,7 @@
             imgCorteCaja.Image = (Image)resources.GetObject("imgCorteCaja.Image");
             imgCorteCaja.Location = new Point(816, 10);
             imgCorteCaja.Name = "imgCorteCaja";
-            imgCorteCaja.Size = new Size(35, 30);
+            imgCorteCaja.Size = new Size(50, 50);
             imgCorteCaja.TabIndex = 4;
             imgCorteCaja.TabStop = false;
             imgCorteCaja.Click += imgCorteCaja_Click;
@@ -305,7 +303,7 @@
             imgVentas.Image = (Image)resources.GetObject("imgVentas.Image");
             imgVentas.Location = new Point(665, 14);
             imgVentas.Name = "imgVentas";
-            imgVentas.Size = new Size(35, 30);
+            imgVentas.Size = new Size(50, 50);
             imgVentas.TabIndex = 3;
             imgVentas.TabStop = false;
             imgVentas.Click += imgVentas_Click;
@@ -315,10 +313,9 @@
             lblLeo.AutoSize = true;
             lblLeo.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLeo.ForeColor = Color.FromArgb(63, 114, 175);
-            lblLeo.Location = new Point(176, 17);
-            lblLeo.Margin = new Padding(2, 0, 2, 0);
+            lblLeo.Location = new Point(251, 29);
             lblLeo.Name = "lblLeo";
-            lblLeo.Size = new Size(62, 31);
+            lblLeo.Size = new Size(90, 46);
             lblLeo.TabIndex = 1;
             lblLeo.Text = "Leo";
             // 
@@ -327,29 +324,26 @@
             lblCarWash.AutoSize = true;
             lblCarWash.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblCarWash.ForeColor = Color.White;
-            lblCarWash.Location = new Point(36, 17);
-            lblCarWash.Margin = new Padding(2, 0, 2, 0);
+            lblCarWash.Location = new Point(52, 29);
             lblCarWash.Name = "lblCarWash";
-            lblCarWash.Size = new Size(142, 31);
+            lblCarWash.Size = new Size(205, 46);
             lblCarWash.TabIndex = 0;
             lblCarWash.Text = "Car Wash";
             // 
             // pnlContenido
             // 
-            pnlContenido.Location = new Point(27, 141);
-            pnlContenido.Margin = new Padding(2, 2, 2, 2);
+            pnlContenido.Location = new Point(39, 235);
             pnlContenido.Name = "pnlContenido";
-            pnlContenido.Size = new Size(1274, 388);
+            pnlContenido.Size = new Size(1820, 647);
             pnlContenido.TabIndex = 1;
             // 
             // lblHora
             // 
             lblHora.AutoSize = true;
             lblHora.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblHora.Location = new Point(1194, 587);
-            lblHora.Margin = new Padding(2, 0, 2, 0);
+            lblHora.Location = new Point(1705, 979);
             lblHora.Name = "lblHora";
-            lblHora.Size = new Size(52, 21);
+            lblHora.Size = new Size(78, 32);
             lblHora.TabIndex = 2;
             lblHora.Text = "label1";
             // 
@@ -361,10 +355,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(1198, 577);
-            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Location = new Point(1711, 962);
             label1.Name = "label1";
-            label1.Size = new Size(44, 15);
+            label1.Size = new Size(66, 25);
             label1.TabIndex = 3;
             label1.Text = "Hora: ";
             // 
@@ -372,10 +365,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(1196, 536);
-            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Location = new Point(1708, 894);
             label2.Name = "label2";
-            label2.Size = new Size(44, 15);
+            label2.Size = new Size(68, 25);
             label2.TabIndex = 4;
             label2.Text = "Fecha:";
             // 
@@ -383,19 +375,18 @@
             // 
             lblFecha.AutoSize = true;
             lblFecha.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblFecha.Location = new Point(1194, 550);
-            lblFecha.Margin = new Padding(2, 0, 2, 0);
+            lblFecha.Location = new Point(1705, 916);
             lblFecha.Name = "lblFecha";
-            lblFecha.Size = new Size(52, 21);
+            lblFecha.Size = new Size(78, 32);
             lblFecha.TabIndex = 5;
             lblFecha.Text = "label3";
             // 
             // PantallaPrincipal
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(1329, 614);
+            ClientSize = new Size(1898, 1024);
             Controls.Add(lblFecha);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -404,7 +395,6 @@
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             KeyPreview = true;
-            Margin = new Padding(2, 2, 2, 2);
             Name = "PantallaPrincipal";
             Text = "Car Wash Leo";
             Load += PantallaPrincipal_Load;

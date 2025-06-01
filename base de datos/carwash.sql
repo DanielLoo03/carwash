@@ -56,4 +56,16 @@ CREATE TABLE cortecaja (
   diferencia decimal (7, 2) NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (idAdmin) REFERENCES administradores (id)
+  
+CREATE TABLE gastos (
+  id INT NOT NULL AUTO_INCREMENT,
+  fechaGasto DATETIME NOT NULL,
+  monto DECIMAL(7,2) NOT NULL,
+  tipoGasto ENUM('correspondencia', 'pago de recibos', 'ganancia', 'compra de productos', 'otros') NOT NULL,
+  descripcion VARCHAR(50),
+  idAdmin INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (idAdmin) REFERENCES administradores(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 );

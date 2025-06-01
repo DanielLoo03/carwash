@@ -314,5 +314,30 @@ BEGIN
         id = idParam;
 END $$
 
+/*Registro de Gastos*/
+CREATE PROCEDURE altaGasto (
+    IN fechaGasto DATETIME,
+    IN monto DECIMAL(7,2),
+    IN tipoGasto ENUM('correspondencia', 'pago de recibos', 'ganancia', 'compra de productos', 'otros'),
+    IN descripcion VARCHAR(50),
+    IN idAdmin INT
+)
+BEGIN
+    INSERT INTO gastos (
+        fechaGasto, 
+        monto, 
+        tipoGasto, 
+        descripcion, 
+        idAdmin
+    )
+    VALUES (
+        fechaGasto, 
+        monto, 
+        tipoGasto, 
+        descripcion, 
+        idAdmin
+    );
+END $$
+
 DELIMITER ;
 
