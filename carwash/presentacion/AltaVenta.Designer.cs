@@ -89,6 +89,7 @@
             // 
             // txtModeloCarro
             // 
+            txtModeloCarro.CharacterCasing = CharacterCasing.Upper;
             txtModeloCarro.Location = new Point(88, 274);
             txtModeloCarro.Name = "txtModeloCarro";
             txtModeloCarro.Size = new Size(557, 31);
@@ -96,6 +97,7 @@
             // 
             // txtMarcaCarro
             // 
+            txtMarcaCarro.CharacterCasing = CharacterCasing.Upper;
             txtMarcaCarro.Location = new Point(88, 184);
             txtMarcaCarro.Name = "txtMarcaCarro";
             txtMarcaCarro.Size = new Size(557, 31);
@@ -113,6 +115,7 @@
             // 
             // txtColorCarro
             // 
+            txtColorCarro.CharacterCasing = CharacterCasing.Upper;
             txtColorCarro.Location = new Point(88, 363);
             txtColorCarro.Name = "txtColorCarro";
             txtColorCarro.Size = new Size(557, 31);
