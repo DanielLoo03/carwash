@@ -62,7 +62,7 @@ CREATE TABLE gastos (
   fechaGasto DATETIME NOT NULL,
   monto DECIMAL(7,2) NOT NULL,
   tipoGasto ENUM('correspondencia', 'pago de recibos', 'ganancia', 'compra de productos', 'otros') NOT NULL,
-  descripcion VARCHAR(50),
+  descripcion VARCHAR(100),
   idAdmin INT NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (idAdmin) REFERENCES administradores(id)

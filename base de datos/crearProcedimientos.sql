@@ -319,7 +319,7 @@ CREATE PROCEDURE altaGasto (
     IN fechaGasto DATETIME,
     IN monto DECIMAL(7,2),
     IN tipoGasto ENUM('correspondencia', 'pago de recibos', 'ganancia', 'compra de productos', 'otros'),
-    IN descripcion VARCHAR(50),
+    IN descripcion VARCHAR(100),
     IN idAdmin INT
 )
 BEGIN
