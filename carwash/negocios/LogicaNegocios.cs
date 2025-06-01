@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Org.BouncyCastle.Tls.Crypto.Impl.BC;
+using persistencia;
 
 namespace negocios
 {
@@ -502,6 +503,32 @@ namespace negocios
 
         }
 
+        //Se consulta la fecha del último corte de caja realizado
+        public DateTime ConsFechaCorte()
+        {
+
+            //El resultado del query
+            DataTable resultado = corteService.ConsFechaCorte();
+
+            //Si no hay ningún corte de caja realizado anteriormente
+            if (resultado.Rows.Count == 0)
+            {
+
+                return DateTime.MinValue;
+
+            }
+            //Hay un corte de caja realizado anteriormente
+            else
+            {
+
+                //Se convierte el resultado al tipo de dato DateTime
+                DateTime fechaCorte = (DateTime)(resultado.Rows[0]["fechaCorte"]);
+                return fechaCorte;
+
+            }
+
+        }
+
         //Bloquear opciones de alta/mod/baja/cancelación en módulos de ventas y gastos al realizar corte
         public void BloqModulos(Button[] btns)
         {
@@ -530,6 +557,35 @@ namespace negocios
 
             }
 
+        }
+
+        //Se abre o cierra caja
+        //Si se encuentra abierta, se cierra. Si se encuentre cerrada, se abre.
+        public void ModEstadoCaja(bool estado)
+        {
+
+            corteService.ModEstadoCaja(estado);
+
+        }
+
+        //Consulta el estado de caja, abierto o cerrado
+        public Boolean ConsEstadoCaja() {
+
+            DataTable resultado = corteService.ConsEstadoCaja();
+
+            //Condición: Si caja se encuentra abierta
+            if ((bool)resultado.Rows[0]["estado"]) {
+
+                return true;
+            
+            }
+            //Condición: Si caja se encuentra cerrada
+            else {
+
+                return false;
+            
+            }
+        
         }
 
     }

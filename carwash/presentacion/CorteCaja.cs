@@ -17,6 +17,7 @@ namespace presentacion
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
         private InfoCorteCaja infoCorte = new InfoCorteCaja();
         private DateTime fecha = DateTime.Today.Date;
+        private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
         private string nomUsuario;
 
         public CorteCaja(string nomUsuario)
@@ -33,7 +34,7 @@ namespace presentacion
             if (logicaNegocios.YaHayCorte(txtContado))
             {
 
-                MessageBox.Show("Ya existe un corte de caja realizado el día " + fecha);
+                MessageBox.Show("Ya existe un corte de caja realizado el día de hoy.");
 
             }
             //Si no hay corte de caja en el día, permite realizarlo 
@@ -41,6 +42,14 @@ namespace presentacion
             {
 
                 AltaCorte vtnAltaCorte = new AltaCorte(infoCorte, nomUsuario);
+                //Se asocia evento a ventana de alta de corte
+                vtnAltaCorte.corteRealizado += (s, e) =>
+                {
+
+                    //Muestra los datos registrados 
+                    logicaNegocios.ConsCorte(tblCorte, DateTime.Today);
+
+                };
                 vtnAltaCorte.ShowDialog();
 
             }
@@ -71,6 +80,21 @@ namespace presentacion
 
             //Se realiza consulta respecto al día actual 
             dtFecha_ValueChanged(sender, e);
+
+            //Se establece que la fecha máximo a elegir es el día actual
+            dtFecha.MaxDate = DateTime.Today;
+
+            //Cada minuto se actualiza la fecha máxima
+            timer.Interval = 60000; //60 segundos
+            timer.Tick += Timer_Tick;
+            timer.Start();
+
+
+        }
+
+        private void Timer_Tick(object sender, EventArgs e) {
+
+            dtFecha.MaxDate = DateTime.Today;
 
         }
 

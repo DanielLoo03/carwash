@@ -19,6 +19,7 @@ namespace presentacion
         private Boolean cambioConTeclado = false;
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
         private ValidacionesUI validacionesUI = new ValidacionesUI();
+        public event EventHandler corteRealizado;
         private decimal calculado;
         private string nomUsuario;
 
@@ -220,6 +221,9 @@ namespace presentacion
                     //Para obtener el id del administrador que realiza el corte de caja
                     int idAdmin = (int)logicaNegocios.ObtenerIdAdmin(nomUsuario).Rows[0]["id"];
                     logicaNegocios.AltaCorte(DateTime.Today, idAdmin, decimal.Parse(txtContado.Text), decimal.Parse(txtCalculado.Text), decimal.Parse(txtDiferencia.Text));
+                    //Se registra en base de datos que se cerró caja
+                    logicaNegocios.ModEstadoCaja(false);
+                    corteRealizado?.Invoke(this, EventArgs.Empty);
                     Toast toastExito = new Toast("exito", "Corte de caja realizado con éxito");
                     toastExito.Show();
                     this.Close();

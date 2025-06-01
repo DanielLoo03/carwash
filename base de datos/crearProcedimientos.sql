@@ -286,6 +286,15 @@ BEGIN
     WHERE fechaCorte = fechaCorteParam;
 END $$
 
+/* Consultar la fecha del último corte de caja realizado */
+CREATE PROCEDURE consFechaCorte()
+BEGIN 
+    SELECT fechaCorte
+    FROM cortecaja
+    ORDER BY id DESC
+    LIMIT 1;  
+END $$
+
 /* Obtener el nombre de usuario según el id */
 CREATE PROCEDURE obtenerNomUsuario(
     IN idParam INT
@@ -303,6 +312,24 @@ BEGIN
     FROM cortecaja
     ORDER BY id DESC
     LIMIT 1;  
+END $$
+
+/* Abrir o cerrar caja */
+CREATE PROCEDURE modEstadoCaja(
+    IN estadoParam boolean
+)
+BEGIN
+    UPDATE configcaja
+    SET estado = estadoParam
+    WHERE tipoConfig = 'estadoCaja';
+END $$
+
+/* Consultar el estado de caja (abierto o cerrado) */
+CREATE PROCEDURE consEstadoCaja()
+BEGIN
+    SELECT estado
+    FROM configcaja
+    WHERE tipoConfig = 'estadoCaja';
 END $$
 
 DELIMITER ;

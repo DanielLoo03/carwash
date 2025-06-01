@@ -107,5 +107,56 @@ namespace persistencia
 
         }
 
+        public DataTable ConsFechaCorte()
+        {
+
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consFechaCorte",
+                CommandType = CommandType.StoredProcedure
+            };
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            return tabla;
+
+        }
+
+        public void ModEstadoCaja(bool estado)
+        {
+
+            comando = new MySqlCommand();
+
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "modEstadoCaja";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@estadoParam", estado);
+
+            comando.ExecuteNonQuery();
+            comando.Parameters.Clear();
+            conexion.CerrarConexion();
+
+        }
+
+        public DataTable ConsEstadoCaja() {
+
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consEstadoCaja",
+                CommandType = CommandType.StoredProcedure
+            };
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            return tabla;
+
+        }
+
     }
 }

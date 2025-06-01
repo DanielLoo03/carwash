@@ -151,12 +151,12 @@
             // 
             // dtFecha
             // 
+            dtFecha.Checked = false;
             dtFecha.Location = new Point(1442, 97);
-            dtFecha.MaxDate = new DateTime(2025, 5, 29, 0, 0, 0, 0);
+            dtFecha.MaxDate = new DateTime(2099, 12, 31, 0, 0, 0, 0);
             dtFecha.Name = "dtFecha";
             dtFecha.Size = new Size(332, 31);
             dtFecha.TabIndex = 25;
-            dtFecha.Value = new DateTime(2025, 5, 29, 0, 0, 0, 0);
             dtFecha.ValueChanged += dtFecha_ValueChanged;
             // 
             // imgFecha

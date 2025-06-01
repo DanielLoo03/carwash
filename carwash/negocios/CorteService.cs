@@ -45,5 +45,24 @@ namespace negocios
         
         }
 
+        public DataTable ConsFechaCorte()
+        {
+
+            return corteDAO.ConsFechaCorte();
+
+        }
+
+        public void ModEstadoCaja(bool estado) {
+
+            corteDAO.ModEstadoCaja(estado);
+        
+        }
+
+        public DataTable ConsEstadoCaja() {
+
+            return corteDAO.ConsEstadoCaja();
+        
+        }
+
     }
 }
