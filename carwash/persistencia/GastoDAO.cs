@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace persistencia
 {
-    internal class GastoDAO
+    public class GastoDAO
     {
         private Conexion conexion = new Conexion();
         private MySqlDataReader leer;
         private DataTable tabla = new DataTable();
         private MySqlCommand comando = new MySqlCommand();
 
-        public void AltaVenta(DateTime fechaGasto, decimal monto, string tipoGasto, string descripcion, int idAdmin)
+        public void AltaGasto(DateTime fechaGasto, decimal monto, string tipoGasto, string descripcion, int idAdmin)
         {
 
             comando = new MySqlCommand();

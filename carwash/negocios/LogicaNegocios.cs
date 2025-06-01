@@ -14,6 +14,7 @@ namespace negocios
         private EmpleadosService empleadosService = new EmpleadosService();
         private VentasService ventasService = new VentasService();
         private CorteService corteService = new CorteService();
+        private GastoService gastoService = new GastoService();
 
         //Valor de retorno: booleano que determina si el login fue exitoso o no exitoso
         public Boolean Login(String nombreUsuario, String contrasena)
@@ -451,6 +452,14 @@ namespace negocios
         public Boolean ModAdmin(int idAdmin, string nombreUsuario, string contrasena)
         {
             adminsService.ModAdmin(idAdmin, nombreUsuario, contrasena);
+            return true;
+        }
+
+        //Funciones de Gastos //
+
+        public Boolean AltaGasto(DateTime fechaGasto, decimal monto, string tipoGasto, string descripcion, int idAdmin)
+        {
+            gastoService.AltaGasto(fechaGasto, monto, tipoGasto, descripcion, idAdmin);
             return true;
         }
     }
