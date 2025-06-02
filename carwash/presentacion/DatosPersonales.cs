@@ -226,9 +226,19 @@ namespace presentacion
                 mtxtNumTelefono.Text = logicaNegocios.QuitarGuiones(infoEmpleado.NumTelefono);
 
             }
-            nudNumEmpleado.Text = infoEmpleado.NumEmpleado.ToString();
-
-            numEmpleadoActual = infoEmpleado.NumEmpleado;
+            if (accion.Equals("modificar"))
+            {
+                // En modo modificar, usamos el numEmpleado que llegó en infoEmpleado
+                nudNumEmpleado.Value = infoEmpleado.NumEmpleado;
+                numEmpleadoActual = infoEmpleado.NumEmpleado;
+            }
+            else
+            {
+                // En modo alta, pedimos a LogicaNegocios que calcule el siguiente número
+                int siguiente = logicaNegocios.CalcularNuevoNumEmpleado();
+                nudNumEmpleado.Value = siguiente;
+                numEmpleadoActual = siguiente;
+            }
 
         }
 

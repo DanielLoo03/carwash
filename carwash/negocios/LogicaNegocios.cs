@@ -458,5 +458,25 @@ namespace negocios
         {
             adminsService.BajaAdmin(idAdmin);
         }
+
+        public int CalcularNuevoNumEmpleado()
+        {
+            DataTable dtNums = GetNumsEmpleado();
+            if (dtNums.Rows.Count == 0)
+            {
+                return 1;
+            }
+            int maxNum = 0;
+            foreach (DataRow row in dtNums.Rows)
+            {
+                if (int.TryParse(row["numEmpleado"].ToString(), out int actual))
+                {
+                    if (actual > maxNum)
+                        maxNum = actual;
+                }
+            }
+            return maxNum + 1;
+        }
+
     }
 }
