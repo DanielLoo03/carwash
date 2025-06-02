@@ -64,5 +64,24 @@ namespace negocios
         
         }
 
+        public void ModContado(decimal contado)
+        {
+
+            corteDAO.ModContado(contado);
+
+        }
+
+        public void AltaBitacora(int idAdmin, DateTime fechaHora, string descripcion) {
+
+            corteDAO.AltaBitacora(idAdmin, fechaHora, descripcion);
+        
+        }
+
+        public DataTable ConsReap() {
+
+            return corteDAO.ConsReap();
+        
+        }
+
     }
 }

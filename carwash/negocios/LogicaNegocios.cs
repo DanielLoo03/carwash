@@ -582,5 +582,46 @@ namespace negocios
         
         }
 
+        //Modifica el valor del monto contado en el corte de caja reabierto 
+        public void ModContado(decimal contado) {
+
+            corteService.ModContado(contado);
+        
+        }
+
+        //Agrega un registro a la bitácora de reapertura de caja
+        public void AltaBitacora(int idAdmin, DateTime fechaHora, string descripcion) {
+
+            corteService.AltaBitacora(idAdmin, fechaHora, descripcion);
+        
+        }
+
+        //Consulta la reapertura de caja realizada hoy
+        public DataTable ConsReap() {
+
+            return corteService.ConsReap();
+        
+        }
+
+        //Permite o no permite realizar una reapertura de caja dependiendo de si ya se hizo una reapertura anteriormente durante el mismo día
+        public bool CanReap() {
+
+            DataTable reapHoy = ConsReap();
+
+            //Condición: Si hubo reapertura de caja hoy
+            if (reapHoy.Rows.Count != 0) {
+
+                return true;
+
+            }
+            //Condición: Si no hubo reapertura de caja hoy
+            else {
+
+                return false;
+            
+            }
+        
+        }
+
     }
 }
