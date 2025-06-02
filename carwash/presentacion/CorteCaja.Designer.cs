@@ -48,6 +48,7 @@
             lblContado = new Label();
             lblDatosCorte = new Label();
             txtContado = new TextBox();
+            button1 = new Button();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tblCorte).BeginInit();
@@ -57,6 +58,7 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
+            pnlCabecera.Controls.Add(button1);
             pnlCabecera.Controls.Add(lblCaja);
             pnlCabecera.Controls.Add(btnRealizarCorte);
             pnlCabecera.Controls.Add(lblCorte);
@@ -261,6 +263,22 @@
             txtContado.Size = new Size(227, 31);
             txtContado.TabIndex = 14;
             // 
+            // button1
+            // 
+            button1.BackColor = Color.FromArgb(63, 114, 175);
+            button1.FlatStyle = FlatStyle.Popup;
+            button1.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.White;
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.Location = new Point(1207, 32);
+            button1.Name = "button1";
+            button1.Size = new Size(225, 39);
+            button1.TabIndex = 8;
+            button1.Text = "Reabrir caja";
+            button1.TextAlign = ContentAlignment.MiddleRight;
+            button1.UseVisualStyleBackColor = false;
+            // 
             // CorteCaja
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -307,5 +325,6 @@
         private PictureBox imgFecha;
         private DataGridView tblCorte;
         private Label lblNoCorte;
+        private Button button1;
     }
 }
