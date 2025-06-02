@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using TextBox = System.Windows.Forms.TextBox;
 
 namespace presentacion
 {
@@ -44,12 +45,25 @@ namespace presentacion
             infoGasto.TipoGasto = cbTipoGas.SelectedItem.ToString();
             infoGasto.Descripcion = txtDesc.Text;
         }
-            
+
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             decimal mont = decimal.Parse(txtMont.Text.Trim());
             string tipoGas = cbTipoGas.SelectedItem.ToString();
             string desc = txtDesc.Text.Trim();
+
+            TextBox[] descripcion = { txtDesc };
+            if (validacionesUI.EvalTxtVacios(descripcion))
+            {
+                new Toast("error", " El campo de descripcion de usuario es obligatorio (debe ser llenado).").MostrarToast();
+                return;
+            }
+
+            if (validacionesUI.EvalCampoLimite(descripcion, 50))
+            {
+                new Toast("error", " El campo de descripcion no puede exceder los 100 caracteres.").MostrarToast();
+                return;
+            }
 
             if (tipo == "alta")
             {
@@ -60,14 +74,19 @@ namespace presentacion
                 new Toast("exito", "Registro de gasto realizado con exito.").MostrarToast();
                 this.Close();
             }
+            else if (tipo == "mod")
+            {
+
+            }
         }
 
         private void AltaModGasto_Load(object sender, EventArgs e)
         {
             cbTipoGas.DataSource = logicaNegocios.GetTiposGasto();
-            
-            if (tipo == "alta"){
-                
+
+            if (tipo == "alta")
+            {
+
                 //Si se trata de una alta el cbTipoGas estara seleccionado en la primera opcion
                 if (cbTipoGas.Items.Count > 0)
                 {
@@ -156,6 +175,18 @@ namespace presentacion
         {
             guardarDatos();
             this.Close();
+        }
+
+        private void txtDesc_TextChanged(object sender, EventArgs e)
+        {
+            // Guarda la posición actual del cursor
+            int pos = txtDesc.SelectionStart;
+
+            // Convierte todo el texto a mayúsculas
+            txtDesc.Text = txtDesc.Text.ToUpper();
+
+            // Restaura la posición del cursor
+            txtDesc.SelectionStart = pos;
         }
     }
 }

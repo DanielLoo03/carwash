@@ -154,11 +154,13 @@
             // txtDesc
             // 
             txtDesc.Location = new Point(154, 337);
+            txtDesc.MaxLength = 100;
             txtDesc.Multiline = true;
             txtDesc.Name = "txtDesc";
             txtDesc.ScrollBars = ScrollBars.Vertical;
             txtDesc.Size = new Size(416, 89);
             txtDesc.TabIndex = 86;
+            txtDesc.TextChanged += txtDesc_TextChanged;
             // 
             // cbTipoGas
             // 

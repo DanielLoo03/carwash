@@ -61,7 +61,7 @@ CREATE TABLE gastos (
   id INT NOT NULL AUTO_INCREMENT,
   fechaGasto DATETIME NOT NULL,
   monto DECIMAL(7,2) NOT NULL,
-  tipoGasto ENUM('correspondencia', 'pago de recibos', 'ganancia', 'compra de productos', 'otros') NOT NULL,
+  tipoGasto ENUM('CORRESPONDENCIA','GANANCIA', 'PAGO DE RECIBOS', 'COMPRA DE PRODUCTOS', 'OTROS') NOT NULL,
   descripcion VARCHAR(100),
   idAdmin INT NOT NULL,
   PRIMARY KEY (id),

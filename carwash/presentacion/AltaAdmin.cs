@@ -62,6 +62,7 @@ namespace presentacion
                 new Toast("error", "El campo de contraseña es obligatorio (debe ser llenado).").MostrarToast();
                 return;
             }
+
             TextBox[] contConfir = { txtNomUsuario, txtCont, txtConfCont };
             if (validacionesUI.EvalTxtVacios(contConfir))
             {

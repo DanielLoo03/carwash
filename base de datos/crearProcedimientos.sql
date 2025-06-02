@@ -318,7 +318,7 @@ END $$
 CREATE PROCEDURE altaGasto (
     IN fechaGasto DATETIME,
     IN monto DECIMAL(7,2),
-    IN tipoGasto ENUM('correspondencia', 'pago de recibos', 'ganancia', 'compra de productos', 'otros'),
+    IN tipoGasto VARCHAR(50),
     IN descripcion VARCHAR(100),
     IN idAdmin INT
 )
@@ -333,11 +333,10 @@ BEGIN
     VALUES (
         fechaGasto, 
         monto, 
-        tipoGasto, 
+        UPPER(tipoGasto),  -- Asegura que se inserte en mayúsculas
         descripcion, 
         idAdmin
     );
 END $$
-
 DELIMITER ;
 
