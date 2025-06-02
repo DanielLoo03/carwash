@@ -72,6 +72,10 @@ namespace presentacion
 
                 logicaNegocios.AltaGasto(fechaGasto, mont, tipoGas, desc, idAdmin);
                 new Toast("exito", "Registro de gasto realizado con exito.").MostrarToast();
+
+                txtMont.Text = "0.00";
+                txtDesc.Clear();
+                cbTipoGas.SelectedIndex = 0;
                 this.Close();
             }
             else if (tipo == "mod")
