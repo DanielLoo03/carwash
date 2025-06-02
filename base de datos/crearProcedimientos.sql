@@ -332,4 +332,43 @@ BEGIN
     WHERE tipoConfig = 'estadoCaja';
 END $$
 
+/* Modificar el valor del monto contado en el corte de caja */
+CREATE PROCEDURE modContado(
+    IN contadoParam decimal(7, 2)
+)
+BEGIN
+    UPDATE cortecaja
+    SET contado = contadoParam
+    WHERE id = (
+        SELECT MAX(id) FROM cortecaja
+    );
+END $$
+
+/* Dar de alta una registro en la bitacora */
+CREATE PROCEDURE altaBitacora(
+    IN idAdminParam int,
+    IN fechaHoraParam datetime,
+    IN descripcionParam TEXT
+)
+BEGIN 
+    INSERT INTO ventas (
+        idAdmin,
+        fechaHora,
+        descripcion
+    )
+    VALUES (
+        idAdminParam,
+        fechaHoraParam,
+        descripcionParam
+    );
+END $$
+
+/* Consultar si existe una reapertura de caja en el día actual */
+CREATE PROCEDURE consReap()
+BEGIN 
+    SELECT *
+    FROM bitacora
+    WHERE DATE(fechaHora) = CURDATE();
+END $$
+
 DELIMITER ;

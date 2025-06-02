@@ -50,7 +50,7 @@ CREATE TABLE configVentas (
 CREATE TABLE cortecaja (
   id int NOT NULL AUTO_INCREMENT,
   fechaCorte datetime NOT NULL UNIQUE,
-  idAdmin int NOT NULL UNIQUE,
+  idAdmin int NOT NULL,
   contado decimal (7, 2) NOT NULL,
   calculado decimal (7, 2) NOT NULL,
   diferencia decimal (7, 2) NOT NULL,
@@ -62,4 +62,13 @@ CREATE TABLE configcaja (
   tipoConfig varchar(50) NOT NULL,
   estado boolean NOT NULL DEFAULT 1,
   PRIMARY KEY (tipoConfig)
+)
+
+CREATE TABLE bitacora (
+  id int NOT NULL AUTO_INCREMENT,
+  idAdmin int NOT NULL,
+  fechaHora datetime NOT NULL UNIQUE,
+  descripcion TEXT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (idAdmin) REFERENCES administradores (id)
 )
