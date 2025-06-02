@@ -131,6 +131,7 @@
             btnGestionAdmins.Size = new Size(50, 50);
             btnGestionAdmins.TabIndex = 7;
             btnGestionAdmins.UseVisualStyleBackColor = false;
+            btnGestionAdmins.Click += imgGestionAdmins_Click;
             // 
             // lblAdminActual
             // 
@@ -154,6 +155,7 @@
             btnGastos.Size = new Size(50, 50);
             btnGastos.TabIndex = 6;
             btnGastos.UseVisualStyleBackColor = false;
+            btnGastos.Click += btnGastos_Click;
             // 
             // lblGestionAdmins
             // 

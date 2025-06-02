@@ -35,5 +35,38 @@ namespace persistencia
             conexion.CerrarConexion();
 
         }
+
+        public List<string> GetTiposGasto()
+        {
+            List<string> tiposGasto = new List<string>();
+
+            comando = new MySqlCommand();
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "obtenerTiposGasto";
+            comando.CommandType = CommandType.StoredProcedure;
+
+            MySqlDataReader reader = comando.ExecuteReader();
+
+            if (reader.Read())
+            {
+                // Obtiene: enum('ganancia','otros',...)
+                string enumDef = reader.GetString(0);
+
+                // Limpieza y separación
+                enumDef = enumDef.Replace("enum(", "").Replace(")", "").Replace("'", "");
+                string[] tipos = enumDef.Split(',');
+
+                foreach (string tipo in tipos)
+                {
+                    tiposGasto.Add(tipo.Trim());
+                }
+            }
+
+            reader.Close();
+            conexion.CerrarConexion();
+
+            return tiposGasto;
+        }
+
     }
 }

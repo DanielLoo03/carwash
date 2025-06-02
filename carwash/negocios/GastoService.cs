@@ -16,5 +16,10 @@ namespace negocios
         {
             gastoDAO.AltaGasto(fechaGasto, monto, tipoGasto, descripcion, idAdmin);
         }
+
+        public List<string> GetTiposGasto()
+        {
+            return gastoDAO.GetTiposGasto();
+        }
     }
 }

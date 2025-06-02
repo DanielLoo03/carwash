@@ -1,4 +1,5 @@
-﻿using System;
+﻿using negocios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,19 @@ namespace presentacion
 {
     public partial class GestionGasto : Form
     {
-        public GestionGasto()
+        private ValidacionesUI validacionesUI = new ValidacionesUI();
+        private InfoGasto infoGasto = new InfoGasto();
+        private string nomUsuario;
+        public GestionGasto(string nomUsuario)
         {
+            this.nomUsuario = nomUsuario;
             InitializeComponent();
+        }
+
+        private void btnAltaGas_Click(object sender, EventArgs e)
+        {
+            AltaModGasto vtnAltaModGasto = new AltaModGasto(infoGasto,"alta", nomUsuario);
+            vtnAltaModGasto.Show();
         }
     }
 }

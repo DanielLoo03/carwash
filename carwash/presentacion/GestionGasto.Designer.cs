@@ -30,49 +30,51 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionGasto));
             pnlCabecera = new Panel();
-            btnAltaEmpleado = new Button();
-            lblEmpleados = new Label();
+            btnAltaGas = new Button();
+            lblGastos = new Label();
             lblGestionDe = new Label();
+            pnlContenido = new Panel();
             pnlCabecera.SuspendLayout();
             SuspendLayout();
             // 
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
-            pnlCabecera.Controls.Add(btnAltaEmpleado);
-            pnlCabecera.Controls.Add(lblEmpleados);
+            pnlCabecera.Controls.Add(btnAltaGas);
+            pnlCabecera.Controls.Add(lblGastos);
             pnlCabecera.Controls.Add(lblGestionDe);
             pnlCabecera.Location = new Point(0, 0);
             pnlCabecera.Name = "pnlCabecera";
             pnlCabecera.Size = new Size(1820, 100);
             pnlCabecera.TabIndex = 3;
             // 
-            // btnAltaEmpleado
+            // btnAltaGas
             // 
-            btnAltaEmpleado.BackColor = Color.FromArgb(63, 114, 175);
-            btnAltaEmpleado.FlatStyle = FlatStyle.Popup;
-            btnAltaEmpleado.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAltaEmpleado.ForeColor = Color.White;
-            btnAltaEmpleado.Image = (Image)resources.GetObject("btnAltaEmpleado.Image");
-            btnAltaEmpleado.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAltaEmpleado.Location = new Point(1487, 32);
-            btnAltaEmpleado.Name = "btnAltaEmpleado";
-            btnAltaEmpleado.Size = new Size(225, 39);
-            btnAltaEmpleado.TabIndex = 2;
-            btnAltaEmpleado.Text = "Agregar Gasto";
-            btnAltaEmpleado.TextAlign = ContentAlignment.MiddleRight;
-            btnAltaEmpleado.UseVisualStyleBackColor = false;
+            btnAltaGas.BackColor = Color.FromArgb(63, 114, 175);
+            btnAltaGas.FlatStyle = FlatStyle.Popup;
+            btnAltaGas.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAltaGas.ForeColor = Color.White;
+            btnAltaGas.Image = (Image)resources.GetObject("btnAltaGas.Image");
+            btnAltaGas.ImageAlign = ContentAlignment.MiddleLeft;
+            btnAltaGas.Location = new Point(1487, 28);
+            btnAltaGas.Name = "btnAltaGas";
+            btnAltaGas.Size = new Size(225, 39);
+            btnAltaGas.TabIndex = 2;
+            btnAltaGas.Text = "Agregar Gasto";
+            btnAltaGas.TextAlign = ContentAlignment.MiddleRight;
+            btnAltaGas.UseVisualStyleBackColor = false;
+            btnAltaGas.Click += btnAltaGas_Click;
             // 
-            // lblEmpleados
+            // lblGastos
             // 
-            lblEmpleados.AutoSize = true;
-            lblEmpleados.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblEmpleados.ForeColor = Color.FromArgb(63, 114, 175);
-            lblEmpleados.Location = new Point(261, 28);
-            lblEmpleados.Name = "lblEmpleados";
-            lblEmpleados.Size = new Size(153, 46);
-            lblEmpleados.TabIndex = 1;
-            lblEmpleados.Text = "Gastos";
+            lblGastos.AutoSize = true;
+            lblGastos.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblGastos.ForeColor = Color.FromArgb(63, 114, 175);
+            lblGastos.Location = new Point(261, 28);
+            lblGastos.Name = "lblGastos";
+            lblGastos.Size = new Size(153, 46);
+            lblGastos.TabIndex = 1;
+            lblGastos.Text = "Gastos";
             // 
             // lblGestionDe
             // 
@@ -85,11 +87,21 @@
             lblGestionDe.TabIndex = 0;
             lblGestionDe.Text = "Gestión de ";
             // 
+            // pnlContenido
+            // 
+            pnlContenido.BackColor = SystemColors.Window;
+            pnlContenido.BorderStyle = BorderStyle.FixedSingle;
+            pnlContenido.Location = new Point(0, 100);
+            pnlContenido.Name = "pnlContenido";
+            pnlContenido.Size = new Size(1820, 547);
+            pnlContenido.TabIndex = 4;
+            // 
             // GestionGasto
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1820, 547);
+            ClientSize = new Size(1820, 647);
+            Controls.Add(pnlContenido);
             Controls.Add(pnlCabecera);
             FormBorderStyle = FormBorderStyle.None;
             Name = "GestionGasto";
@@ -102,8 +114,9 @@
         #endregion
 
         private Panel pnlCabecera;
-        private Button btnAltaEmpleado;
-        private Label lblEmpleados;
+        private Button btnAltaGas;
+        private Label lblGastos;
         private Label lblGestionDe;
+        private Panel pnlContenido;
     }
 }
