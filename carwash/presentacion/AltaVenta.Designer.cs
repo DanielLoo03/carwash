@@ -290,12 +290,11 @@
             btnConfirmarVenta.ForeColor = SystemColors.Window;
             btnConfirmarVenta.Image = (Image)resources.GetObject("btnConfirmarVenta.Image");
             btnConfirmarVenta.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConfirmarVenta.Location = new Point(442, 912);
+            btnConfirmarVenta.Location = new Point(88, 912);
             btnConfirmarVenta.Name = "btnConfirmarVenta";
-            btnConfirmarVenta.Size = new Size(203, 34);
+            btnConfirmarVenta.Size = new Size(557, 34);
             btnConfirmarVenta.TabIndex = 44;
             btnConfirmarVenta.Text = "Confirmar";
-            btnConfirmarVenta.TextAlign = ContentAlignment.MiddleRight;
             btnConfirmarVenta.UseVisualStyleBackColor = false;
             btnConfirmarVenta.Click += btnConfirmarVenta_Click;
             // 
