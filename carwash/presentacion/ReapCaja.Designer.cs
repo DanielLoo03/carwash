@@ -61,6 +61,7 @@
             btnRegresar.Size = new Size(40, 40);
             btnRegresar.TabIndex = 19;
             btnRegresar.UseVisualStyleBackColor = true;
+            btnRegresar.Click += btnRegresar_Click;
             // 
             // lblAdmin
             // 
@@ -96,6 +97,7 @@
             // 
             txtAdmin.Location = new Point(122, 231);
             txtAdmin.Name = "txtAdmin";
+            txtAdmin.ReadOnly = true;
             txtAdmin.Size = new Size(506, 31);
             txtAdmin.TabIndex = 30;
             // 
@@ -103,6 +105,7 @@
             // 
             txtFechaHora.Location = new Point(122, 328);
             txtFechaHora.Name = "txtFechaHora";
+            txtFechaHora.ReadOnly = true;
             txtFechaHora.Size = new Size(506, 31);
             txtFechaHora.TabIndex = 31;
             // 
@@ -140,6 +143,7 @@
             btnConfirmar.Text = "Confirmar";
             btnConfirmar.TextAlign = ContentAlignment.MiddleRight;
             btnConfirmar.UseVisualStyleBackColor = false;
+            btnConfirmar.Click += btnConfirmar_Click;
             // 
             // ReapCaja
             // 
@@ -161,6 +165,8 @@
             Name = "ReapCaja";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Car Wash Leo";
+            Load += ReapCaja_Load;
+            KeyDown += ReapCaja_KeyDown;
             ResumeLayout(false);
             PerformLayout();
         }

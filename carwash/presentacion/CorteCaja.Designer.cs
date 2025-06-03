@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CorteCaja));
             pnlCabecera = new Panel();
+            btnReapCaja = new Button();
             lblCaja = new Label();
             btnRealizarCorte = new Button();
             lblCorte = new Label();
@@ -48,7 +49,6 @@
             lblContado = new Label();
             lblDatosCorte = new Label();
             txtContado = new TextBox();
-            button1 = new Button();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tblCorte).BeginInit();
@@ -58,7 +58,7 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
-            pnlCabecera.Controls.Add(button1);
+            pnlCabecera.Controls.Add(btnReapCaja);
             pnlCabecera.Controls.Add(lblCaja);
             pnlCabecera.Controls.Add(btnRealizarCorte);
             pnlCabecera.Controls.Add(lblCorte);
@@ -66,6 +66,23 @@
             pnlCabecera.Name = "pnlCabecera";
             pnlCabecera.Size = new Size(1820, 100);
             pnlCabecera.TabIndex = 3;
+            // 
+            // btnReapCaja
+            // 
+            btnReapCaja.BackColor = Color.FromArgb(63, 114, 175);
+            btnReapCaja.FlatStyle = FlatStyle.Popup;
+            btnReapCaja.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnReapCaja.ForeColor = Color.White;
+            btnReapCaja.Image = (Image)resources.GetObject("btnReapCaja.Image");
+            btnReapCaja.ImageAlign = ContentAlignment.MiddleLeft;
+            btnReapCaja.Location = new Point(1207, 32);
+            btnReapCaja.Name = "btnReapCaja";
+            btnReapCaja.Size = new Size(225, 39);
+            btnReapCaja.TabIndex = 8;
+            btnReapCaja.Text = "Reabrir caja";
+            btnReapCaja.TextAlign = ContentAlignment.MiddleRight;
+            btnReapCaja.UseVisualStyleBackColor = false;
+            btnReapCaja.Click += btnReapCaja_Click;
             // 
             // lblCaja
             // 
@@ -263,22 +280,6 @@
             txtContado.Size = new Size(227, 31);
             txtContado.TabIndex = 14;
             // 
-            // button1
-            // 
-            button1.BackColor = Color.FromArgb(63, 114, 175);
-            button1.FlatStyle = FlatStyle.Popup;
-            button1.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(1207, 32);
-            button1.Name = "button1";
-            button1.Size = new Size(225, 39);
-            button1.TabIndex = 8;
-            button1.Text = "Reabrir caja";
-            button1.TextAlign = ContentAlignment.MiddleRight;
-            button1.UseVisualStyleBackColor = false;
-            // 
             // CorteCaja
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -325,6 +326,6 @@
         private PictureBox imgFecha;
         private DataGridView tblCorte;
         private Label lblNoCorte;
-        private Button button1;
+        private Button btnReapCaja;
     }
 }

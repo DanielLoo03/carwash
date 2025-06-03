@@ -247,7 +247,6 @@ CREATE PROCEDURE realizarCorte(
     IN contadoParam DECIMAL (7, 2),
     IN calculadoParam DECIMAL (7, 2),
     IN diferenciaParam DECIMAL (7, 2)
-    
 )
 BEGIN
     INSERT INTO cortecaja (
@@ -281,9 +280,30 @@ CREATE PROCEDURE consCorte(
     IN fechaCorteParam DATETIME
 )
 BEGIN
-    SELECT idAdmin, contado, calculado, diferencia 
+    SELECT id, idAdmin, contado, calculado, diferencia 
     FROM cortecaja
     WHERE fechaCorte = fechaCorteParam;
+END $$
+
+/* Modificar los datos del corte */
+CREATE PROCEDURE modCorte(
+    IN idParam INT,
+    IN fechaCorteParam DATE,
+    IN idAdminParam INT,
+    IN contadoParam DECIMAL (7, 2),
+    IN calculadoParam DECIMAL (7, 2),
+    IN diferenciaParam DECIMAL (7, 2)
+)
+BEGIN
+    UPDATE cortecaja 
+    SET
+        fechaCorte = fechaCorteParam,
+        idAdmin = idAdminParam,
+        contado = contadoParam,
+        calculado = calculadoParam,
+        diferencia = diferenciaParam
+    WHERE
+        id = idParam;
 END $$
 
 /* Consultar la fecha del último corte de caja realizado */
@@ -312,6 +332,15 @@ BEGIN
     FROM cortecaja
     ORDER BY id DESC
     LIMIT 1;  
+END $$
+
+/* Consultar el monto contado que existe en caja según el penúltimo corte de caja (se usa para cuando se hace corte proveniente de una reapertura) */
+CREATE PROCEDURE consCajaPen()
+BEGIN 
+    SELECT contado 
+    FROM cortecaja
+    ORDER BY id DESC
+    LIMIT 1 OFFSET 1;  
 END $$
 
 /* Abrir o cerrar caja */
@@ -351,7 +380,7 @@ CREATE PROCEDURE altaBitacora(
     IN descripcionParam TEXT
 )
 BEGIN 
-    INSERT INTO ventas (
+    INSERT INTO bitacora (
         idAdmin,
         fechaHora,
         descripcion

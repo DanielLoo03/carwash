@@ -348,7 +348,7 @@ namespace negocios
         //Calcular el monto total de ventas en el día
         public decimal CalcSistema(DataTable ventasNoCan) {
 
-            decimal totalVentas = 0;
+            decimal total = 0;
 
             //Si hubo al menos una venta en el día
             if(ventasNoCan.Rows.Count != 0) {
@@ -359,24 +359,44 @@ namespace negocios
 
                     if (decimal.TryParse(venta["precio"].ToString(), out decimal precio))
                     {
-                        totalVentas += precio;
+                        total += precio;
                     }
 
                 }
 
             }
 
-            //Considera el monto en caja contado en el corte anterior
-            decimal montoCaja = ConsCaja();
-            //Si hubo un corte de caja anterior
-            if (montoCaja != -1)
-            {
+            decimal montoCaja;
+            //Considera el monto en caja contado en el último (o penúltimo corte)
+            if (ConsReap().Rows.Count == 0) {
 
-                totalVentas += montoCaja;
+                montoCaja = ConsCaja();
+
+            }
+            else {
+
+                montoCaja = ConsCajaPen();
+
+            }
+            //Consulta la fecha del último corte de caja
+            DateTime fechaUltCorte = ConsFechaCorte();
+
+            //Si hubo un corte de caja anterior en un día anterior
+            if (montoCaja != -1 && fechaUltCorte != DateTime.Today) {
+
+                total += montoCaja;
+
+            }
+            //Si hubo un corte de caja anterior el día de hoy, y se realizó la reapertura de caja
+            else if (montoCaja != -1 && fechaUltCorte == DateTime.Today && ConsReap().Rows.Count != 0)
+            {
+                //Considera el monto en caja contado en el penúltimo corte
+                total += montoCaja;
 
             }
 
-            return totalVentas;
+            total = Math.Round(total, 2, MidpointRounding.AwayFromZero);
+            return total;
         
         }
 
@@ -384,6 +404,7 @@ namespace negocios
         public decimal CalcDif(decimal contado, decimal calculado) {
 
             decimal diferencia = contado - calculado;
+            diferencia = Math.Round(diferencia, 2, MidpointRounding.AwayFromZero);
             return diferencia;
         
         }
@@ -462,6 +483,19 @@ namespace negocios
 
         }
 
+        public DataTable ConsCorte(DateTime fechaCorte) {
+
+            return corteService.ConsCorte(fechaCorte);
+        
+        }
+
+        //Se modifican los datos del corte de caja
+        public void ModCorte(int id, DateTime fechaCorte, int idAdmin, decimal contado, decimal calculado, decimal diferencia) {
+
+            corteService.ModCorte(id, fechaCorte, idAdmin, contado, calculado, diferencia);
+        
+        }
+
         //Se obtiene el nombre de usuario según el id de administrador
         public string ObtNomUsuario(int id) {
 
@@ -488,6 +522,32 @@ namespace negocios
             }
             //Hay un corte de caja realizado anteriormente
             else {
+
+                //Se convierte el resultado al tipo de dato decimal
+                decimal contado = (decimal)(resultado.Rows[0]["contado"]);
+                return contado;
+
+            }
+
+        }
+
+        //Se consulta el dato Contado del penúltimo corte de caja realizado
+        public decimal ConsCajaPen()
+        {
+
+            //El resultado del query
+            DataTable resultado = corteService.ConsCajaPen();
+
+            //Si no hay ningún corte de caja realizado anteriormente
+            if (resultado.Rows.Count == 0)
+            {
+
+                return -1;
+
+            }
+            //Hay un corte de caja realizado anteriormente
+            else
+            {
 
                 //Se convierte el resultado al tipo de dato decimal
                 decimal contado = (decimal)(resultado.Rows[0]["contado"]);
