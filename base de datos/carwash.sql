@@ -57,3 +57,23 @@ CREATE TABLE cortecaja (
   PRIMARY KEY (id),
   FOREIGN KEY (idAdmin) REFERENCES administradores (id)
 );
+  
+  CREATE TABLE configcaja (
+  tipoConfig varchar(50) NOT NULL,
+  estado boolean NOT NULL DEFAULT 1,
+  PRIMARY KEY (tipoConfig)
+)
+
+CREATE TABLE gastos (
+  id INT NOT NULL AUTO_INCREMENT,
+  fechaGasto DATETIME NOT NULL,
+  monto DECIMAL(7,2) NOT NULL,
+  tipoGasto ENUM('CORRESPONDENCIA','GANANCIA', 'PAGO DE RECIBOS', 'COMPRA DE PRODUCTOS', 'OTROS') NOT NULL,
+  descripcion VARCHAR(100),
+  idAdmin INT NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (idAdmin) REFERENCES administradores(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
+);
+

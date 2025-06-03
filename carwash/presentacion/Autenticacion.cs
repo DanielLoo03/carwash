@@ -44,7 +44,7 @@ namespace presentacion
 
             if (txtPwd.Text.Length > 50)
             {
-                Toast toast = new Toast("error", "La contraseña no puede exceder 50 caracteres.");
+                Toast toast = new Toast("error", "La contraseï¿½a no puede exceder 50 caracteres.");
                 toast.Show();
             }
 
@@ -59,18 +59,17 @@ namespace presentacion
             TextBox[] textBoxesEvaluarCont = { txtPwd };
             if (validacionesUI.EvalTxtVacios(textBoxesEvaluarCont) == true)
             {
-                Toast toast = new Toast("error", "El campo de contraseña debe ser llenados.");
+                Toast toast = new Toast("error", "El campo de contraseï¿½a debe ser llenados.");
                 toast.Show();
                 return;
             }
 
             if (!logicaNegocios.CredencialesValidas(nombreUsr, pwd))
                 {
-                Toast toast = new Toast("error", "La contraseña es incorrecta.");
+                Toast toast = new Toast("error", "La contraseï¿½a es incorrecta.");
                 toast.Show();
                 return;
             }
-            
             
                 PantallaPrincipal vtnGestionEmpleados = new PantallaPrincipal(this, nombreUsr);
                 vtnGestionEmpleados.Show();
@@ -98,7 +97,7 @@ namespace presentacion
         {
             //Redondeo de pnlLogin
             int radioEsquinas = 20; //Redondeo de las esquinas
-            Rectangle areaPanel = pnlLogin.ClientRectangle; // área del panel
+            Rectangle areaPanel = pnlLogin.ClientRectangle; // ï¿½rea del panel
 
             using (GraphicsPath rutaRedondeada = PanelAndBotonRedondeado(areaPanel, radioEsquinas))
             {

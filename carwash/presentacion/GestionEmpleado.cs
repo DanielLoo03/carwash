@@ -17,6 +17,7 @@ namespace presentacion
         private InfoEmpleado infoEmpleadoMod = new InfoEmpleado();
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
+
         int numPagina = 1;
         int numIndice = 0;
         int numFilas = 10;

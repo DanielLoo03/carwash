@@ -314,6 +314,20 @@ BEGIN
         id = idParam;
 END $$
 
+CREATE PROCEDURE modAdmin(
+    IN idParam             INT,
+    IN nombreUsuarioParam  VARCHAR(50),
+    IN contrasenaParam     VARCHAR(50)
+)
+BEGIN
+    UPDATE administradores
+    SET
+        nombreUsuario = nombreUsuarioParam,
+        contrasena    = contrasenaParam
+    WHERE
+        id = idParam;
+END $$
+
 CREATE PROCEDURE bajaAdmin(
     IN idParam INT
 )
@@ -322,5 +336,29 @@ BEGIN
     WHERE id = idParam;
 END $$
 
-DELIMITER ;
+/*Registro de Gastos*/
+CREATE PROCEDURE altaGasto (
+    IN fechaGasto DATETIME,
+    IN monto DECIMAL(7,2),
+    IN tipoGasto VARCHAR(50),
+    IN descripcion VARCHAR(100),
+    IN idAdmin INT
+)
+BEGIN
+    INSERT INTO gastos (
+        fechaGasto, 
+        monto, 
+        tipoGasto, 
+        descripcion, 
+        idAdmin
+    )
+    VALUES (
+        fechaGasto, 
+        monto, 
+        UPPER(tipoGasto),  -- Asegura que se inserte en mayúsculas
+        descripcion, 
+        idAdmin
+    );
+END $$
 
+DELIMITER ;
