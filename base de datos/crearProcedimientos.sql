@@ -373,7 +373,7 @@ BEGIN
     );
 END $$
 
-/* Dar de alta una registro en la bitacora */
+/* Dar de alta una registro en la bitácora */
 CREATE PROCEDURE altaBitacora(
     IN idAdminParam int,
     IN fechaHoraParam datetime,
@@ -390,6 +390,16 @@ BEGIN
         fechaHoraParam,
         descripcionParam
     );
+END $$
+
+/* Consulta de los datos de la bitácora */
+CREATE PROCEDURE consBit(
+    IN fechaParam date
+)
+BEGIN 
+    SELECT * 
+    FROM bitacora
+    WHERE DATE(fechaHora) = fechaParam;
 END $$
 
 /* Consultar si existe una reapertura de caja en el día actual */

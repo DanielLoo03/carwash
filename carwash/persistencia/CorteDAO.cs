@@ -247,5 +247,24 @@ namespace persistencia
 
         }
 
+        public DataTable ConsBit(DateTime fecha)
+        {
+
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consBit",
+                CommandType = CommandType.StoredProcedure
+            };
+            comando.Parameters.AddWithValue("@fechaParam", fecha);
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            return tabla;
+
+        }
+
     }
 }
