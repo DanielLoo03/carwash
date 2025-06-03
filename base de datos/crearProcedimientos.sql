@@ -314,6 +314,28 @@ BEGIN
         id = idParam;
 END $$
 
+CREATE PROCEDURE modAdmin(
+    IN idParam             INT,
+    IN nombreUsuarioParam  VARCHAR(50),
+    IN contrasenaParam     VARCHAR(50)
+)
+BEGIN
+    UPDATE administradores
+    SET
+        nombreUsuario = nombreUsuarioParam,
+        contrasena    = contrasenaParam
+    WHERE
+        id = idParam;
+END $$
+
+CREATE PROCEDURE bajaAdmin(
+    IN idParam INT
+)
+BEGIN
+    DELETE FROM administradores
+    WHERE id = idParam;
+END $$
+
 /*Registro de Gastos*/
 CREATE PROCEDURE altaGasto (
     IN fechaGasto DATETIME,
