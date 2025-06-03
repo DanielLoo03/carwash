@@ -88,6 +88,16 @@ namespace presentacion
             lblGestionAdmins.Font = new Font(btnGestionEmpleados.Font, FontStyle.Underline);
         }
 
+        private void btnGastos_Click(object sender, EventArgs e)
+        {
+            CargarForm(new GestionGasto(nomUsuario));
+            lblGestionEmpleados.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblVentas.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblCorteCaja.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+            lblGastos.Font = new Font(btnGestionEmpleados.Font, FontStyle.Underline);
+            lblGestionAdmins.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
+        }
+
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             vtnAutenticacion.Show();
@@ -164,5 +174,7 @@ namespace presentacion
         {
             lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
         }
+
+       
     }
 }

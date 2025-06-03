@@ -16,6 +16,7 @@ namespace negocios
         private EmpleadosService empleadosService = new EmpleadosService();
         private VentasService ventasService = new VentasService();
         private CorteService corteService = new CorteService();
+        private GastoService gastoService = new GastoService();
 
         //Valor de retorno: booleano que determina si el login fue exitoso o no exitoso
         public Boolean Login(String nombreUsuario, String contrasena)
@@ -40,7 +41,8 @@ namespace negocios
         }
 
         //Convertir datos a mayúsculas
-        public string[] Mayusculas(params string[] datos) {
+        public string[] Mayusculas(params string[] datos)
+        {
 
             string[] resultado = new string[datos.Length];
 
@@ -52,37 +54,42 @@ namespace negocios
             }
 
             return resultado;
-        
-        } 
 
-        public Boolean AltaEmpleado(string nombres, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleado, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
+        }
+
+        public Boolean AltaEmpleado(string nombres, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleado, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal)
+        {
 
             string[] datosMayus = Mayusculas(nombres, apellidoPaterno, apellidoMaterno, numTelefono, calle, colonia, numExterior, numInterior, codigoPostal);
 
             empleadosService.InsertEmpleado(datosMayus[0], datosMayus[1], datosMayus[2], datosMayus[3], numEmpleado, fechaNacimiento, datosMayus[4], datosMayus[5], datosMayus[6], datosMayus[7], datosMayus[8]);
             return true;
-        
+
         }
 
-        public DataTable GetNumsEmpleado() {
+        public DataTable GetNumsEmpleado()
+        {
 
             return empleadosService.GetNumsEmpleado();
-        
+
         }
 
-        public Boolean ConsultEmpleados(DataGridView tblEmpleados) {
+        public Boolean ConsultEmpleados(DataGridView tblEmpleados)
+        {
 
             //Condición: Si la tabla resultante que contiene los empleados no está vacía
             //ConsultEmpleados() regresa un DataTable
             DataTable empleados = empleadosService.ConsultEmpleados();
             tblEmpleados.DataSource = empleados;
-            if (empleados.Rows.Count != 0) {
+            if (empleados.Rows.Count != 0)
+            {
 
                 return true;
 
             }
             //Si la tabla está vacía
-            else {
+            else
+            {
 
                 return false;
 
@@ -90,7 +97,8 @@ namespace negocios
 
         }
 
-        public Boolean ModEmpleados(string nombres, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleado, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal) {
+        public Boolean ModEmpleados(string nombres, string apellidoPaterno, string apellidoMaterno, string numTelefono, int numEmpleado, DateTime fechaNacimiento, string calle, string colonia, string numExterior, string numInterior, string codigoPostal)
+        {
 
             string[] datosMayus = Mayusculas(nombres, apellidoPaterno, apellidoMaterno, numTelefono, calle, colonia, numExterior, numInterior, codigoPostal);
 
@@ -106,7 +114,8 @@ namespace negocios
 
         }
 
-        public Boolean AltaVenta(string marcaCarro, string modeloCarro, string colorCarro, decimal precio, decimal gan, decimal corresp, int numEmp, DateTime fechaVenta) {
+        public Boolean AltaVenta(string marcaCarro, string modeloCarro, string colorCarro, decimal precio, decimal gan, decimal corresp, int numEmp, DateTime fechaVenta)
+        {
 
             string[] datosMayus = Mayusculas(marcaCarro, modeloCarro, colorCarro);
 
@@ -117,21 +126,23 @@ namespace negocios
 
         //por = porcentaje que ya se tiene calculado
         //tipoPor = si es el porcentaje de ganancia o de correspondencia
-        public int CalcPor(int por, string tipoPor) {
+        public int CalcPor(int por, string tipoPor)
+        {
 
             //otroPor = se calcula el porcentaje de ganancia/correspondencia
-            int otroPor = 100 - por; 
+            int otroPor = 100 - por;
 
             return otroPor;
-        
+
         }
 
         //Calcula la ganancia según el porcentaje de ganancia
-        public decimal CalcGan(decimal precio, decimal porGan) {
+        public decimal CalcGan(decimal precio, decimal porGan)
+        {
 
             decimal gan = precio * (porGan / 100);
             return gan;
-        
+
         }
 
         //Calcula la correspondencia según el porcentaje de correspondencia
@@ -144,13 +155,14 @@ namespace negocios
         }
 
         //Consulta el número de empleado
-        public int ConsNumEmp(string nom, string apellidoPaterno, string apellidoMaterno) {
+        public int ConsNumEmp(string nom, string apellidoPaterno, string apellidoMaterno)
+        {
 
             //resultCons almacena el nombre de empleado en forma de DataTable, ya que viene de hacerse una consulta de MySQL
             DataTable resultCons = ventasService.ConsNumEmp(nom, apellidoPaterno, apellidoMaterno);
             int numEmp = (int)resultCons.Rows[0]["numEmpleado"];
             return numEmp;
-        
+
         }
 
         //Consulta el nombre de empleado
@@ -183,7 +195,8 @@ namespace negocios
         }
 
         //Consulta los porcentajes de ganancia y correspondencia actuales
-        public int[] ConsPor() {
+        public int[] ConsPor()
+        {
 
             DataTable resultQuery = ventasService.ConsPor();
 
@@ -206,8 +219,9 @@ namespace negocios
         }
 
         //Consulta todos los números de empleados
-        public DataTable ConsNomEmpleados() { 
-        
+        public DataTable ConsNomEmpleados()
+        {
+
             return ventasService.ConsNomCompletos();
 
         }
@@ -251,21 +265,24 @@ namespace negocios
             return ventasService.ConsVentasNoCan(fecha);
         }
 
-        public bool DecidirConsVenta(DataGridView tblVentas, DateTime fecha, bool canceladas) {
+        public bool DecidirConsVenta(DataGridView tblVentas, DateTime fecha, bool canceladas)
+        {
 
             //Si se quiere mostrar las ventas incluidas las canceladas
-            if (canceladas) {
+            if (canceladas)
+            {
 
                 return ConsVentas(tblVentas, fecha);
 
             }
             //Si se quieren mostrar las ventas salvo las canceladas
-            else {
+            else
+            {
 
                 return ConsVentasNoCan(tblVentas, fecha);
 
             }
-        
+
         }
 
         public decimal CalcMontosTotal(DataGridView tblVentas, string col)
@@ -287,7 +304,8 @@ namespace negocios
         }
 
         //Formatea el número de teléfono con guiones
-        public string FormatNumTelefono(string numTelefono) {
+        public string FormatNumTelefono(string numTelefono)
+        {
 
             string primeraParte = numTelefono.Substring(0, 3);
             string segundaParte = numTelefono.Substring(3, 3);
@@ -299,13 +317,15 @@ namespace negocios
         }
 
         //Se quitan los guiones del número de teléfono antes de cargarlo en los formularios de empleados
-        public string QuitarGuiones(string numTelefono) {
+        public string QuitarGuiones(string numTelefono)
+        {
 
             return numTelefono.Replace("-", "");
-        
+
         }
 
-        public void modVenta(int id, string marcaCarro, string modeloCarro, string colorCarro, int numEmp) {
+        public void modVenta(int id, string marcaCarro, string modeloCarro, string colorCarro, int numEmp)
+        {
 
             string[] datosMayus = Mayusculas(marcaCarro, modeloCarro, colorCarro);
 
@@ -313,26 +333,30 @@ namespace negocios
 
         }
 
-        public void CanVenta(int id) {
+        public void CanVenta(int id)
+        {
 
             ventasService.CanVenta(id);
-        
+
         }
 
         //Consultar si una venta ya se encuentra cancelada
-        public Boolean VentaEsCan(DataGridViewRow fila) {
+        public Boolean VentaEsCan(DataGridViewRow fila)
+        {
 
-            if ((bool)fila.Cells["cancelado"].Value) {
+            if ((bool)fila.Cells["cancelado"].Value)
+            {
 
                 return true;
 
             }
-            else {
+            else
+            {
 
                 return false;
-            
+
             }
-        
+
         }
 
         public void AltaCorte(DateTime fechaCorte, int idAdmin, decimal contado, decimal calculado, decimal diferencia)
@@ -343,14 +367,16 @@ namespace negocios
         }
 
         //Obtener Id del admin que realiza el corte de caja
-        public DataTable ObtenerIdAdmin(string nombreUsuario) {
+        public DataTable ObtenerIdAdmin(string nombreUsuario)
+        {
 
             return corteService.ObtenerIdAdmin(nombreUsuario);
-        
+
         }
 
         //Calcular el monto total de ventas en el día
-        public decimal CalcSistema(DataTable ventasNoCan) {
+        public decimal CalcSistema(DataTable ventasNoCan)
+        {
 
             decimal totalVentas = 0;
 
@@ -381,20 +407,22 @@ namespace negocios
             }
 
             return totalVentas;
-        
+
         }
 
         //Calcular la diferencia entre el monto contado por el admin y el monto calculado por el sistema
-        public decimal CalcDif(decimal contado, decimal calculado) {
+        public decimal CalcDif(decimal contado, decimal calculado)
+        {
 
             decimal diferencia = contado - calculado;
             return diferencia;
-        
+
         }
 
         //Determina el estado de la diferencia, es decir, 
         //NOTA: No se usa switch porque no se pueden usar operadores relacionales en los casos
-        public string EstadoDif(decimal diferencia) {
+        public string EstadoDif(decimal diferencia)
+        {
 
 
             if (diferencia == 0)
@@ -403,22 +431,25 @@ namespace negocios
                 return "cuadrada";
 
             }
-            else if (diferencia < 0) {
+            else if (diferencia < 0)
+            {
 
                 return "faltante";
 
             }
-            else if (diferencia > 0) {
+            else if (diferencia > 0)
+            {
 
                 return "sobrante";
 
             }
-            else {
+            else
+            {
 
                 return "Valor inesperado";
 
             }
-                
+
 
         }
 
@@ -603,9 +634,22 @@ namespace negocios
             return true;
         }
 
+        //Funciones de Gastos //
+
+        public Boolean AltaGasto(DateTime fechaGasto, decimal monto, string tipoGasto, string descripcion, int idAdmin)
+        {
+            gastoService.AltaGasto(fechaGasto, monto, tipoGasto, descripcion, idAdmin);
+            return true;
+        }
+
         public void BajaAdmin(int idAdmin)
         {
             adminsService.BajaAdmin(idAdmin);
+        }
+
+        public List<string> GetTiposGasto()
+        {
+            return gastoService.GetTiposGasto();
         }
     }
 }
