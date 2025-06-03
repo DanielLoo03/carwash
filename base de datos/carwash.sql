@@ -56,16 +56,7 @@ CREATE TABLE cortecaja (
   diferencia decimal (7, 2) NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (idAdmin) REFERENCES administradores (id)
-<<<<<<< HEAD
 );
-
-CREATE TABLE configcaja (
-  tipoConfig varchar(50) NOT NULL,
-  estado boolean NOT NULL DEFAULT 1,
-  PRIMARY KEY (tipoConfig)
-)
-=======
-  
   
   CREATE TABLE configcaja (
   tipoConfig varchar(50) NOT NULL,
@@ -85,4 +76,4 @@ CREATE TABLE gastos (
     ON DELETE CASCADE
     ON UPDATE CASCADE
 );
->>>>>>> Gilberto-Monge
+

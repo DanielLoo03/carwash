@@ -314,8 +314,6 @@ BEGIN
         id = idParam;
 END $$
 
-<<<<<<< HEAD
-=======
 CREATE PROCEDURE modAdmin(
     IN idParam             INT,
     IN nombreUsuarioParam  VARCHAR(50),
@@ -330,7 +328,6 @@ BEGIN
         id = idParam;
 END $$
 
->>>>>>> Gilberto-Monge
 CREATE PROCEDURE bajaAdmin(
     IN idParam INT
 )
@@ -338,8 +335,6 @@ BEGIN
     DELETE FROM administradores
     WHERE id = idParam;
 END $$
-<<<<<<< HEAD
-=======
 
 /*Registro de Gastos*/
 CREATE PROCEDURE altaGasto (
@@ -365,7 +360,5 @@ BEGIN
         idAdmin
     );
 END $$
-DELIMITER ;
->>>>>>> Gilberto-Monge
 
 DELIMITER ;
