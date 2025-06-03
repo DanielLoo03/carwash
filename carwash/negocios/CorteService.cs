@@ -97,5 +97,12 @@ namespace negocios
         
         }
 
+        public DataTable ConsBit(DateTime fecha)
+        {
+
+            return corteDAO.ConsBit(fecha);
+
+        }
+
     }
 }

@@ -683,5 +683,13 @@ namespace negocios
         
         }
 
+        //Consulta el registro de la bitácora (que contiene datos de la reapertura) según la fecha
+        public DataTable ConsBit(DateTime fecha)
+        {
+
+            return corteService.ConsBit(fecha);
+
+        }
+
     }
 }
