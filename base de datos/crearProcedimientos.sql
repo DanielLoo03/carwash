@@ -271,7 +271,6 @@ CREATE PROCEDURE realizarCorte(
     IN contadoParam DECIMAL (7, 2),
     IN calculadoParam DECIMAL (7, 2),
     IN diferenciaParam DECIMAL (7, 2)
-    
 )
 BEGIN
     INSERT INTO cortecaja (
@@ -306,6 +305,7 @@ CREATE PROCEDURE modAdmin(
     IN contrasenaParam     VARCHAR(50)
 )
 BEGIN
+<<<<<<< HEAD
     UPDATE administradores
     SET
         nombreUsuario = nombreUsuarioParam,
@@ -326,6 +326,41 @@ BEGIN
         contrasena    = contrasenaParam
     WHERE
         id = idParam;
+=======
+    SELECT id, idAdmin, contado, calculado, diferencia 
+    FROM cortecaja
+    WHERE fechaCorte = fechaCorteParam;
+END $$
+
+/* Modificar los datos del corte */
+CREATE PROCEDURE modCorte(
+    IN idParam INT,
+    IN fechaCorteParam DATE,
+    IN idAdminParam INT,
+    IN contadoParam DECIMAL (7, 2),
+    IN calculadoParam DECIMAL (7, 2),
+    IN diferenciaParam DECIMAL (7, 2)
+)
+BEGIN
+    UPDATE cortecaja 
+    SET
+        fechaCorte = fechaCorteParam,
+        idAdmin = idAdminParam,
+        contado = contadoParam,
+        calculado = calculadoParam,
+        diferencia = diferenciaParam
+    WHERE
+        id = idParam;
+END $$
+
+/* Consultar la fecha del último corte de caja realizado */
+CREATE PROCEDURE consFechaCorte()
+BEGIN 
+    SELECT fechaCorte
+    FROM cortecaja
+    ORDER BY id DESC
+    LIMIT 1;  
+>>>>>>> Daniel-Loo
 END $$
 
 CREATE PROCEDURE bajaAdmin(
@@ -359,6 +394,84 @@ BEGIN
         descripcion, 
         idAdmin
     );
+END $$
+
+/* Consultar el monto contado que existe en caja según el último corte de caja */
+CREATE PROCEDURE consCaja()
+BEGIN 
+    SELECT contado 
+    FROM cortecaja
+    ORDER BY id DESC
+    LIMIT 1;  
+END $$
+
+/* Consultar el monto contado que existe en caja según el penúltimo corte de caja (se usa para cuando se hace corte proveniente de una reapertura) */
+CREATE PROCEDURE consCajaPen()
+BEGIN 
+    SELECT contado 
+    FROM cortecaja
+    ORDER BY id DESC
+    LIMIT 1 OFFSET 1;  
+END $$
+
+/* Abrir o cerrar caja */
+CREATE PROCEDURE modEstadoCaja(
+    IN estadoParam boolean
+)
+BEGIN
+    INSERT INTO gastos (
+        fechaGasto, 
+        monto, 
+        tipoGasto, 
+        descripcion, 
+        idAdmin
+    )
+    VALUES (
+        fechaGasto, 
+        monto, 
+        UPPER(tipoGasto),  -- Asegura que se inserte en mayúsculas
+        descripcion, 
+        idAdmin
+    );
+END $$
+
+/* Modificar el valor del monto contado en el corte de caja */
+CREATE PROCEDURE modContado(
+    IN contadoParam decimal(7, 2)
+)
+BEGIN
+    UPDATE cortecaja
+    SET contado = contadoParam
+    WHERE id = (
+        SELECT MAX(id) FROM cortecaja
+    );
+END $$
+
+/* Dar de alta una registro en la bitacora */
+CREATE PROCEDURE altaBitacora(
+    IN idAdminParam int,
+    IN fechaHoraParam datetime,
+    IN descripcionParam TEXT
+)
+BEGIN 
+    INSERT INTO bitacora (
+        idAdmin,
+        fechaHora,
+        descripcion
+    )
+    VALUES (
+        idAdminParam,
+        fechaHoraParam,
+        descripcionParam
+    );
+END $$
+
+/* Consultar si existe una reapertura de caja en el día actual */
+CREATE PROCEDURE consReap()
+BEGIN 
+    SELECT *
+    FROM bitacora
+    WHERE DATE(fechaHora) = CURDATE();
 END $$
 
 DELIMITER ;

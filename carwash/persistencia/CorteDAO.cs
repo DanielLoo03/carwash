@@ -24,7 +24,7 @@ namespace persistencia
             comando.Connection = conexion.AbrirConexion();
             comando.CommandText = "realizarCorte";
             comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("fechaCorteParam", fechaCorte);
+            comando.Parameters.AddWithValue("@fechaCorteParam", fechaCorte);
             comando.Parameters.AddWithValue("@idAdminParam", idAdmin);
             comando.Parameters.AddWithValue("@contadoParam", contado);
             comando.Parameters.AddWithValue("@calculadoParam", calculado);
@@ -72,6 +72,27 @@ namespace persistencia
 
         }
 
+        public void ModCorte(int id, DateTime fechaCorte, int idAdmin, decimal contado, decimal calculado, decimal diferencia)
+        {
+
+            comando = new MySqlCommand();
+
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "modCorte";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idParam", id);
+            comando.Parameters.AddWithValue("@fechaCorteParam", fechaCorte);
+            comando.Parameters.AddWithValue("@idAdminParam", idAdmin);
+            comando.Parameters.AddWithValue("@contadoParam", contado);
+            comando.Parameters.AddWithValue("@calculadoParam", calculado);
+            comando.Parameters.AddWithValue("@diferenciaParam", diferencia);
+
+            comando.ExecuteNonQuery(); //Es NonQuery ya que un UPDATE no regresa valores como lo haría un SELECT
+            comando.Parameters.Clear();
+            conexion.CerrarConexion();
+
+        }
+
         public DataTable ObtNomUsuario(int id) {
 
             tabla = new DataTable();
@@ -97,6 +118,24 @@ namespace persistencia
             {
                 Connection = conexion.AbrirConexion(),
                 CommandText = "consCaja",
+                CommandType = CommandType.StoredProcedure
+            };
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            return tabla;
+
+        }
+
+        public DataTable ConsCajaPen()
+        {
+
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consCajaPen",
                 CommandType = CommandType.StoredProcedure
             };
 
@@ -148,6 +187,56 @@ namespace persistencia
             {
                 Connection = conexion.AbrirConexion(),
                 CommandText = "consEstadoCaja",
+                CommandType = CommandType.StoredProcedure
+            };
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            return tabla;
+
+        }
+
+        public void ModContado(decimal contado)
+        {
+
+            comando = new MySqlCommand();
+
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "modContado";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@contadoParam", contado);
+
+            comando.ExecuteNonQuery();
+            comando.Parameters.Clear();
+            conexion.CerrarConexion();
+
+        }
+
+        public void AltaBitacora(int idAdmin, DateTime fechaHora, string descripcion) {
+
+            comando = new MySqlCommand();
+
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "altaBitacora";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idAdminParam", idAdmin);
+            comando.Parameters.AddWithValue("@fechaHoraParam", fechaHora);
+            comando.Parameters.AddWithValue("@descripcionParam", descripcion);
+
+            comando.ExecuteNonQuery();
+            comando.Parameters.Clear();
+            conexion.CerrarConexion();
+
+        }
+
+        public DataTable ConsReap() {
+
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consReap",
                 CommandType = CommandType.StoredProcedure
             };
 

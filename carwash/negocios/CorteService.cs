@@ -33,6 +33,13 @@ namespace negocios
         
         }
 
+        public void ModCorte(int id, DateTime fechaCorte, int idAdmin, decimal contado, decimal calculado, decimal diferencia)
+        {
+
+            corteDAO.ModCorte(id, fechaCorte, idAdmin, contado, calculado, diferencia);
+
+        }
+
         public DataTable ObtNomUsuario(int id) {
 
             return corteDAO.ObtNomUsuario(id);
@@ -43,6 +50,13 @@ namespace negocios
 
             return corteDAO.ConsCaja();
         
+        }
+
+        public DataTable ConsCajaPen()
+        {
+
+            return corteDAO.ConsCajaPen();
+
         }
 
         public DataTable ConsFechaCorte()
@@ -61,6 +75,25 @@ namespace negocios
         public DataTable ConsEstadoCaja() {
 
             return corteDAO.ConsEstadoCaja();
+        
+        }
+
+        public void ModContado(decimal contado)
+        {
+
+            corteDAO.ModContado(contado);
+
+        }
+
+        public void AltaBitacora(int idAdmin, DateTime fechaHora, string descripcion) {
+
+            corteDAO.AltaBitacora(idAdmin, fechaHora, descripcion);
+        
+        }
+
+        public DataTable ConsReap() {
+
+            return corteDAO.ConsReap();
         
         }
 
