@@ -70,7 +70,7 @@ namespace presentacion
             if (validacionesUI.EvalTxtVacios(textBoxesCalle))
             {
 
-                Toast toast = new Toast("error", "El campos de calle es obligatorio y debe ser llenado");
+                Toast toast = new Toast("error", "El campo de calle es obligatorio y debe ser llenado");
                 toast.Show();
                 errorCapturado = true;
                 return;
@@ -79,7 +79,7 @@ namespace presentacion
             if (validacionesUI.EvalTxtChars(textBoxesCalle, 50))
             {
 
-                Toast toast = new Toast("error", "El campos de calle no pueden exceder los 50 caracteres.");
+                Toast toast = new Toast("error", "El campo de calle no pueden exceder los 50 caracteres.");
                 toast.Show();
                 errorCapturado = true;
 
@@ -110,7 +110,7 @@ namespace presentacion
             if (validacionesUI.EvalTxtChars(textBoxNumE, 4))
             {
 
-                Toast toast = new Toast("error", "El camo de número exterior no pueden exceder los 4 caracteres.");
+                Toast toast = new Toast("error", "El campo de número exterior no pueden exceder los 4 caracteres.");
                 toast.Show();
                 errorCapturado = true;
                 return;
@@ -123,7 +123,7 @@ namespace presentacion
                 if (Regex.IsMatch(textBox.Text, @"[^0-9]"))
                 {
 
-                    Toast toast = new Toast("error", "El campos número exterior solo debe consistir de dígitos.");
+                    Toast toast = new Toast("error", "El campo número exterior solo debe consistir de dígitos.");
                     toast.Show();
                     errorCapturado = true;
                     return;
@@ -150,7 +150,7 @@ namespace presentacion
                 if (Regex.IsMatch(textBox.Text, @"[^0-9]"))
                 {
 
-                    Toast toast = new Toast("error", "El campos número interior solo debe consistir de dígitos.");
+                    Toast toast = new Toast("error", "El campo número interior solo debe consistir de dígitos.");
                     toast.Show();
                     errorCapturado = true;
                     return;
@@ -174,11 +174,10 @@ namespace presentacion
             foreach (TextBox textBox in textBoxesNumPo)
             {
 
-                //El segundo parámetro es una expresión regular que considera todos los caracteres que no sean dígitos
                 if (Regex.IsMatch(textBox.Text, @"[^0-9]"))
                 {
 
-                    Toast toast = new Toast("error", "El campos código postal solo debe consistir de dígitos.");
+                    Toast toast = new Toast("error", "El campo código postal solo debe consistir de dígitos.");
                     toast.Show();
                     errorCapturado = true;
                     return;
@@ -190,22 +189,13 @@ namespace presentacion
             if (validacionesUI.EvalCodigoPostal(txtCodigoPostal.Text))
             {
 
-                Toast toast = new Toast("error", "Código postal inválido.");
-                toast.Show();
-                errorCapturado = true;
-                return;
-
-            }
-
-            if (txtCodigoPostal.Text.Length != 5)
-            {
-
                 Toast toast = new Toast("error", "El código postal debe consistir de 5 dígitos.");
                 toast.Show();
                 errorCapturado = true;
                 return;
 
             }
+
 
             //Fin validaciones
 

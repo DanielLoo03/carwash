@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionAdmin));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pnlCabecera = new Panel();
             btnBajaAdmins = new Button();
             btnAltaAdmin = new Button();
@@ -54,11 +54,11 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
+            pnlCabecera.Controls.Add(lblAdmins);
             pnlCabecera.Controls.Add(btnBajaAdmins);
             pnlCabecera.Controls.Add(btnAltaAdmin);
             pnlCabecera.Controls.Add(btnModAdmin);
             pnlCabecera.Controls.Add(lblGestionDe);
-            pnlCabecera.Controls.Add(lblAdmins);
             pnlCabecera.Location = new Point(0, 0);
             pnlCabecera.Name = "pnlCabecera";
             pnlCabecera.Size = new Size(1820, 100);
@@ -131,7 +131,7 @@
             lblAdmins.AutoSize = true;
             lblAdmins.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblAdmins.ForeColor = Color.FromArgb(63, 114, 175);
-            lblAdmins.Location = new Point(247, 28);
+            lblAdmins.Location = new Point(231, 28);
             lblAdmins.Name = "lblAdmins";
             lblAdmins.Size = new Size(323, 46);
             lblAdmins.TabIndex = 1;
@@ -220,14 +220,14 @@
             tblAdmins.AllowUserToAddRows = false;
             tblAdmins.AllowUserToDeleteRows = false;
             tblAdmins.BackgroundColor = Color.White;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            tblAdmins.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            tblAdmins.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tblAdmins.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tblAdmins.Location = new Point(392, -1);
             tblAdmins.MultiSelect = false;

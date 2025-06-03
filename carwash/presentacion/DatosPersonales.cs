@@ -72,7 +72,7 @@ namespace presentacion
             if (validacionesUI.EvalTxtChars(textBoxesNom, 50))
             {
 
-                Toast toast = new Toast("error", "El campos nombres de empleado no admiten más de 50 caracteres");
+                Toast toast = new Toast("error", "El campo nombres de empleado no admiten más de 50 caracteres");
                 toast.Show();
                 errorCapturado = true;
                 return;
@@ -80,7 +80,7 @@ namespace presentacion
             if (validacionesUI.EvalTxtCharsEspecial(textBoxesNom))
             {
 
-                Toast toast = new Toast("error", "El campos nombre de empleado no deben incluir caracteres especiales ni dígitos (!, @, #, 0, 1 etc.)");
+                Toast toast = new Toast("error", "El campo nombre de empleado no deben incluir caracteres especiales ni dígitos (!, @, #, 0, 1 etc.)");
                 toast.Show();
                 errorCapturado = true;
                 return;
@@ -100,7 +100,7 @@ namespace presentacion
             if (validacionesUI.EvalTxtChars(textBoxesAP, 50))
             {
 
-                Toast toast = new Toast("error", "El campos apellido paterno no admiten más de 50 caracteres");
+                Toast toast = new Toast("error", "El campo apellido paterno no admiten más de 50 caracteres");
                 toast.Show();
                 errorCapturado = true;
                 return;
@@ -128,7 +128,7 @@ namespace presentacion
             if (validacionesUI.EvalTxtChars(textBoxesAM, 50))
             {
 
-                Toast toast = new Toast("error", "El campos apellido materno no admiten más de 50 caracteres");
+                Toast toast = new Toast("error", "El campo apellido materno no admiten más de 50 caracteres");
                 toast.Show();
                 errorCapturado = true;
                 return;
@@ -136,7 +136,7 @@ namespace presentacion
             if (validacionesUI.EvalTxtCharsEspecial(textBoxesAM))
             {
 
-                Toast toast = new Toast("error", "El campos apellido materno no deben incluir caracteres especiales ni dígitos (!, @, #, 0, 1 etc.)");
+                Toast toast = new Toast("error", "El campo apellido materno no deben incluir caracteres especiales ni dígitos (!, @, #, 0, 1 etc.)");
                 toast.Show();
                 errorCapturado = true;
                 return;

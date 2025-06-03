@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionEmpleado));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            tblEmpleados = new DataGridView();
             pnlCabecera = new Panel();
             btnBajaEmpleado = new Button();
             btnModEmpleado = new Button();
@@ -37,12 +38,41 @@
             lblEmpleados = new Label();
             lblGestionDe = new Label();
             pnlContenido = new Panel();
+            txtPaginaFinal = new TextBox();
+            cbPagina = new ComboBox();
+            txtNumregistros = new TextBox();
+            lblIndicador = new Label();
+            lblPagina = new Label();
+            lblNumRegistro = new Label();
             lblNoEmpleados = new Label();
-            tblEmpleados = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)tblEmpleados).BeginInit();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)tblEmpleados).BeginInit();
             SuspendLayout();
+            // 
+            // tblEmpleados
+            // 
+            tblEmpleados.AllowUserToAddRows = false;
+            tblEmpleados.AllowUserToDeleteRows = false;
+            tblEmpleados.BackgroundColor = Color.White;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            tblEmpleados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            tblEmpleados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tblEmpleados.Location = new Point(28, 74);
+            tblEmpleados.MultiSelect = false;
+            tblEmpleados.Name = "tblEmpleados";
+            tblEmpleados.ReadOnly = true;
+            tblEmpleados.RowHeadersWidth = 62;
+            tblEmpleados.ScrollBars = ScrollBars.Horizontal;
+            tblEmpleados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            tblEmpleados.Size = new Size(1765, 420);
+            tblEmpleados.TabIndex = 0;
             // 
             // pnlCabecera
             // 
@@ -134,12 +164,70 @@
             // 
             pnlContenido.BackColor = SystemColors.Window;
             pnlContenido.BorderStyle = BorderStyle.FixedSingle;
+            pnlContenido.Controls.Add(txtPaginaFinal);
+            pnlContenido.Controls.Add(cbPagina);
+            pnlContenido.Controls.Add(txtNumregistros);
+            pnlContenido.Controls.Add(lblIndicador);
+            pnlContenido.Controls.Add(lblPagina);
+            pnlContenido.Controls.Add(lblNumRegistro);
             pnlContenido.Controls.Add(lblNoEmpleados);
             pnlContenido.Controls.Add(tblEmpleados);
             pnlContenido.Location = new Point(0, 100);
             pnlContenido.Name = "pnlContenido";
             pnlContenido.Size = new Size(1820, 547);
             pnlContenido.TabIndex = 3;
+            // 
+            // txtPaginaFinal
+            // 
+            txtPaginaFinal.Enabled = false;
+            txtPaginaFinal.Location = new Point(1144, 501);
+            txtPaginaFinal.Name = "txtPaginaFinal";
+            txtPaginaFinal.Size = new Size(72, 31);
+            txtPaginaFinal.TabIndex = 12;
+            // 
+            // cbPagina
+            // 
+            cbPagina.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbPagina.FormattingEnabled = true;
+            cbPagina.Location = new Point(940, 500);
+            cbPagina.Name = "cbPagina";
+            cbPagina.Size = new Size(72, 33);
+            cbPagina.TabIndex = 11;
+            // 
+            // txtNumregistros
+            // 
+            txtNumregistros.Enabled = false;
+            txtNumregistros.Location = new Point(681, 501);
+            txtNumregistros.Name = "txtNumregistros";
+            txtNumregistros.Size = new Size(72, 31);
+            txtNumregistros.TabIndex = 10;
+            // 
+            // lblIndicador
+            // 
+            lblIndicador.AutoSize = true;
+            lblIndicador.Location = new Point(1105, 502);
+            lblIndicador.Name = "lblIndicador";
+            lblIndicador.Size = new Size(38, 25);
+            lblIndicador.TabIndex = 9;
+            lblIndicador.Text = "De:";
+            // 
+            // lblPagina
+            // 
+            lblPagina.AutoSize = true;
+            lblPagina.Location = new Point(839, 502);
+            lblPagina.Name = "lblPagina";
+            lblPagina.Size = new Size(101, 25);
+            lblPagina.TabIndex = 8;
+            lblPagina.Text = "Paginación:";
+            // 
+            // lblNumRegistro
+            // 
+            lblNumRegistro.AutoSize = true;
+            lblNumRegistro.Location = new Point(548, 501);
+            lblNumRegistro.Name = "lblNumRegistro";
+            lblNumRegistro.Size = new Size(133, 25);
+            lblNumRegistro.TabIndex = 7;
+            lblNumRegistro.Text = "Num Registros:";
             // 
             // lblNoEmpleados
             // 
@@ -151,27 +239,6 @@
             lblNoEmpleados.TabIndex = 1;
             lblNoEmpleados.Text = "No se encuentran empleados dados de alta.";
             lblNoEmpleados.Visible = false;
-            // 
-            // tblEmpleados
-            // 
-            tblEmpleados.BackgroundColor = Color.White;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            tblEmpleados.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            tblEmpleados.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tblEmpleados.Location = new Point(81, 74);
-            tblEmpleados.MultiSelect = false;
-            tblEmpleados.Name = "tblEmpleados";
-            tblEmpleados.ReadOnly = true;
-            tblEmpleados.RowHeadersWidth = 62;
-            tblEmpleados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            tblEmpleados.Size = new Size(1669, 404);
-            tblEmpleados.TabIndex = 0;
             // 
             // GestionEmpleado
             // 
@@ -185,11 +252,11 @@
             Text = "GestionEmpleado";
             Load += GestionEmpleado_Load;
             KeyDown += GestionEmpleado_KeyDown;
+            ((System.ComponentModel.ISupportInitialize)tblEmpleados).EndInit();
             pnlCabecera.ResumeLayout(false);
             pnlCabecera.PerformLayout();
             pnlContenido.ResumeLayout(false);
             pnlContenido.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)tblEmpleados).EndInit();
             ResumeLayout(false);
         }
 
@@ -204,5 +271,11 @@
         private Panel pnlContenido;
         private Label lblNoEmpleados;
         private DataGridView tblEmpleados;
+        private TextBox txtPaginaFinal;
+        private ComboBox cbPagina;
+        private TextBox txtNumregistros;
+        private Label lblIndicador;
+        private Label lblPagina;
+        private Label lblNumRegistro;
     }
 }

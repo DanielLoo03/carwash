@@ -16,22 +16,33 @@ namespace negocios
         private CorteService corteService = new CorteService();
 
         //Valor de retorno: booleano que determina si el login fue exitoso o no exitoso
-        public Boolean Login(String nombreUsuario, String contrasena)
+        public Boolean UsuarioExiste(string nombreUsuario)
         {
-
             DataTable administradores = adminsService.GetAdmins();
-
             foreach (DataRow administrador in administradores.Rows)
             {
-                //Revisa si el nombre de usuario y la contraseña introducidos pertenecen a un registro de la base de datos. 
-                if (nombreUsuario.Equals(administrador["nombreUsuario"]) && contrasena.Equals(administrador["contrasena"]))
+                if (nombreUsuario.Equals(administrador["nombreUsuario"].ToString(), StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+            return false;
+        }
+
+        public Boolean CredencialesValidas(string nombreUsuario, string contrasena)
+        {
+            DataTable administradores = adminsService.GetAdmins();
+            foreach (DataRow administrador in administradores.Rows)
+            {
+                // Comprobamos en la misma fila que coincidan nombre y contraseña
+                if (nombreUsuario.Equals(administrador["nombreUsuario"].ToString(), StringComparison.OrdinalIgnoreCase)
+                    && contrasena.Equals(administrador["contrasena"].ToString()))
                 {
                     return true;
-                }// Fin if 
-            }// Fin foreach
+                }
+            }
             return false;
-
         }
+
+
         public DataTable GetAdmins()
         {
             return adminsService.GetAdmins();
@@ -476,6 +487,11 @@ namespace negocios
                 }
             }
             return maxNum + 1;
+        }
+
+        public DataTable ConsultDatosEmpleados()
+        {
+            return empleadosService.ConsultEmpleados();
         }
 
     }

@@ -40,7 +40,6 @@
             txtApellidoPaterno = new TextBox();
             txtApellidoMaterno = new TextBox();
             dtFechaNacimiento = new DateTimePicker();
-            nudNumEmpleado = new NumericUpDown();
             btnContinuar = new Button();
             obligatorio = new Label();
             label1 = new Label();
@@ -49,6 +48,7 @@
             label4 = new Label();
             mtxtNumTelefono = new MaskedTextBox();
             label6 = new Label();
+            nudNumEmpleado = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)nudNumEmpleado).BeginInit();
             SuspendLayout();
             // 
@@ -159,17 +159,6 @@
             dtFechaNacimiento.TabIndex = 11;
             dtFechaNacimiento.Value = new DateTime(1950, 5, 31, 0, 0, 0, 0);
             // 
-            // nudNumEmpleado
-            // 
-            nudNumEmpleado.Enabled = false;
-            nudNumEmpleado.Location = new Point(100, 666);
-            nudNumEmpleado.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            nudNumEmpleado.Name = "nudNumEmpleado";
-            nudNumEmpleado.Size = new Size(557, 31);
-            nudNumEmpleado.TabIndex = 13;
-            nudNumEmpleado.Value = new decimal(new int[] { 1, 0, 0, 0 });
-            nudNumEmpleado.Visible = false;
-            // 
             // btnContinuar
             // 
             btnContinuar.BackColor = Color.FromArgb(63, 114, 175);
@@ -178,12 +167,11 @@
             btnContinuar.ForeColor = SystemColors.Window;
             btnContinuar.Image = (Image)resources.GetObject("btnContinuar.Image");
             btnContinuar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnContinuar.Location = new Point(454, 745);
+            btnContinuar.Location = new Point(100, 745);
             btnContinuar.Name = "btnContinuar";
-            btnContinuar.Size = new Size(203, 34);
+            btnContinuar.Size = new Size(557, 34);
             btnContinuar.TabIndex = 14;
             btnContinuar.Text = "Continuar";
-            btnContinuar.TextAlign = ContentAlignment.MiddleRight;
             btnContinuar.UseVisualStyleBackColor = false;
             btnContinuar.Click += btnContinuar_Click;
             // 
@@ -256,6 +244,17 @@
             label6.TabIndex = 23;
             label6.Text = "Los datos obligatorios contienen *";
             // 
+            // nudNumEmpleado
+            // 
+            nudNumEmpleado.Enabled = false;
+            nudNumEmpleado.Location = new Point(100, 666);
+            nudNumEmpleado.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudNumEmpleado.Name = "nudNumEmpleado";
+            nudNumEmpleado.Size = new Size(557, 31);
+            nudNumEmpleado.TabIndex = 13;
+            nudNumEmpleado.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nudNumEmpleado.Visible = false;
+            // 
             // DatosPersonales
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -308,7 +307,6 @@
         private TextBox txtApellidoPaterno;
         private TextBox txtApellidoMaterno;
         private DateTimePicker dtFechaNacimiento;
-        private NumericUpDown nudNumEmpleado;
         private Button btnContinuar;
         private Label obligatorio;
         private Label label1;
@@ -317,5 +315,6 @@
         private Label label4;
         private MaskedTextBox mtxtNumTelefono;
         private Label label6;
+        private NumericUpDown nudNumEmpleado;
     }
 }

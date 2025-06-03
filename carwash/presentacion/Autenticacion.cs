@@ -27,12 +27,13 @@ namespace presentacion
         {
             String nombreUsr = txtNombreUsr.Text;
             String pwd = txtPwd.Text;
-            TextBox[] textBoxesEvaluar = { txtNombreUsr, txtPwd };
+            TextBox[] textBoxesEvaluar = { txtNombreUsr };
 
             if (validacionesUI.EvalTxtVacios(textBoxesEvaluar) == true)
             {
-                Toast toast = new Toast("error", "Los campos de nombre de usuario y contraseña deben ser llenados.");
+                Toast toast = new Toast("error", "El campo de nombre de usuario debe ser llenados.");
                 toast.Show();
+                return;
             }
 
             if (txtNombreUsr.Text.Length > 50)
@@ -47,18 +48,36 @@ namespace presentacion
                 toast.Show();
             }
 
-            if (logicaNegocios.Login(nombreUsr, pwd))
+
+            if (!logicaNegocios.UsuarioExiste(nombreUsr))
             {
+                Toast toast = new Toast("error", "El nombre de usuario no existe.");
+                toast.Show();
+                return;
+            }
+
+            TextBox[] textBoxesEvaluarCont = { txtPwd };
+            if (validacionesUI.EvalTxtVacios(textBoxesEvaluarCont) == true)
+            {
+                Toast toast = new Toast("error", "El campo de contraseña debe ser llenados.");
+                toast.Show();
+                return;
+            }
+
+            if (!logicaNegocios.CredencialesValidas(nombreUsr, pwd))
+                {
+                Toast toast = new Toast("error", "La contraseña es incorrecta.");
+                toast.Show();
+                return;
+            }
+            
+            
                 PantallaPrincipal vtnGestionEmpleados = new PantallaPrincipal(this, nombreUsr);
                 vtnGestionEmpleados.Show();
                 this.Hide();
 
-            }
-            else
-            {
-                Toast toast = new Toast("error", "Credenciales inválidas.");
-                toast.Show();
-            }
+            
+            
         }
 
         private void btnMostrarPwd_Click(object sender, EventArgs e)

@@ -53,6 +53,7 @@
             label6 = new Label();
             lblNumEmp = new Label();
             btnConfirmarVenta = new Button();
+            label7 = new Label();
             SuspendLayout();
             // 
             // lblVenta
@@ -298,12 +299,24 @@
             btnConfirmarVenta.UseVisualStyleBackColor = false;
             btnConfirmarVenta.Click += btnConfirmarVenta_Click;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.ForeColor = SystemColors.Desktop;
+            label7.Location = new Point(365, 119);
+            label7.Name = "label7";
+            label7.Size = new Size(280, 22);
+            label7.TabIndex = 80;
+            label7.Text = "Los datos obligatorios contienen *";
+            // 
             // AltaVenta
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(746, 968);
+            Controls.Add(label7);
             Controls.Add(btnConfirmarVenta);
             Controls.Add(cbNumEmpleado);
             Controls.Add(label6);
@@ -365,5 +378,6 @@
         private Label label6;
         private Label lblNumEmp;
         private Button btnConfirmarVenta;
+        private Label label7;
     }
 }
