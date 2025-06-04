@@ -748,6 +748,22 @@ namespace negocios
         
         }
 
+        //Consulta el registro de la bitácora (que contiene datos de la reapertura) según la fecha
+        public DataTable ConsBit(DateTime fecha)
+        {
+
+            return corteService.ConsBit(fecha);
+
+        }
+
+        //Consulta el nombre de usuario del administrador según su id
+        public DataTable ConsNomAdmin(int id)
+        {
+
+            return corteService.ConsNomAdmin(id);
+
+        }
+
         public List<string> GetTiposGasto()
         {
             return gastoService.GetTiposGasto();

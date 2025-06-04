@@ -73,7 +73,7 @@ namespace presentacion
                         btnReapCaja.Enabled = false;
 
                     }
-                    
+
 
                     //Se obtiene id del corte de caja que se acaba de realizar
                     int id = (int)logicaNegocios.ConsCorte(DateTime.Today).Rows[0]["id"];
@@ -98,10 +98,17 @@ namespace presentacion
                     btnRealizarCorte.PerformClick();
 
                 }
-                else if (e.KeyCode == Keys.A) {
+                else if (e.KeyCode == Keys.A)
+                {
 
                     btnReapCaja.PerformClick();
-                
+
+                }
+                else if (e.KeyCode == Keys.C)
+                {
+
+                    btnConsBit.PerformClick();
+
                 }
 
             }
@@ -139,7 +146,8 @@ namespace presentacion
 
             }
             //Caja cerrada
-            else {
+            else
+            {
 
                 btnRealizarCorte.Enabled = false;
                 cajaAbierta = true;
@@ -151,15 +159,16 @@ namespace presentacion
 
                 }
                 //Si ya se realizó una reapertura durante el día
-                else {
+                else
+                {
 
                     btnReapCaja.Enabled = false;
 
                 }
-            
+
             }
 
-            //Cada minuto se actualiza la fecha máxima
+            //Cada segundo se actualiza la fecha máxima
             timer.Interval = 1000; //Cada segundo
             timer.Tick += Timer_Tick;
             timer.Start();
@@ -301,7 +310,8 @@ namespace presentacion
         {
 
             //Condición: Hubo reapertura de caja hoy
-            if (logicaNegocios.CanReap()) {
+            if (logicaNegocios.CanReap())
+            {
 
                 //Toast tstError = new Toast("error", "No es posible realizar la reapertura de caja.\nYa hubo una reapertura de caja hoy.");
                 //tstError.Show();
@@ -309,7 +319,8 @@ namespace presentacion
 
             }
             //Condición: No hubo reapertura de caja hoy
-            else {
+            else
+            {
 
                 ReapCaja vtnReapCaja = new ReapCaja(infoReapCaja, nomUsuario);
                 vtnReapCaja.reapConfirm += (s, ev) =>
@@ -322,7 +333,7 @@ namespace presentacion
 
                 };
                 vtnReapCaja.ShowDialog();
-            
+
             }
 
         }
@@ -348,5 +359,11 @@ namespace presentacion
 
         }
 
+        private void btnConsBit_Click(object sender, EventArgs e)
+        {
+            Bitacora vtnBit = new Bitacora();
+            vtnBit.ShowDialog();
+
+        }
     }
 }
