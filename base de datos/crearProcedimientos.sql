@@ -305,31 +305,12 @@ CREATE PROCEDURE modAdmin(
     IN contrasenaParam     VARCHAR(50)
 )
 BEGIN
-<<<<<<< HEAD
     UPDATE administradores
     SET
         nombreUsuario = nombreUsuarioParam,
         contrasena    = contrasenaParam
     WHERE
         id = idParam;
-END $$
-
-CREATE PROCEDURE modAdmin(
-    IN idParam             INT,
-    IN nombreUsuarioParam  VARCHAR(50),
-    IN contrasenaParam     VARCHAR(50)
-)
-BEGIN
-    UPDATE administradores
-    SET
-        nombreUsuario = nombreUsuarioParam,
-        contrasena    = contrasenaParam
-    WHERE
-        id = idParam;
-=======
-    SELECT id, idAdmin, contado, calculado, diferencia 
-    FROM cortecaja
-    WHERE fechaCorte = fechaCorteParam;
 END $$
 
 /* Modificar los datos del corte */
@@ -360,7 +341,6 @@ BEGIN
     FROM cortecaja
     ORDER BY id DESC
     LIMIT 1;  
->>>>>>> Daniel-Loo
 END $$
 
 CREATE PROCEDURE bajaAdmin(
@@ -492,6 +472,34 @@ BEGIN
     SELECT nombreUsuario
     FROM administradores
     WHERE id = idAdminParam;
+END $$
+
+/* Consultar el corte de caja realizado según el día */
+CREATE PROCEDURE consCorte(
+    IN fechaCorteParam DATETIME
+)
+BEGIN
+    SELECT id, idAdmin, contado, calculado, diferencia 
+    FROM cortecaja
+    WHERE fechaCorte = fechaCorteParam;
+END $$
+
+/* Obtener el nombre de usuario según el id */
+CREATE PROCEDURE obtenerNomUsuario(
+    IN idParam INT
+)
+BEGIN
+    SELECT nombreUsuario 
+    FROM administradores
+    WHERE id = idParam;
+END $$
+
+/* Consultar el estado de caja (abierto o cerrado) */
+CREATE PROCEDURE consEstadoCaja()
+BEGIN
+    SELECT estado
+    FROM configcaja
+    WHERE tipoConfig = 'estadoCaja';
 END $$
 
 DELIMITER ;
