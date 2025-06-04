@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.Design.AxImporter;
 
 namespace persistencia
 {
@@ -118,29 +119,55 @@ namespace persistencia
             return ganancias;
         }
 
-        public List<string> GetNomsEmp()
+        public List<int> GetEmpPorFecha(DateTime fecha)
         {
-            List<string> nombres = new List<string>();
+            List<int> empleados = new List<int>();
 
-            comando = new MySqlCommand();
+            MySqlCommand comando = new MySqlCommand();
             comando.Connection = conexion.AbrirConexion();
-            comando.CommandText = "obtenerNombresEmpleados"; 
+            comando.CommandText = "obtenerEmpPorFecha";
             comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@fecha", fecha);
 
             MySqlDataReader reader = comando.ExecuteReader();
 
             while (reader.Read())
             {
-                nombres.Add(reader.GetString("nomCompleto"));
+                empleados.Add(reader.GetInt32("numEmpleado"));
             }
 
             reader.Close();
             conexion.CerrarConexion();
 
-            return nombres;
+            return empleados;
         }
 
-        public int? ObtenerNumEmpleado(string nombres, string apellidoPat, string apellidoMat)
+        public string GetNomEmp(int numEmp)
+        {
+            string nombreCompleto = string.Empty;
+
+            MySqlCommand comando = new MySqlCommand();
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "obtenerNombreEmpleado"; 
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@numEmpleadoParam", numEmp);
+
+            MySqlDataReader reader = comando.ExecuteReader();
+
+            if (reader.Read())
+            {
+                nombreCompleto = reader.GetString("nombreCompleto");
+            }
+
+            reader.Close();
+            conexion.CerrarConexion();
+
+            return nombreCompleto;
+        }
+
+        public int? ObtenerNumEmpleado(string noms, string apellidoPat, string apellidoMat)
         {
             int? numEmpleado = null;
 
@@ -149,7 +176,7 @@ namespace persistencia
             comando.CommandText = "obtenerNumEmpleado";
             comando.CommandType = CommandType.StoredProcedure;
 
-            comando.Parameters.AddWithValue("@nombresParam", nombres);
+            comando.Parameters.AddWithValue("@nombresParam", noms);
             comando.Parameters.AddWithValue("@apellidoPaternoParam", apellidoPat);
             comando.Parameters.AddWithValue("@apellidoMaternoParam", apellidoMat);
 
@@ -165,6 +192,5 @@ namespace persistencia
 
             return numEmpleado;
         }
-
     }
 }

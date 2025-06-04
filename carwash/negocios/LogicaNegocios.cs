@@ -513,14 +513,20 @@ namespace negocios
             return ganancias.Sum();
         }
 
-        public List<string> GetNomsEmp()
+        public List<int> GetEmpPorFecha(DateTime fecha)
         {
-            return gastoService.GetNomsEmp();
+            return gastoService.GetEmpPorFecha(fecha);
         }
 
-        public int? ObtenerNumEmpleado(string nombres, string apellidoPat, string apellidoMat)
+        public string GetNomEmp(int numEmp)
         {
-            return gastoService.ObtenerNumEmpleado(nombres, apellidoPat, apellidoMat);
+            return gastoService.GetNomEmp(numEmp);
         }
+
+        public int? ObtenerNumEmpleado(string noms, string apellidoPat, string apellidoMat)
+        {
+            return gastoService.ObtenerNumEmpleado(noms, apellidoPat, apellidoMat);
+        }
+
     }
 }

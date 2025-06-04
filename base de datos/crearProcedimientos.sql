@@ -371,7 +371,7 @@ BEGIN
     FROM ventas
     WHERE fechaVenta = fecha AND numEmpleado = empleado;
 END $$
-
+	
 /*Obtener ganancias totales por fecha*/
 CREATE PROCEDURE consGanTotal (
     IN fechaCons DATETIME
@@ -382,5 +382,12 @@ BEGIN
     WHERE DATE(fechaVenta) = DATE(fechaCons);
 END $$
 
+/*Obtener empleados que realizadon una venta por fecha*/
+CREATE PROCEDURE ObtenerEmpPorFecha(IN fecha DATE)
+BEGIN
+    SELECT DISTINCT numEmpleado
+    FROM ventas
+    WHERE DATE(fechaVenta) = fecha AND cancelado = 0;
+END$$
 DELIMITER ;
 

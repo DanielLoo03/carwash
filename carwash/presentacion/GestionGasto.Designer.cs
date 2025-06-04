@@ -34,6 +34,7 @@
             lblGastos = new Label();
             lblGestionDe = new Label();
             pnlContenido = new Panel();
+            lblNoGan = new Label();
             lblCorrespEmp = new Label();
             imgCorresp = new PictureBox();
             lblCorresp = new Label();
@@ -108,6 +109,7 @@
             // 
             pnlContenido.BackColor = SystemColors.Window;
             pnlContenido.BorderStyle = BorderStyle.FixedSingle;
+            pnlContenido.Controls.Add(lblNoGan);
             pnlContenido.Controls.Add(lblCorrespEmp);
             pnlContenido.Controls.Add(imgCorresp);
             pnlContenido.Controls.Add(lblCorresp);
@@ -126,11 +128,23 @@
             pnlContenido.Size = new Size(1820, 547);
             pnlContenido.TabIndex = 4;
             // 
+            // lblNoGan
+            // 
+            lblNoGan.AutoSize = true;
+            lblNoGan.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNoGan.ForeColor = Color.Red;
+            lblNoGan.Location = new Point(1427, 408);
+            lblNoGan.Name = "lblNoGan";
+            lblNoGan.Size = new Size(308, 22);
+            lblNoGan.TabIndex = 23;
+            lblNoGan.Text = "No se han registrado ventas en el dia";
+            lblNoGan.Visible = false;
+            // 
             // lblCorrespEmp
             // 
             lblCorrespEmp.AutoSize = true;
             lblCorrespEmp.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCorrespEmp.Location = new Point(400, 363);
+            lblCorrespEmp.Location = new Point(389, 363);
             lblCorrespEmp.Name = "lblCorrespEmp";
             lblCorrespEmp.Size = new Size(28, 22);
             lblCorrespEmp.TabIndex = 22;
@@ -139,7 +153,7 @@
             // imgCorresp
             // 
             imgCorresp.Image = (Image)resources.GetObject("imgCorresp.Image");
-            imgCorresp.Location = new Point(208, 359);
+            imgCorresp.Location = new Point(197, 359);
             imgCorresp.Name = "imgCorresp";
             imgCorresp.Size = new Size(30, 30);
             imgCorresp.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -150,7 +164,7 @@
             // 
             lblCorresp.AutoSize = true;
             lblCorresp.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCorresp.Location = new Point(239, 363);
+            lblCorresp.Location = new Point(228, 363);
             lblCorresp.Name = "lblCorresp";
             lblCorresp.Size = new Size(147, 22);
             lblCorresp.TabIndex = 20;
@@ -159,7 +173,7 @@
             // imgEmp
             // 
             imgEmp.Image = (Image)resources.GetObject("imgEmp.Image");
-            imgEmp.Location = new Point(208, 206);
+            imgEmp.Location = new Point(192, 206);
             imgEmp.Name = "imgEmp";
             imgEmp.Size = new Size(30, 30);
             imgEmp.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -170,7 +184,7 @@
             // 
             lblEmp.AutoSize = true;
             lblEmp.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblEmp.Location = new Point(240, 209);
+            lblEmp.Location = new Point(224, 209);
             lblEmp.Name = "lblEmp";
             lblEmp.Size = new Size(90, 22);
             lblEmp.TabIndex = 18;
@@ -191,7 +205,7 @@
             // 
             lblGanDia.AutoSize = true;
             lblGanDia.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGanDia.Location = new Point(1549, 364);
+            lblGanDia.Location = new Point(1540, 364);
             lblGanDia.Name = "lblGanDia";
             lblGanDia.Size = new Size(28, 22);
             lblGanDia.TabIndex = 17;
@@ -200,7 +214,7 @@
             // separator1
             // 
             separator1.LineColor = Color.LightGray;
-            separator1.Location = new Point(1480, 346);
+            separator1.Location = new Point(1490, 346);
             separator1.Name = "separator1";
             separator1.Size = new Size(172, 15);
             separator1.TabIndex = 16;
@@ -210,7 +224,7 @@
             // 
             lblGan.AutoSize = true;
             lblGan.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGan.Location = new Point(1494, 321);
+            lblGan.Location = new Point(1504, 321);
             lblGan.Name = "lblGan";
             lblGan.Size = new Size(145, 22);
             lblGan.TabIndex = 15;
@@ -218,10 +232,11 @@
             // 
             // cbEmp
             // 
+            cbEmp.DropDownStyle = ComboBoxStyle.DropDownList;
             cbEmp.FormattingEnabled = true;
-            cbEmp.Location = new Point(208, 246);
+            cbEmp.Location = new Point(192, 246);
             cbEmp.Name = "cbEmp";
-            cbEmp.Size = new Size(220, 33);
+            cbEmp.Size = new Size(276, 33);
             cbEmp.TabIndex = 14;
             cbEmp.SelectedIndexChanged += cbEmp_SelectedIndexChanged;
             // 
@@ -251,6 +266,7 @@
             dtFechaGas.Name = "dtFechaGas";
             dtFechaGas.Size = new Size(327, 28);
             dtFechaGas.TabIndex = 10;
+            dtFechaGas.ValueChanged += dtFechaGas_ValueChanged;
             // 
             // GestionGasto
             // 
@@ -262,6 +278,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "GestionGasto";
             Text = "GestionGastos";
+            Load += GestionGasto_Load;
             pnlCabecera.ResumeLayout(false);
             pnlCabecera.PerformLayout();
             pnlContenido.ResumeLayout(false);
@@ -292,5 +309,6 @@
         private Label lblCorresp;
         private PictureBox imgCorresp;
         private Label lblCorrespEmp;
+        private Label lblNoGan;
     }
 }
