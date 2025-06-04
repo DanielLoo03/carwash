@@ -24,8 +24,13 @@ namespace presentacion
 
         private void btnAltaGas_Click(object sender, EventArgs e)
         {
-            AltaModGasto vtnAltaModGasto = new AltaModGasto(infoGasto,"alta", nomUsuario);
+            AltaModGasto vtnAltaModGasto = new AltaModGasto(infoGasto, "alta", nomUsuario);
             vtnAltaModGasto.Show();
+        }
+
+        private void cbEmp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

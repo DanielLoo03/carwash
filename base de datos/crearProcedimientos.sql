@@ -360,5 +360,27 @@ BEGIN
         idAdmin
     );
 END $$
+
+/*Obtener correspondencia por fecha y empleado*/
+CREATE PROCEDURE consCorrespTotal (
+    IN fecha DATETIME,
+    IN empleado INT
+)
+BEGIN
+    SELECT correspondencia
+    FROM ventas
+    WHERE fechaVenta = fecha AND numEmpleado = empleado;
+END $$
+
+/*Obtener ganancias totales por fecha*/
+CREATE PROCEDURE consGanTotal (
+    IN fechaCons DATETIME
+)
+BEGIN
+    SELECT ganancia
+    FROM venta
+    WHERE DATE(fechaVenta) = DATE(fechaCons);
+END $$
+
 DELIMITER ;
 
