@@ -1,4 +1,5 @@
-﻿using System;
+﻿using persistencia;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -498,6 +499,28 @@ namespace negocios
         public List<string> GetTiposGasto()
         {
             return gastoService.GetTiposGasto();
+        }
+
+        public decimal ConsCorrespTotal(DateTime fecha, int emp)
+        {
+            List<decimal> correspEmp = gastoService.ConsCorrespTotal(fecha, emp);
+            return correspEmp.Sum();
+        }
+
+        public decimal ConsGanTotal(DateTime fecha)
+        {
+            List<decimal> ganancias = gastoService.ConsGanTotal(fecha);
+            return ganancias.Sum();
+        }
+
+        public List<string> GetNomsEmp()
+        {
+            return gastoService.GetNomsEmp();
+        }
+
+        public int? ObtenerNumEmpleado(string nombres, string apellidoPat, string apellidoMat)
+        {
+            return gastoService.ObtenerNumEmpleado(nombres, apellidoPat, apellidoMat);
         }
     }
 }
