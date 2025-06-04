@@ -34,24 +34,24 @@
             lblGastos = new Label();
             lblGestionDe = new Label();
             pnlContenido = new Panel();
-            pictureBox2 = new PictureBox();
-            label2 = new Label();
-            pictureBox1 = new PictureBox();
+            lblCorrespEmp = new Label();
+            imgCorresp = new PictureBox();
+            lblCorresp = new Label();
+            imgEmp = new PictureBox();
             lblEmp = new Label();
-            label1 = new Label();
+            lblGanEmp = new Label();
             lblGanDia = new Label();
             separator1 = new ReaLTaiizor.Controls.Separator();
             lblGan = new Label();
             cbEmp = new ComboBox();
-            imgFechaVenta = new PictureBox();
-            lblFechaVenta = new Label();
-            dtFechaVenta = new DateTimePicker();
-            label3 = new Label();
+            imgFechaGas = new PictureBox();
+            lblFechaGas = new Label();
+            dtFechaGas = new DateTimePicker();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)imgFechaVenta).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgCorresp).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgEmp).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgFechaGas).BeginInit();
             SuspendLayout();
             // 
             // pnlCabecera
@@ -108,53 +108,63 @@
             // 
             pnlContenido.BackColor = SystemColors.Window;
             pnlContenido.BorderStyle = BorderStyle.FixedSingle;
-            pnlContenido.Controls.Add(label3);
-            pnlContenido.Controls.Add(pictureBox2);
-            pnlContenido.Controls.Add(label2);
-            pnlContenido.Controls.Add(pictureBox1);
+            pnlContenido.Controls.Add(lblCorrespEmp);
+            pnlContenido.Controls.Add(imgCorresp);
+            pnlContenido.Controls.Add(lblCorresp);
+            pnlContenido.Controls.Add(imgEmp);
             pnlContenido.Controls.Add(lblEmp);
-            pnlContenido.Controls.Add(label1);
+            pnlContenido.Controls.Add(lblGanEmp);
             pnlContenido.Controls.Add(lblGanDia);
             pnlContenido.Controls.Add(separator1);
             pnlContenido.Controls.Add(lblGan);
             pnlContenido.Controls.Add(cbEmp);
-            pnlContenido.Controls.Add(imgFechaVenta);
-            pnlContenido.Controls.Add(lblFechaVenta);
-            pnlContenido.Controls.Add(dtFechaVenta);
+            pnlContenido.Controls.Add(imgFechaGas);
+            pnlContenido.Controls.Add(lblFechaGas);
+            pnlContenido.Controls.Add(dtFechaGas);
             pnlContenido.Location = new Point(0, 100);
             pnlContenido.Name = "pnlContenido";
             pnlContenido.Size = new Size(1820, 547);
             pnlContenido.TabIndex = 4;
             // 
-            // pictureBox2
+            // lblCorrespEmp
             // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(208, 359);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(30, 30);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 21;
-            pictureBox2.TabStop = false;
+            lblCorrespEmp.AutoSize = true;
+            lblCorrespEmp.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCorrespEmp.Location = new Point(400, 363);
+            lblCorrespEmp.Name = "lblCorrespEmp";
+            lblCorrespEmp.Size = new Size(28, 22);
+            lblCorrespEmp.TabIndex = 22;
+            lblCorrespEmp.Text = "---";
             // 
-            // label2
+            // imgCorresp
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(239, 363);
-            label2.Name = "label2";
-            label2.Size = new Size(147, 22);
-            label2.TabIndex = 20;
-            label2.Text = "Correspondencia";
+            imgCorresp.Image = (Image)resources.GetObject("imgCorresp.Image");
+            imgCorresp.Location = new Point(208, 359);
+            imgCorresp.Name = "imgCorresp";
+            imgCorresp.Size = new Size(30, 30);
+            imgCorresp.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgCorresp.TabIndex = 21;
+            imgCorresp.TabStop = false;
             // 
-            // pictureBox1
+            // lblCorresp
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(208, 206);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(30, 30);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 19;
-            pictureBox1.TabStop = false;
+            lblCorresp.AutoSize = true;
+            lblCorresp.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCorresp.Location = new Point(239, 363);
+            lblCorresp.Name = "lblCorresp";
+            lblCorresp.Size = new Size(147, 22);
+            lblCorresp.TabIndex = 20;
+            lblCorresp.Text = "Correspondencia";
+            // 
+            // imgEmp
+            // 
+            imgEmp.Image = (Image)resources.GetObject("imgEmp.Image");
+            imgEmp.Location = new Point(208, 206);
+            imgEmp.Name = "imgEmp";
+            imgEmp.Size = new Size(30, 30);
+            imgEmp.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgEmp.TabIndex = 19;
+            imgEmp.TabStop = false;
             // 
             // lblEmp
             // 
@@ -166,16 +176,16 @@
             lblEmp.TabIndex = 18;
             lblEmp.Text = "Empleado";
             // 
-            // label1
+            // lblGanEmp
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Black;
-            label1.Location = new Point(154, 113);
-            label1.Name = "label1";
-            label1.Size = new Size(347, 32);
-            label1.TabIndex = 3;
-            label1.Text = "Ganancia de Empleados";
+            lblGanEmp.AutoSize = true;
+            lblGanEmp.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblGanEmp.ForeColor = Color.Black;
+            lblGanEmp.Location = new Point(154, 113);
+            lblGanEmp.Name = "lblGanEmp";
+            lblGanEmp.Size = new Size(347, 32);
+            lblGanEmp.TabIndex = 3;
+            lblGanEmp.Text = "Ganancia de Empleados";
             // 
             // lblGanDia
             // 
@@ -215,42 +225,32 @@
             cbEmp.TabIndex = 14;
             cbEmp.SelectedIndexChanged += cbEmp_SelectedIndexChanged;
             // 
-            // imgFechaVenta
+            // imgFechaGas
             // 
-            imgFechaVenta.Image = (Image)resources.GetObject("imgFechaVenta.Image");
-            imgFechaVenta.Location = new Point(1483, 143);
-            imgFechaVenta.Name = "imgFechaVenta";
-            imgFechaVenta.Size = new Size(24, 23);
-            imgFechaVenta.TabIndex = 13;
-            imgFechaVenta.TabStop = false;
+            imgFechaGas.Image = (Image)resources.GetObject("imgFechaGas.Image");
+            imgFechaGas.Location = new Point(1483, 143);
+            imgFechaGas.Name = "imgFechaGas";
+            imgFechaGas.Size = new Size(24, 23);
+            imgFechaGas.TabIndex = 13;
+            imgFechaGas.TabStop = false;
             // 
-            // lblFechaVenta
+            // lblFechaGas
             // 
-            lblFechaVenta.AutoSize = true;
-            lblFechaVenta.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblFechaVenta.Location = new Point(1516, 145);
-            lblFechaVenta.Name = "lblFechaVenta";
-            lblFechaVenta.Size = new Size(139, 22);
-            lblFechaVenta.TabIndex = 12;
-            lblFechaVenta.Text = "Consulta fechas";
+            lblFechaGas.AutoSize = true;
+            lblFechaGas.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblFechaGas.Location = new Point(1516, 145);
+            lblFechaGas.Name = "lblFechaGas";
+            lblFechaGas.Size = new Size(139, 22);
+            lblFechaGas.TabIndex = 12;
+            lblFechaGas.Text = "Consulta fechas";
             // 
-            // dtFechaVenta
+            // dtFechaGas
             // 
-            dtFechaVenta.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtFechaVenta.Location = new Point(1408, 184);
-            dtFechaVenta.Name = "dtFechaVenta";
-            dtFechaVenta.Size = new Size(327, 28);
-            dtFechaVenta.TabIndex = 10;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(400, 363);
-            label3.Name = "label3";
-            label3.Size = new Size(28, 22);
-            label3.TabIndex = 22;
-            label3.Text = "---";
+            dtFechaGas.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtFechaGas.Location = new Point(1408, 184);
+            dtFechaGas.Name = "dtFechaGas";
+            dtFechaGas.Size = new Size(327, 28);
+            dtFechaGas.TabIndex = 10;
             // 
             // GestionGasto
             // 
@@ -266,9 +266,9 @@
             pnlCabecera.PerformLayout();
             pnlContenido.ResumeLayout(false);
             pnlContenido.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)imgFechaVenta).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgCorresp).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgEmp).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgFechaGas).EndInit();
             ResumeLayout(false);
         }
 
@@ -279,18 +279,18 @@
         private Label lblGastos;
         private Label lblGestionDe;
         private Panel pnlContenido;
-        private DateTimePicker dtFechaVenta;
-        private PictureBox imgFechaVenta;
-        private Label lblFechaVenta;
+        private DateTimePicker dtFechaGas;
+        private PictureBox imgFechaGas;
+        private Label lblFechaGas;
         private ComboBox cbEmp;
         private Label lblGan;
         private ReaLTaiizor.Controls.Separator separator1;
         private Label lblGanDia;
         private Label lblEmp;
-        private Label label1;
-        private PictureBox pictureBox1;
-        private Label label2;
-        private PictureBox pictureBox2;
-        private Label label3;
+        private Label lblGanEmp;
+        private PictureBox imgEmp;
+        private Label lblCorresp;
+        private PictureBox imgCorresp;
+        private Label lblCorrespEmp;
     }
 }

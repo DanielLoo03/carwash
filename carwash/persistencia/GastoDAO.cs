@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using Mysqlx.Cursor;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -66,6 +67,103 @@ namespace persistencia
             conexion.CerrarConexion();
 
             return tiposGasto;
+        }
+
+        public List<decimal> ConsCorrespTotal(DateTime fecha, int emp)
+        {
+            List<decimal> correspondencias = new List<decimal>();
+
+            comando = new MySqlCommand();
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "consCorrespTotal";
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@fecha", fecha);
+            comando.Parameters.AddWithValue("@empleado", emp);
+
+            MySqlDataReader reader = comando.ExecuteReader();
+
+            while (reader.Read())
+            {
+                correspondencias.Add(reader.GetDecimal("correspondencia"));
+            }
+
+            reader.Close();
+            conexion.CerrarConexion();
+
+            return correspondencias;
+        }
+
+        public List<decimal> ConsGanTotal(DateTime fecha)
+        {
+            List<decimal> ganancias = new List<decimal>();
+
+            comando = new MySqlCommand();
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "consGanTotal";
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@fechaCons", fecha);
+
+            MySqlDataReader reader = comando.ExecuteReader();
+
+            while (reader.Read())
+            {
+                ganancias.Add(reader.GetDecimal("ganancia"));
+            }
+
+            reader.Close();
+            conexion.CerrarConexion();
+
+            return ganancias;
+        }
+
+        public List<string> GetNomsEmp()
+        {
+            List<string> nombres = new List<string>();
+
+            comando = new MySqlCommand();
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "obtenerNombresEmpleados"; 
+            comando.CommandType = CommandType.StoredProcedure;
+
+            MySqlDataReader reader = comando.ExecuteReader();
+
+            while (reader.Read())
+            {
+                nombres.Add(reader.GetString("nomCompleto"));
+            }
+
+            reader.Close();
+            conexion.CerrarConexion();
+
+            return nombres;
+        }
+
+        public int? ObtenerNumEmpleado(string nombres, string apellidoPat, string apellidoMat)
+        {
+            int? numEmpleado = null;
+
+            comando = new MySqlCommand();
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "obtenerNumEmpleado";
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@nombresParam", nombres);
+            comando.Parameters.AddWithValue("@apellidoPaternoParam", apellidoPat);
+            comando.Parameters.AddWithValue("@apellidoMaternoParam", apellidoMat);
+
+            MySqlDataReader reader = comando.ExecuteReader();
+
+            if (reader.Read())
+            {
+                numEmpleado = reader.GetInt32("numEmpleado");
+            }
+
+            reader.Close();
+            conexion.CerrarConexion();
+
+            return numEmpleado;
         }
 
     }
