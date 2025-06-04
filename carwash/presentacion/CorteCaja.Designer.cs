@@ -49,6 +49,7 @@
             lblContado = new Label();
             lblDatosCorte = new Label();
             txtContado = new TextBox();
+            btnConsBit = new Button();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tblCorte).BeginInit();
@@ -58,6 +59,7 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
+            pnlCabecera.Controls.Add(btnConsBit);
             pnlCabecera.Controls.Add(btnReapCaja);
             pnlCabecera.Controls.Add(lblCaja);
             pnlCabecera.Controls.Add(btnRealizarCorte);
@@ -280,6 +282,22 @@
             txtContado.Size = new Size(227, 31);
             txtContado.TabIndex = 14;
             // 
+            // btnConsBit
+            // 
+            btnConsBit.BackColor = Color.FromArgb(63, 114, 175);
+            btnConsBit.FlatStyle = FlatStyle.Popup;
+            btnConsBit.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnConsBit.ForeColor = Color.White;
+            btnConsBit.Image = (Image)resources.GetObject("btnConsBit.Image");
+            btnConsBit.ImageAlign = ContentAlignment.MiddleLeft;
+            btnConsBit.Location = new Point(929, 32);
+            btnConsBit.Name = "btnConsBit";
+            btnConsBit.Size = new Size(225, 39);
+            btnConsBit.TabIndex = 9;
+            btnConsBit.Text = "Consultar bitácora";
+            btnConsBit.TextAlign = ContentAlignment.MiddleRight;
+            btnConsBit.UseVisualStyleBackColor = false;
+            // 
             // CorteCaja
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -327,5 +345,6 @@
         private DataGridView tblCorte;
         private Label lblNoCorte;
         private Button btnReapCaja;
+        private Button btnConsBit;
     }
 }
