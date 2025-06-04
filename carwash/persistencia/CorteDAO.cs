@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Data;
+using Mysqlx.Cursor;
 
 namespace persistencia
 {
@@ -258,6 +259,24 @@ namespace persistencia
                 CommandType = CommandType.StoredProcedure
             };
             comando.Parameters.AddWithValue("@fechaParam", fecha);
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            return tabla;
+
+        }
+
+        public DataTable ConsNomAdmin(int id) {
+
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consNomAdmin",
+                CommandType = CommandType.StoredProcedure
+            };
+            comando.Parameters.AddWithValue("@idAdminParam", id);
 
             leer = comando.ExecuteReader();
             tabla.Load(leer);

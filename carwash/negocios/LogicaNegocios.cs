@@ -691,5 +691,13 @@ namespace negocios
 
         }
 
+        //Consulta el nombre de usuario del administrador según su id
+        public DataTable ConsNomAdmin(int id)
+        {
+
+            return corteService.ConsNomAdmin(id);
+
+        }
+
     }
 }

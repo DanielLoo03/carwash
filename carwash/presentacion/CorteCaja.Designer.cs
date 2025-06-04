@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CorteCaja));
             pnlCabecera = new Panel();
+            btnConsBit = new Button();
             btnReapCaja = new Button();
             lblCaja = new Label();
             btnRealizarCorte = new Button();
@@ -49,7 +50,6 @@
             lblContado = new Label();
             lblDatosCorte = new Label();
             txtContado = new TextBox();
-            btnConsBit = new Button();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tblCorte).BeginInit();
@@ -68,6 +68,23 @@
             pnlCabecera.Name = "pnlCabecera";
             pnlCabecera.Size = new Size(1820, 100);
             pnlCabecera.TabIndex = 3;
+            // 
+            // btnConsBit
+            // 
+            btnConsBit.BackColor = Color.FromArgb(63, 114, 175);
+            btnConsBit.FlatStyle = FlatStyle.Popup;
+            btnConsBit.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnConsBit.ForeColor = Color.White;
+            btnConsBit.Image = (Image)resources.GetObject("btnConsBit.Image");
+            btnConsBit.ImageAlign = ContentAlignment.MiddleLeft;
+            btnConsBit.Location = new Point(929, 32);
+            btnConsBit.Name = "btnConsBit";
+            btnConsBit.Size = new Size(225, 39);
+            btnConsBit.TabIndex = 9;
+            btnConsBit.Text = "Consultar bitácora";
+            btnConsBit.TextAlign = ContentAlignment.MiddleRight;
+            btnConsBit.UseVisualStyleBackColor = false;
+            btnConsBit.Click += btnConsBit_Click;
             // 
             // btnReapCaja
             // 
@@ -281,22 +298,6 @@
             txtContado.ReadOnly = true;
             txtContado.Size = new Size(227, 31);
             txtContado.TabIndex = 14;
-            // 
-            // btnConsBit
-            // 
-            btnConsBit.BackColor = Color.FromArgb(63, 114, 175);
-            btnConsBit.FlatStyle = FlatStyle.Popup;
-            btnConsBit.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnConsBit.ForeColor = Color.White;
-            btnConsBit.Image = (Image)resources.GetObject("btnConsBit.Image");
-            btnConsBit.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConsBit.Location = new Point(929, 32);
-            btnConsBit.Name = "btnConsBit";
-            btnConsBit.Size = new Size(225, 39);
-            btnConsBit.TabIndex = 9;
-            btnConsBit.Text = "Consultar bitácora";
-            btnConsBit.TextAlign = ContentAlignment.MiddleRight;
-            btnConsBit.UseVisualStyleBackColor = false;
             // 
             // CorteCaja
             // 

@@ -104,5 +104,11 @@ namespace negocios
 
         }
 
+        public DataTable ConsNomAdmin(int id) {
+
+            return corteDAO.ConsNomAdmin(id);
+        
+        }
+
     }
 }

@@ -410,4 +410,14 @@ BEGIN
     WHERE DATE(fechaHora) = CURDATE();
 END $$
 
+/* Consultar el nombre de usuario del administrador según su id */
+CREATE PROCEDURE consNomAdmin(
+    IN idAdminParam int
+)
+BEGIN 
+    SELECT nombreUsuario
+    FROM administradores
+    WHERE id = idAdminParam;
+END $$
+
 DELIMITER ;

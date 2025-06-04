@@ -39,6 +39,7 @@
             txtAdmin = new TextBox();
             txtFechaHora = new TextBox();
             txtDesc = new TextBox();
+            lblNoReap = new Label();
             SuspendLayout();
             // 
             // lblBit
@@ -61,6 +62,7 @@
             btnRegresar.Size = new Size(40, 40);
             btnRegresar.TabIndex = 19;
             btnRegresar.UseVisualStyleBackColor = true;
+            btnRegresar.Click += btnRegresar_Click;
             // 
             // lblConsReap
             // 
@@ -108,6 +110,7 @@
             dtReap.Name = "dtReap";
             dtReap.Size = new Size(340, 31);
             dtReap.TabIndex = 32;
+            dtReap.ValueChanged += dtReap_ValueChanged;
             // 
             // txtAdmin
             // 
@@ -135,12 +138,25 @@
             txtDesc.Size = new Size(504, 148);
             txtDesc.TabIndex = 35;
             // 
+            // lblNoReap
+            // 
+            lblNoReap.AutoSize = true;
+            lblNoReap.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNoReap.ForeColor = Color.Red;
+            lblNoReap.Location = new Point(158, 155);
+            lblNoReap.Name = "lblNoReap";
+            lblNoReap.Size = new Size(446, 22);
+            lblNoReap.TabIndex = 36;
+            lblNoReap.Text = "No existe reapertura registrada en el día seleccionado";
+            lblNoReap.Visible = false;
+            // 
             // Bitacora
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(746, 735);
+            Controls.Add(lblNoReap);
             Controls.Add(txtDesc);
             Controls.Add(txtFechaHora);
             Controls.Add(txtAdmin);
@@ -172,5 +188,6 @@
         private TextBox txtAdmin;
         private TextBox txtFechaHora;
         private TextBox txtDesc;
+        private Label lblNoReap;
     }
 }
