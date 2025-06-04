@@ -82,6 +82,7 @@ namespace presentacion
                 Toast toast = new Toast("error", "El campo de calle no pueden exceder los 50 caracteres.");
                 toast.Show();
                 errorCapturado = true;
+                return;
 
             }
 
@@ -102,6 +103,7 @@ namespace presentacion
                 Toast toast = new Toast("error", "El campo de colonia no pueden exceder los 50 caracteres.");
                 toast.Show();
                 errorCapturado = true;
+                return;
 
             }
 
@@ -170,7 +172,7 @@ namespace presentacion
                 return;
 
             }
-            TextBox[] textBoxesNumPo = { txtCodigoPostal, txtNumExterior, txtNumInterior };
+            TextBox[] textBoxesNumPo = { txtCodigoPostal};
             foreach (TextBox textBox in textBoxesNumPo)
             {
 

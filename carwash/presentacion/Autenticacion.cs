@@ -59,14 +59,14 @@ namespace presentacion
             TextBox[] textBoxesEvaluarCont = { txtPwd };
             if (validacionesUI.EvalTxtVacios(textBoxesEvaluarCont) == true)
             {
-                Toast toast = new Toast("error", "El campo de contrase�a debe ser llenados.");
+                Toast toast = new Toast("error", "El campo de contraseña debe ser llenados.");
                 toast.Show();
                 return;
             }
 
             if (!logicaNegocios.CredencialesValidas(nombreUsr, pwd))
                 {
-                Toast toast = new Toast("error", "La contrase�a es incorrecta.");
+                Toast toast = new Toast("error", "La contraseña es incorrecta.");
                 toast.Show();
                 return;
             }
