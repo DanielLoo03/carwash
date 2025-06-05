@@ -203,67 +203,111 @@ namespace presentacion
             //Se guardan datos introducidos a objeto infoVentaAlta
             guardarDatos();
 
+            //Validaciones para marca del carro
+            TextBox[] posibleNumMaxMa = { txtMarcaCarro};
+            if (validacionesUI.EvalCampoLimite(posibleNumMaxMa, 50))
+            {
+                Toast toast = new Toast("error", "El campo de Marca del carro no debe exceder los 50 caracteres.");
+                toast.Show();
+                errorCapturado = true;
+                return;
+            }
 
+
+            //Validaciones para modelo del carro
+            TextBox[] posibleNumMaxMo = {txtModeloCarro };
+            if (validacionesUI.EvalCampoLimite(posibleNumMaxMo, 50))
+            {
+                Toast toast = new Toast("error", "El campo Modelo del carro no debe exceder los 50 caracteres.");
+                toast.Show();
+                errorCapturado = true;
+                return;
+            }
+
+
+            //Validaciones para color de carro
             if (validacionesUI.EvalCharsColor(colorCarro))
             {
                 Toast toast = new Toast("error", "El campo color de carro solo puede incluir letras");
                 toast.Show();
                 errorCapturado = true;
+                return;
             }
-
-            TextBox[] posibleNumMax = { txtMarcaCarro, txtModeloCarro, txtColorCarro };
-            if (validacionesUI.EvalCampoLimite(posibleNumMax, 50))
+            TextBox[] posibleNumMaxCol = {txtColorCarro };
+            if (validacionesUI.EvalCampoLimite(posibleNumMaxCol, 50))
             {
-                Toast toast = new Toast("error", "Los campos Marca, Modelo y Color del carro no deben exceder los 50 caracteres.");
+                Toast toast = new Toast("error", "El campo Color del carro no debe exceder los 50 caracteres.");
                 toast.Show();
                 errorCapturado = true;
                 return;
             }
 
-            decimal precio;
-            decimal.TryParse(txtPrecioCarro.Text, out precio);
-            decimal gan;
-            decimal.TryParse(txtGanancia.Text, out gan);
-            decimal corresp;
-            decimal.TryParse(txtCorresp.Text, out corresp);
-            string nomCompleto = cbNomEmpleado.Text;
-            int numEmp = int.Parse(cbNumEmpleado.Text);
 
-            if (validacionesUI.EvalCamposObligatoriosVenta(precio, gan, corresp, nomCompleto, numEmp))
+            if (!decimal.TryParse(txtPrecioCarro.Text, out decimal precio))
             {
-                Toast toast = new Toast("error", "Los campos obligatorios deben ser llenados (los que tienen el *)");
-                toast.Show();
-                errorCapturado = true;
-            }
-
-            string[] posiblesNums = { txtPrecioCarro.Text, txtGanancia.Text, txtCorresp.Text };
-            if (validacionesUI.EvalSoloNums(posiblesNums))
-            {
-                Toast toast = new Toast("error", "Los campos precio del carro, ganancia y correspondencia deben contener valores númericos.");
+                Toast toast = new Toast("error", "El campo Precio es obligatorio y debe ser numérico.");
                 toast.Show();
                 errorCapturado = true;
                 return;
             }
-
             if (validacionesUI.EvalMontos(precio))
             {
                 Toast toast = new Toast("error", "El precio no puede ser igual a 0 o negativo.");
                 toast.Show();
                 errorCapturado = true;
+                return;
             }
 
+            // ————— Validaciones y parseo de ganancia —————
+            if (!decimal.TryParse(txtGanancia.Text, out decimal gan))
+            {
+                Toast toast = new Toast("error", "El campo Ganancia es obligatorio y debe ser numérico.");
+                toast.Show();
+                errorCapturado = true;
+                return;
+            }
             if (validacionesUI.EvalMontos(gan))
             {
-                Toast toast = new Toast("error", "La ganancia no puede ser igual a 0 o negativo.");
+                Toast toast = new Toast("error", "La ganancia no puede ser igual a 0 o negativa.");
                 toast.Show();
                 errorCapturado = true;
+                return;
             }
 
-            if (validacionesUI.EvalMontos(corresp))
+            // ————— Validaciones y parseo de correspondencia —————
+            if (!decimal.TryParse(txtCorresp.Text, out decimal corresp))
             {
-                Toast toast = new Toast("error", "La correspondencia no puede ser igual a 0 o negativo.");
+                Toast toast = new Toast("error", "El campo Correspondencia es obligatorio y debe ser numérico.");
                 toast.Show();
                 errorCapturado = true;
+                return;
+            }
+            if (validacionesUI.EvalMontos(corresp))
+            {
+                Toast toast = new Toast("error", "La correspondencia no puede ser igual a 0 o negativa.");
+                toast.Show();
+                errorCapturado = true;
+                return;
+            }
+
+            // ————— Validación de nombre de empleado seleccionado —————
+            string nomCompleto = cbNomEmpleado.Text;
+            if (validacionesUI.EvalNombreCliente(nomCompleto))
+            {
+                Toast toast = new Toast("error", "El campo nombre de empleado es obligatorio y debe estar seleccionado.");
+                toast.Show();
+                errorCapturado = true;
+                return;
+            }
+
+            
+            if (string.IsNullOrWhiteSpace(cbNumEmpleado.Text) ||
+                !int.TryParse(cbNumEmpleado.Text, out int numEmp))
+            {
+                Toast toast = new Toast("error", "Debes seleccionar un número de empleado válido.");
+                toast.Show();
+                errorCapturado = true;
+                return;
             }
 
             if (!errorCapturado)

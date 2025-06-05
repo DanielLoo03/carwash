@@ -363,7 +363,7 @@ CREATE PROCEDURE consGanTotal (
 )
 BEGIN
     SELECT ganancia
-    FROM venta
+    FROM ventas
     WHERE DATE(fechaVenta) = DATE(fechaCons);
 END $$
 

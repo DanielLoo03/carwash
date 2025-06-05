@@ -36,20 +36,19 @@
             lblApellidoMaterno = new Label();
             lblFechaNacimiento = new Label();
             lblNumTelefono = new Label();
-            numEmpleado = new Label();
             txtNombre = new TextBox();
             txtApellidoPaterno = new TextBox();
             txtApellidoMaterno = new TextBox();
             dtFechaNacimiento = new DateTimePicker();
-            nudNumEmpleado = new NumericUpDown();
             btnContinuar = new Button();
             obligatorio = new Label();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            label5 = new Label();
             mtxtNumTelefono = new MaskedTextBox();
+            label6 = new Label();
+            nudNumEmpleado = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)nudNumEmpleado).BeginInit();
             SuspendLayout();
             // 
@@ -126,18 +125,9 @@
             lblNumTelefono.TabIndex = 6;
             lblNumTelefono.Text = "Número de teléfono";
             // 
-            // numEmpleado
-            // 
-            numEmpleado.AutoSize = true;
-            numEmpleado.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            numEmpleado.Location = new Point(100, 733);
-            numEmpleado.Name = "numEmpleado";
-            numEmpleado.Size = new Size(181, 22);
-            numEmpleado.TabIndex = 7;
-            numEmpleado.Text = "Número de empleado";
-            // 
             // txtNombre
             // 
+            txtNombre.CharacterCasing = CharacterCasing.Upper;
             txtNombre.Location = new Point(100, 245);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new Size(557, 31);
@@ -145,6 +135,7 @@
             // 
             // txtApellidoPaterno
             // 
+            txtApellidoPaterno.CharacterCasing = CharacterCasing.Upper;
             txtApellidoPaterno.Location = new Point(100, 351);
             txtApellidoPaterno.Name = "txtApellidoPaterno";
             txtApellidoPaterno.Size = new Size(557, 31);
@@ -152,6 +143,7 @@
             // 
             // txtApellidoMaterno
             // 
+            txtApellidoMaterno.CharacterCasing = CharacterCasing.Upper;
             txtApellidoMaterno.Location = new Point(100, 454);
             txtApellidoMaterno.Name = "txtApellidoMaterno";
             txtApellidoMaterno.Size = new Size(557, 31);
@@ -160,18 +152,12 @@
             // dtFechaNacimiento
             // 
             dtFechaNacimiento.Location = new Point(100, 563);
+            dtFechaNacimiento.MaxDate = new DateTime(2007, 12, 31, 0, 0, 0, 0);
+            dtFechaNacimiento.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             dtFechaNacimiento.Name = "dtFechaNacimiento";
             dtFechaNacimiento.Size = new Size(557, 31);
             dtFechaNacimiento.TabIndex = 11;
-            // 
-            // nudNumEmpleado
-            // 
-            nudNumEmpleado.Location = new Point(100, 769);
-            nudNumEmpleado.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
-            nudNumEmpleado.Name = "nudNumEmpleado";
-            nudNumEmpleado.Size = new Size(557, 31);
-            nudNumEmpleado.TabIndex = 13;
-            nudNumEmpleado.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            dtFechaNacimiento.Value = new DateTime(1950, 5, 31, 0, 0, 0, 0);
             // 
             // btnContinuar
             // 
@@ -181,12 +167,11 @@
             btnContinuar.ForeColor = SystemColors.Window;
             btnContinuar.Image = (Image)resources.GetObject("btnContinuar.Image");
             btnContinuar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnContinuar.Location = new Point(454, 855);
+            btnContinuar.Location = new Point(100, 745);
             btnContinuar.Name = "btnContinuar";
-            btnContinuar.Size = new Size(203, 34);
+            btnContinuar.Size = new Size(557, 34);
             btnContinuar.TabIndex = 14;
             btnContinuar.Text = "Continuar";
-            btnContinuar.TextAlign = ContentAlignment.MiddleRight;
             btnContinuar.UseVisualStyleBackColor = false;
             btnContinuar.Click += btnContinuar_Click;
             // 
@@ -240,16 +225,6 @@
             label4.TabIndex = 19;
             label4.Text = "*";
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.ForeColor = Color.Red;
-            label5.Location = new Point(281, 730);
-            label5.Name = "label5";
-            label5.Size = new Size(20, 25);
-            label5.TabIndex = 20;
-            label5.Text = "*";
-            // 
             // mtxtNumTelefono
             // 
             mtxtNumTelefono.Location = new Point(100, 665);
@@ -258,14 +233,36 @@
             mtxtNumTelefono.Size = new Size(557, 31);
             mtxtNumTelefono.TabIndex = 21;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.ForeColor = SystemColors.Desktop;
+            label6.Location = new Point(377, 149);
+            label6.Name = "label6";
+            label6.Size = new Size(280, 22);
+            label6.TabIndex = 23;
+            label6.Text = "Los datos obligatorios contienen *";
+            // 
+            // nudNumEmpleado
+            // 
+            nudNumEmpleado.Enabled = false;
+            nudNumEmpleado.Location = new Point(100, 666);
+            nudNumEmpleado.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudNumEmpleado.Name = "nudNumEmpleado";
+            nudNumEmpleado.Size = new Size(557, 31);
+            nudNumEmpleado.TabIndex = 13;
+            nudNumEmpleado.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nudNumEmpleado.Visible = false;
+            // 
             // DatosPersonales
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(746, 908);
+            ClientSize = new Size(746, 814);
+            Controls.Add(label6);
             Controls.Add(mtxtNumTelefono);
-            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -277,7 +274,6 @@
             Controls.Add(txtApellidoMaterno);
             Controls.Add(txtApellidoPaterno);
             Controls.Add(txtNombre);
-            Controls.Add(numEmpleado);
             Controls.Add(lblNumTelefono);
             Controls.Add(lblFechaNacimiento);
             Controls.Add(lblApellidoMaterno);
@@ -307,19 +303,18 @@
         private Label lblApellidoMaterno;
         private Label lblFechaNacimiento;
         private Label lblNumTelefono;
-        private Label numEmpleado;
         private TextBox txtNombre;
         private TextBox txtApellidoPaterno;
         private TextBox txtApellidoMaterno;
         private DateTimePicker dtFechaNacimiento;
-        private NumericUpDown nudNumEmpleado;
         private Button btnContinuar;
         private Label obligatorio;
         private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
-        private Label label5;
         private MaskedTextBox mtxtNumTelefono;
+        private Label label6;
+        private NumericUpDown nudNumEmpleado;
     }
 }

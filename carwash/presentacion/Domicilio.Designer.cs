@@ -45,6 +45,7 @@
             obligatorio = new Label();
             label1 = new Label();
             label4 = new Label();
+            label6 = new Label();
             SuspendLayout();
             // 
             // btnConfirmar
@@ -55,12 +56,11 @@
             btnConfirmar.ForeColor = SystemColors.Window;
             btnConfirmar.Image = (Image)resources.GetObject("btnConfirmar.Image");
             btnConfirmar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConfirmar.Location = new Point(471, 830);
+            btnConfirmar.Location = new Point(117, 771);
             btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Size = new Size(203, 34);
+            btnConfirmar.Size = new Size(557, 34);
             btnConfirmar.TabIndex = 29;
             btnConfirmar.Text = "Confirmar";
-            btnConfirmar.TextAlign = ContentAlignment.MiddleRight;
             btnConfirmar.UseVisualStyleBackColor = false;
             btnConfirmar.Click += btnConfirmar_Click;
             // 
@@ -80,6 +80,7 @@
             // 
             // txtColonia
             // 
+            txtColonia.CharacterCasing = CharacterCasing.Upper;
             txtColonia.Location = new Point(117, 326);
             txtColonia.Name = "txtColonia";
             txtColonia.Size = new Size(557, 31);
@@ -87,6 +88,7 @@
             // 
             // txtCalle
             // 
+            txtCalle.CharacterCasing = CharacterCasing.Upper;
             txtCalle.Location = new Point(117, 220);
             txtCalle.Name = "txtCalle";
             txtCalle.Size = new Size(557, 31);
@@ -202,12 +204,24 @@
             label4.TabIndex = 35;
             label4.Text = "*";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.ForeColor = SystemColors.Desktop;
+            label6.Location = new Point(394, 130);
+            label6.Name = "label6";
+            label6.Size = new Size(280, 22);
+            label6.TabIndex = 36;
+            label6.Text = "Los datos obligatorios contienen *";
+            // 
             // Domicilio
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(746, 908);
+            ClientSize = new Size(746, 856);
+            Controls.Add(label6);
             Controls.Add(label4);
             Controls.Add(label1);
             Controls.Add(obligatorio);
@@ -254,5 +268,6 @@
         private Label obligatorio;
         private Label label1;
         private Label label4;
+        private Label label6;
     }
 }

@@ -27,12 +27,13 @@ namespace presentacion
         {
             String nombreUsr = txtNombreUsr.Text;
             String pwd = txtPwd.Text;
-            TextBox[] textBoxesEvaluar = { txtNombreUsr, txtPwd };
+            TextBox[] textBoxesEvaluar = { txtNombreUsr };
 
             if (validacionesUI.EvalTxtVacios(textBoxesEvaluar) == true)
             {
-                Toast toast = new Toast("error", "Los campos de nombre de usuario y contraseña deben ser llenados.");
+                Toast toast = new Toast("error", "El campo de nombre de usuario debe ser llenados.");
                 toast.Show();
+                return;
             }
 
             if (txtNombreUsr.Text.Length > 50)
@@ -43,23 +44,39 @@ namespace presentacion
 
             if (txtPwd.Text.Length > 50)
             {
-                Toast toast = new Toast("error", "La contraseña no puede exceder 50 caracteres.");
+                Toast toast = new Toast("error", "La contraseï¿½a no puede exceder 50 caracteres.");
                 toast.Show();
             }
 
-            if (logicaNegocios.Login(nombreUsr, pwd))
-            {
 
+            if (!logicaNegocios.UsuarioExiste(nombreUsr))
+            {
+                Toast toast = new Toast("error", "El nombre de usuario no existe.");
+                toast.Show();
+                return;
+            }
+
+            TextBox[] textBoxesEvaluarCont = { txtPwd };
+            if (validacionesUI.EvalTxtVacios(textBoxesEvaluarCont) == true)
+            {
+                Toast toast = new Toast("error", "El campo de contraseÃ±a debe ser llenados.");
+                toast.Show();
+                return;
+            }
+
+            if (!logicaNegocios.CredencialesValidas(nombreUsr, pwd))
+                {
+                Toast toast = new Toast("error", "La contraseÃ±a es incorrecta.");
+                toast.Show();
+                return;
+            }
+            
                 PantallaPrincipal vtnGestionEmpleados = new PantallaPrincipal(this, nombreUsr);
                 vtnGestionEmpleados.Show();
                 this.Hide();
 
-            }
-            else
-            {
-                Toast toast = new Toast("error", "Credenciales inválidas.");
-                toast.Show();
-            }
+            
+            
         }
 
         private void btnMostrarPwd_Click(object sender, EventArgs e)
@@ -80,7 +97,7 @@ namespace presentacion
         {
             //Redondeo de pnlLogin
             int radioEsquinas = 20; //Redondeo de las esquinas
-            Rectangle areaPanel = pnlLogin.ClientRectangle; // área del panel
+            Rectangle areaPanel = pnlLogin.ClientRectangle; // ï¿½rea del panel
 
             using (GraphicsPath rutaRedondeada = PanelAndBotonRedondeado(areaPanel, radioEsquinas))
             {

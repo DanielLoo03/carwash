@@ -66,57 +66,58 @@ namespace presentacion
             //Inicio de evaluaciones
             Boolean errorCapturado = false; //Bandera para decidir si pasar al siguiente formulario o no permitir el paso. 
 
-            //Evaluación de código postal
-            if (validacionesUI.EvalCodigoPostal(txtCodigoPostal.Text))
+            TextBox[] textBoxesCalle = { txtCalle};
+            if (validacionesUI.EvalTxtVacios(textBoxesCalle))
             {
 
-                Toast toast = new Toast("error", "Código postal inválido.");
+                Toast toast = new Toast("error", "El campo de calle es obligatorio y debe ser llenado");
                 toast.Show();
                 errorCapturado = true;
+                return;
+
+            }
+            if (validacionesUI.EvalTxtChars(textBoxesCalle, 50))
+            {
+
+                Toast toast = new Toast("error", "El campo de calle no pueden exceder los 50 caracteres.");
+                toast.Show();
+                errorCapturado = true;
+                return;
 
             }
 
-            //Evaluación de campos obligatorios
-            TextBox[] textBoxes = { txtCalle, txtCodigoPostal, txtColonia };
-            if (validacionesUI.EvalTxtVacios(textBoxes))
+
+            TextBox[] textBoxesCol = {txtColonia };
+            if (validacionesUI.EvalTxtVacios(textBoxesCol))
             {
 
-                Toast toast = new Toast("error", "Los campos obligatorios deben ser llenados (los que tienen el *)");
+                Toast toast = new Toast("error", "El campo de colonia es obligatorio y debe ser llenado");
                 toast.Show();
                 errorCapturado = true;
+                return;
+
+            }
+            if (validacionesUI.EvalTxtChars(textBoxesCol, 50))
+            {
+
+                Toast toast = new Toast("error", "El campo de colonia no pueden exceder los 50 caracteres.");
+                toast.Show();
+                errorCapturado = true;
+                return;
 
             }
 
-            //Evaluación de exceso de caracteres
-            TextBox[] textBoxes50 = { txtCalle, txtColonia }; //Campos que su límite de caracteres es de 50
-            if (validacionesUI.EvalTxtChars(textBoxes50, 50))
+
+            TextBox[] textBoxNumE = { txtNumExterior };
+            if (validacionesUI.EvalTxtChars(textBoxNumE, 4))
             {
 
-                Toast toast = new Toast("error", "Los campos calle y colonia no pueden exceder los 50 caracteres.");
+                Toast toast = new Toast("error", "El campo de número exterior no pueden exceder los 4 caracteres.");
                 toast.Show();
                 errorCapturado = true;
-
+                return;
             }
-            TextBox[] textBox4 = { txtNumExterior, txtNumInterior };
-            if (validacionesUI.EvalTxtChars(textBox4, 4))
-            {
-
-                Toast toast = new Toast("error", "Los campos número exterior y número interior no pueden exceder los 4 caracteres.");
-                toast.Show();
-                errorCapturado = true;
-
-            }
-            //No se utiliza el validador de exceso de caracteres ya que se evalua una desigualdad, no un exceso.
-            if (txtCodigoPostal.Text.Length != 5)
-            {
-
-                Toast toast = new Toast("error", "El código postal debe consistir de 5 dígitos.");
-                toast.Show();
-                errorCapturado = true;
-
-            }
-            //Validación de solo dígitos
-            TextBox[] textBoxesNums = { txtCodigoPostal, txtNumExterior, txtNumInterior };
+            TextBox[] textBoxesNums = {txtNumExterior};
             foreach (TextBox textBox in textBoxesNums)
             {
 
@@ -124,13 +125,80 @@ namespace presentacion
                 if (Regex.IsMatch(textBox.Text, @"[^0-9]"))
                 {
 
-                    Toast toast = new Toast("error", "Los campos número exterior, número interior y código postal solo deben consistir de dígitos.");
+                    Toast toast = new Toast("error", "El campo número exterior solo debe consistir de dígitos.");
                     toast.Show();
                     errorCapturado = true;
+                    return;
 
                 }
 
             }
+
+
+            TextBox[] textBoxNumI = { txtNumExterior, txtNumInterior };
+            if (validacionesUI.EvalTxtChars(textBoxNumI, 4))
+            {
+
+                Toast toast = new Toast("error", "El campo de número interior no pueden exceder los 4 caracteres.");
+                toast.Show();
+                errorCapturado = true;
+                return;
+            }
+            TextBox[] textBoxesNumI = {txtNumInterior };
+            foreach (TextBox textBox in textBoxesNumI)
+            {
+
+                //El segundo parámetro es una expresión regular que considera todos los caracteres que no sean dígitos
+                if (Regex.IsMatch(textBox.Text, @"[^0-9]"))
+                {
+
+                    Toast toast = new Toast("error", "El campo número interior solo debe consistir de dígitos.");
+                    toast.Show();
+                    errorCapturado = true;
+                    return;
+
+                }
+
+            }
+
+
+            TextBox[] textBoxesNumP = { txtCodigoPostal };
+            if (validacionesUI.EvalTxtVacios(textBoxesNumP))
+            {
+
+                Toast toast = new Toast("error", "El campo de codigo postal es obligatorio y debe ser llenado");
+                toast.Show();
+                errorCapturado = true;
+                return;
+
+            }
+            TextBox[] textBoxesNumPo = { txtCodigoPostal};
+            foreach (TextBox textBox in textBoxesNumPo)
+            {
+
+                if (Regex.IsMatch(textBox.Text, @"[^0-9]"))
+                {
+
+                    Toast toast = new Toast("error", "El campo código postal solo debe consistir de dígitos.");
+                    toast.Show();
+                    errorCapturado = true;
+                    return;
+
+                }
+
+            }
+            //Evaluación de código postal
+            if (validacionesUI.EvalCodigoPostal(txtCodigoPostal.Text))
+            {
+
+                Toast toast = new Toast("error", "El código postal debe consistir de 5 dígitos.");
+                toast.Show();
+                errorCapturado = true;
+                return;
+
+            }
+
+
             //Fin validaciones
 
             //Si no se ha capturaro ningún error, entonces podemos agregar/modificar al empleado

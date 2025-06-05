@@ -53,6 +53,7 @@
             label6 = new Label();
             lblNumEmp = new Label();
             btnConfirmarVenta = new Button();
+            label7 = new Label();
             SuspendLayout();
             // 
             // lblVenta
@@ -89,6 +90,7 @@
             // 
             // txtModeloCarro
             // 
+            txtModeloCarro.CharacterCasing = CharacterCasing.Upper;
             txtModeloCarro.Location = new Point(88, 274);
             txtModeloCarro.Name = "txtModeloCarro";
             txtModeloCarro.Size = new Size(557, 31);
@@ -96,6 +98,7 @@
             // 
             // txtMarcaCarro
             // 
+            txtMarcaCarro.CharacterCasing = CharacterCasing.Upper;
             txtMarcaCarro.Location = new Point(88, 184);
             txtMarcaCarro.Name = "txtMarcaCarro";
             txtMarcaCarro.Size = new Size(557, 31);
@@ -113,6 +116,7 @@
             // 
             // txtColorCarro
             // 
+            txtColorCarro.CharacterCasing = CharacterCasing.Upper;
             txtColorCarro.Location = new Point(88, 363);
             txtColorCarro.Name = "txtColorCarro";
             txtColorCarro.Size = new Size(557, 31);
@@ -286,14 +290,24 @@
             btnConfirmarVenta.ForeColor = SystemColors.Window;
             btnConfirmarVenta.Image = (Image)resources.GetObject("btnConfirmarVenta.Image");
             btnConfirmarVenta.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConfirmarVenta.Location = new Point(442, 912);
+            btnConfirmarVenta.Location = new Point(88, 912);
             btnConfirmarVenta.Name = "btnConfirmarVenta";
-            btnConfirmarVenta.Size = new Size(203, 34);
+            btnConfirmarVenta.Size = new Size(557, 34);
             btnConfirmarVenta.TabIndex = 44;
             btnConfirmarVenta.Text = "Confirmar";
-            btnConfirmarVenta.TextAlign = ContentAlignment.MiddleRight;
             btnConfirmarVenta.UseVisualStyleBackColor = false;
             btnConfirmarVenta.Click += btnConfirmarVenta_Click;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.ForeColor = SystemColors.Desktop;
+            label7.Location = new Point(365, 119);
+            label7.Name = "label7";
+            label7.Size = new Size(280, 22);
+            label7.TabIndex = 80;
+            label7.Text = "Los datos obligatorios contienen *";
             // 
             // AltaVenta
             // 
@@ -301,6 +315,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(746, 968);
+            Controls.Add(label7);
             Controls.Add(btnConfirmarVenta);
             Controls.Add(cbNumEmpleado);
             Controls.Add(label6);
@@ -362,5 +377,6 @@
         private Label label6;
         private Label lblNumEmp;
         private Button btnConfirmarVenta;
+        private Label label7;
     }
 }

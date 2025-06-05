@@ -45,17 +45,18 @@
             obligatorio = new Label();
             lblNombre = new Label();
             btnRegresar = new Button();
+            label6 = new Label();
             SuspendLayout();
             // 
             // lblDatosUsuario
             // 
             lblDatosUsuario.AutoSize = true;
             lblDatosUsuario.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDatosUsuario.Location = new Point(114, 36);
+            lblDatosUsuario.Location = new Point(128, 36);
             lblDatosUsuario.Name = "lblDatosUsuario";
-            lblDatosUsuario.Size = new Size(503, 46);
+            lblDatosUsuario.Size = new Size(459, 46);
             lblDatosUsuario.TabIndex = 50;
-            lblDatosUsuario.Text = "Datos de Administradores";
+            lblDatosUsuario.Text = "Datos de Administrador";
             // 
             // btnMostrarPwd2
             // 
@@ -120,9 +121,8 @@
             camposOblig.ForeColor = SystemColors.Desktop;
             camposOblig.Location = new Point(446, 108);
             camposOblig.Name = "camposOblig";
-            camposOblig.Size = new Size(189, 22);
+            camposOblig.Size = new Size(0, 22);
             camposOblig.TabIndex = 73;
-            camposOblig.Text = "* Campos Obligatorios";
             // 
             // txtConfCont
             // 
@@ -136,7 +136,7 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.Red;
-            label1.Location = new Point(258, 318);
+            label1.Location = new Point(265, 318);
             label1.Name = "label1";
             label1.Size = new Size(20, 25);
             label1.TabIndex = 71;
@@ -164,7 +164,7 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.Red;
-            label2.Location = new Point(172, 221);
+            label2.Location = new Point(177, 221);
             label2.Name = "label2";
             label2.Size = new Size(20, 25);
             label2.TabIndex = 68;
@@ -219,12 +219,24 @@
             btnRegresar.UseVisualStyleBackColor = true;
             btnRegresar.Click += btnRegresar_Click;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.ForeColor = SystemColors.Desktop;
+            label6.Location = new Point(354, 104);
+            label6.Name = "label6";
+            label6.Size = new Size(280, 22);
+            label6.TabIndex = 79;
+            label6.Text = "Los datos obligatorios contienen *";
+            // 
             // AltaAdmin
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
             ClientSize = new Size(738, 534);
+            Controls.Add(label6);
             Controls.Add(btnRegresar);
             Controls.Add(btnMostrarPwd2);
             Controls.Add(btnMostrarPwd1);
@@ -245,7 +257,6 @@
             MaximizeBox = false;
             Name = "AltaAdmin";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Car Wash Leo";
             FormClosing += AltaAdmin_FormClosing;
             Load += AltaAdmin_Load;
             KeyDown += AltaAdmin_KeyDown;
@@ -271,5 +282,6 @@
         private Label obligatorio;
         private Label lblNombre;
         private Button btnRegresar;
+        private Label label6;
     }
 }

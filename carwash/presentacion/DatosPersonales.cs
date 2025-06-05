@@ -59,25 +59,90 @@ namespace presentacion
             Boolean errorCapturado = false; //Bandera para decidir si pasar al siguiente formulario o no permitir el paso. 
 
             //Evaluación de campos obligatorios
-            TextBox[] textBoxes = { txtNombre, txtApellidoPaterno, txtApellidoMaterno };
-            if (validacionesUI.EvalTxtVacios(textBoxes) || string.IsNullOrWhiteSpace(mtxtNumTelefono.Text))
+            TextBox[] textBoxesNom = { txtNombre};
+            if (validacionesUI.EvalTxtVacios(textBoxesNom) || string.IsNullOrWhiteSpace(mtxtNumTelefono.Text))
             {
 
-                Toast toast = new Toast("error", "Los campos obligatorios deben ser llenados (los que tienen el *)");
+                Toast toast = new Toast("error", "El nombre del empleado es obligatorio y debe ser llenado");
                 toast.Show();
                 errorCapturado = true;
-
+                return;
             }
-            //Evaluación de exceso de caracteres
-            TextBox[] textBoxes50 = { txtNombre, txtApellidoPaterno, txtApellidoMaterno }; //Los textBoxes que su limite de caracteres es de 50
-            if (validacionesUI.EvalTxtChars(textBoxes, 50))
+            //Los textBoxes que su limite de caracteres es de 50
+            if (validacionesUI.EvalTxtChars(textBoxesNom, 50))
             {
 
-                Toast toast = new Toast("error", "Los campos nombres, apellido paterno y apellido materno no admiten más de 50 caracteres");
+                Toast toast = new Toast("error", "El campo nombres de empleado no admiten más de 50 caracteres");
                 toast.Show();
                 errorCapturado = true;
-
+                return;
             }
+            if (validacionesUI.EvalTxtCharsEspecial(textBoxesNom))
+            {
+
+                Toast toast = new Toast("error", "El campo nombre de empleado no deben incluir caracteres especiales ni dígitos (!, @, #, 0, 1 etc.)");
+                toast.Show();
+                errorCapturado = true;
+                return;
+            }
+
+
+            TextBox[] textBoxesAP = {txtApellidoPaterno};
+            if (validacionesUI.EvalTxtVacios(textBoxesAP) || string.IsNullOrWhiteSpace(mtxtNumTelefono.Text))
+            {
+
+                Toast toast = new Toast("error", "El apellido paterno del empleado es obligatorio y debe ser llenado");
+                toast.Show();
+                errorCapturado = true;
+                return;
+            }
+            //Los textBoxes que su limite de caracteres es de 50
+            if (validacionesUI.EvalTxtChars(textBoxesAP, 50))
+            {
+
+                Toast toast = new Toast("error", "El campo apellido paterno no admiten más de 50 caracteres");
+                toast.Show();
+                errorCapturado = true;
+                return;
+            }
+            if (validacionesUI.EvalTxtCharsEspecial(textBoxesAP))
+            {
+
+                Toast toast = new Toast("error", "El campo de apellido paterno no deben incluir caracteres especiales ni dígitos (!, @, #, 0, 1 etc.)");
+                toast.Show();
+                errorCapturado = true;
+                return;
+            }
+
+
+            TextBox[] textBoxesAM = { txtApellidoMaterno };
+            if (validacionesUI.EvalTxtVacios(textBoxesAM) || string.IsNullOrWhiteSpace(mtxtNumTelefono.Text))
+            {
+
+                Toast toast = new Toast("error", "El apellido materno del empleado es obligatorio y debe ser llenado");
+                toast.Show();
+                errorCapturado = true;
+                return;
+            }
+            //Los textBoxes que su limite de caracteres es de 50
+            if (validacionesUI.EvalTxtChars(textBoxesAM, 50))
+            {
+
+                Toast toast = new Toast("error", "El campo apellido materno no admiten más de 50 caracteres");
+                toast.Show();
+                errorCapturado = true;
+                return;
+            }
+            if (validacionesUI.EvalTxtCharsEspecial(textBoxesAM))
+            {
+
+                Toast toast = new Toast("error", "El campo apellido materno no deben incluir caracteres especiales ni dígitos (!, @, #, 0, 1 etc.)");
+                toast.Show();
+                errorCapturado = true;
+                return;
+            }
+
+
             //No se puede utilizar el validador de exceso de caracteres ya que necesitamos validar si el tamaño es de un valor exacto, no si excede cierto número.
             if (mtxtNumTelefono.Text.Length != 12)
             {
@@ -85,18 +150,9 @@ namespace presentacion
                 Toast toast = new Toast("error", "El número de teléfono debe ser de 10 dígitos.");
                 toast.Show();
                 errorCapturado = true;
-
+                return;
             }
-            //Evaluación de caracteres especiales
-            //Se pasa el parametro textBoxes50 ya que coincide con los campos que se deben de evaluar con los caracteres especiales.
-            if (validacionesUI.EvalTxtCharsEspecial(textBoxes50))
-            {
-
-                Toast toast = new Toast("error", "Los campos nombres, apellido paterno y apellido paterno no deben incluir caracteres especiales ni dígitos (!, @, #, 0, 1 etc.)");
-                toast.Show();
-                errorCapturado = true;
-
-            }
+  
             //Si se modifica el número de empleado, evaluar
             if (numEmpleadoActual != nudNumEmpleado.Value)
             {
@@ -108,7 +164,7 @@ namespace presentacion
                     Toast toast = new Toast("error", "El número de empleado introducido ya se ha usado.");
                     toast.Show();
                     errorCapturado = true;
-
+                    return;
                 }
 
             }
@@ -119,7 +175,7 @@ namespace presentacion
                 Toast toast = new Toast("error", "El empleado es menor de edad.");
                 toast.Show();
                 errorCapturado = true;
-
+                return;
             }
             //Fin validaciones
 
@@ -140,11 +196,25 @@ namespace presentacion
 
         private void DatosPersonales_Load(object sender, EventArgs e)
         {
+            dtFechaNacimiento.MaxDate = DateTime.Today.AddYears(-18); 
+
+            dtFechaNacimiento.MinDate = DateTime.Today.AddYears(-100);
+
+            
+            DateTime nacimiento = infoEmpleado.FechaNacimiento;
+            if (nacimiento >= dtFechaNacimiento.MinDate && nacimiento <= dtFechaNacimiento.MaxDate)
+            {
+                dtFechaNacimiento.Value = nacimiento; 
+            }
+            else
+            {
+                dtFechaNacimiento.Value = dtFechaNacimiento.MaxDate; 
+            }
 
             txtNombre.Text = infoEmpleado.Nombres;
             txtApellidoPaterno.Text = infoEmpleado.ApellidoPaterno;
             txtApellidoMaterno.Text = infoEmpleado.ApellidoMaterno;
-            dtFechaNacimiento.Text = infoEmpleado.FechaNacimiento.ToString("yyyy-MM-dd");
+
             if (string.IsNullOrEmpty(infoEmpleado.NumTelefono))
             {
 
@@ -156,9 +226,19 @@ namespace presentacion
                 mtxtNumTelefono.Text = logicaNegocios.QuitarGuiones(infoEmpleado.NumTelefono);
 
             }
-            nudNumEmpleado.Text = infoEmpleado.NumEmpleado.ToString();
-
-            numEmpleadoActual = infoEmpleado.NumEmpleado;
+            if (accion.Equals("modificar"))
+            {
+                // En modo modificar, usamos el numEmpleado que llegó en infoEmpleado
+                nudNumEmpleado.Value = infoEmpleado.NumEmpleado;
+                numEmpleadoActual = infoEmpleado.NumEmpleado;
+            }
+            else
+            {
+                // En modo alta, pedimos a LogicaNegocios que calcule el siguiente número
+                int siguiente = logicaNegocios.CalcularNuevoNumEmpleado();
+                nudNumEmpleado.Value = siguiente;
+                numEmpleadoActual = siguiente;
+            }
 
         }
 

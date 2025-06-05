@@ -20,22 +20,33 @@ namespace negocios
         private GastoService gastoService = new GastoService();
 
         //Valor de retorno: booleano que determina si el login fue exitoso o no exitoso
-        public Boolean Login(String nombreUsuario, String contrasena)
+        public Boolean UsuarioExiste(string nombreUsuario)
         {
-
             DataTable administradores = adminsService.GetAdmins();
-
             foreach (DataRow administrador in administradores.Rows)
             {
-                //Revisa si el nombre de usuario y la contraseña introducidos pertenecen a un registro de la base de datos. 
-                if (nombreUsuario.Equals(administrador["nombreUsuario"]) && contrasena.Equals(administrador["contrasena"]))
+                if (nombreUsuario.Equals(administrador["nombreUsuario"].ToString(), StringComparison.OrdinalIgnoreCase))
+                    return true;
+            }
+            return false;
+        }
+
+        public Boolean CredencialesValidas(string nombreUsuario, string contrasena)
+        {
+            DataTable administradores = adminsService.GetAdmins();
+            foreach (DataRow administrador in administradores.Rows)
+            {
+                // Comprobamos en la misma fila que coincidan nombre y contraseña
+                if (nombreUsuario.Equals(administrador["nombreUsuario"].ToString(), StringComparison.OrdinalIgnoreCase)
+                    && contrasena.Equals(administrador["contrasena"].ToString()))
                 {
                     return true;
-                }// Fin if 
-            }// Fin foreach
+                }
+            }
             return false;
-
         }
+
+
         public DataTable GetAdmins()
         {
             return adminsService.GetAdmins();
@@ -161,7 +172,6 @@ namespace negocios
 
             //resultCons almacena el nombre de empleado en forma de DataTable, ya que viene de hacerse una consulta de MySQL
             DataTable resultCons = ventasService.ConsNumEmp(nom, apellidoPaterno, apellidoMaterno);
-            MessageBox.Show(resultCons.ToString());
             int numEmp = (int)resultCons.Rows[0]["numEmpleado"];
             return numEmp;
 
@@ -376,7 +386,7 @@ namespace negocios
 
         }
 
-        //Calcular el monto total de ventas en el día
+        //Calcular el monto total que debe haber en caja (sumatoria ventas + monto de corte anterior - gastos)
         public decimal CalcSistema(DataTable ventasNoCan)
         {
 
@@ -430,6 +440,8 @@ namespace negocios
                 total += montoCaja;
 
             }
+
+            //PENDIENTE considerar gastos hasta que se haya terminado de realizar módulo
 
             total = Math.Round(total, 2, MidpointRounding.AwayFromZero);
             return total;
@@ -725,6 +737,29 @@ namespace negocios
         {
             adminsService.BajaAdmin(idAdmin);
         }
+
+        public int CalcularNuevoNumEmpleado()
+        {
+            DataTable dtNums = GetNumsEmpleado();
+            if (dtNums.Rows.Count == 0)
+            {
+                return 1;
+            }
+            int maxNum = 0;
+            foreach (DataRow row in dtNums.Rows)
+            {
+                if (int.TryParse(row["numEmpleado"].ToString(), out int actual))
+                {
+                    if (actual > maxNum)
+                        maxNum = actual;
+                }
+            }
+            return maxNum + 1;
+        }
+
+        public DataTable ConsultDatosEmpleados()
+        {
+            return empleadosService.ConsultEmpleados();
 
         //Modifica el valor del monto contado en el corte de caja reabierto 
         public void ModContado(decimal contado)

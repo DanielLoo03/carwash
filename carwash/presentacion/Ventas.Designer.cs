@@ -98,7 +98,7 @@
             btnCanVenta.ForeColor = Color.White;
             btnCanVenta.Image = (Image)resources.GetObject("btnCanVenta.Image");
             btnCanVenta.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCanVenta.Location = new Point(1544, 27);
+            btnCanVenta.Location = new Point(1278, 28);
             btnCanVenta.Margin = new Padding(4, 5, 4, 5);
             btnCanVenta.Name = "btnCanVenta";
             btnCanVenta.Size = new Size(226, 40);
@@ -152,7 +152,7 @@
             btnAltaVenta.ForeColor = Color.White;
             btnAltaVenta.Image = (Image)resources.GetObject("btnAltaVenta.Image");
             btnAltaVenta.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAltaVenta.Location = new Point(1283, 29);
+            btnAltaVenta.Location = new Point(1546, 30);
             btnAltaVenta.Name = "btnAltaVenta";
             btnAltaVenta.Size = new Size(226, 38);
             btnAltaVenta.TabIndex = 2;
@@ -215,6 +215,8 @@
             // 
             // tblVentas
             // 
+            tblVentas.AllowUserToAddRows = false;
+            tblVentas.AllowUserToDeleteRows = false;
             tblVentas.BackgroundColor = Color.White;
             tblVentas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tblVentas.Location = new Point(-1, -2);
