@@ -759,6 +759,7 @@ namespace negocios
         public DataTable ConsultDatosEmpleados()
         {
             return empleadosService.ConsultEmpleados();
+        }
 
         //Modifica el valor del monto contado en el corte de caja reabierto 
         public void ModContado(decimal contado)
