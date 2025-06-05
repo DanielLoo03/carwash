@@ -17,6 +17,7 @@ namespace presentacion
     {
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
+        public event EventHandler GastoAgregado;
         private InfoGasto infoGasto;
         private string tipo;
         private int idAdmin = 0;
@@ -84,6 +85,7 @@ namespace presentacion
                 txtDesc.Clear();
                 cbTipoGas.SelectedIndex = 0;
                 this.Close();
+                GastoAgregado?.Invoke(this, EventArgs.Empty);
             }
             else if (tipo == "mod")
             {

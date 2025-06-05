@@ -29,35 +29,32 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionGasto));
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pnlCabecera = new Panel();
+            btnCorresp = new Button();
             btnAltaGas = new Button();
             lblGastos = new Label();
             lblGestionDe = new Label();
             pnlContenido = new Panel();
+            lblNoGas = new Label();
+            tblGastos = new DataGridView();
             lblNoGan = new Label();
-            lblCorrespEmp = new Label();
-            imgCorresp = new PictureBox();
-            lblCorresp = new Label();
-            imgEmp = new PictureBox();
-            lblEmp = new Label();
-            lblGanEmp = new Label();
             lblGanDia = new Label();
             separator1 = new ReaLTaiizor.Controls.Separator();
             lblGan = new Label();
-            cbEmp = new ComboBox();
             imgFechaGas = new PictureBox();
             lblFechaGas = new Label();
             dtFechaGas = new DateTimePicker();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imgCorresp).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)imgEmp).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tblGastos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgFechaGas).BeginInit();
             SuspendLayout();
             // 
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
+            pnlCabecera.Controls.Add(btnCorresp);
             pnlCabecera.Controls.Add(btnAltaGas);
             pnlCabecera.Controls.Add(lblGastos);
             pnlCabecera.Controls.Add(lblGestionDe);
@@ -65,6 +62,23 @@
             pnlCabecera.Name = "pnlCabecera";
             pnlCabecera.Size = new Size(1820, 100);
             pnlCabecera.TabIndex = 3;
+            // 
+            // btnCorresp
+            // 
+            btnCorresp.BackColor = Color.FromArgb(63, 114, 175);
+            btnCorresp.FlatStyle = FlatStyle.Popup;
+            btnCorresp.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCorresp.ForeColor = Color.White;
+            btnCorresp.Image = (Image)resources.GetObject("btnCorresp.Image");
+            btnCorresp.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCorresp.Location = new Point(1209, 28);
+            btnCorresp.Name = "btnCorresp";
+            btnCorresp.Size = new Size(225, 39);
+            btnCorresp.TabIndex = 3;
+            btnCorresp.Text = "Correspondencias";
+            btnCorresp.TextAlign = ContentAlignment.MiddleRight;
+            btnCorresp.UseVisualStyleBackColor = false;
+            btnCorresp.Click += btnCorresp_Click;
             // 
             // btnAltaGas
             // 
@@ -109,17 +123,12 @@
             // 
             pnlContenido.BackColor = SystemColors.Window;
             pnlContenido.BorderStyle = BorderStyle.FixedSingle;
+            pnlContenido.Controls.Add(lblNoGas);
+            pnlContenido.Controls.Add(tblGastos);
             pnlContenido.Controls.Add(lblNoGan);
-            pnlContenido.Controls.Add(lblCorrespEmp);
-            pnlContenido.Controls.Add(imgCorresp);
-            pnlContenido.Controls.Add(lblCorresp);
-            pnlContenido.Controls.Add(imgEmp);
-            pnlContenido.Controls.Add(lblEmp);
-            pnlContenido.Controls.Add(lblGanEmp);
             pnlContenido.Controls.Add(lblGanDia);
             pnlContenido.Controls.Add(separator1);
             pnlContenido.Controls.Add(lblGan);
-            pnlContenido.Controls.Add(cbEmp);
             pnlContenido.Controls.Add(imgFechaGas);
             pnlContenido.Controls.Add(lblFechaGas);
             pnlContenido.Controls.Add(dtFechaGas);
@@ -128,84 +137,58 @@
             pnlContenido.Size = new Size(1820, 547);
             pnlContenido.TabIndex = 4;
             // 
+            // lblNoGas
+            // 
+            lblNoGas.AutoSize = true;
+            lblNoGas.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNoGas.Location = new Point(407, 259);
+            lblNoGas.Name = "lblNoGas";
+            lblNoGas.Size = new Size(482, 32);
+            lblNoGas.TabIndex = 25;
+            lblNoGas.Text = "No se han registrado gastos en el dia";
+            lblNoGas.Visible = false;
+            // 
+            // tblGastos
+            // 
+            tblGastos.AllowUserToAddRows = false;
+            tblGastos.AllowUserToDeleteRows = false;
+            tblGastos.BackgroundColor = Color.White;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            tblGastos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            tblGastos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tblGastos.Location = new Point(143, 59);
+            tblGastos.MultiSelect = false;
+            tblGastos.Name = "tblGastos";
+            tblGastos.ReadOnly = true;
+            tblGastos.RowHeadersWidth = 62;
+            tblGastos.ScrollBars = ScrollBars.None;
+            tblGastos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            tblGastos.Size = new Size(1035, 431);
+            tblGastos.TabIndex = 24;
+            // 
             // lblNoGan
             // 
             lblNoGan.AutoSize = true;
             lblNoGan.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblNoGan.ForeColor = Color.Red;
-            lblNoGan.Location = new Point(1427, 408);
+            lblNoGan.Location = new Point(1339, 396);
             lblNoGan.Name = "lblNoGan";
             lblNoGan.Size = new Size(308, 22);
             lblNoGan.TabIndex = 23;
             lblNoGan.Text = "No se han registrado ventas en el dia";
             lblNoGan.Visible = false;
             // 
-            // lblCorrespEmp
-            // 
-            lblCorrespEmp.AutoSize = true;
-            lblCorrespEmp.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCorrespEmp.Location = new Point(389, 363);
-            lblCorrespEmp.Name = "lblCorrespEmp";
-            lblCorrespEmp.Size = new Size(28, 22);
-            lblCorrespEmp.TabIndex = 22;
-            lblCorrespEmp.Text = "---";
-            // 
-            // imgCorresp
-            // 
-            imgCorresp.Image = (Image)resources.GetObject("imgCorresp.Image");
-            imgCorresp.Location = new Point(197, 359);
-            imgCorresp.Name = "imgCorresp";
-            imgCorresp.Size = new Size(30, 30);
-            imgCorresp.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgCorresp.TabIndex = 21;
-            imgCorresp.TabStop = false;
-            // 
-            // lblCorresp
-            // 
-            lblCorresp.AutoSize = true;
-            lblCorresp.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCorresp.Location = new Point(228, 363);
-            lblCorresp.Name = "lblCorresp";
-            lblCorresp.Size = new Size(147, 22);
-            lblCorresp.TabIndex = 20;
-            lblCorresp.Text = "Correspondencia";
-            // 
-            // imgEmp
-            // 
-            imgEmp.Image = (Image)resources.GetObject("imgEmp.Image");
-            imgEmp.Location = new Point(192, 206);
-            imgEmp.Name = "imgEmp";
-            imgEmp.Size = new Size(30, 30);
-            imgEmp.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgEmp.TabIndex = 19;
-            imgEmp.TabStop = false;
-            // 
-            // lblEmp
-            // 
-            lblEmp.AutoSize = true;
-            lblEmp.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblEmp.Location = new Point(224, 209);
-            lblEmp.Name = "lblEmp";
-            lblEmp.Size = new Size(90, 22);
-            lblEmp.TabIndex = 18;
-            lblEmp.Text = "Empleado";
-            // 
-            // lblGanEmp
-            // 
-            lblGanEmp.AutoSize = true;
-            lblGanEmp.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblGanEmp.ForeColor = Color.Black;
-            lblGanEmp.Location = new Point(154, 113);
-            lblGanEmp.Name = "lblGanEmp";
-            lblGanEmp.Size = new Size(347, 32);
-            lblGanEmp.TabIndex = 3;
-            lblGanEmp.Text = "Ganancia de Empleados";
-            // 
             // lblGanDia
             // 
             lblGanDia.AutoSize = true;
             lblGanDia.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGanDia.Location = new Point(1540, 364);
+            lblGanDia.Location = new Point(1452, 352);
             lblGanDia.Name = "lblGanDia";
             lblGanDia.Size = new Size(28, 22);
             lblGanDia.TabIndex = 17;
@@ -214,7 +197,7 @@
             // separator1
             // 
             separator1.LineColor = Color.LightGray;
-            separator1.Location = new Point(1490, 346);
+            separator1.Location = new Point(1402, 334);
             separator1.Name = "separator1";
             separator1.Size = new Size(172, 15);
             separator1.TabIndex = 16;
@@ -224,26 +207,16 @@
             // 
             lblGan.AutoSize = true;
             lblGan.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGan.Location = new Point(1504, 321);
+            lblGan.Location = new Point(1416, 309);
             lblGan.Name = "lblGan";
             lblGan.Size = new Size(145, 22);
             lblGan.TabIndex = 15;
             lblGan.Text = "Ganancia del dia";
             // 
-            // cbEmp
-            // 
-            cbEmp.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbEmp.FormattingEnabled = true;
-            cbEmp.Location = new Point(192, 246);
-            cbEmp.Name = "cbEmp";
-            cbEmp.Size = new Size(276, 33);
-            cbEmp.TabIndex = 14;
-            cbEmp.SelectedIndexChanged += cbEmp_SelectedIndexChanged;
-            // 
             // imgFechaGas
             // 
             imgFechaGas.Image = (Image)resources.GetObject("imgFechaGas.Image");
-            imgFechaGas.Location = new Point(1483, 143);
+            imgFechaGas.Location = new Point(1395, 131);
             imgFechaGas.Name = "imgFechaGas";
             imgFechaGas.Size = new Size(24, 23);
             imgFechaGas.TabIndex = 13;
@@ -253,7 +226,7 @@
             // 
             lblFechaGas.AutoSize = true;
             lblFechaGas.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblFechaGas.Location = new Point(1516, 145);
+            lblFechaGas.Location = new Point(1428, 133);
             lblFechaGas.Name = "lblFechaGas";
             lblFechaGas.Size = new Size(139, 22);
             lblFechaGas.TabIndex = 12;
@@ -262,7 +235,7 @@
             // dtFechaGas
             // 
             dtFechaGas.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtFechaGas.Location = new Point(1408, 184);
+            dtFechaGas.Location = new Point(1320, 172);
             dtFechaGas.Name = "dtFechaGas";
             dtFechaGas.Size = new Size(327, 28);
             dtFechaGas.TabIndex = 10;
@@ -283,8 +256,7 @@
             pnlCabecera.PerformLayout();
             pnlContenido.ResumeLayout(false);
             pnlContenido.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imgCorresp).EndInit();
-            ((System.ComponentModel.ISupportInitialize)imgEmp).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tblGastos).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgFechaGas).EndInit();
             ResumeLayout(false);
         }
@@ -310,5 +282,8 @@
         private PictureBox imgCorresp;
         private Label lblCorrespEmp;
         private Label lblNoGan;
+        private Button btnCorresp;
+        private DataGridView tblGastos;
+        private Label lblNoGas;
     }
 }
