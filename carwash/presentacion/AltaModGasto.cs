@@ -48,6 +48,7 @@ namespace presentacion
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
+            DateTime dtFechaActual = DateTime.Today.Date;
             decimal mont = decimal.Parse(txtMont.Text.Trim());
             string tipoGas = cbTipoGas.SelectedItem.ToString();
             string desc = txtDesc.Text.Trim();
@@ -62,6 +63,12 @@ namespace presentacion
             if (validacionesUI.EvalCampoLimite(descripcion, 50))
             {
                 new Toast("error", " El campo de descripcion no puede exceder los 100 caracteres.").MostrarToast();
+                return;
+            }
+            
+            if (mont > (logicaNegocios.GetPreciosPorFecha(dtFechaActual) - logicaNegocios.GetMontPorFecha(dtFechaActual)) && tipo == "alta" )
+            {
+                new Toast("error", " El gasto no puede ser mayor al dinero en caja").MostrarToast();
                 return;
             }
 

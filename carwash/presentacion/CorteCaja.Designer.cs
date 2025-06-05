@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CorteCaja));
             pnlCabecera = new Panel();
+            btnConsBit = new Button();
+            btnReapCaja = new Button();
             lblCaja = new Label();
             btnRealizarCorte = new Button();
             lblCorte = new Label();
@@ -57,6 +59,8 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
+            pnlCabecera.Controls.Add(btnConsBit);
+            pnlCabecera.Controls.Add(btnReapCaja);
             pnlCabecera.Controls.Add(lblCaja);
             pnlCabecera.Controls.Add(btnRealizarCorte);
             pnlCabecera.Controls.Add(lblCorte);
@@ -64,6 +68,40 @@
             pnlCabecera.Name = "pnlCabecera";
             pnlCabecera.Size = new Size(1820, 100);
             pnlCabecera.TabIndex = 3;
+            // 
+            // btnConsBit
+            // 
+            btnConsBit.BackColor = Color.FromArgb(63, 114, 175);
+            btnConsBit.FlatStyle = FlatStyle.Popup;
+            btnConsBit.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnConsBit.ForeColor = Color.White;
+            btnConsBit.Image = (Image)resources.GetObject("btnConsBit.Image");
+            btnConsBit.ImageAlign = ContentAlignment.MiddleLeft;
+            btnConsBit.Location = new Point(929, 32);
+            btnConsBit.Name = "btnConsBit";
+            btnConsBit.Size = new Size(225, 39);
+            btnConsBit.TabIndex = 9;
+            btnConsBit.Text = "Consultar bitácora";
+            btnConsBit.TextAlign = ContentAlignment.MiddleRight;
+            btnConsBit.UseVisualStyleBackColor = false;
+            btnConsBit.Click += btnConsBit_Click;
+            // 
+            // btnReapCaja
+            // 
+            btnReapCaja.BackColor = Color.FromArgb(63, 114, 175);
+            btnReapCaja.FlatStyle = FlatStyle.Popup;
+            btnReapCaja.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnReapCaja.ForeColor = Color.White;
+            btnReapCaja.Image = (Image)resources.GetObject("btnReapCaja.Image");
+            btnReapCaja.ImageAlign = ContentAlignment.MiddleLeft;
+            btnReapCaja.Location = new Point(1207, 32);
+            btnReapCaja.Name = "btnReapCaja";
+            btnReapCaja.Size = new Size(225, 39);
+            btnReapCaja.TabIndex = 8;
+            btnReapCaja.Text = "Reabrir caja";
+            btnReapCaja.TextAlign = ContentAlignment.MiddleRight;
+            btnReapCaja.UseVisualStyleBackColor = false;
+            btnReapCaja.Click += btnReapCaja_Click;
             // 
             // lblCaja
             // 
@@ -307,5 +345,7 @@
         private PictureBox imgFecha;
         private DataGridView tblCorte;
         private Label lblNoCorte;
+        private Button btnReapCaja;
+        private Button btnConsBit;
     }
 }

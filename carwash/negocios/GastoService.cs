@@ -21,5 +21,40 @@ namespace negocios
         {
             return gastoDAO.GetTiposGasto();
         }
+
+        public List<decimal> ConsCorrespTotal(DateTime fecha, int emp)
+        {
+            return gastoDAO.ConsCorrespTotal(fecha, emp);
+        }
+
+        public List<decimal> ConsGanTotal(DateTime fecha)
+        {
+            return gastoDAO.ConsGanTotal(fecha);
+        }
+
+        public List<int> GetEmpPorFecha(DateTime fecha)
+        {
+            return gastoDAO.GetEmpPorFecha(fecha);
+        }
+
+        public string GetNomEmp(int numEmp)
+        {
+            return gastoDAO.GetNomEmp(numEmp);
+        }
+
+        public int? ObtenerNumEmpleado(string noms, string apellidoPat, string apellidoMat)
+        {
+            return gastoDAO.ObtenerNumEmpleado(noms, apellidoPat, apellidoMat);
+        }
+
+        public List<decimal> GetPreciosPorFecha(DateTime fecha)
+        {
+            return gastoDAO.GetPreciosPorFecha(fecha);
+        }
+
+        public List<decimal> GetMontPorFecha(DateTime fecha)
+        {
+            return gastoDAO.GetMontPorFecha(fecha);
+        }
     }
 }

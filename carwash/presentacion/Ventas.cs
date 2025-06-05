@@ -184,9 +184,26 @@ namespace presentacion
                 //Se consulta el numEmpleado según el nombre completo obtenido de la fila seleccionada
                 string nomCompleto = (string)filaSeleccionada.Cells["nomCompleto"].Value;
                 string[] nomCompletoSplit = nomCompleto.Split(" ");
-                string nom = nomCompletoSplit[0];
-                string apellidoPaterno = nomCompletoSplit[1];
-                string apellidoMaterno = nomCompletoSplit[2];
+
+                string nom = "", apellidoPaterno = "", apellidoMaterno = "";
+                if (nomCompletoSplit.Length >= 3)
+                {
+
+                    if (nomCompletoSplit.Length == 3)
+                    {
+                        nom = nomCompletoSplit[0];
+                        apellidoPaterno = nomCompletoSplit[1];
+                        apellidoMaterno = nomCompletoSplit[2];
+                    }
+                    else
+                    {
+                        nom = nomCompletoSplit[0] + " " + nomCompletoSplit[1];
+                        apellidoPaterno = nomCompletoSplit[2];
+                        apellidoMaterno = nomCompletoSplit[3];
+                    }
+
+                }
+
                 infoVentaMod.NumEmp = logicaNegocios.ConsNumEmp(nom, apellidoPaterno, apellidoMaterno);
 
                 AltaVenta vtnModVenta = new AltaVenta(infoVentaMod, "mod");

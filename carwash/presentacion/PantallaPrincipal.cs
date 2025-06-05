@@ -168,6 +168,9 @@ namespace presentacion
             lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
             CargarForm(new GestionEmpleado());
             this.lblAdminActual.Text = this.nomUsuario;
+
+            this.FormBorderStyle = FormBorderStyle.None;      // Quita los bordes de la ventana
+            this.WindowState = FormWindowState.Maximized;     // Maximiza la ventana
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -175,6 +178,5 @@ namespace presentacion
             lblHora.Text = DateTime.Now.ToString("HH:mm:ss");
         }
 
-       
     }
 }

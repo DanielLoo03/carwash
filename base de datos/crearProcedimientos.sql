@@ -256,14 +256,6 @@ BEGIN
         id = idParam;
 END $$
 
-/* Consulta de administradores */
-CREATE PROCEDURE consAdmins()
-BEGIN
-    SELECT id, nombreUsuario, contrasena
-    FROM administradores
-    ORDER BY nombreUsuario ASC;
-END $$
-
 /*Realización de corte de caja*/
 CREATE PROCEDURE realizarCorte(
     IN fechaCorteParam DATE,
@@ -271,7 +263,6 @@ CREATE PROCEDURE realizarCorte(
     IN contadoParam DECIMAL (7, 2),
     IN calculadoParam DECIMAL (7, 2),
     IN diferenciaParam DECIMAL (7, 2)
-    
 )
 BEGIN
     INSERT INTO cortecaja (
@@ -288,6 +279,14 @@ BEGIN
        calculadoParam,
        diferenciaParam
     );
+END $$
+
+/* Consulta de administradores */
+CREATE PROCEDURE consAdmins()
+BEGIN
+    SELECT id, nombreUsuario, contrasena
+    FROM administradores
+    ORDER BY nombreUsuario ASC;
 END $$
 
 /* Obtener el id del administrador para registrar quien realizó el corte de caja */
@@ -345,6 +344,180 @@ BEGIN
         descripcion, 
         idAdmin
     );
+END $$
+
+/*Obtener correspondencia por fecha y empleado*/
+CREATE PROCEDURE consCorrespTotal (
+    IN fecha DATETIME,
+    IN empleado INT
+)
+BEGIN
+    SELECT correspondencia
+    FROM ventas
+    WHERE fechaVenta = fecha AND numEmpleado = empleado;
+END $$
+	
+/*Obtener ganancias totales por fecha*/
+CREATE PROCEDURE consGanTotal (
+    IN fechaCons DATETIME
+)
+BEGIN
+    SELECT ganancia
+    FROM venta
+    WHERE DATE(fechaVenta) = DATE(fechaCons);
+END $$
+
+/*Obtener empleados que realizadon una venta por fecha*/
+CREATE PROCEDURE ObtenerEmpPorFecha(IN fecha DATE)
+BEGIN
+    SELECT DISTINCT numEmpleado
+    FROM ventas
+    WHERE DATE(fechaVenta) = fecha AND cancelado = 0;
+END$$
+
+/* Consultar el corte de caja realizado según el día */
+CREATE PROCEDURE consCorte(
+    IN fechaCorteParam DATETIME
+)
+BEGIN
+    SELECT id, idAdmin, contado, calculado, diferencia 
+    FROM cortecaja
+    WHERE fechaCorte = fechaCorteParam;
+END $$
+
+/* Modificar los datos del corte */
+CREATE PROCEDURE modCorte(
+    IN idParam INT,
+    IN fechaCorteParam DATE,
+    IN idAdminParam INT,
+    IN contadoParam DECIMAL (7, 2),
+    IN calculadoParam DECIMAL (7, 2),
+    IN diferenciaParam DECIMAL (7, 2)
+)
+BEGIN
+    UPDATE cortecaja 
+    SET
+        fechaCorte = fechaCorteParam,
+        idAdmin = idAdminParam,
+        contado = contadoParam,
+        calculado = calculadoParam,
+        diferencia = diferenciaParam
+    WHERE
+        id = idParam;
+END $$
+
+/* Consultar la fecha del último corte de caja realizado */
+CREATE PROCEDURE consFechaCorte()
+BEGIN 
+    SELECT fechaCorte
+    FROM cortecaja
+    ORDER BY id DESC
+    LIMIT 1;  
+END $$
+
+/* Obtener el nombre de usuario según el id */
+CREATE PROCEDURE obtenerNomUsuario(
+    IN idParam INT
+)
+BEGIN
+    SELECT nombreUsuario 
+    FROM administradores
+    WHERE id = idParam;
+END $$
+
+/* Consultar el monto contado que existe en caja según el último corte de caja */
+CREATE PROCEDURE consCaja()
+BEGIN 
+    SELECT contado 
+    FROM cortecaja
+    ORDER BY id DESC
+    LIMIT 1;  
+END $$
+
+/* Consultar el monto contado que existe en caja según el penúltimo corte de caja (se usa para cuando se hace corte proveniente de una reapertura) */
+CREATE PROCEDURE consCajaPen()
+BEGIN 
+    SELECT contado 
+    FROM cortecaja
+    ORDER BY id DESC
+    LIMIT 1 OFFSET 1;  
+END $$
+
+/* Abrir o cerrar caja */
+CREATE PROCEDURE modEstadoCaja(
+    IN estadoParam boolean
+)
+BEGIN
+    UPDATE configcaja
+    SET estado = estadoParam
+    WHERE tipoConfig = 'estadoCaja';
+END $$
+
+/* Consultar el estado de caja (abierto o cerrado) */
+CREATE PROCEDURE consEstadoCaja()
+BEGIN
+    SELECT estado
+    FROM configcaja
+    WHERE tipoConfig = 'estadoCaja';
+END $$
+
+/* Modificar el valor del monto contado en el corte de caja */
+CREATE PROCEDURE modContado(
+    IN contadoParam decimal(7, 2)
+)
+BEGIN
+    UPDATE cortecaja
+    SET contado = contadoParam
+    WHERE id = (
+        SELECT MAX(id) FROM cortecaja
+    );
+END $$
+
+/* Dar de alta una registro en la bitácora */
+CREATE PROCEDURE altaBitacora(
+    IN idAdminParam int,
+    IN fechaHoraParam datetime,
+    IN descripcionParam TEXT
+)
+BEGIN 
+    INSERT INTO bitacora (
+        idAdmin,
+        fechaHora,
+        descripcion
+    )
+    VALUES (
+        idAdminParam,
+        fechaHoraParam,
+        descripcionParam
+    );
+END $$
+
+/* Consulta de los datos de la bitácora */
+CREATE PROCEDURE consBit(
+    IN fechaParam date
+)
+BEGIN 
+    SELECT * 
+    FROM bitacora
+    WHERE DATE(fechaHora) = fechaParam;
+END $$
+
+/* Consultar si existe una reapertura de caja en el día actual */
+CREATE PROCEDURE consReap()
+BEGIN 
+    SELECT *
+    FROM bitacora
+    WHERE DATE(fechaHora) = CURDATE();
+END $$
+
+/* Consultar el nombre de usuario del administrador según su id */
+CREATE PROCEDURE consNomAdmin(
+    IN idAdminParam int
+)
+BEGIN 
+    SELECT nombreUsuario
+    FROM administradores
+    WHERE id = idAdminParam;
 END $$
 
 DELIMITER ;

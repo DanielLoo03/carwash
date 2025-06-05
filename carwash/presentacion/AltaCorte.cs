@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 using negocios;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -15,19 +16,21 @@ namespace presentacion
     public partial class AltaCorte : Form
     {
 
-        private InfoCorteCaja infoCorte = new InfoCorteCaja();
+        private InfoCorteCaja infoCorte;
         private Boolean cambioConTeclado = false;
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         public event EventHandler corteRealizado;
         private decimal calculado;
         private string nomUsuario;
+        private bool reap;
 
-        public AltaCorte(InfoCorteCaja infoCorte, string nomUsuario)
+        public AltaCorte(InfoCorteCaja infoCorte, string nomUsuario, bool reap)
         {
 
             this.infoCorte = infoCorte;
             this.nomUsuario = nomUsuario;
+            this.reap = reap;
             InitializeComponent();
             this.KeyPreview = true;
 
@@ -38,7 +41,8 @@ namespace presentacion
 
             //Se obtiene el valor del campo calculado (lo que se debe tener en caja según el sistema)
             calculado = logicaNegocios.CalcSistema(logicaNegocios.ConsVentasNoCan(DateTime.Today));
-            txtCalculado.Text = LimitarDecimales(calculado.ToString());
+            //Se formatea el dato calculado
+            txtCalculado.Text = calculado.ToString("F2");
 
             //Si hay dato cargado (no 0) en infoCorte, se carga el monto en el campo correspondiente
             if (infoCorte.Contado != 0)
@@ -139,24 +143,6 @@ namespace presentacion
 
         }
 
-        private string LimitarDecimales(string monto)
-        {
-            // Verifica si la cadena contiene un punto decimal
-            if (monto.Contains("."))
-            {
-                // Divide la cadena en la parte entera y la decimal
-                string[] partes = monto.Split('.');
-
-                // Si hay más de dos decimales, recorta a dos
-                if (partes.Length > 1 && partes[1].Length > 2)
-                {
-                    monto = partes[0] + "." + partes[1].Substring(0, 2);
-                }
-            }
-
-            return monto;
-        }
-
         private void txtContado_KeyDown(object sender, KeyEventArgs e)
         {
             cambioConTeclado = true;
@@ -220,14 +206,28 @@ namespace presentacion
 
                     //Para obtener el id del administrador que realiza el corte de caja
                     int idAdmin = (int)logicaNegocios.ObtenerIdAdmin(nomUsuario).Rows[0]["id"];
-                    logicaNegocios.AltaCorte(DateTime.Today, idAdmin, decimal.Parse(txtContado.Text), decimal.Parse(txtCalculado.Text), decimal.Parse(txtDiferencia.Text));
+                    //Si el corte viene de una reapertura, entonces debemos modificar los datos del corte existente
+                    if (logicaNegocios.ConsReap().Rows.Count != 0)
+                    {
+
+                        logicaNegocios.ModCorte((int)logicaNegocios.ConsCorte(DateTime.Today).Rows[0]["id"], DateTime.Today, idAdmin, decimal.Parse(txtContado.Text), decimal.Parse(txtCalculado.Text), decimal.Parse(txtDiferencia.Text));
+
+                    }
+                    //Si el corte no viene de una reapertura, es el primer corte del día y debe ser creado
+                    else {
+
+                        logicaNegocios.AltaCorte(DateTime.Today, idAdmin, decimal.Parse(txtContado.Text), decimal.Parse(txtCalculado.Text), decimal.Parse(txtDiferencia.Text));
+                        infoCorte.Id = (int)logicaNegocios.ConsCorte(DateTime.Today).Rows[0]["id"];
+
+                    }
                     //Se registra en base de datos que se cerró caja
                     logicaNegocios.ModEstadoCaja(false);
                     corteRealizado?.Invoke(this, EventArgs.Empty);
+                    infoCorte.Contado = 0;
                     Toast toastExito = new Toast("exito", "Corte de caja realizado con éxito");
                     toastExito.Show();
                     this.Close();
-                    infoCorte.Contado = 0;
+                    
 
                 }
 
@@ -260,7 +260,7 @@ namespace presentacion
         {
 
             decimal diferencia = logicaNegocios.CalcDif(contado, calculado);
-            txtDiferencia.Text = LimitarDecimales(diferencia.ToString());
+            txtDiferencia.Text = diferencia.ToString("F2");
             //Cambiar el color de la diferencia según el estado (cuadrado, faltante, sobrante)
             string estadoDif = logicaNegocios.EstadoDif(diferencia);
             switch (estadoDif)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using persistencia;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -171,6 +172,7 @@ namespace negocios
 
             //resultCons almacena el nombre de empleado en forma de DataTable, ya que viene de hacerse una consulta de MySQL
             DataTable resultCons = ventasService.ConsNumEmp(nom, apellidoPaterno, apellidoMaterno);
+            MessageBox.Show(resultCons.ToString());
             int numEmp = (int)resultCons.Rows[0]["numEmpleado"];
             return numEmp;
 
@@ -389,7 +391,7 @@ namespace negocios
         public decimal CalcSistema(DataTable ventasNoCan)
         {
 
-            decimal totalVentas = 0;
+            decimal total = 0;
 
             //Si hubo al menos una venta en el día
             if(ventasNoCan.Rows.Count != 0) {
@@ -400,25 +402,45 @@ namespace negocios
 
                     if (decimal.TryParse(venta["precio"].ToString(), out decimal precio))
                     {
-                        totalVentas += precio;
+                        total += precio;
                     }
 
                 }
 
             }
 
-            //Considera el monto en caja contado en el corte anterior
-            decimal montoCaja = ConsCaja();
-            //Si hubo un corte de caja anterior
-            if (montoCaja != -1)
-            {
+            decimal montoCaja;
+            //Considera el monto en caja contado en el último (o penúltimo corte)
+            if (ConsReap().Rows.Count == 0) {
 
-                totalVentas += montoCaja;
+                montoCaja = ConsCaja();
+
+            }
+            else {
+
+                montoCaja = ConsCajaPen();
+
+            }
+            //Consulta la fecha del último corte de caja
+            DateTime fechaUltCorte = ConsFechaCorte();
+
+            //Si hubo un corte de caja anterior en un día anterior
+            if (montoCaja != -1 && fechaUltCorte != DateTime.Today) {
+
+                total += montoCaja;
+
+            }
+            //Si hubo un corte de caja anterior el día de hoy, y se realizó la reapertura de caja
+            else if (montoCaja != -1 && fechaUltCorte == DateTime.Today && ConsReap().Rows.Count != 0)
+            {
+                //Considera el monto en caja contado en el penúltimo corte
+                total += montoCaja;
 
             }
 
-            return totalVentas;
-
+            total = Math.Round(total, 2, MidpointRounding.AwayFromZero);
+            return total;
+        
         }
 
         //Calcular la diferencia entre el monto contado por el admin y el monto calculado por el sistema
@@ -426,6 +448,7 @@ namespace negocios
         {
 
             decimal diferencia = contado - calculado;
+            diferencia = Math.Round(diferencia, 2, MidpointRounding.AwayFromZero);
             return diferencia;
 
         }
@@ -508,6 +531,19 @@ namespace negocios
 
         }
 
+        public DataTable ConsCorte(DateTime fechaCorte) {
+
+            return corteService.ConsCorte(fechaCorte);
+        
+        }
+
+        //Se modifican los datos del corte de caja
+        public void ModCorte(int id, DateTime fechaCorte, int idAdmin, decimal contado, decimal calculado, decimal diferencia) {
+
+            corteService.ModCorte(id, fechaCorte, idAdmin, contado, calculado, diferencia);
+        
+        }
+
         //Se obtiene el nombre de usuario según el id de administrador
         public string ObtNomUsuario(int id) {
 
@@ -534,6 +570,32 @@ namespace negocios
             }
             //Hay un corte de caja realizado anteriormente
             else {
+
+                //Se convierte el resultado al tipo de dato decimal
+                decimal contado = (decimal)(resultado.Rows[0]["contado"]);
+                return contado;
+
+            }
+
+        }
+
+        //Se consulta el dato Contado del penúltimo corte de caja realizado
+        public decimal ConsCajaPen()
+        {
+
+            //El resultado del query
+            DataTable resultado = corteService.ConsCajaPen();
+
+            //Si no hay ningún corte de caja realizado anteriormente
+            if (resultado.Rows.Count == 0)
+            {
+
+                return -1;
+
+            }
+            //Hay un corte de caja realizado anteriormente
+            else
+            {
 
                 //Se convierte el resultado al tipo de dato decimal
                 decimal contado = (decimal)(resultado.Rows[0]["contado"]);
@@ -680,11 +742,106 @@ namespace negocios
         public DataTable ConsultDatosEmpleados()
         {
             return empleadosService.ConsultEmpleados();
+
+        //Modifica el valor del monto contado en el corte de caja reabierto 
+        public void ModContado(decimal contado) {
+
+            corteService.ModContado(contado);
+        
+        }
+
+        //Agrega un registro a la bitácora de reapertura de caja
+        public void AltaBitacora(int idAdmin, DateTime fechaHora, string descripcion) {
+
+            corteService.AltaBitacora(idAdmin, fechaHora, descripcion);
+        
+        }
+
+        //Consulta la reapertura de caja realizada hoy
+        public DataTable ConsReap() {
+
+            return corteService.ConsReap();
+        
+        }
+
+        //Permite o no permite realizar una reapertura de caja dependiendo de si ya se hizo una reapertura anteriormente durante el mismo día
+        public bool CanReap() {
+
+            DataTable reapHoy = ConsReap();
+
+            //Condición: Si hubo reapertura de caja hoy
+            if (reapHoy.Rows.Count != 0) {
+
+                return true;
+
+            }
+            //Condición: Si no hubo reapertura de caja hoy
+            else {
+
+                return false;
+            
+            }
+        
+        }
+
+        //Consulta el registro de la bitácora (que contiene datos de la reapertura) según la fecha
+        public DataTable ConsBit(DateTime fecha)
+        {
+
+            return corteService.ConsBit(fecha);
+
+        }
+
+        //Consulta el nombre de usuario del administrador según su id
+        public DataTable ConsNomAdmin(int id)
+        {
+
+            return corteService.ConsNomAdmin(id);
+
         }
 
         public List<string> GetTiposGasto()
         {
             return gastoService.GetTiposGasto();
+        }
+
+        public decimal ConsCorrespTotal(DateTime fecha, int emp)
+        {
+            List<decimal> correspEmp = gastoService.ConsCorrespTotal(fecha, emp);
+            return correspEmp.Sum();
+        }
+
+        public decimal ConsGanTotal(DateTime fecha)
+        {
+            List<decimal> ganancias = gastoService.ConsGanTotal(fecha);
+            return ganancias.Sum();
+        }
+
+        public List<int> GetEmpPorFecha(DateTime fecha)
+        {
+            return gastoService.GetEmpPorFecha(fecha);
+        }
+
+        public string GetNomEmp(int numEmp)
+        {
+            return gastoService.GetNomEmp(numEmp);
+        }
+
+        public int? ObtenerNumEmpleado(string noms, string apellidoPat, string apellidoMat)
+        {
+            return gastoService.ObtenerNumEmpleado(noms, apellidoPat, apellidoMat);
+        }
+
+        public decimal GetPreciosPorFecha(DateTime fecha)
+        {
+            List<decimal> precios = gastoService.GetPreciosPorFecha(fecha);
+            return precios.Sum();
+        }
+
+        public decimal GetMontPorFecha(DateTime fecha)
+        {
+            List<decimal> monts = gastoService.GetMontPorFecha(fecha);
+            return monts.Sum();
         }
     }
 }
