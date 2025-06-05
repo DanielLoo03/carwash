@@ -106,8 +106,8 @@ namespace presentacion
                 List<int> numsEmp = logicaNegocios.GetEmpPorFecha(fechaSelec);
                 foreach (int numEmp in numsEmp)
                 {
-                    string nombre = logicaNegocios.GetNomEmp(numEmp);
-                    emps.Add(nombre);
+                    string nom = logicaNegocios.GetNomEmp(numEmp);
+                    emps.Add(nom);
                 }
 
                 cbEmp.Items.AddRange(emps.ToArray()); // Agrega la lista de nombres al ComboBox
