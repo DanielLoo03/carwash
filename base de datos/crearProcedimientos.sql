@@ -533,4 +533,13 @@ BEGIN
     WHERE DATE(g.fechaGasto) = fechaBuscada;
 END $$
 
+CREATE PROCEDURE obtenerTiposGasto()
+BEGIN
+    SELECT COLUMN_TYPE
+    FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_NAME = 'gastos'
+      AND COLUMN_NAME = 'tipoGasto'
+      AND TABLE_SCHEMA = 'carwash';
+END $$
+
 DELIMITER ;
