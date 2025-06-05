@@ -117,6 +117,7 @@
             txtDesc.ScrollBars = ScrollBars.Vertical;
             txtDesc.Size = new Size(506, 162);
             txtDesc.TabIndex = 32;
+            txtDesc.TextChanged += txtDesc_TextChanged;
             // 
             // label3
             // 

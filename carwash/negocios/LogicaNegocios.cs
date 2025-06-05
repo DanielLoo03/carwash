@@ -172,7 +172,6 @@ namespace negocios
 
             //resultCons almacena el nombre de empleado en forma de DataTable, ya que viene de hacerse una consulta de MySQL
             DataTable resultCons = ventasService.ConsNumEmp(nom, apellidoPaterno, apellidoMaterno);
-            MessageBox.Show(resultCons.ToString());
             int numEmp = (int)resultCons.Rows[0]["numEmpleado"];
             return numEmp;
 
@@ -387,7 +386,7 @@ namespace negocios
 
         }
 
-        //Calcular el monto total de ventas en el día
+        //Calcular el monto total que debe haber en caja (sumatoria ventas + monto de corte anterior - gastos)
         public decimal CalcSistema(DataTable ventasNoCan)
         {
 
@@ -437,6 +436,8 @@ namespace negocios
                 total += montoCaja;
 
             }
+
+            //PENDIENTE considerar gastos hasta que se haya terminado de realizar módulo
 
             total = Math.Round(total, 2, MidpointRounding.AwayFromZero);
             return total;
