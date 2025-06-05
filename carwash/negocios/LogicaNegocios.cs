@@ -161,7 +161,6 @@ namespace negocios
 
             //resultCons almacena el nombre de empleado en forma de DataTable, ya que viene de hacerse una consulta de MySQL
             DataTable resultCons = ventasService.ConsNumEmp(nom, apellidoPaterno, apellidoMaterno);
-            MessageBox.Show(resultCons.ToString());
             int numEmp = (int)resultCons.Rows[0]["numEmpleado"];
             return numEmp;
 

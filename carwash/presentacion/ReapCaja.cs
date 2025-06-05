@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using negocios;
 
+
 namespace presentacion
 {
     public partial class ReapCaja : Form
@@ -19,6 +20,7 @@ namespace presentacion
         public event EventHandler reapConfirm;
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         private string nomUsuario;
+        private System.Windows.Forms.Timer timer;
         public ReapCaja(InfoReapCaja infoReapCaja, string nomUsuario)
         {
 
@@ -26,6 +28,11 @@ namespace presentacion
             this.nomUsuario = nomUsuario;
             InitializeComponent();
             this.KeyPreview = true;
+            // Configura el temporizador
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = 1000; // Cada segundo
+            timer.Tick += Timer_Tick;
+            timer.Start();
 
         }
 
@@ -117,6 +124,12 @@ namespace presentacion
             // Restaura la posición del cursor
             txtDesc.SelectionStart = cursor;
 
+        }
+
+        //Cada segundo se dispara el evento para actualizar la fecha y hora
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            txtFechaHora.Text = DateTime.Now.ToString();
         }
     }
 }
