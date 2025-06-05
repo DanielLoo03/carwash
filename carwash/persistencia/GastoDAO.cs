@@ -240,5 +240,24 @@ namespace persistencia
 
             return monts;
         }
+            
+        public DataTable ConsGas(DateTime fecha)
+        {
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consGastos",
+                CommandType = CommandType.StoredProcedure
+            };
+            comando.Parameters.AddWithValue("@fechaBuscada", fecha);
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            comando.Parameters.Clear();
+
+            return tabla;
+        }
     }
 }

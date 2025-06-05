@@ -520,4 +520,26 @@ BEGIN
     WHERE id = idAdminParam;
 END $$
 
+CREATE PROCEDURE consGastos	(IN fechaBuscada DATE)
+BEGIN
+    SELECT 
+        g.id,
+        a.nombreUsuario AS nombreAdmin,
+        g.tipoGasto,
+        g.descripcion,
+        g.monto
+    FROM gastos g
+    INNER JOIN administradores a ON g.idAdmin = a.id
+    WHERE DATE(g.fechaGasto) = fechaBuscada;
+END $$
+
+CREATE PROCEDURE obtenerTiposGasto()
+BEGIN
+    SELECT COLUMN_TYPE
+    FROM INFORMATION_SCHEMA.COLUMNS
+    WHERE TABLE_NAME = 'gastos'
+      AND COLUMN_NAME = 'tipoGasto'
+      AND TABLE_SCHEMA = 'carwash';
+END $$
+
 DELIMITER ;
