@@ -55,6 +55,7 @@ namespace presentacion
         private void GestionGasto_Load(object sender, EventArgs e)
         {
             CargarDatos();
+            dtFechaGas.MaxDate = DateTime.Today;
         }
 
         private void CargarDatos()
