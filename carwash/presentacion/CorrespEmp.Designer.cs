@@ -155,7 +155,7 @@
             Controls.Add(cbEmp);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "CorrespEmp";
-            Text = "CorrespEmp";
+            Text = "Car Wash Leo";
             Load += CorrespEmp_Load;
             ((System.ComponentModel.ISupportInitialize)imgEmp).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgCorresp).EndInit();
