@@ -1,6 +1,7 @@
 ﻿using persistencia;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,6 +56,11 @@ namespace negocios
         public List<decimal> GetMontPorFecha(DateTime fecha)
         {
             return gastoDAO.GetMontPorFecha(fecha);
+        }
+
+        public DataTable ConsGas(DateTime fecha)
+        {
+            return gastoDAO.ConsGas(fecha);
         }
     }
 }
