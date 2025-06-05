@@ -30,14 +30,14 @@ namespace presentacion
         private void btnRealizarCorte_Click(object sender, EventArgs e)
         {
 
-            //Si ya hay corte de caja en el día, no permitas realizarlo
-            if (logicaNegocios.YaHayCorte(txtContado))
+            //Si ya hay corte de caja en el día de hoy, no permitas realizarlo
+            if (logicaNegocios.ConsFechaCorte() == DateTime.Today)
             {
 
                 MessageBox.Show("Ya existe un corte de caja realizado el día de hoy.");
 
             }
-            //Si no hay corte de caja en el día, permite realizarlo 
+            //Si no hay corte de caja en el día de hoy, permite realizarlo 
             else
             {
 
@@ -47,7 +47,8 @@ namespace presentacion
                 {
 
                     //Muestra los datos registrados 
-                    logicaNegocios.ConsCorte(tblCorte, DateTime.Today);
+                    dtFecha.Value = DateTime.Today;
+                    dtFecha_ValueChanged(sender, e);
 
                 };
                 vtnAltaCorte.ShowDialog();
