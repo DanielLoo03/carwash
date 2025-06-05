@@ -8,3 +8,8 @@ INSERT INTO configventas (tipoConfig, porcentaje)
 VALUES 
 ("ganancia", 50),
 ("correspondencia", 50);
+
+/* Ingresar configuraciones de caja iniciales */
+INSERT INTO configcaja (tipoConfig, estado)
+VALUES
+("estadoCaja", 1);

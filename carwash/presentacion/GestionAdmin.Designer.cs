@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionAdmin));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             pnlCabecera = new Panel();
+            btnBajaAdmins = new Button();
             btnAltaAdmin = new Button();
             btnModAdmin = new Button();
             lblGestionDe = new Label();
@@ -53,6 +54,7 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
+            pnlCabecera.Controls.Add(btnBajaAdmins);
             pnlCabecera.Controls.Add(btnAltaAdmin);
             pnlCabecera.Controls.Add(btnModAdmin);
             pnlCabecera.Controls.Add(lblGestionDe);
@@ -61,6 +63,23 @@
             pnlCabecera.Name = "pnlCabecera";
             pnlCabecera.Size = new Size(1820, 100);
             pnlCabecera.TabIndex = 4;
+            // 
+            // btnBajaAdmins
+            // 
+            btnBajaAdmins.BackColor = Color.FromArgb(63, 114, 175);
+            btnBajaAdmins.FlatStyle = FlatStyle.Popup;
+            btnBajaAdmins.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnBajaAdmins.ForeColor = Color.White;
+            btnBajaAdmins.Image = (Image)resources.GetObject("btnBajaAdmins.Image");
+            btnBajaAdmins.ImageAlign = ContentAlignment.MiddleLeft;
+            btnBajaAdmins.Location = new Point(979, 27);
+            btnBajaAdmins.Name = "btnBajaAdmins";
+            btnBajaAdmins.Size = new Size(225, 39);
+            btnBajaAdmins.TabIndex = 6;
+            btnBajaAdmins.Text = "Eliminar Administrador";
+            btnBajaAdmins.TextAlign = ContentAlignment.MiddleRight;
+            btnBajaAdmins.UseVisualStyleBackColor = false;
+            btnBajaAdmins.Click += btnBajaAdminsn_Click;
             // 
             // btnAltaAdmin
             // 
@@ -257,5 +276,6 @@
         private TextBox txtNumregistros;
         private ComboBox cbPagina;
         private TextBox txtPaginaFinal;
+        private Button btnBajaAdmins;
     }
 }

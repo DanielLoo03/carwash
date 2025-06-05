@@ -17,6 +17,7 @@ namespace presentacion
         private InfoEmpleado infoEmpleadoMod = new InfoEmpleado();
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
+
         public GestionEmpleado()
         {
             infoEmpleadoAlta.FechaNacimiento = DateTime.Today;

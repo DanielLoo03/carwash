@@ -244,6 +244,7 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             MaximizeBox = false;
             Name = "AltaAdmin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Car Wash Leo";
             FormClosing += AltaAdmin_FormClosing;
             Load += AltaAdmin_Load;

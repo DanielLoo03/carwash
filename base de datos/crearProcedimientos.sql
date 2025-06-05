@@ -346,15 +346,6 @@ BEGIN
     );
 END $$
 
-CREATE PROCEDURE obtenerTiposGasto()
-BEGIN
-    SELECT COLUMN_TYPE
-    FROM INFORMATION_SCHEMA.COLUMNS
-    WHERE TABLE_NAME = 'gastos'
-      AND COLUMN_NAME = 'tipoGasto'
-      AND TABLE_SCHEMA = 'carwash';
-END $$
-
 /*Obtener correspondencia por fecha y empleado*/
 CREATE PROCEDURE consCorrespTotal (
     IN fecha DATETIME,
@@ -527,20 +518,6 @@ BEGIN
     SELECT nombreUsuario
     FROM administradores
     WHERE id = idAdminParam;
-END $$
-
-CREATE PROCEDURE obtenerPreciosPorFecha(IN fechaBusqueda DATE)
-BEGIN
-    SELECT precio
-    FROM ventas
-    WHERE DATE(fechaVenta) = fechaBusqueda;
-END $$
-
-CREATE PROCEDURE ObtenerMontosPorFecha(IN fechaBusqueda DATE)
-BEGIN
-    SELECT monto
-    FROM gastos
-    WHERE DATE(fechaGasto) = fechaBusqueda;
 END $$
 
 DELIMITER ;

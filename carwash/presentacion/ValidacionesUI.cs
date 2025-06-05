@@ -275,5 +275,47 @@ namespace presentacion
         {
             return id == 1 && nombreUsuario == "Jesus-Cardona";
         }
+
+        public bool EvalNombreUsuarioLongitud(string nombreUsuario)
+        {
+            // Si tiene menos de 5 caracteres o más de 20, es inválido
+            if (nombreUsuario.Length < 5 || nombreUsuario.Length > 20)
+                return true;
+
+            return false;
+        }
+
+        public bool EvalNomCharsEspeciales(string nombreUsuario)
+        {
+            int cantidadLetras = nombreUsuario.Count(c => char.IsLetter(c));
+            bool contieneEspecial = nombreUsuario.Any(c => c == '.' || c == '-' || c == '_');
+
+            if (cantidadLetras < 5 && contieneEspecial)
+                return true;  
+
+            if (nombreUsuario == "." || nombreUsuario == "-" || nombreUsuario == "_")
+                return true;
+
+            return false; 
+        }
+
+        public Boolean EvalLongCont(TextBox[] textBoxesEvaluar, int limite)
+        {
+
+            foreach (TextBox txt in textBoxesEvaluar)
+            {
+
+                if (txt.Text.Length < limite)
+                {
+
+                    return true;
+
+                }
+
+            }// fin foreach
+            return false;
+
+        }
+
     }
 }

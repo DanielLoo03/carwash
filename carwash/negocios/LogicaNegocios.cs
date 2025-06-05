@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Org.BouncyCastle.Tls.Crypto.Impl.BC;
+using persistencia;
 
 namespace negocios
 {
@@ -159,6 +161,7 @@ namespace negocios
 
             //resultCons almacena el nombre de empleado en forma de DataTable, ya que viene de hacerse una consulta de MySQL
             DataTable resultCons = ventasService.ConsNumEmp(nom, apellidoPaterno, apellidoMaterno);
+            MessageBox.Show(resultCons.ToString());
             int numEmp = (int)resultCons.Rows[0]["numEmpleado"];
             return numEmp;
 
@@ -377,18 +380,10 @@ namespace negocios
         public decimal CalcSistema(DataTable ventasNoCan)
         {
 
-            decimal totalVentas = 0;
+            decimal total = 0;
 
-            //Si no hubo ventas en el día
-            if (ventasNoCan.Rows.Count == 0)
-            {
-
-                return totalVentas;
-
-            }
             //Si hubo al menos una venta en el día
-            else
-            {
+            if(ventasNoCan.Rows.Count != 0) {
 
                 //Cicla por cada venta del día
                 foreach (DataRow venta in ventasNoCan.Rows)
@@ -396,15 +391,45 @@ namespace negocios
 
                     if (decimal.TryParse(venta["precio"].ToString(), out decimal precio))
                     {
-                        totalVentas += precio;
+                        total += precio;
                     }
 
                 }
 
             }
 
-            return totalVentas;
+            decimal montoCaja;
+            //Considera el monto en caja contado en el último (o penúltimo corte)
+            if (ConsReap().Rows.Count == 0) {
 
+                montoCaja = ConsCaja();
+
+            }
+            else {
+
+                montoCaja = ConsCajaPen();
+
+            }
+            //Consulta la fecha del último corte de caja
+            DateTime fechaUltCorte = ConsFechaCorte();
+
+            //Si hubo un corte de caja anterior en un día anterior
+            if (montoCaja != -1 && fechaUltCorte != DateTime.Today) {
+
+                total += montoCaja;
+
+            }
+            //Si hubo un corte de caja anterior el día de hoy, y se realizó la reapertura de caja
+            else if (montoCaja != -1 && fechaUltCorte == DateTime.Today && ConsReap().Rows.Count != 0)
+            {
+                //Considera el monto en caja contado en el penúltimo corte
+                total += montoCaja;
+
+            }
+
+            total = Math.Round(total, 2, MidpointRounding.AwayFromZero);
+            return total;
+        
         }
 
         //Calcular la diferencia entre el monto contado por el admin y el monto calculado por el sistema
@@ -412,6 +437,7 @@ namespace negocios
         {
 
             decimal diferencia = contado - calculado;
+            diferencia = Math.Round(diferencia, 2, MidpointRounding.AwayFromZero);
             return diferencia;
 
         }
@@ -471,6 +497,188 @@ namespace negocios
 
         }
 
+        //Consulta del corte de caja según el día seleccionado
+        public Boolean ConsCorte(DataGridView tblCorte, DateTime fechaCorte) {
+
+            DataTable corte = corteService.ConsCorte(fechaCorte);
+
+            //Si hay corte el día seleccionado
+            if (corte.Rows.Count != 0) {
+
+                tblCorte.DataSource = corte;
+                //Esconde el Id para que no lo vea el administrador
+                tblCorte.Columns["idAdmin"].Visible = false;
+                return true;
+
+            }
+            //No hay corte el día seleccionado
+            else {
+
+                return false;
+            
+            }
+
+        }
+
+        public DataTable ConsCorte(DateTime fechaCorte) {
+
+            return corteService.ConsCorte(fechaCorte);
+        
+        }
+
+        //Se modifican los datos del corte de caja
+        public void ModCorte(int id, DateTime fechaCorte, int idAdmin, decimal contado, decimal calculado, decimal diferencia) {
+
+            corteService.ModCorte(id, fechaCorte, idAdmin, contado, calculado, diferencia);
+        
+        }
+
+        //Se obtiene el nombre de usuario según el id de administrador
+        public string ObtNomUsuario(int id) {
+
+            //Se obtiene el resultado del query
+            DataTable nomUsuario = corteService.ObtNomUsuario(id);
+            //Se convierte resultado de query a string (siempre regresa una sola fila)
+            return nomUsuario.Rows[0]["nombreUsuario"].ToString();
+            //Nunca regresa nulo, el atributo es NOT NULL en la base de datos
+
+        }
+
+        //Se consulta el dato Contado del último corte de caja realizado
+        public decimal ConsCaja()
+        {
+
+            //El resultado del query
+            DataTable resultado = corteService.ConsCaja();
+
+            //Si no hay ningún corte de caja realizado anteriormente
+            if (resultado.Rows.Count == 0) {
+
+                return -1;
+
+            }
+            //Hay un corte de caja realizado anteriormente
+            else {
+
+                //Se convierte el resultado al tipo de dato decimal
+                decimal contado = (decimal)(resultado.Rows[0]["contado"]);
+                return contado;
+
+            }
+
+        }
+
+        //Se consulta el dato Contado del penúltimo corte de caja realizado
+        public decimal ConsCajaPen()
+        {
+
+            //El resultado del query
+            DataTable resultado = corteService.ConsCajaPen();
+
+            //Si no hay ningún corte de caja realizado anteriormente
+            if (resultado.Rows.Count == 0)
+            {
+
+                return -1;
+
+            }
+            //Hay un corte de caja realizado anteriormente
+            else
+            {
+
+                //Se convierte el resultado al tipo de dato decimal
+                decimal contado = (decimal)(resultado.Rows[0]["contado"]);
+                return contado;
+
+            }
+
+        }
+
+        //Se consulta la fecha del último corte de caja realizado
+        public DateTime ConsFechaCorte()
+        {
+
+            //El resultado del query
+            DataTable resultado = corteService.ConsFechaCorte();
+
+            //Si no hay ningún corte de caja realizado anteriormente
+            if (resultado.Rows.Count == 0)
+            {
+
+                return DateTime.MinValue;
+
+            }
+            //Hay un corte de caja realizado anteriormente
+            else
+            {
+
+                //Se convierte el resultado al tipo de dato DateTime
+                DateTime fechaCorte = (DateTime)(resultado.Rows[0]["fechaCorte"]);
+                return fechaCorte;
+
+            }
+
+        }
+
+        //Bloquear opciones de alta/mod/baja/cancelación en módulos de ventas y gastos al realizar corte
+        public void BloqModulos(Button[] btns)
+        {
+            ToolTip toolTip = new ToolTip();
+
+            foreach (Button btn in btns) {
+
+                btn.Enabled = false;
+                toolTip.SetToolTip(btn, "Para habilitar la opción, debe reabrir caja.");
+
+            }
+
+        }
+
+        //Rehabilitar opciones de alta/mod/baja/cancelación en módulos de ventas y gastos al reabrir caja
+        public void AbrirModulos(Button[] btns) {
+
+            ToolTip toolTip = new ToolTip();
+
+            foreach (Button btn in btns)
+            {
+
+                btn.Enabled = true;
+                //Se "elimina" el tooltip
+                toolTip.SetToolTip(btn, null);
+
+            }
+
+        }
+
+        //Se abre o cierra caja
+        //Si se encuentra abierta, se cierra. Si se encuentre cerrada, se abre.
+        public void ModEstadoCaja(bool estado)
+        {
+
+            corteService.ModEstadoCaja(estado);
+
+        }
+
+        //Consulta el estado de caja, abierto o cerrado
+        public Boolean ConsEstadoCaja() {
+
+            DataTable resultado = corteService.ConsEstadoCaja();
+
+            //Condición: Si caja se encuentra abierta
+            if ((bool)resultado.Rows[0]["estado"]) {
+
+                return true;
+            
+            }
+            //Condición: Si caja se encuentra cerrada
+            else {
+
+                return false;
+            
+            }
+        
+        }
+
         public Boolean AltaAdmin(string nombreUsuario, string contrasena)
         {
             adminsService.AltaAdmin(nombreUsuario, contrasena);
@@ -494,6 +702,68 @@ namespace negocios
         {
             gastoService.AltaGasto(fechaGasto, monto, tipoGasto, descripcion, idAdmin);
             return true;
+        }
+
+        public void BajaAdmin(int idAdmin)
+        {
+            adminsService.BajaAdmin(idAdmin);
+        }
+
+        //Modifica el valor del monto contado en el corte de caja reabierto 
+        public void ModContado(decimal contado) {
+
+            corteService.ModContado(contado);
+        
+        }
+
+        //Agrega un registro a la bitácora de reapertura de caja
+        public void AltaBitacora(int idAdmin, DateTime fechaHora, string descripcion) {
+
+            corteService.AltaBitacora(idAdmin, fechaHora, descripcion);
+        
+        }
+
+        //Consulta la reapertura de caja realizada hoy
+        public DataTable ConsReap() {
+
+            return corteService.ConsReap();
+        
+        }
+
+        //Permite o no permite realizar una reapertura de caja dependiendo de si ya se hizo una reapertura anteriormente durante el mismo día
+        public bool CanReap() {
+
+            DataTable reapHoy = ConsReap();
+
+            //Condición: Si hubo reapertura de caja hoy
+            if (reapHoy.Rows.Count != 0) {
+
+                return true;
+
+            }
+            //Condición: Si no hubo reapertura de caja hoy
+            else {
+
+                return false;
+            
+            }
+        
+        }
+
+        //Consulta el registro de la bitácora (que contiene datos de la reapertura) según la fecha
+        public DataTable ConsBit(DateTime fecha)
+        {
+
+            return corteService.ConsBit(fecha);
+
+        }
+
+        //Consulta el nombre de usuario del administrador según su id
+        public DataTable ConsNomAdmin(int id)
+        {
+
+            return corteService.ConsNomAdmin(id);
+
         }
 
         public List<string> GetTiposGasto()

@@ -19,6 +19,7 @@ namespace presentacion
         private InfoVenta infoVentaAlta = new InfoVenta();
         private InfoVenta infoVentaMod = new InfoVenta();
         private Boolean verVentasCan = false;
+        private Boolean cajaAbierta = false;
 
         public Ventas()
         {
@@ -57,6 +58,13 @@ namespace presentacion
         private void Ventas_Load(object sender, EventArgs e)
         {
 
+            //Si todavía no se ha abierto caja, validar si se debe abrir
+            if (!cajaAbierta) {
+
+                ConsEstadoCaja();
+
+            }
+
             //Condición: si hay ventas del día se muestran
             if (logicaNegocios.DecidirConsVenta(tblVentas, dtFechaActual, verVentasCan))
             {
@@ -74,6 +82,24 @@ namespace presentacion
                 tblVentas.Visible = false;
 
             }
+
+            //Habilitar o deshabilitar alta, mod, cancelación de ventas dependiendo del estado de caja
+            //Condición: Estado de caja abierta 
+            if (logicaNegocios.ConsEstadoCaja())
+            {
+
+                AbrirModulos();
+                cajaAbierta = true;
+
+            }
+            //Condición: Estado de caja cerrada
+            else {
+
+                BloqModulos();
+                cajaAbierta = false;
+
+            }
+
             this.ActiveControl = pnlContenido;
 
         }
@@ -82,7 +108,7 @@ namespace presentacion
         {
             DateTime fechaSeleccionada = dtFechaVenta.Value.Date;
 
-            //Condicion si hay ventas del dia se muestran
+            //Condicion si hay ventas el día seleccionado, se muestran
             if (logicaNegocios.DecidirConsVenta(tblVentas, fechaSeleccionada, verVentasCan))
             {
 
@@ -158,9 +184,26 @@ namespace presentacion
                 //Se consulta el numEmpleado según el nombre completo obtenido de la fila seleccionada
                 string nomCompleto = (string)filaSeleccionada.Cells["nomCompleto"].Value;
                 string[] nomCompletoSplit = nomCompleto.Split(" ");
-                string nom = nomCompletoSplit[0];
-                string apellidoPaterno = nomCompletoSplit[1];
-                string apellidoMaterno = nomCompletoSplit[2];
+
+                string nom = "", apellidoPaterno = "", apellidoMaterno = "";
+                if (nomCompletoSplit.Length >= 3)
+                {
+
+                    if (nomCompletoSplit.Length == 3)
+                    {
+                        nom = nomCompletoSplit[0];
+                        apellidoPaterno = nomCompletoSplit[1];
+                        apellidoMaterno = nomCompletoSplit[2];
+                    }
+                    else
+                    {
+                        nom = nomCompletoSplit[0] + " " + nomCompletoSplit[1];
+                        apellidoPaterno = nomCompletoSplit[2];
+                        apellidoMaterno = nomCompletoSplit[3];
+                    }
+
+                }
+
                 infoVentaMod.NumEmp = logicaNegocios.ConsNumEmp(nom, apellidoPaterno, apellidoMaterno);
 
                 AltaVenta vtnModVenta = new AltaVenta(infoVentaMod, "mod");
@@ -290,6 +333,60 @@ namespace presentacion
             lblPrecioMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "precio").ToString("F2");
             lblGanMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "ganancia").ToString("F2");
             lblCorrespMonto.Text = "$" + logicaNegocios.CalcMontosTotal(tblVentas, "correspondencia").ToString("F2");
+
+        }
+
+        //Habilitar opciones de alta/mod/baja/cancelación al reabrir corte / iniciar nuevo día
+        public void AbrirModulos() {
+
+            Button[] btns = { btnAltaVenta, btnModVenta, btnCanVenta };
+            ToolTip toolTip = new ToolTip();
+
+            foreach (Button btn in btns)
+            {
+
+                btn.Enabled = true;
+                //Se "elimina" el tooltip
+                toolTip.SetToolTip(btn, null);
+
+            }
+
+        }
+
+        //Bloquear opciones de alta/mod/baja/cancelación al realizar corte
+        public void BloqModulos()
+        {
+            Button[] btns = { btnAltaVenta, btnModVenta, btnCanVenta };
+            ToolTip toolTip = new ToolTip();
+
+            foreach (Button btn in btns)
+            {
+
+                btn.Enabled = false;
+                toolTip.SetToolTip(btn, "Para habilitar la opción, debe reabrir caja.");
+
+            }
+
+        }
+
+        //Revisa si caja se encuentra abierta
+        private void ConsEstadoCaja()
+        {
+
+            DateTime fechaCorte = logicaNegocios.ConsFechaCorte();
+
+            if (fechaCorte != DateTime.MinValue)
+            {
+
+                if (DateTime.Today > fechaCorte)
+                {
+
+                    logicaNegocios.ModEstadoCaja(true);
+                    cajaAbierta = true;
+
+                }
+
+            }
 
         }
 

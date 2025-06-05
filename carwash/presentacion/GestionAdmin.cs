@@ -1,4 +1,5 @@
 ﻿using negocios;
+using Org.BouncyCastle.Tls.Crypto.Impl.BC;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,13 +22,15 @@ namespace presentacion
         int numFilas = 12;
         int paginaFinal;
         private DataTable dtCompleto;
+        private string usuarioAct;
 
-        public GestionAdmin()
+        public GestionAdmin(string usuarioActual)
         {
             InitializeComponent();
             this.KeyPreview = true;
             this.Load += GestionAdmin_Load;
             cbPagina.SelectedIndexChanged += cbPagina_SelectedIndexChanged;
+            usuarioAct = usuarioActual;
         }
 
         private void GestionAdmin_Load(object sender, EventArgs e)
@@ -188,6 +191,81 @@ namespace presentacion
             }
         }
 
+        private void btnBajaAdminsn_Click(object sender, EventArgs e)
+        {
+            // Se verificar que haya una fila seleccionada
+            if (tblAdmins.CurrentRow != null)
+            {
+                string nombreUsuario = tblAdmins.CurrentRow.Cells["nombreUsuario"].Value.ToString()!;
+                string contrasena = tblAdmins.CurrentRow.Cells["contrasena"].Value.ToString()!;
+
+                // se buscar el DataRow completo (que incluye el "id")
+                DataRow? row = dtCompleto.AsEnumerable().FirstOrDefault(r => r.Field<string>("nombreUsuario") == nombreUsuario
+                     && r.Field<string>("contrasena") == contrasena);
+
+                if (row is not null)
+                {
+                    int idAdmin = row.Field<int>("id");
+                    if (validacionesUI.EvalUsuarioInicial(idAdmin, nombreUsuario))
+                    {
+                        new Toast("error", "No se puede eliminar al administrador inicial.").MostrarToast();
+                        return;
+                    }
+
+                    if (nombreUsuario == usuarioAct)
+                    {
+                        new Toast("error", "No puedes eliminar tu propia cuenta de usuario.").MostrarToast();
+                        return;
+                    }
+
+                    MessageBoxConfirmar confirmBox = new MessageBoxConfirmar(
+                        $"¿Está seguro de eliminar al administrador \"{nombreUsuario}\"?"
+                    );
+                    confirmBox.ConfirmarPresionado += (s, ev) =>
+                    {
+                        logicaNegocios.BajaAdmin(idAdmin);
+
+                        new Toast("exito", "Administrador eliminado con éxito.").MostrarToast();
+
+                        dtCompleto = logicaNegocios.ConsAdmins();
+
+                        int total = dtCompleto.Rows.Count;
+                        txtNumregistros.Text = total.ToString();
+
+                        paginaFinal = (int)Math.Ceiling(total / (double)numFilas);
+                        txtPaginaFinal.Text = paginaFinal.ToString();
+
+                        cbPagina.Items.Clear();
+                        for (int i = 1; i <= paginaFinal; i++)
+                            cbPagina.Items.Add(i);
+
+                        // Se ajusta la página actual si excede el total
+                        if (numPagina > paginaFinal)
+                            numPagina = paginaFinal;
+                        if (paginaFinal > 0)
+                            cbPagina.SelectedItem = numPagina;
+
+                        MostrarPagina(numPagina);
+
+                        if (total == 0)
+                        {
+                            tblAdmins.Visible = false;
+                        }
+                    };
+
+                    confirmBox.mostrarMessageBox();
+                }
+                else
+                {
+                    new Toast("error", "No se encontró el registro completo del administrador.").MostrarToast();
+                }
+            }
+            else
+            {
+                new Toast("error", "Debes seleccionar un administrador.").MostrarToast();
+            }
+        }
+
         private void GestionAdmin_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Shift)
@@ -201,6 +279,9 @@ namespace presentacion
                         break;
                     case Keys.M:
                         btnModAdmin.PerformClick();
+                        break;
+                    case Keys.E:
+                        btnBajaAdmins.PerformClick();
                         break;
                 }
 

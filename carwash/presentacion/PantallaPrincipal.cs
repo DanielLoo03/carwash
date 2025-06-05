@@ -80,7 +80,7 @@ namespace presentacion
 
         private void imgGestionAdmins_Click(object sender, EventArgs e)
         {
-            CargarForm(new GestionAdmin());
+            CargarForm(new GestionAdmin(this.nomUsuario));
             lblGestionEmpleados.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
             lblVentas.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
             lblCorteCaja.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);

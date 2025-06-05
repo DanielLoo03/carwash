@@ -32,5 +32,10 @@ namespace negocios
         {
             adminsDAO.ModAdmin(idAdmin, nombreUsuario, contrasena);
         }
+
+        public void BajaAdmin(int idAdmin)
+        {
+            adminsDAO.BajaAdmin(idAdmin);
+        }
     }
 }
