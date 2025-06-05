@@ -528,5 +528,16 @@ namespace negocios
             return gastoService.ObtenerNumEmpleado(noms, apellidoPat, apellidoMat);
         }
 
+        public decimal GetPreciosPorFecha(DateTime fecha)
+        {
+            List<decimal> precios = gastoService.GetPreciosPorFecha(fecha);
+            return precios.Sum();
+        }
+
+        public decimal GetMontPorFecha(DateTime fecha)
+        {
+            List<decimal> monts = gastoService.GetMontPorFecha(fecha);
+            return monts.Sum();
+        }
     }
 }

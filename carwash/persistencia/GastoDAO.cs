@@ -192,5 +192,53 @@ namespace persistencia
 
             return numEmpleado;
         }
+
+        public List<decimal> GetPreciosPorFecha(DateTime fecha)
+        {
+            List<decimal> precios = new List<decimal>();
+
+            MySqlCommand comando = new MySqlCommand();
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "obtenerPreciosPorFecha";
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@fechaBusqueda", fecha);
+
+            MySqlDataReader reader = comando.ExecuteReader();
+
+            while (reader.Read())
+            {
+                precios.Add(reader.GetDecimal("precio"));
+            }
+
+            reader.Close();
+            conexion.CerrarConexion();
+
+            return precios;
+        }
+
+        public List <decimal> GetMontPorFecha(DateTime fecha)
+        {
+            List<decimal> monts = new List<decimal>();
+
+            MySqlCommand comando = new MySqlCommand();
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "obtenerMontosPorFecha";
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@fechaBusqueda", fecha);
+
+            MySqlDataReader reader = comando.ExecuteReader();
+
+            while (reader.Read())
+            {
+                monts.Add(reader.GetDecimal("monto"));
+            }
+
+            reader.Close();
+            conexion.CerrarConexion();
+
+            return monts;
+        }
     }
 }
