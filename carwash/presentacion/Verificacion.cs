@@ -74,13 +74,13 @@ namespace presentacion
 
         private void btnRegresar_Click(object sender, EventArgs e)
         {
-            new Toast("error","Se cancelo la accion de cancelar venta").MostrarToast();
+            new Toast("error","Se cancelo la verificacion").MostrarToast();
             this.Close();
         }
 
         private void Verificacion_FormClosing(object sender, FormClosingEventArgs e)
         {
-            new Toast("error", "Se cancelo la accion de cancelar venta").MostrarToast();
+            new Toast("error", "Se cancelo la verificacion").MostrarToast();
             this.Close();
         }
 

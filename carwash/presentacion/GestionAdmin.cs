@@ -218,6 +218,14 @@ namespace presentacion
                         return;
                     }
 
+                    var verificacion = new Verificacion(usuarioAct);
+                    verificacion.ShowDialog();
+
+                    if (!verificacion.VerificacionExitosa)
+                    {
+                        return;
+                    }
+
                     MessageBoxConfirmar confirmBox = new MessageBoxConfirmar(
                         $"¿Está seguro de eliminar al administrador \"{nombreUsuario}\"?"
                     );
