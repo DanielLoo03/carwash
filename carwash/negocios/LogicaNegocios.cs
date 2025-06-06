@@ -726,10 +726,9 @@ namespace negocios
         }
 
         //Funciones de Gastos //
-
-        public Boolean AltaGasto(DateTime fechaGasto, decimal monto, string tipoGasto, string descripcion, int idAdmin)
+        public Boolean AltaGasto(DateTime fechaGasto, DateTime fechaReg, decimal monto, string tipoGasto, string descripcion, int idAdmin)
         {
-            gastoService.AltaGasto(fechaGasto, monto, tipoGasto, descripcion, idAdmin);
+            gastoService.AltaGasto(fechaGasto,fechaReg,  monto, tipoGasto, descripcion, idAdmin);
             return true;
         }
 

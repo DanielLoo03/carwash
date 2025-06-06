@@ -13,9 +13,9 @@ namespace negocios
         //Proviene de la capa de persistencia
         private GastoDAO gastoDAO = new GastoDAO();
 
-        public void AltaGasto(DateTime fechaGasto, decimal monto, string tipoGasto, string descripcion, int idAdmin)
+        public void AltaGasto(DateTime fechaGasto, DateTime fechaReg, decimal monto, string tipoGasto, string descripcion, int idAdmin)
         {
-            gastoDAO.AltaGasto(fechaGasto, monto, tipoGasto, descripcion, idAdmin);
+            gastoDAO.AltaGasto(fechaGasto, fechaReg, monto, tipoGasto, descripcion, idAdmin);
         }
 
         public List<string> GetTiposGasto()
