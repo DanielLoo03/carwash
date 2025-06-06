@@ -73,6 +73,7 @@ namespace presentacion
             }
             else
             {
+                tblGastos.DataSource= null; 
                 lblNoGas.Visible = true;
             }
 

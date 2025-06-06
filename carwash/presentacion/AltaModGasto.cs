@@ -54,10 +54,22 @@ namespace presentacion
             string tipoGas = cbTipoGas.SelectedItem.ToString();
             string desc = txtDesc.Text.Trim();
 
+            if (mont > (logicaNegocios.GetPreciosPorFecha(dtFechaActual) - logicaNegocios.GetMontPorFecha(dtFechaActual)) && tipo == "alta")
+            {
+                new Toast("error", " El gasto no puede ser mayor al efectivo teorico en caja").MostrarToast();
+                return;
+            }
+
+            if(mont == 0)
+            {
+                new Toast("error", " El campo de monto no puede ser $0.00").MostrarToast();
+                return;
+            }
+
             TextBox[] descripcion = { txtDesc };
             if (validacionesUI.EvalTxtVacios(descripcion))
             {
-                new Toast("error", " El campo de descripcion de usuario es obligatorio (debe ser llenado).").MostrarToast();
+                new Toast("error", " El campo de descripcion es obligatorio (debe ser llenado).").MostrarToast();
                 return;
             }
 
@@ -67,12 +79,6 @@ namespace presentacion
                 return;
             }
             
-            if (mont > (logicaNegocios.GetPreciosPorFecha(dtFechaActual) - logicaNegocios.GetMontPorFecha(dtFechaActual)) && tipo == "alta" )
-            {
-                new Toast("error", " El gasto no puede ser mayor al dinero en caja").MostrarToast();
-                return;
-            }
-
             if (tipo == "alta")
             {
                 DateTime fechaGasto = DateTime.Today;
@@ -95,6 +101,13 @@ namespace presentacion
 
         private void AltaModGasto_Load(object sender, EventArgs e)
         {
+            
+            DateTime dtFechaActual = DateTime.Today.Date;
+            dtFechaGas.MaxDate = dtFechaActual;
+
+            decimal efecCaja = (logicaNegocios.GetPreciosPorFecha(dtFechaActual) - logicaNegocios.GetMontPorFecha(dtFechaActual));
+            lblEfec.Text = efecCaja.ToString("C2");
+
             cbTipoGas.DataSource = logicaNegocios.GetTiposGasto();
 
             if (tipo == "alta")

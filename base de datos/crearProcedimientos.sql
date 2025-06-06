@@ -324,6 +324,7 @@ END $$
 /*Registro de Gastos*/
 CREATE PROCEDURE altaGasto (
     IN fechaGasto DATETIME,
+	IN fechaRegistro DATETIME,
     IN monto DECIMAL(7,2),
     IN tipoGasto VARCHAR(50),
     IN descripcion VARCHAR(100),
@@ -332,6 +333,7 @@ CREATE PROCEDURE altaGasto (
 BEGIN
     INSERT INTO gastos (
         fechaGasto, 
+		fechaRegistro,
         monto, 
         tipoGasto, 
         descripcion, 
@@ -339,6 +341,7 @@ BEGIN
     )
     VALUES (
         fechaGasto, 
+		fechaRegistro,
         monto, 
         UPPER(tipoGasto),  -- Asegura que se inserte en mayúsculas
         descripcion, 
@@ -363,7 +366,7 @@ CREATE PROCEDURE consGanTotal (
 )
 BEGIN
     SELECT ganancia
-    FROM ventas
+    FROM venta
     WHERE DATE(fechaVenta) = DATE(fechaCons);
 END $$
 
@@ -541,5 +544,16 @@ BEGIN
       AND COLUMN_NAME = 'tipoGasto'
       AND TABLE_SCHEMA = 'carwash';
 END $$
+
+CREATE PROCEDURE obtenerPreciosPorFecha (
+    IN fechaBusqueda DATE
+)
+BEGIN
+    SELECT precio
+    FROM ventas
+    WHERE DATE(fechaVenta) = fechaBusqueda
+      AND cancelado = 0;
+END
+
 
 DELIMITER ;
