@@ -45,7 +45,7 @@ namespace presentacion
         private void imgVentas_Click(object sender, EventArgs e)
         {
 
-            CargarForm(new Ventas());
+            CargarForm(new Ventas(this.nomUsuario));
             lblGestionEmpleados.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
             lblVentas.Font = new Font(btnGestionEmpleados.Font, FontStyle.Underline);
             lblCorteCaja.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);

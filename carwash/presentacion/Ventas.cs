@@ -20,11 +20,15 @@ namespace presentacion
         private InfoVenta infoVentaMod = new InfoVenta();
         private Boolean verVentasCan = false;
         private Boolean cajaAbierta = false;
+        private string usuarioAct;
 
-        public Ventas()
+
+        public Ventas(string usuarioActual)
         {
             InitializeComponent();
             this.KeyPreview = true;
+            usuarioAct = usuarioActual;
+
         }
 
         private void btnConfigVentas_Click(object sender, EventArgs e)
@@ -238,6 +242,7 @@ namespace presentacion
             {
 
                 Toast toast = new Toast("error", "No has seleccionado ningún empleado");
+                return;
 
             }
 
@@ -261,7 +266,13 @@ namespace presentacion
                 //Condición: Si la venta todavía no se encuentra cancelada, entonces cancela la venta
                 else
                 {
+                    var verificacion = new Verificacion(usuarioAct);
+                    verificacion.ShowDialog();
 
+                    if (!verificacion.VerificacionExitosa)
+                    {
+                        return;
+                    }
                     MessageBoxConfirmar messageBoxConfirmar = new MessageBoxConfirmar("¿Está seguro de cancelar la venta seleccionada?\n\n" +
                         "Información de venta\n" +
                         "Marca de carro: " + filaSeleccionada.Cells["marcaCarro"].Value + "\n" +
