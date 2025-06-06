@@ -43,7 +43,7 @@ namespace presentacion
                 RecargarTbl();
 
 
-                if (lblNoVentas.Visible == true)
+                if (lblNoVentas.Visible == true) 
                 {
 
                     lblNoVentas.Visible = false;
@@ -114,6 +114,20 @@ namespace presentacion
 
                 RecargarTbl();
 
+                DataTable dt = (DataTable)tblVentas.DataSource;
+                if (!dt.Columns.Contains("Estado de venta"))
+                    dt.Columns.Add("Estado de venta", typeof(string));
+
+                foreach (DataRow fila in dt.Rows)
+                {
+                    bool fueCancelada = false;
+                    if (fila.Table.Columns.Contains("cancelado") && fila["cancelado"] != DBNull.Value)
+                        fueCancelada = (bool)fila["cancelado"];
+
+                    fila["Estado de venta"] = fueCancelada ? "Cancelada" : "No cancelada";
+                }
+                RenombrarEncabezados(tblVentas);
+
                 lblNoVentas.Visible = false;
                 tblVentas.Visible = true;
             }
@@ -137,6 +151,12 @@ namespace presentacion
             tblVentas.Columns["ganancia"].HeaderText = "Ganancia";
             tblVentas.Columns["correspondencia"].HeaderText = "Correspondencia";
             tblVentas.Columns["nomCompleto"].HeaderText = "Empleado Encargado";
+
+            if (tblVentas.Columns.Contains("Estado de venta"))
+            {
+                tblVentas.Columns["Estado de venta"].HeaderText = "Estado de venta";
+                tblVentas.Columns["Estado de venta"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
 
             // Estilo de encabezados
             tblVentas.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 8, FontStyle.Bold);
@@ -312,6 +332,19 @@ namespace presentacion
             if (hayVentas)
             {
                 RecargarTbl();
+
+                DataTable dt = (DataTable)tblVentas.DataSource;
+                if (!dt.Columns.Contains("Estado de venta"))
+                    dt.Columns.Add("Estado de venta", typeof(string));
+
+                foreach (DataRow fila in dt.Rows)
+                {
+                    bool fueCancelada = false;
+                    if (fila.Table.Columns.Contains("cancelado") && fila["cancelado"] != DBNull.Value)
+                        fueCancelada = (bool)fila["cancelado"];
+                    fila["Estado de venta"] = fueCancelada ? "Cancelada" : "No cancelada";
+                }
+
                 lblNoVentas.Visible = false;
                 tblVentas.Visible = true;
             }
