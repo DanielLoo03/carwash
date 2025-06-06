@@ -17,7 +17,7 @@ namespace persistencia
         private DataTable tabla = new DataTable();
         private MySqlCommand comando = new MySqlCommand();
 
-        public void AltaGasto(DateTime fechaGasto, decimal monto, string tipoGasto, string descripcion, int idAdmin)
+        public void AltaGasto(DateTime fechaGasto,DateTime fechaReg, decimal monto, string tipoGasto, string descripcion, int idAdmin)
         {
 
             comando = new MySqlCommand();
@@ -27,6 +27,7 @@ namespace persistencia
             comando.CommandText = "altaGasto";
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@fechaGasto", fechaGasto);
+            comando.Parameters.AddWithValue("@fechaRegistro", fechaReg);
             comando.Parameters.AddWithValue("@monto", monto);
             comando.Parameters.AddWithValue("@tipoGasto", tipoGasto);
             comando.Parameters.AddWithValue("@descripcion", descripcion);
