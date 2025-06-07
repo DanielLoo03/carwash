@@ -592,4 +592,12 @@ BEGIN
         idAdmin = p_idAdmin
     WHERE id = p_id;
 END$$
+
+CREATE PROCEDURE canGasto (
+    IN p_id INT
+)
+BEGIN
+    DELETE FROM gastos
+    WHERE id = p_id;
+END$$
 DELIMITER ;
