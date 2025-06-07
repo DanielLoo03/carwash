@@ -17,9 +17,12 @@ namespace presentacion
     {
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
+
         private InfoGasto infoGastoAlta = new InfoGasto();
         private InfoGasto infoGastoMod = new InfoGasto();
         private InfoGasto infoGastoElim = new InfoGasto();
+
+        private Boolean verGastosAct = false; 
         private string nomUsuario;
         public GestionTesoreria(string nomUsuario)
         {
@@ -38,14 +41,17 @@ namespace presentacion
                 AltaModGasto vtnAltaModGasto = new AltaModGasto(infoGastoAlta, "alta", nomUsuario, tipoGas);
                 vtnAltaModGasto.GastoAgregado += (s, args) =>
                 {
-                    DataTable gastos = logicaNegocios.ConsGas(fechaSelec);
-                    tblGastos.DataSource = gastos;
-                    RenomEncabezadoz(tblGastos);
+                    logicaNegocios.DecidirConsGas(tblGastos, dtFechaGas.Value.Date, verGastosAct);
+                    RenomEncabezados(tblGastos);
                     ConfigTablaSoloLectura(tblGastos);
+                    CargarDatos();
+                    if (lblNoGas.Visible == true)
+                    {
+                        lblNoGas.Visible = false;
+                        tblGastos.Visible = true;
+                    }
                 };
                 vtnAltaModGasto.ShowDialog();
-                CargarDatos();
-                lblNoGas.Visible = false;
             }
             else
             {
@@ -55,27 +61,13 @@ namespace presentacion
 
         private void dtFechaGas_ValueChanged(object sender, EventArgs e)
         {
-            CargarDatos();
-        }
+            bool hayVentas = logicaNegocios.DecidirConsGas(tblGastos, dtFechaGas.Value.Date, verGastosAct);
 
-        private void GestionGasto_Load(object sender, EventArgs e)
-        {
-            CargarDatos();
-            dtFechaGas.MaxDate = DateTime.Today;
-        }
-
-        private void CargarDatos()
-        {
-            DateTime fechaSelec = dtFechaGas.Value.Date;
-            DataTable gastos = logicaNegocios.ConsGas(fechaSelec);
-            decimal gan = logicaNegocios.ConsGanTotal(fechaSelec) 
-                          + logicaNegocios.GetMontGan(fechaSelec); ;
-
-            if (gastos != null && gastos.Rows.Count > 0)
+            if (hayVentas)
             {
+                CargarDatos();
                 lblNoGas.Visible = false;
-                tblGastos.DataSource = gastos;
-                RenomEncabezadoz(tblGastos);
+                RenomEncabezados(tblGastos);
                 ConfigTablaSoloLectura(tblGastos);
             }
             else
@@ -83,11 +75,38 @@ namespace presentacion
                 tblGastos.DataSource = null;
                 lblNoGas.Visible = true;
             }
+        }
+
+        private void GestionGasto_Load(object sender, EventArgs e)
+        {
+            bool hayVentas = logicaNegocios.DecidirConsGas(tblGastos, dtFechaGas.Value.Date, verGastosAct);
+
+            if (hayVentas)
+            {
+                lblNoGas.Visible = false;
+                RenomEncabezados(tblGastos);
+                ConfigTablaSoloLectura(tblGastos);
+            }
+            else
+            {
+                tblGastos.Visible = false;
+                lblNoGas.Visible = true;
+            }
+            CargarDatos();
+            dtFechaGas.MaxDate = DateTime.Today;
+        }
+
+        private void CargarDatos()
+        {
+            DateTime fechaSelec = dtFechaGas.Value.Date;
+            decimal efecCaja = logicaNegocios.GetPreciosPorFecha(dtFechaGas.Value.Date)
+                        - logicaNegocios.GetMontPorFecha(dtFechaGas.Value.Date)
+                        + logicaNegocios.GetMontGan(dtFechaGas.Value.Date);
 
             //En caso de que haya ventas se mostrara la ganancia en el lblGanDia
-            if (gan > 0)
+            if (efecCaja > 0)
             {
-                lblGanDia.Text = gan.ToString("C");
+                lblGanDia.Text = efecCaja.ToString("C");
                 lblNoGan.Visible = false;
             }
             else
@@ -97,9 +116,16 @@ namespace presentacion
             }
         }
 
-        private void RenomEncabezadoz(DataGridView tblGastos)
+        private void RenomEncabezados(DataGridView tblGastos)
         {
             // Renombrar encabezados
+            tblGastos.Columns["cancelado"].HeaderText = ""; // sin texto en encabezado
+            tblGastos.Columns["cancelado"].Width = 30;
+            tblGastos.Columns["cancelado"].ReadOnly = true;
+            tblGastos.Columns["cancelado"].Resizable = DataGridViewTriState.False;
+            tblGastos.Columns["cancelado"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+
             tblGastos.Columns["id"].HeaderText = "ID";
             tblGastos.Columns["fechaGasto"].HeaderText = "Fecha del Gasto";
             tblGastos.Columns["nombreAdmin"].HeaderText = "Administrador";
@@ -171,10 +197,10 @@ namespace presentacion
                 AltaModGasto vtnAltaModGasto = new AltaModGasto(infoGastoMod, "mod", nomUsuario, tipoGas, fechaSelec);
                 vtnAltaModGasto.GastoAgregado += (s, args) =>
                 {
-                    DataTable gastos = logicaNegocios.ConsGas(fechaSelec);
-                    tblGastos.DataSource = gastos;
-                    RenomEncabezadoz(tblGastos);
+                    logicaNegocios.DecidirConsGas(tblGastos, dtFechaGas.Value.Date, verGastosAct);
+                    RenomEncabezados(tblGastos);
                     ConfigTablaSoloLectura(tblGastos);
+                    CargarDatos();
                 };
                 vtnAltaModGasto.ShowDialog();
 
@@ -183,13 +209,17 @@ namespace presentacion
                 lblGanDia.Text = gan.ToString("C");
                 lblNoGas.Visible = false;
             }
+            else
+            {
+                new Toast("error", "No has seleccionado ningun gasto").MostrarToast();
+            }
         }
 
         private void btnGas_Click(object sender, EventArgs e)
         {
             if (tblGastos.CurrentRow == null || tblGastos.Rows.Count == 0)
             {
-                new Toast("error", "No hay Gastos para eliminar.").MostrarToast();
+                new Toast("error", "No hay Gastos para cancelar.").MostrarToast();
                 return;
             }
 
@@ -198,29 +228,94 @@ namespace presentacion
             infoGastoElim.FechaGasto = (DateTime)filaSeleccionada.Cells["fechaGasto"].Value;
             infoGastoElim.Monto = (decimal)filaSeleccionada.Cells["monto"].Value;
             infoGastoElim.TipoGasto = (string)filaSeleccionada.Cells["tipoGasto"].Value;
-            infoGastoElim   .Descripcion = (string)filaSeleccionada.Cells["descripcion"].Value;
+            infoGastoElim.Descripcion = (string)filaSeleccionada.Cells["descripcion"].Value;
 
             if (filaSeleccionada != null)
             {
                 MessageBoxConfirmar messageBoxConfirmar = new MessageBoxConfirmar(
                     "¿Está seguro de eliminar el registro \n" +
-                    "ID: [ " +infoGastoElim.IdGasto+" ] \n"+
-                    "Fecha: [ " +infoGastoElim.FechaGasto+" ]\n" + 
-                    "Monto: [ " +infoGastoElim.Monto.ToString("C2")+ " ] \n"+
-                    "Tipo: [ " +infoGastoElim.TipoGasto+ " ]\n" +
-                    "Descripcion [ " +infoGastoElim.Descripcion+ " ] ?"
+                    "ID: [ " + infoGastoElim.IdGasto + " ] \n" +
+                    "Fecha: [ " + infoGastoElim.FechaGasto + " ]\n" +
+                    "Monto: [ " + infoGastoElim.Monto.ToString("C2") + " ] \n" +
+                    "Tipo: [ " + infoGastoElim.TipoGasto + " ]\n" +
+                    "Descripcion [ " + infoGastoElim.Descripcion + " ] ?"
                 );
                 messageBoxConfirmar.ConfirmarPresionado += (s, ev) =>
                 {
                     logicaNegocios.CanGasto(infoGastoElim.IdGasto);
                     new Toast("exito", "Registro eliminado con exito! ").MostrarToast();
+
+                    if(!logicaNegocios.DecidirConsGas(tblGastos, dtFechaGas.Value.Date, verGastosAct))
+                    {
+
+                        lblNoGas.Visible = false;
+                        RenomEncabezados(tblGastos);
+                        ConfigTablaSoloLectura(tblGastos);
+                        CargarDatos();
+                    }
+                    else
+                    {
+                        tblGastos.Visible = false;
+                        lblNoGas.Visible = true;
+                    }
                 };
                 messageBoxConfirmar.mostrarMessageBox();
-                CargarDatos();
+
             }
             else
             {
                 new Toast("error", "No has seleccionado ningún registro.").MostrarToast();
+            }
+        }
+
+        private void tblGastos_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (tblGastos.Columns[e.ColumnIndex].Name == "cancelado" && e.Value != null)
+            {
+                bool cancelado = Convert.ToBoolean(e.Value);
+
+                // Cambia el color de fondo de la celda según su valor
+                if (cancelado)
+                {
+                    e.CellStyle.BackColor = Color.LightCoral;
+                    e.CellStyle.ForeColor = Color.White;
+                }
+                else
+                {
+                    e.CellStyle.BackColor = Color.LightGreen;
+                    e.CellStyle.ForeColor = Color.Black;
+                }
+            }
+        }
+
+        private void btnVerVentasCan_Click(object sender, EventArgs e)
+        {
+            verGastosAct = !verGastosAct;
+
+            if (verGastosAct)
+            {
+                btnVerGastosCan.Image = Image.FromFile("../../../recursos/imagenes/esconderContrasena.png");
+                btnVerGastosCan.Text = "Esconder registros cancelados";
+            }
+            else
+            {
+                btnVerGastosCan.Image = Image.FromFile("../../../recursos/imagenes/mostrarContrasena.png");
+                btnVerGastosCan.Text = "Mostrar registros cancelados";
+            }
+
+            bool hayVentas = logicaNegocios.DecidirConsGas(tblGastos, dtFechaGas.Value.Date, verGastosAct);
+
+            if (hayVentas)
+            {
+                lblNoGas.Visible = false;
+                RenomEncabezados(tblGastos);
+                ConfigTablaSoloLectura(tblGastos);
+                CargarDatos();
+            }
+            else
+            {
+                tblGastos.Visible = false;
+                lblNoGas.Visible = true;
             }
         }
     }

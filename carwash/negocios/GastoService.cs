@@ -63,9 +63,9 @@ namespace negocios
             return gastoDAO.ConsGas(fecha);
         }
 
-        public void ModGasto(int idGasto, DateTime fechaGas, string tipoGasto, string descripcion, int idAdmin)
+        public void ModGasto(int idGasto, DateTime fechaGas, decimal monto, string tipoGasto, string descripcion, int idAdmin)
         {
-            gastoDAO.ModGasto(idGasto, fechaGas, tipoGasto, descripcion, idAdmin);
+            gastoDAO.ModGasto(idGasto, fechaGas, monto, tipoGasto, descripcion, idAdmin);
         }
 
         public List<decimal> GetMontGan(DateTime fecha)
@@ -76,6 +76,11 @@ namespace negocios
         public void CanGasto(int id)
         {
             gastoDAO.CanGasto(id);
+        }
+
+        public DataTable ConsGasAct(DateTime fecha)
+        {
+            return gastoDAO.ConsGasAct(fecha);
         }
     }
 }

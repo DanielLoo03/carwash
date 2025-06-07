@@ -877,9 +877,9 @@ namespace negocios
             return gastoService.ConsGas(fecha);
         }
 
-        public void ModGasto(int idGasto, DateTime fechaGas, string tipoGasto, string descripcion, int idAdmin)
+        public void ModGasto(int idGasto, DateTime fechaGas, decimal monto, string tipoGasto, string descripcion, int idAdmin)
         {
-            gastoService.ModGasto(idGasto, fechaGas, tipoGasto, descripcion, idAdmin);
+            gastoService.ModGasto(idGasto, fechaGas, monto, tipoGasto, descripcion, idAdmin);
         }
         public decimal GetMontGan(DateTime fecha)
         {
@@ -890,6 +890,53 @@ namespace negocios
         public void CanGasto(int id)
         {
             gastoService.CanGasto(id);
+        }
+
+        public Boolean ConsGas(DataGridView tblGasto, DateTime fecha)
+        {
+            DataTable gastos = gastoService.ConsGas(fecha);
+            tblGasto.DataSource = gastos;
+            if (gastos.Rows.Count != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public Boolean ConsGasAct(DataGridView tblVentas, DateTime fecha)
+        {
+            DataTable gastos = gastoService.ConsGasAct(fecha);
+            tblVentas.DataSource = gastos;
+            if (gastos.Rows.Count != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool DecidirConsGas(DataGridView tblVentas, DateTime fecha, bool canceladas)
+        {
+
+            //Si se quiere mostrar las ventas incluidas las canceladas
+            if (canceladas)
+            {
+
+                return ConsGas(tblVentas, fecha);
+
+            }
+            //Si se quieren mostrar las ventas salvo las canceladas
+            else
+            {
+
+                return ConsGasAct(tblVentas, fecha);
+
+            }
+
         }
     }
 }

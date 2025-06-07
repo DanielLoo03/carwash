@@ -86,7 +86,6 @@ namespace presentacion
             efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
                         - logicaNegocios.GetMontPorFecha(fechaReg)
                         + logicaNegocios.GetMontGan(fechaReg);
-            MessageBox.Show(infoGasto.Monto.ToString());
 
             //Solo se valida que el registro no sea mayor al dinero en caja si es una alta y no es una ganancia
             if (mont > efecCaja && tipoGas != "GANANCIA" && mont > efecCaja)
@@ -151,7 +150,7 @@ namespace presentacion
                     descGasto = txtDesc.Text;
                 }
 
-                logicaNegocios.ModGasto(infoGasto.IdGasto , fechaGas, tipoGas, descGasto, idAdmin);
+                logicaNegocios.ModGasto(infoGasto.IdGasto , fechaGas, mont, tipoGas, descGasto, idAdmin);
                 new Toast("exito", "Modificacion de gasto realizada con exito.").MostrarToast();
 
                 txtMont.Text = "0.00";

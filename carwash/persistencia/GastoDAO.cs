@@ -285,7 +285,26 @@ namespace persistencia
             return tabla;
         }
 
-        public void ModGasto(int idGasto, DateTime fechaGas, string tipoGasto, string descripcion, int idAdmin)
+        public DataTable ConsGasAct(DateTime fecha)
+        {
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consGastosAct",
+                CommandType = CommandType.StoredProcedure
+            };
+            comando.Parameters.AddWithValue("@fechaBuscada", fecha);
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            comando.Parameters.Clear();
+
+            return tabla;
+        }
+
+        public void ModGasto(int idGasto, DateTime fechaGas,decimal monto, string tipoGasto, string descripcion, int idAdmin)
         {
             comando = new MySqlCommand();
             comando.Connection = conexion.AbrirConexion();
@@ -294,6 +313,7 @@ namespace persistencia
 
             comando.Parameters.AddWithValue("@p_id", idGasto);
             comando.Parameters.AddWithValue("@p_fechaGasto", fechaGas);
+            comando.Parameters.AddWithValue("@p_monto", monto);
             comando.Parameters.AddWithValue("@p_tipoGasto", tipoGasto);
             comando.Parameters.AddWithValue("@p_descripcion", descripcion);
             comando.Parameters.AddWithValue("@p_idAdmin", idAdmin);
@@ -302,6 +322,7 @@ namespace persistencia
             comando.Parameters.Clear();
             conexion.CerrarConexion();
         }
+
         public void CanGasto(int id)
         {
 

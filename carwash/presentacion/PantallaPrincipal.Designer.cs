@@ -186,11 +186,11 @@
             lblGastos.AutoSize = true;
             lblGastos.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblGastos.ForeColor = Color.White;
-            lblGastos.Location = new Point(966, 69);
+            lblGastos.Location = new Point(960, 70);
             lblGastos.Name = "lblGastos";
-            lblGastos.Size = new Size(61, 20);
+            lblGastos.Size = new Size(75, 20);
             lblGastos.TabIndex = 12;
-            lblGastos.Text = "Gastos";
+            lblGastos.Text = "Tesoreria";
             // 
             // btnVentas
             // 

@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionTesoreria));
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pnlCabecera = new Panel();
+            btnVerGastosCan = new Button();
+            btnCanGas = new Button();
             btnModGastoGan = new Button();
             btnAltaGas = new Button();
             lblGastos = new Label();
@@ -45,7 +47,6 @@
             imgFechaGas = new PictureBox();
             lblFechaGas = new Label();
             dtFechaGas = new DateTimePicker();
-            btnGas = new Button();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tblGastos).BeginInit();
@@ -55,7 +56,8 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
-            pnlCabecera.Controls.Add(btnGas);
+            pnlCabecera.Controls.Add(btnVerGastosCan);
+            pnlCabecera.Controls.Add(btnCanGas);
             pnlCabecera.Controls.Add(btnModGastoGan);
             pnlCabecera.Controls.Add(btnAltaGas);
             pnlCabecera.Controls.Add(lblGastos);
@@ -64,6 +66,41 @@
             pnlCabecera.Name = "pnlCabecera";
             pnlCabecera.Size = new Size(1820, 100);
             pnlCabecera.TabIndex = 3;
+            // 
+            // btnVerGastosCan
+            // 
+            btnVerGastosCan.BackColor = Color.FromArgb(63, 114, 175);
+            btnVerGastosCan.FlatStyle = FlatStyle.Popup;
+            btnVerGastosCan.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnVerGastosCan.ForeColor = Color.White;
+            btnVerGastosCan.Image = (Image)resources.GetObject("btnVerGastosCan.Image");
+            btnVerGastosCan.ImageAlign = ContentAlignment.MiddleLeft;
+            btnVerGastosCan.Location = new Point(600, 28);
+            btnVerGastosCan.Margin = new Padding(4, 5, 4, 5);
+            btnVerGastosCan.Name = "btnVerGastosCan";
+            btnVerGastosCan.Size = new Size(266, 40);
+            btnVerGastosCan.TabIndex = 7;
+            btnVerGastosCan.Text = "Mostrar registros Cancelados";
+            btnVerGastosCan.TextAlign = ContentAlignment.MiddleRight;
+            btnVerGastosCan.UseVisualStyleBackColor = false;
+            btnVerGastosCan.Click += btnVerVentasCan_Click;
+            // 
+            // btnCanGas
+            // 
+            btnCanGas.BackColor = Color.FromArgb(63, 114, 175);
+            btnCanGas.FlatStyle = FlatStyle.Popup;
+            btnCanGas.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCanGas.ForeColor = Color.White;
+            btnCanGas.Image = (Image)resources.GetObject("btnCanGas.Image");
+            btnCanGas.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCanGas.Location = new Point(900, 28);
+            btnCanGas.Name = "btnCanGas";
+            btnCanGas.Size = new Size(252, 39);
+            btnCanGas.TabIndex = 5;
+            btnCanGas.Text = "Cancelar Gasto/Ganancia";
+            btnCanGas.TextAlign = ContentAlignment.MiddleRight;
+            btnCanGas.UseVisualStyleBackColor = false;
+            btnCanGas.Click += btnGas_Click;
             // 
             // btnModGastoGan
             // 
@@ -155,14 +192,14 @@
             tblGastos.AllowUserToAddRows = false;
             tblGastos.AllowUserToDeleteRows = false;
             tblGastos.BackgroundColor = Color.White;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            tblGastos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            tblGastos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             tblGastos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tblGastos.Location = new Point(78, 59);
             tblGastos.MultiSelect = false;
@@ -173,17 +210,18 @@
             tblGastos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             tblGastos.Size = new Size(1133, 431);
             tblGastos.TabIndex = 24;
+            tblGastos.CellFormatting += tblGastos_CellFormatting;
             // 
             // lblNoGan
             // 
             lblNoGan.AutoSize = true;
             lblNoGan.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblNoGan.ForeColor = Color.Red;
-            lblNoGan.Location = new Point(1339, 396);
+            lblNoGan.Location = new Point(1381, 396);
             lblNoGan.Name = "lblNoGan";
-            lblNoGan.Size = new Size(308, 22);
+            lblNoGan.Size = new Size(227, 22);
             lblNoGan.TabIndex = 23;
-            lblNoGan.Text = "No se han registrado ventas en el dia";
+            lblNoGan.Text = "No hay ganancias en el dia";
             lblNoGan.Visible = false;
             // 
             // lblGanDia
@@ -243,23 +281,6 @@
             dtFechaGas.TabIndex = 10;
             dtFechaGas.ValueChanged += dtFechaGas_ValueChanged;
             // 
-            // btnGas
-            // 
-            btnGas.BackColor = Color.FromArgb(63, 114, 175);
-            btnGas.FlatStyle = FlatStyle.Popup;
-            btnGas.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnGas.ForeColor = Color.White;
-            btnGas.Image = (Image)resources.GetObject("btnGas.Image");
-            btnGas.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGas.Location = new Point(900, 28);
-            btnGas.Name = "btnGas";
-            btnGas.Size = new Size(252, 39);
-            btnGas.TabIndex = 5;
-            btnGas.Text = "Eliminar Gasto/Ganancia";
-            btnGas.TextAlign = ContentAlignment.MiddleRight;
-            btnGas.UseVisualStyleBackColor = false;
-            btnGas.Click += btnGas_Click;
-            // 
             // GestionTesoreria
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -304,6 +325,7 @@
         private DataGridView tblGastos;
         private Label lblNoGas;
         private Button btnModGastoGan;
-        private Button btnGas;
+        private Button btnCanGas;
+        private Button btnVerGastosCan;
     }
 }

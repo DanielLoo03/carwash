@@ -531,11 +531,33 @@ BEGIN
         a.nombreUsuario AS nombreAdmin,
         g.tipoGasto,
         g.descripcion,
-        g.monto
+        g.monto,
+		g.cancelado
     FROM gastos g
     INNER JOIN administradores a ON g.idAdmin = a.id
     WHERE DATE(g.fechaRegistro) = fechaBuscada;
 END $$
+
+DELIMITER $$
+
+CREATE PROCEDURE consGastosAct (IN fechaBuscada DATE)
+BEGIN
+    SELECT 
+        g.id,
+        g.fechaGasto,
+        a.nombreUsuario AS nombreAdmin,
+        g.tipoGasto,
+        g.descripcion,
+        g.monto,
+        g.cancelado
+    FROM gastos g
+    INNER JOIN administradores a ON g.idAdmin = a.id
+    WHERE DATE(g.fechaRegistro) = fechaBuscada
+      AND g.cancelado = 0;
+END $$
+
+DELIMITER ;
+
 
 CREATE PROCEDURE obtenerTiposGasto()
 BEGIN
@@ -563,6 +585,7 @@ BEGIN
     SELECT monto
     FROM gastos
     WHERE DATE(fechaRegistro) = fechaBusqueda
+	AND cancelado = 0
       AND tipoGasto != 'GANANCIA';
 END$$
 
@@ -573,6 +596,7 @@ BEGIN
     SELECT monto
     FROM gastos
     WHERE tipoGasto = 'GANANCIA'
+		AND cancelado = 0
       AND DATE(fechaRegistro) = p_fechaRegistro;
 END$$
 
@@ -595,11 +619,17 @@ BEGIN
     WHERE id = p_id;
 END$$
 
+DELIMITER $$
+
 CREATE PROCEDURE canGasto (
     IN p_id INT
 )
 BEGIN
-    DELETE FROM gastos
+    UPDATE gastos
+    SET cancelado = TRUE;
     WHERE id = p_id;
 END$$
+
+DELIMITER ;
+
 DELIMITER ;
