@@ -284,5 +284,23 @@ namespace persistencia
 
             return tabla;
         }
+
+        public void ModGasto(int idGasto, DateTime fechaGas, string tipoGasto, string descripcion, int idAdmin)
+        {
+            comando = new MySqlCommand();
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "modGasto";
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@idParam", idGasto);
+            comando.Parameters.AddWithValue("@fechaGastoParam", fechaGas);
+            comando.Parameters.AddWithValue("@tipoGastoParam", tipoGasto);
+            comando.Parameters.AddWithValue("@descripcionParam", descripcion);
+            comando.Parameters.AddWithValue("@idAdminParam", idAdmin);
+
+            comando.ExecuteNonQuery();
+            comando.Parameters.Clear();
+            conexion.CerrarConexion();
+        }
     }
 }

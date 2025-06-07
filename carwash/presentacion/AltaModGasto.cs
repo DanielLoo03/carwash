@@ -228,9 +228,9 @@ namespace presentacion
         {
             if (cbTipoGas.SelectedItem != null)
             {
-                string tipoSeleccionado = cbTipoGas.SelectedItem.ToString();
+                string tipoSelec = cbTipoGas.SelectedItem.ToString();
 
-                switch (tipoSeleccionado)
+                switch (tipoSelec)
                 {
                     case "CORRESPONDENCIA":
                         cbEmp.Items.Clear();
