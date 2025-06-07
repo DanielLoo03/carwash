@@ -91,15 +91,31 @@ namespace presentacion
         private void ReapCaja_KeyDown(object sender, KeyEventArgs e)
         {
 
-            if (e.Alt) {
+            if (e.Alt)
+            {
 
-                if (e.KeyCode == Keys.C) {
+                if (e.KeyCode == Keys.C)
+                {
 
                     btnConfirmar.PerformClick();
-                
+
                 }
-            
+
             }
+
+        }
+
+        //Convertimos todo lo ingresado al campo de texto Descripción a mayúsculas
+        private void txtDesc_TextChanged(object sender, EventArgs e)
+        {
+
+            // Registra la posición actual del cursor
+            int cursor = txtDesc.SelectionStart;
+
+            txtDesc.Text = txtDesc.Text.ToUpper();
+
+            // Restaura la posición del cursor
+            txtDesc.SelectionStart = cursor;
 
         }
     }
