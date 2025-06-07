@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionTesoreria));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionTesoreria));
             pnlCabecera = new Panel();
             btnModGastoGan = new Button();
             btnAltaGas = new Button();
@@ -45,6 +45,7 @@
             imgFechaGas = new PictureBox();
             lblFechaGas = new Label();
             dtFechaGas = new DateTimePicker();
+            btnGas = new Button();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tblGastos).BeginInit();
@@ -54,6 +55,7 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
+            pnlCabecera.Controls.Add(btnGas);
             pnlCabecera.Controls.Add(btnModGastoGan);
             pnlCabecera.Controls.Add(btnAltaGas);
             pnlCabecera.Controls.Add(lblGastos);
@@ -71,7 +73,7 @@
             btnModGastoGan.ForeColor = Color.White;
             btnModGastoGan.Image = (Image)resources.GetObject("btnModGastoGan.Image");
             btnModGastoGan.ImageAlign = ContentAlignment.MiddleLeft;
-            btnModGastoGan.Location = new Point(1156, 28);
+            btnModGastoGan.Location = new Point(1192, 28);
             btnModGastoGan.Name = "btnModGastoGan";
             btnModGastoGan.Size = new Size(264, 39);
             btnModGastoGan.TabIndex = 4;
@@ -241,6 +243,22 @@
             dtFechaGas.TabIndex = 10;
             dtFechaGas.ValueChanged += dtFechaGas_ValueChanged;
             // 
+            // btnGas
+            // 
+            btnGas.BackColor = Color.FromArgb(63, 114, 175);
+            btnGas.FlatStyle = FlatStyle.Popup;
+            btnGas.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnGas.ForeColor = Color.White;
+            btnGas.Image = (Image)resources.GetObject("btnGas.Image");
+            btnGas.ImageAlign = ContentAlignment.MiddleLeft;
+            btnGas.Location = new Point(900, 28);
+            btnGas.Name = "btnGas";
+            btnGas.Size = new Size(252, 39);
+            btnGas.TabIndex = 5;
+            btnGas.Text = "Eliminar Gasto/Ganancia";
+            btnGas.TextAlign = ContentAlignment.MiddleRight;
+            btnGas.UseVisualStyleBackColor = false;
+            // 
             // GestionTesoreria
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -285,5 +303,6 @@
         private DataGridView tblGastos;
         private Label lblNoGas;
         private Button btnModGastoGan;
+        private Button btnGas;
     }
 }
