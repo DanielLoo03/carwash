@@ -527,13 +527,14 @@ CREATE PROCEDURE consGastos	(IN fechaBuscada DATE)
 BEGIN
     SELECT 
         g.id,
+		g.fechaGasto,
         a.nombreUsuario AS nombreAdmin,
         g.tipoGasto,
         g.descripcion,
         g.monto
     FROM gastos g
     INNER JOIN administradores a ON g.idAdmin = a.id
-    WHERE DATE(g.fechaGasto) = fechaBuscada;
+    WHERE DATE(g.fechaRegistro) = fechaBuscada;
 END $$
 
 CREATE PROCEDURE obtenerTiposGasto()
@@ -555,5 +556,13 @@ BEGIN
       AND cancelado = 0;
 END
 
+CREATE PROCEDURE obtenerMontosPorFecha (
+    IN fechaBusqueda DATE
+)
+BEGIN
+    SELECT monto
+    FROM gastos
+    WHERE DATE(fechaRegistro) = fechaBusqueda;
+END $$
 
 DELIMITER ;

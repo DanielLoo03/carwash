@@ -21,6 +21,7 @@ namespace presentacion
         private string nomUsuario;
         public GestionGasto(string nomUsuario)
         {
+            infoGasto.FechaGasto = DateTime.Today.Date;
             this.nomUsuario = nomUsuario;
             InitializeComponent();
         }
@@ -31,7 +32,8 @@ namespace presentacion
 
             if (logicaNegocios.ConsGanTotal(fechaSelec) > 0)
             {
-                AltaModGasto vtnAltaModGasto = new AltaModGasto(infoGasto, "alta", nomUsuario);
+                List<string> tipoGas = logicaNegocios.GetTiposGasto();
+                AltaModGasto vtnAltaModGasto = new AltaModGasto(infoGasto, "alta", nomUsuario, tipoGas);
                 vtnAltaModGasto.GastoAgregado += (s, args) =>
                 {
                     DataTable gastos = logicaNegocios.ConsGas(fechaSelec);
@@ -40,6 +42,8 @@ namespace presentacion
                     ConfigTablaSoloLectura(tblGastos);
                 };
                 vtnAltaModGasto.ShowDialog();
+
+                lblNoGas.Visible = false;
             }
             else
             {
@@ -90,16 +94,11 @@ namespace presentacion
             }
         }
 
-        private void btnCorresp_Click(object sender, EventArgs e)
-        {
-            CorrespEmp vtnCorrespEmp = new CorrespEmp(dtFechaGas.Value.Date);
-            vtnCorrespEmp.ShowDialog();
-        }
-
         private void RenomEncabezadoz(DataGridView tblGastos)
         {
             // Renombrar encabezados
             tblGastos.Columns["id"].HeaderText = "ID";
+            tblGastos.Columns["fechaGasto"].HeaderText = "Fecha del Gasto";
             tblGastos.Columns["nombreAdmin"].HeaderText = "Administrador";
             tblGastos.Columns["tipoGasto"].HeaderText = "Tipo Gasto";
             tblGastos.Columns["monto"].HeaderText = "Monto";
@@ -121,8 +120,9 @@ namespace presentacion
 
             // Permitir que las celdas hagan wrap del texto
             tblGastos.Columns["descripcion"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            tblGastos.Columns["tipoGasto"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
-            // Opcional: alinear texto de la descripción al tope izquierdo
+            // alinear texto de la descripción al tope izquierdo
             tblGastos.Columns["descripcion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft; 
         }
 

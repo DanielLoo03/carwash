@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionGasto));
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             pnlCabecera = new Panel();
-            btnCorresp = new Button();
             btnAltaGas = new Button();
             lblGastos = new Label();
             lblGestionDe = new Label();
@@ -54,7 +53,6 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
-            pnlCabecera.Controls.Add(btnCorresp);
             pnlCabecera.Controls.Add(btnAltaGas);
             pnlCabecera.Controls.Add(lblGastos);
             pnlCabecera.Controls.Add(lblGestionDe);
@@ -62,23 +60,6 @@
             pnlCabecera.Name = "pnlCabecera";
             pnlCabecera.Size = new Size(1820, 100);
             pnlCabecera.TabIndex = 3;
-            // 
-            // btnCorresp
-            // 
-            btnCorresp.BackColor = Color.FromArgb(63, 114, 175);
-            btnCorresp.FlatStyle = FlatStyle.Popup;
-            btnCorresp.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCorresp.ForeColor = Color.White;
-            btnCorresp.Image = (Image)resources.GetObject("btnCorresp.Image");
-            btnCorresp.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCorresp.Location = new Point(1209, 28);
-            btnCorresp.Name = "btnCorresp";
-            btnCorresp.Size = new Size(225, 39);
-            btnCorresp.TabIndex = 3;
-            btnCorresp.Text = "Correspondencias";
-            btnCorresp.TextAlign = ContentAlignment.MiddleRight;
-            btnCorresp.UseVisualStyleBackColor = false;
-            btnCorresp.Click += btnCorresp_Click;
             // 
             // btnAltaGas
             // 
@@ -153,23 +134,23 @@
             tblGastos.AllowUserToAddRows = false;
             tblGastos.AllowUserToDeleteRows = false;
             tblGastos.BackgroundColor = Color.White;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            tblGastos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            tblGastos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             tblGastos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tblGastos.Location = new Point(143, 59);
+            tblGastos.Location = new Point(78, 59);
             tblGastos.MultiSelect = false;
             tblGastos.Name = "tblGastos";
             tblGastos.ReadOnly = true;
             tblGastos.RowHeadersWidth = 62;
             tblGastos.ScrollBars = ScrollBars.None;
             tblGastos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            tblGastos.Size = new Size(1035, 431);
+            tblGastos.Size = new Size(1133, 431);
             tblGastos.TabIndex = 24;
             // 
             // lblNoGan
@@ -282,7 +263,6 @@
         private PictureBox imgCorresp;
         private Label lblCorrespEmp;
         private Label lblNoGan;
-        private Button btnCorresp;
         private DataGridView tblGastos;
         private Label lblNoGas;
     }

@@ -10,6 +10,7 @@ namespace presentacion
     {
         //Son propiedades: crean las variables junto con sus getters y setters en una línea
         public DateTime FechaGasto { get; set; }
+        public DateTime fechaRegistro { get; set; }
         public int IdAdmin { get; set; }
         public decimal Monto { get; set; }
         public string TipoGasto { get; set; }

@@ -37,15 +37,20 @@
             label1 = new Label();
             lblTipoGasto = new Label();
             label4 = new Label();
-            lblDescripcion = new Label();
+            lblDesc = new Label();
             txtMont = new TextBox();
             txtDesc = new TextBox();
             cbTipoGas = new ComboBox();
             lblEfecTeo = new Label();
             lblEfec = new Label();
-            dtFechaGas = new DateTimePicker();
+            dtFechaGasto = new DateTimePicker();
             label2 = new Label();
             label5 = new Label();
+            cbEmp = new ComboBox();
+            imgEmp = new PictureBox();
+            imgCorresp = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)imgEmp).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)imgCorresp).BeginInit();
             SuspendLayout();
             // 
             // btnConfirmar
@@ -56,7 +61,7 @@
             btnConfirmar.ForeColor = SystemColors.Window;
             btnConfirmar.Image = (Image)resources.GetObject("btnConfirmar.Image");
             btnConfirmar.ImageAlign = ContentAlignment.MiddleLeft;
-            btnConfirmar.Location = new Point(154, 763);
+            btnConfirmar.Location = new Point(154, 712);
             btnConfirmar.Name = "btnConfirmar";
             btnConfirmar.Size = new Size(416, 34);
             btnConfirmar.TabIndex = 46;
@@ -68,7 +73,7 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = Color.Red;
-            label3.Location = new Point(210, 310);
+            label3.Location = new Point(210, 436);
             label3.Name = "label3";
             label3.Size = new Size(20, 25);
             label3.TabIndex = 48;
@@ -78,7 +83,7 @@
             // 
             lblMonto.AutoSize = true;
             lblMonto.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblMonto.Location = new Point(154, 312);
+            lblMonto.Location = new Point(154, 438);
             lblMonto.Name = "lblMonto";
             lblMonto.Size = new Size(59, 22);
             lblMonto.TabIndex = 47;
@@ -110,7 +115,7 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.Red;
-            label1.Location = new Point(277, 416);
+            label1.Location = new Point(277, 322);
             label1.Name = "label1";
             label1.Size = new Size(20, 25);
             label1.TabIndex = 81;
@@ -120,7 +125,7 @@
             // 
             lblTipoGasto.AutoSize = true;
             lblTipoGasto.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTipoGasto.Location = new Point(154, 418);
+            lblTipoGasto.Location = new Point(153, 324);
             lblTipoGasto.Name = "lblTipoGasto";
             lblTipoGasto.Size = new Size(124, 22);
             lblTipoGasto.TabIndex = 80;
@@ -130,26 +135,26 @@
             // 
             label4.AutoSize = true;
             label4.ForeColor = Color.Red;
-            label4.Location = new Point(255, 530);
+            label4.Location = new Point(255, 529);
             label4.Name = "label4";
             label4.Size = new Size(20, 25);
             label4.TabIndex = 83;
             label4.Text = "*";
             // 
-            // lblDescripcion
+            // lblDesc
             // 
-            lblDescripcion.AutoSize = true;
-            lblDescripcion.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDescripcion.Location = new Point(154, 532);
-            lblDescripcion.Name = "lblDescripcion";
-            lblDescripcion.Size = new Size(104, 22);
-            lblDescripcion.TabIndex = 82;
-            lblDescripcion.Text = "Descripción";
-            lblDescripcion.TextAlign = ContentAlignment.MiddleCenter;
+            lblDesc.AutoSize = true;
+            lblDesc.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDesc.Location = new Point(154, 530);
+            lblDesc.Name = "lblDesc";
+            lblDesc.Size = new Size(104, 22);
+            lblDesc.TabIndex = 82;
+            lblDesc.Text = "Descripción";
+            lblDesc.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // txtMont
             // 
-            txtMont.Location = new Point(154, 338);
+            txtMont.Location = new Point(154, 464);
             txtMont.Name = "txtMont";
             txtMont.Size = new Size(416, 31);
             txtMont.TabIndex = 84;
@@ -163,7 +168,7 @@
             txtDesc.Multiline = true;
             txtDesc.Name = "txtDesc";
             txtDesc.ScrollBars = ScrollBars.Vertical;
-            txtDesc.Size = new Size(416, 149);
+            txtDesc.Size = new Size(416, 102);
             txtDesc.TabIndex = 86;
             txtDesc.TextChanged += txtDesc_TextChanged;
             // 
@@ -171,10 +176,11 @@
             // 
             cbTipoGas.DropDownStyle = ComboBoxStyle.DropDownList;
             cbTipoGas.FormattingEnabled = true;
-            cbTipoGas.Location = new Point(154, 454);
+            cbTipoGas.Location = new Point(154, 360);
             cbTipoGas.Name = "cbTipoGas";
             cbTipoGas.Size = new Size(416, 33);
             cbTipoGas.TabIndex = 87;
+            cbTipoGas.SelectedIndexChanged += cbTipoGas_SelectedIndexChanged;
             // 
             // lblEfecTeo
             // 
@@ -196,13 +202,13 @@
             lblEfec.TabIndex = 89;
             lblEfec.Text = "---";
             // 
-            // dtFechaGas
+            // dtFechaGasto
             // 
-            dtFechaGas.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtFechaGas.Location = new Point(154, 246);
-            dtFechaGas.Name = "dtFechaGas";
-            dtFechaGas.Size = new Size(416, 28);
-            dtFechaGas.TabIndex = 90;
+            dtFechaGasto.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtFechaGasto.Location = new Point(154, 246);
+            dtFechaGasto.Name = "dtFechaGasto";
+            dtFechaGasto.Size = new Size(416, 28);
+            dtFechaGasto.TabIndex = 90;
             // 
             // label2
             // 
@@ -224,22 +230,57 @@
             label5.TabIndex = 92;
             label5.Text = "*";
             // 
+            // cbEmp
+            // 
+            cbEmp.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbEmp.FormattingEnabled = true;
+            cbEmp.Location = new Point(153, 558);
+            cbEmp.Name = "cbEmp";
+            cbEmp.Size = new Size(416, 33);
+            cbEmp.TabIndex = 93;
+            cbEmp.Visible = false;
+            cbEmp.SelectedIndexChanged += cbEmp_SelectedIndexChanged;
+            // 
+            // imgEmp
+            // 
+            imgEmp.Image = (Image)resources.GetObject("imgEmp.Image");
+            imgEmp.Location = new Point(118, 559);
+            imgEmp.Name = "imgEmp";
+            imgEmp.Size = new Size(30, 30);
+            imgEmp.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgEmp.TabIndex = 94;
+            imgEmp.TabStop = false;
+            imgEmp.Visible = false;
+            // 
+            // imgCorresp
+            // 
+            imgCorresp.Image = (Image)resources.GetObject("imgCorresp.Image");
+            imgCorresp.Location = new Point(118, 464);
+            imgCorresp.Name = "imgCorresp";
+            imgCorresp.Size = new Size(30, 30);
+            imgCorresp.SizeMode = PictureBoxSizeMode.StretchImage;
+            imgCorresp.TabIndex = 95;
+            imgCorresp.TabStop = false;
+            // 
             // AltaModGasto
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Window;
-            ClientSize = new Size(738, 844);
+            ClientSize = new Size(738, 794);
+            Controls.Add(imgCorresp);
+            Controls.Add(imgEmp);
+            Controls.Add(cbEmp);
             Controls.Add(label5);
             Controls.Add(label2);
-            Controls.Add(dtFechaGas);
+            Controls.Add(dtFechaGasto);
             Controls.Add(lblEfec);
             Controls.Add(lblEfecTeo);
             Controls.Add(cbTipoGas);
             Controls.Add(txtDesc);
             Controls.Add(txtMont);
             Controls.Add(label4);
-            Controls.Add(lblDescripcion);
+            Controls.Add(lblDesc);
             Controls.Add(label1);
             Controls.Add(lblTipoGasto);
             Controls.Add(btnRegresar);
@@ -252,6 +293,8 @@
             Text = "Car Wash Leo";
             FormClosing += AltaModGasto_FormClosing;
             Load += AltaModGasto_Load;
+            ((System.ComponentModel.ISupportInitialize)imgEmp).EndInit();
+            ((System.ComponentModel.ISupportInitialize)imgCorresp).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -266,14 +309,17 @@
         private Label label1;
         private Label lblTipoGasto;
         private Label label4;
-        private Label lblDescripcion;
+        private Label lblDesc;
         private TextBox txtMont;
         private TextBox txtDesc;
         private ComboBox cbTipoGas;
         private Label lblEfecTeo;
         private Label lblEfec;
-        private DateTimePicker dtFechaGas;
+        private DateTimePicker dtFechaGasto;
         private Label label2;
         private Label label5;
+        private ComboBox cbEmp;
+        private PictureBox imgEmp;
+        private PictureBox imgCorresp;
     }
 }

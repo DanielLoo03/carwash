@@ -19,16 +19,19 @@ namespace presentacion
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
         public event EventHandler GastoAgregado;
         private InfoGasto infoGasto;
+        private DateTime fechaReg = DateTime.Today.Date;
         private string tipo;
         private int idAdmin = 0;
+        private bool correspAct = true;
         private string nomUsuario;
-        public AltaModGasto(InfoGasto infoGastoAlta, string tipo, string nomUsuario)
+        public AltaModGasto(InfoGasto infoGastoAlta, string tipo, string nomUsuario, List<string>TipoGas)
         {
             this.tipo = tipo;
             this.nomUsuario = nomUsuario;
             this.infoGasto = infoGastoAlta;
-
+            
             InitializeComponent();
+            cbTipoGas.DataSource = TipoGas;
 
             if (tipo.Equals("mod"))
             {
@@ -42,32 +45,37 @@ namespace presentacion
 
         private void guardarDatos()
         {
+           
+            if (cbTipoGas.SelectedItem != null)
+            {
+                infoGasto.TipoGasto = cbTipoGas.Text;
+            }
             infoGasto.Monto = decimal.Parse(txtMont.Text.Trim());
-            infoGasto.TipoGasto = cbTipoGas.SelectedItem.ToString();
             infoGasto.Descripcion = txtDesc.Text;
+            infoGasto.FechaGasto = dtFechaGasto.Value;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            DateTime dtFechaActual = DateTime.Today.Date;
+            DateTime fechaGas = dtFechaGasto.Value.Date;
             decimal mont = decimal.Parse(txtMont.Text.Trim());
             string tipoGas = cbTipoGas.SelectedItem.ToString();
             string desc = txtDesc.Text.Trim();
 
-            if (mont > (logicaNegocios.GetPreciosPorFecha(dtFechaActual) - logicaNegocios.GetMontPorFecha(dtFechaActual)) && tipo == "alta")
+            if (mont > (logicaNegocios.GetPreciosPorFecha(fechaReg) - logicaNegocios.GetMontPorFecha(fechaReg)) && tipo == "alta")
             {
                 new Toast("error", " El gasto no puede ser mayor al efectivo teorico en caja").MostrarToast();
                 return;
             }
 
-            if(mont == 0)
+            if (mont == 0)
             {
                 new Toast("error", " El campo de monto no puede ser $0.00").MostrarToast();
                 return;
             }
 
             TextBox[] descripcion = { txtDesc };
-            if (validacionesUI.EvalTxtVacios(descripcion))
+            if (validacionesUI.EvalTxtVacios(descripcion) && correspAct == false)
             {
                 new Toast("error", " El campo de descripcion es obligatorio (debe ser llenado).").MostrarToast();
                 return;
@@ -78,13 +86,22 @@ namespace presentacion
                 new Toast("error", " El campo de descripcion no puede exceder los 100 caracteres.").MostrarToast();
                 return;
             }
-            
+
             if (tipo == "alta")
             {
-                DateTime fechaGasto = DateTime.Today;
                 int idAdmin = (int)logicaNegocios.ObtenerIdAdmin(nomUsuario).Rows[0]["id"];
+                string descGasto = "";
 
-                logicaNegocios.AltaGasto(fechaGasto, mont, tipoGas, desc, idAdmin);
+                if (correspAct && cbEmp.SelectedItem != null)
+                {
+                    descGasto = "PAGO A EMPLEADO " + cbEmp.SelectedItem.ToString();
+                }
+                else
+                {
+                    descGasto = txtDesc.Text;
+                }
+
+                logicaNegocios.AltaGasto(fechaGas, fechaReg, mont, tipoGas, descGasto, idAdmin);
                 new Toast("exito", "Registro de gasto realizado con exito.").MostrarToast();
 
                 txtMont.Text = "0.00";
@@ -93,7 +110,8 @@ namespace presentacion
                 this.Close();
                 GastoAgregado?.Invoke(this, EventArgs.Empty);
             }
-            else if (tipo == "mod")
+
+            if (tipo == "mod")
             {
 
             }
@@ -101,27 +119,16 @@ namespace presentacion
 
         private void AltaModGasto_Load(object sender, EventArgs e)
         {
-            
-            DateTime dtFechaActual = DateTime.Today.Date;
-            dtFechaGas.MaxDate = dtFechaActual;
-
-            decimal efecCaja = (logicaNegocios.GetPreciosPorFecha(dtFechaActual) - logicaNegocios.GetMontPorFecha(dtFechaActual));
+            //Efectivo teorico en caja
+            decimal efecCaja = (logicaNegocios.GetPreciosPorFecha(fechaReg) - logicaNegocios.GetMontPorFecha(fechaReg));
             lblEfec.Text = efecCaja.ToString("C2");
 
-            cbTipoGas.DataSource = logicaNegocios.GetTiposGasto();
-
-            if (tipo == "alta")
-            {
-
-                //Si se trata de una alta el cbTipoGas estara seleccionado en la primera opcion
-                if (cbTipoGas.Items.Count > 0)
-                {
-                    cbTipoGas.SelectedIndex = 0;
-                }
-            }
+            
+            dtFechaGasto.MaxDate = fechaReg;
+            dtFechaGasto.Value = infoGasto.FechaGasto;
 
             //Si se trata de una modificacion o ya se modificaron los otros campos el cbTipoGas se cargaran con los que se eligieron
-            if (tipo == "mod" || !string.IsNullOrEmpty(txtDesc.Text) || decimal.TryParse(txtMont.Text, out decimal valor) && valor > 0)
+            if (tipo == "mod" )
             {
                 cbTipoGas.SelectedItem = infoGasto.TipoGasto;
             }
@@ -131,6 +138,7 @@ namespace presentacion
 
             txtMont.Text = infoGasto.Monto.ToString();
             txtDesc.Text = infoGasto.Descripcion;
+            cbTipoGas.Text = infoGasto.TipoGasto;
         }
 
         private void txtMont_TextChanged(object sender, EventArgs e)
@@ -213,6 +221,78 @@ namespace presentacion
 
             // Restaura la posición del cursor
             txtDesc.SelectionStart = pos;
+        }
+
+        private void cbTipoGas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbTipoGas.SelectedItem != null && cbTipoGas.SelectedItem.ToString() == "CORRESPONDENCIA")
+            {
+                cbEmp.Items.Clear();
+                correspAct = true;
+                imgEmp.Visible = true;
+                imgCorresp.Visible = true;
+                cbEmp.Visible = true;
+                txtDesc.Visible = false;
+                lblDesc.Text = "Empleado";
+
+                if (logicaNegocios.GetEmpPorFecha(fechaReg).Count > 0)
+                {
+                    List<String> emps = new List<String>();
+
+                    List<int> numsEmp = logicaNegocios.GetEmpPorFecha(fechaReg);
+                    foreach (int numEmp in numsEmp)
+                    {
+                        string nom = logicaNegocios.GetNomEmp(numEmp);
+                        emps.Add(nom);
+                    }
+
+                    cbEmp.Items.AddRange(emps.ToArray()); // Agrega la lista de nombres al ComboBox
+                    cbEmp.SelectedIndex = 0;
+                }
+            }
+            else
+            {
+                correspAct = false;                
+                imgEmp.Visible = false;
+                imgCorresp.Visible = false;
+                cbEmp.Visible = false;
+                txtDesc.Visible = true;
+                lblDesc.Text = "Descripción";
+                txtMont.Text = "0.00";
+            }
+        }
+
+        private void cbEmp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string empSelec = "";
+
+            //Condicion: Si el cb no esta vacio y tiene items cargados
+            if (cbEmp.SelectedItem != null && cbEmp.Items.Count > 0)
+            {
+                empSelec = cbEmp.SelectedItem.ToString();
+
+                string[] partes = empSelec.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+                string apellidoMaterno = "";
+                string apellidoPaterno = "";
+                string nombre = "";
+
+                if (partes.Length >= 3)
+                {
+                    apellidoMaterno = partes[^1];       // Último elemento
+                    apellidoPaterno = partes[^2];       // Penúltimo
+                    nombre = string.Join(" ", partes[..^2]); // Todo lo anterior como nombre
+                }
+
+                int? numEmp = logicaNegocios.ObtenerNumEmpleado(nombre, apellidoPaterno, apellidoMaterno);
+
+                //COndicion: Si contiene un valor ( !null )
+                if (numEmp.HasValue)
+                {
+                    decimal monto = logicaNegocios.ConsCorrespTotal(fechaReg, numEmp.Value);
+                    txtMont.Text = monto.ToString();
+                }
+            }
         }
     }
 }
