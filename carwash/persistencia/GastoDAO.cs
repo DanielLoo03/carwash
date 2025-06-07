@@ -302,5 +302,20 @@ namespace persistencia
             comando.Parameters.Clear();
             conexion.CerrarConexion();
         }
+        public void CanGasto(int id)
+        {
+
+            comando = new MySqlCommand();
+
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "canGasto";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@p_id", id);
+
+            comando.ExecuteNonQuery(); //Es NonQuery ya que un UPDATE no regresa valores como lo haría un SELECT
+            comando.Parameters.Clear();
+            conexion.CerrarConexion();
+
+        }
     }
 }
