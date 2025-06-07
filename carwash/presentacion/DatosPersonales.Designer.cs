@@ -43,7 +43,6 @@
             btnContinuar = new Button();
             obligatorio = new Label();
             label1 = new Label();
-            label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             mtxtNumTelefono = new MaskedTextBox();
@@ -195,16 +194,6 @@
             label1.TabIndex = 16;
             label1.Text = "*";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.ForeColor = Color.Red;
-            label2.Location = new Point(244, 415);
-            label2.Name = "label2";
-            label2.Size = new Size(20, 25);
-            label2.TabIndex = 17;
-            label2.Text = "*";
-            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -265,7 +254,6 @@
             Controls.Add(mtxtNumTelefono);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(obligatorio);
             Controls.Add(btnContinuar);
@@ -310,7 +298,6 @@
         private Button btnContinuar;
         private Label obligatorio;
         private Label label1;
-        private Label label2;
         private Label label3;
         private Label label4;
         private MaskedTextBox mtxtNumTelefono;

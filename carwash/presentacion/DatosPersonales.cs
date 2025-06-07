@@ -20,6 +20,7 @@ namespace presentacion
         private string accion;
         private int numEmpleadoActual = 0;
 
+
         //Parametro infoEmpleado: Contiene la información introducida por el administrador. Se almacena para que no se pierdan los datos introducidos. 
         public DatosPersonales(InfoEmpleado infoEmpleado, string accion)
         {
@@ -51,6 +52,11 @@ namespace presentacion
         }
         private void btnContinuar_Click(object sender, EventArgs e)
         {
+            string nombre = txtNombre.Text.Trim();
+            string apePat = txtApellidoPaterno.Text.Trim();
+            string apeMat = txtApellidoMaterno.Text.Trim();
+
+            DataTable empleadosExistentes = logicaNegocios.ConsultDatosEmpleados();
 
             //Se guardan datos en objeto infoEmpleado
             guardarDatos();
@@ -68,6 +74,15 @@ namespace presentacion
                 errorCapturado = true;
                 return;
             }
+
+            if (validacionesUI.NombreContieneMasDeDosPalabras(txtNombre.Text))
+            {
+                Toast toast = new Toast("error","El nombre del empleado solo puede contener máximo dos nombres (una sola vez un espacio).");
+                toast.Show();
+                errorCapturado = true;
+                return;
+            }
+
             //Los textBoxes que su limite de caracteres es de 50
             if (validacionesUI.EvalTxtChars(textBoxesNom, 50))
             {
@@ -96,6 +111,15 @@ namespace presentacion
                 errorCapturado = true;
                 return;
             }
+
+            if (validacionesUI.ApellidoContieneEspacios(txtApellidoPaterno.Text))
+            {
+                Toast toast = new Toast("error", "El campo apellido paterno no pueden ser dos apellidos ni tener un espacio");
+                toast.Show();
+                errorCapturado = true;
+                return;
+            }
+
             //Los textBoxes que su limite de caracteres es de 50
             if (validacionesUI.EvalTxtChars(textBoxesAP, 50))
             {
@@ -116,14 +140,23 @@ namespace presentacion
 
 
             TextBox[] textBoxesAM = { txtApellidoMaterno };
-            if (validacionesUI.EvalTxtVacios(textBoxesAM) || string.IsNullOrWhiteSpace(mtxtNumTelefono.Text))
-            {
+            /*   if (validacionesUI.EvalTxtVacios(textBoxesAM) || string.IsNullOrWhiteSpace(mtxtNumTelefono.Text))
+               {
 
-                Toast toast = new Toast("error", "El apellido materno del empleado es obligatorio y debe ser llenado");
+                   Toast toast = new Toast("error", "El apellido materno del empleado es obligatorio y debe ser llenado");
+                   toast.Show();
+                   errorCapturado = true;
+                   return;
+               } */
+
+            if (validacionesUI.ApellidoContieneEspacios(txtApellidoMaterno.Text))
+            {
+                Toast toast = new Toast("error", "El campo apellido materno no pueden ser dos apellidos ni tener un espacio");
                 toast.Show();
                 errorCapturado = true;
                 return;
             }
+
             //Los textBoxes que su limite de caracteres es de 50
             if (validacionesUI.EvalTxtChars(textBoxesAM, 50))
             {
@@ -140,6 +173,32 @@ namespace presentacion
                 toast.Show();
                 errorCapturado = true;
                 return;
+            }
+
+            string nombreNuevo = nombre.ToUpper();
+            string apePatNuevo = apePat.ToUpper();
+            string apeMatNuevo = apeMat.ToUpper();
+            int numEmpleadoNuevo = Convert.ToInt32(nudNumEmpleado.Value);
+
+            foreach (DataRow row in empleadosExistentes.Rows)
+            {
+                string nombreExistente = row["Nombres"].ToString().Trim().ToUpper();
+                string apePatExistente = row["ApellidoPaterno"].ToString().Trim().ToUpper();
+                string apeMatExistente = row["ApellidoMaterno"].ToString().Trim().ToUpper();
+                int numEmpleadoExistente = Convert.ToInt32(row["NumEmpleado"]);
+
+                bool mismoNombreCompleto = nombreNuevo == nombreExistente &&
+                                           apePatNuevo == apePatExistente &&
+                                           apeMatNuevo == apeMatExistente;
+
+                if (mismoNombreCompleto &&
+                    (accion != "modificar" || numEmpleadoExistente != numEmpleadoActual))
+                {
+                    Toast toast = new Toast("error", "Ya existe un empleado con el mismo nombre y apellidos.");
+                    toast.Show();
+                    errorCapturado = true;
+                    return;
+                }
             }
 
 
