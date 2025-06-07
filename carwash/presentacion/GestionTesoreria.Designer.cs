@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionTesoreria));
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             pnlCabecera = new Panel();
             btnVerGastosCan = new Button();
             btnCanGas = new Button();
@@ -47,10 +47,12 @@
             imgFechaGas = new PictureBox();
             lblFechaGas = new Label();
             dtFechaGas = new DateTimePicker();
+            pictureBox1 = new PictureBox();
             pnlCabecera.SuspendLayout();
             pnlContenido.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tblGastos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgFechaGas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // pnlCabecera
@@ -162,6 +164,7 @@
             // 
             pnlContenido.BackColor = SystemColors.Window;
             pnlContenido.BorderStyle = BorderStyle.FixedSingle;
+            pnlContenido.Controls.Add(pictureBox1);
             pnlContenido.Controls.Add(lblNoGas);
             pnlContenido.Controls.Add(tblGastos);
             pnlContenido.Controls.Add(lblNoGan);
@@ -192,14 +195,14 @@
             tblGastos.AllowUserToAddRows = false;
             tblGastos.AllowUserToDeleteRows = false;
             tblGastos.BackgroundColor = Color.White;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            tblGastos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            tblGastos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             tblGastos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             tblGastos.Location = new Point(78, 59);
             tblGastos.MultiSelect = false;
@@ -217,18 +220,18 @@
             lblNoGan.AutoSize = true;
             lblNoGan.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblNoGan.ForeColor = Color.Red;
-            lblNoGan.Location = new Point(1381, 396);
+            lblNoGan.Location = new Point(1440, 398);
             lblNoGan.Name = "lblNoGan";
-            lblNoGan.Size = new Size(227, 22);
+            lblNoGan.Size = new Size(103, 22);
             lblNoGan.TabIndex = 23;
-            lblNoGan.Text = "No hay ganancias en el dia";
+            lblNoGan.Text = "Sin efectivo";
             lblNoGan.Visible = false;
             // 
             // lblGanDia
             // 
             lblGanDia.AutoSize = true;
             lblGanDia.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGanDia.Location = new Point(1452, 352);
+            lblGanDia.Location = new Point(1466, 352);
             lblGanDia.Name = "lblGanDia";
             lblGanDia.Size = new Size(28, 22);
             lblGanDia.TabIndex = 17;
@@ -237,9 +240,9 @@
             // separator1
             // 
             separator1.LineColor = Color.LightGray;
-            separator1.Location = new Point(1402, 334);
+            separator1.Location = new Point(1393, 334);
             separator1.Name = "separator1";
-            separator1.Size = new Size(172, 15);
+            separator1.Size = new Size(214, 15);
             separator1.TabIndex = 16;
             separator1.Text = "sepTotales";
             // 
@@ -247,18 +250,18 @@
             // 
             lblGan.AutoSize = true;
             lblGan.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblGan.Location = new Point(1416, 309);
+            lblGan.Location = new Point(1423, 309);
             lblGan.Name = "lblGan";
-            lblGan.Size = new Size(145, 22);
+            lblGan.Size = new Size(194, 22);
             lblGan.TabIndex = 15;
-            lblGan.Text = "Ganancia del dia";
+            lblGan.Text = "efectivo teórico en caja";
             // 
             // imgFechaGas
             // 
             imgFechaGas.Image = (Image)resources.GetObject("imgFechaGas.Image");
             imgFechaGas.Location = new Point(1395, 131);
             imgFechaGas.Name = "imgFechaGas";
-            imgFechaGas.Size = new Size(24, 23);
+            imgFechaGas.Size = new Size(24, 24);
             imgFechaGas.TabIndex = 13;
             imgFechaGas.TabStop = false;
             // 
@@ -281,6 +284,15 @@
             dtFechaGas.TabIndex = 10;
             dtFechaGas.ValueChanged += dtFechaGas_ValueChanged;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(1393, 309);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(24, 24);
+            pictureBox1.TabIndex = 26;
+            pictureBox1.TabStop = false;
+            // 
             // GestionTesoreria
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -298,6 +310,7 @@
             pnlContenido.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)tblGastos).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgFechaGas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -327,5 +340,6 @@
         private Button btnModGastoGan;
         private Button btnCanGas;
         private Button btnVerGastosCan;
+        private PictureBox pictureBox1;
     }
 }

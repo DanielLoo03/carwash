@@ -65,8 +65,8 @@ namespace presentacion
 
             if (hayVentas)
             {
-                CargarDatos();
                 lblNoGas.Visible = false;
+                tblGastos.Visible = true;
                 RenomEncabezados(tblGastos);
                 ConfigTablaSoloLectura(tblGastos);
             }
@@ -75,6 +75,24 @@ namespace presentacion
                 tblGastos.DataSource = null;
                 lblNoGas.Visible = true;
             }
+
+            DateTime fechaSelec = dtFechaGas.Value.Date;
+            decimal efecCaja = logicaNegocios.GetPreciosPorFecha(dtFechaGas.Value.Date)
+                        - logicaNegocios.GetMontPorFecha(dtFechaGas.Value.Date)
+                        + logicaNegocios.GetMontGan(dtFechaGas.Value.Date);
+
+            //En caso de que haya ventas se mostrara la ganancia en el lblGanDia
+            if (efecCaja > 0)
+            {
+                lblGanDia.Text = efecCaja.ToString("C");
+                lblNoGan.Visible = false;
+            }
+            else
+            {
+                lblNoGan.Visible = true;
+                lblGanDia.Text = "---";
+            }
+            dtFechaGas.MaxDate = DateTime.Today;
         }
 
         private void GestionGasto_Load(object sender, EventArgs e)
@@ -92,7 +110,23 @@ namespace presentacion
                 tblGastos.Visible = false;
                 lblNoGas.Visible = true;
             }
-            CargarDatos();
+
+            DateTime fechaSelec = dtFechaGas.Value.Date;
+            decimal efecCaja = logicaNegocios.GetPreciosPorFecha(dtFechaGas.Value.Date)
+                        - logicaNegocios.GetMontPorFecha(dtFechaGas.Value.Date)
+                        + logicaNegocios.GetMontGan(dtFechaGas.Value.Date);
+
+            //En caso de que haya ventas se mostrara la ganancia en el lblGanDia
+            if (efecCaja > 0)
+            {
+                lblGanDia.Text = efecCaja.ToString("C");
+                lblNoGan.Visible = false;
+            }
+            else
+            {
+                lblNoGan.Visible = true;
+                lblGanDia.Text = "---";
+            }
             dtFechaGas.MaxDate = DateTime.Today;
         }
 
@@ -144,15 +178,19 @@ namespace presentacion
             // Ajuste automático del ancho de columnas
             tblGastos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Ajuste automático de altura de filas según contenido
+            // Ajuste automático de altura para que se muestre toda la descripción
             tblGastos.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
 
-            // Permitir que las celdas hagan wrap del texto
+            //Wrap del texto para que haga salto de línea
+            tblGastos.RowsDefaultCellStyle.WrapMode = DataGridViewTriState.True;
             tblGastos.Columns["descripcion"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             tblGastos.Columns["tipoGasto"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
-            // alinear texto de la descripción al tope izquierdo
+            //Alinear el texto en la descripción arriba a la izquierda
             tblGastos.Columns["descripcion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
+
+            //Forzar que aparezca el scrollbar si es necesario
+            tblGastos.ScrollBars = ScrollBars.Vertical;
         }
 
         private void ConfigTablaSoloLectura(DataGridView tabla)
@@ -174,9 +212,6 @@ namespace presentacion
             // Selección de fila completa, una sola a la vez
             tabla.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             tabla.MultiSelect = false;
-
-            // Opcional: evitar que el usuario seleccione cualquier cosa
-            // tabla.Enabled = false; // (Deshabilita completamente la tabla visualmente)
         }
 
         private void btnModGastoGan_Click(object sender, EventArgs e)
@@ -198,6 +233,7 @@ namespace presentacion
                 vtnAltaModGasto.GastoAgregado += (s, args) =>
                 {
                     logicaNegocios.DecidirConsGas(tblGastos, dtFechaGas.Value.Date, verGastosAct);
+                    tblGastos.Visible = true;
                     RenomEncabezados(tblGastos);
                     ConfigTablaSoloLectura(tblGastos);
                     CargarDatos();
@@ -243,12 +279,12 @@ namespace presentacion
                 messageBoxConfirmar.ConfirmarPresionado += (s, ev) =>
                 {
                     logicaNegocios.CanGasto(infoGastoElim.IdGasto);
-                    new Toast("exito", "Registro eliminado con exito! ").MostrarToast();
+                    new Toast("exito", "Registro cancelado con exito! ").MostrarToast();
 
-                    if(!logicaNegocios.DecidirConsGas(tblGastos, dtFechaGas.Value.Date, verGastosAct))
+                    if(logicaNegocios.DecidirConsGas(tblGastos, dtFechaGas.Value.Date, verGastosAct))
                     {
-
                         lblNoGas.Visible = false;
+                        tblGastos.Visible = true;
                         RenomEncabezados(tblGastos);
                         ConfigTablaSoloLectura(tblGastos);
                         CargarDatos();
@@ -308,6 +344,7 @@ namespace presentacion
             if (hayVentas)
             {
                 lblNoGas.Visible = false;
+                tblGastos.Visible = true;
                 RenomEncabezados(tblGastos);
                 ConfigTablaSoloLectura(tblGastos);
                 CargarDatos();
