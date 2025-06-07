@@ -72,5 +72,10 @@ namespace negocios
         {
             return gastoDAO.GetMontGan(fecha);
         }
+
+        public void CanGasto(int id)
+        {
+            gastoDAO.CanGasto(id);
+        }
     }
 }

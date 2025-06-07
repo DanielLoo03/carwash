@@ -886,5 +886,10 @@ namespace negocios
             List<decimal> montsGan = gastoService.GetMontGan(fecha);
             return montsGan.Sum();
         }
+
+        public void CanGasto(int id)
+        {
+            gastoService.CanGasto(id);
+        }
     }
 }
