@@ -62,5 +62,11 @@ namespace negocios
         {
             return gastoDAO.ConsGas(fecha);
         }
+
+        public void ModGasto(int idGasto, DateTime fechaGas, string tipoGasto, string descripcion, int idAdmin)
+        {
+            gastoDAO.ModGasto(idGasto, fechaGas, tipoGasto, descripcion, idAdmin);
+        }
+
     }
 }

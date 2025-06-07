@@ -728,7 +728,7 @@ namespace negocios
         //Funciones de Gastos //
         public Boolean AltaGasto(DateTime fechaGasto, DateTime fechaReg, decimal monto, string tipoGasto, string descripcion, int idAdmin)
         {
-            gastoService.AltaGasto(fechaGasto, fechaReg,  monto, tipoGasto, descripcion, idAdmin);
+            gastoService.AltaGasto(fechaGasto, fechaReg, monto, tipoGasto, descripcion, idAdmin);
             return true;
         }
 
@@ -875,6 +875,11 @@ namespace negocios
         public DataTable ConsGas(DateTime fecha)
         {
             return gastoService.ConsGas(fecha);
+        }
+
+        public void ModGasto(int idGasto, DateTime fechaGas, string tipoGasto, string descripcion, int idAdmin)
+        {
+            gastoService.ModGasto(idGasto, fechaGas, tipoGasto, descripcion, idAdmin);
         }
     }
 }
