@@ -93,7 +93,7 @@
             // 
             lblGasto.AutoSize = true;
             lblGasto.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblGasto.Location = new Point(190, 50);
+            lblGasto.Location = new Point(166, 50);
             lblGasto.Name = "lblGasto";
             lblGasto.Size = new Size(359, 46);
             lblGasto.TabIndex = 51;

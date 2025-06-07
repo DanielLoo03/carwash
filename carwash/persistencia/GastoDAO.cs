@@ -251,7 +251,7 @@ namespace persistencia
             comando.CommandText = "obtenerMontosGanancia";
             comando.CommandType = CommandType.StoredProcedure;
 
-            comando.Parameters.AddWithValue("@fechaBusqueda", fecha);
+            comando.Parameters.AddWithValue("p_fechaRegistro", fecha);
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -292,11 +292,11 @@ namespace persistencia
             comando.CommandText = "modGasto";
             comando.CommandType = CommandType.StoredProcedure;
 
-            comando.Parameters.AddWithValue("@idParam", idGasto);
-            comando.Parameters.AddWithValue("@fechaGastoParam", fechaGas);
-            comando.Parameters.AddWithValue("@tipoGastoParam", tipoGasto);
-            comando.Parameters.AddWithValue("@descripcionParam", descripcion);
-            comando.Parameters.AddWithValue("@idAdminParam", idAdmin);
+            comando.Parameters.AddWithValue("@p_id", idGasto);
+            comando.Parameters.AddWithValue("@p_fechaGasto", fechaGas);
+            comando.Parameters.AddWithValue("@p_tipoGasto", tipoGasto);
+            comando.Parameters.AddWithValue("@p_descripcion", descripcion);
+            comando.Parameters.AddWithValue("@p_idAdmin", idAdmin);
 
             comando.ExecuteNonQuery();
             comando.Parameters.Clear();

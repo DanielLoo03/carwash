@@ -881,5 +881,10 @@ namespace negocios
         {
             gastoService.ModGasto(idGasto, fechaGas, tipoGasto, descripcion, idAdmin);
         }
+        public decimal GetMontGan(DateTime fecha)
+        {
+            List<decimal> montsGan = gastoService.GetMontGan(fecha);
+            return montsGan.Sum();
+        }
     }
 }

@@ -66,7 +66,7 @@ namespace presentacion
         {
             DateTime fechaSelec = dtFechaGas.Value.Date;
             DataTable gastos = logicaNegocios.ConsGas(fechaSelec);
-            decimal gan = logicaNegocios.ConsGanTotal(fechaSelec);
+            decimal gan = logicaNegocios.ConsGanTotal(fechaSelec) + logicaNegocios.GetMontGan(fechaSelec); ;
 
             if (gastos != null && gastos.Rows.Count > 0)
             {
@@ -77,7 +77,7 @@ namespace presentacion
             }
             else
             {
-                tblGastos.DataSource= null; 
+                tblGastos.DataSource = null;
                 lblNoGas.Visible = true;
             }
 
@@ -123,7 +123,7 @@ namespace presentacion
             tblGastos.Columns["tipoGasto"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
             // alinear texto de la descripción al tope izquierdo
-            tblGastos.Columns["descripcion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft; 
+            tblGastos.Columns["descripcion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
         }
 
         private void ConfigTablaSoloLectura(DataGridView tabla)
@@ -150,5 +150,36 @@ namespace presentacion
             // tabla.Enabled = false; // (Deshabilita completamente la tabla visualmente)
         }
 
+        private void btnModGastoGan_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow filaSeleccionada = tblGastos.CurrentRow;
+            if (filaSeleccionada != null)
+            {
+                //Se cargan los datos de la tabla
+                infoGasto.IdGasto = (int)filaSeleccionada.Cells["id"].Value;
+                infoGasto.Monto = (decimal)filaSeleccionada.Cells["monto"].Value;
+                infoGasto.TipoGasto = (string)filaSeleccionada.Cells["tipoGasto"].Value;
+                infoGasto.Descripcion = (string)filaSeleccionada.Cells["descripcion"].Value;
+                infoGasto.FechaGasto = (DateTime)filaSeleccionada.Cells["fechaGasto"].Value;
+
+                DateTime fechaSelec = dtFechaGas.Value.Date;
+
+                List<string> tipoGas = logicaNegocios.GetTiposGasto();
+                AltaModGasto vtnAltaModGasto = new AltaModGasto(infoGasto, "mod", nomUsuario, tipoGas);
+                vtnAltaModGasto.GastoAgregado += (s, args) =>
+                {
+                    DataTable gastos = logicaNegocios.ConsGas(fechaSelec);
+                    tblGastos.DataSource = gastos;
+                    RenomEncabezadoz(tblGastos);
+                    ConfigTablaSoloLectura(tblGastos);
+                };
+                vtnAltaModGasto.ShowDialog();
+
+                decimal gan = logicaNegocios.ConsGanTotal(fechaSelec) 
+                              + logicaNegocios.GetMontGan(fechaSelec); ;
+                lblGanDia.Text = gan.ToString("C");
+                lblNoGas.Visible = false;
+            }
+        }
     }
 }

@@ -562,14 +562,18 @@ CREATE PROCEDURE obtenerMontosPorFecha (
 BEGIN
     SELECT monto
     FROM gastos
-    WHERE DATE(fechaRegistro) = fechaBusqueda;
-END $$
+    WHERE DATE(fechaRegistro) = fechaBusqueda
+      AND tipoGasto != 'GANANCIA';
+END$$
 
-CREATE PROCEDURE ObtenerMontosGanancia()
+CREATE PROCEDURE obtenerMontosGanancia (
+    IN p_fechaRegistro DATE
+)
 BEGIN
     SELECT monto
     FROM gastos
-    WHERE tipoGasto = 'GANANCIA';
+    WHERE tipoGasto = 'GANANCIA'
+      AND DATE(fechaRegistro) = p_fechaRegistro;
 END$$
 
 CREATE PROCEDURE modGasto (

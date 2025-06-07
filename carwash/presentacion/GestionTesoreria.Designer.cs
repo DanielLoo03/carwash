@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionTesoreria));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             pnlCabecera = new Panel();
+            btnModGastoGan = new Button();
             btnAltaGas = new Button();
             lblGastos = new Label();
             lblGestionDe = new Label();
@@ -53,6 +54,7 @@
             // pnlCabecera
             // 
             pnlCabecera.BackColor = Color.FromArgb(190, 223, 255);
+            pnlCabecera.Controls.Add(btnModGastoGan);
             pnlCabecera.Controls.Add(btnAltaGas);
             pnlCabecera.Controls.Add(lblGastos);
             pnlCabecera.Controls.Add(lblGestionDe);
@@ -60,6 +62,23 @@
             pnlCabecera.Name = "pnlCabecera";
             pnlCabecera.Size = new Size(1820, 100);
             pnlCabecera.TabIndex = 3;
+            // 
+            // btnModGastoGan
+            // 
+            btnModGastoGan.BackColor = Color.FromArgb(63, 114, 175);
+            btnModGastoGan.FlatStyle = FlatStyle.Popup;
+            btnModGastoGan.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnModGastoGan.ForeColor = Color.White;
+            btnModGastoGan.Image = (Image)resources.GetObject("btnModGastoGan.Image");
+            btnModGastoGan.ImageAlign = ContentAlignment.MiddleLeft;
+            btnModGastoGan.Location = new Point(1156, 28);
+            btnModGastoGan.Name = "btnModGastoGan";
+            btnModGastoGan.Size = new Size(264, 39);
+            btnModGastoGan.TabIndex = 4;
+            btnModGastoGan.Text = "Modificar Gasto/Ganancia";
+            btnModGastoGan.TextAlign = ContentAlignment.MiddleRight;
+            btnModGastoGan.UseVisualStyleBackColor = false;
+            btnModGastoGan.Click += btnModGastoGan_Click;
             // 
             // btnAltaGas
             // 
@@ -265,5 +284,6 @@
         private Label lblNoGan;
         private DataGridView tblGastos;
         private Label lblNoGas;
+        private Button btnModGastoGan;
     }
 }

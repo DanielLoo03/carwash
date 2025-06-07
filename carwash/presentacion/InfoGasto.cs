@@ -8,7 +8,8 @@ namespace presentacion
 {
     public class InfoGasto
     {
-        //Son propiedades: crean las variables junto con sus getters y setters en una línea
+        //Son propiedades: crean las variables junto con sus getters y setters en una línea\
+        public int IdGasto {  get; set; }
         public DateTime FechaGasto { get; set; }
         public DateTime fechaRegistro { get; set; }
         public int IdAdmin { get; set; }

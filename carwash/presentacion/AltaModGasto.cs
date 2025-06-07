@@ -25,6 +25,7 @@ namespace presentacion
         private int idAdmin = 0;
         private bool correspAct = true;
         private string nomUsuario;
+        private decimal efecCaja = 0;
         public AltaModGasto(InfoGasto infoGastoAlta, string tipo, string nomUsuario, List<string>TipoGas)
         {
             this.tipo = tipo;
@@ -37,6 +38,8 @@ namespace presentacion
             if (tipo.Equals("mod"))
             {
                 lblGasto.Text = "Modificación de Gasto";
+                txtMont.Enabled = false;
+                cbEmp.Enabled = false;
             }
             else if (tipo.Equals("alta"))
             {
@@ -58,12 +61,31 @@ namespace presentacion
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
+            int idAdmin = (int)logicaNegocios.ObtenerIdAdmin(nomUsuario).Rows[0]["id"];
             DateTime fechaGas = dtFechaGasto.Value.Date;
             decimal mont = decimal.Parse(txtMont.Text.Trim());
             string tipoGas = cbTipoGas.SelectedItem.ToString();
             string desc = txtDesc.Text.Trim();
 
-            if (mont > (logicaNegocios.GetPreciosPorFecha(fechaReg) - logicaNegocios.GetMontPorFecha(fechaReg)) && tipo == "alta")
+            //Efectivo teorico en caja
+            
+
+            if (tipo == "alta") { 
+                efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
+                                    - logicaNegocios.GetMontPorFecha(fechaReg)
+                                    + logicaNegocios.GetMontGan(fechaReg);
+            }
+            
+            if(tipo == "mod"){
+                efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
+                                    - logicaNegocios.GetMontPorFecha(fechaReg)
+                                    - infoGasto.Monto
+                                    + logicaNegocios.GetMontGan(fechaReg);
+                MessageBox.Show(infoGasto.Monto.ToString());
+            }
+
+            //Solo se valida que el registro no sea mayor al dinero en caja si es una alta y no es una ganancia
+            if (mont > efecCaja && tipoGas != "GANANCIA")
             {
                 new Toast("error", " El gasto no puede ser mayor al efectivo teorico en caja").MostrarToast();
                 return;
@@ -89,8 +111,7 @@ namespace presentacion
             }
 
             if (tipo == "alta")
-            {
-                int idAdmin = (int)logicaNegocios.ObtenerIdAdmin(nomUsuario).Rows[0]["id"];
+            { 
                 string descGasto = "";
 
                 if (correspAct && cbEmp.SelectedItem != null)
@@ -103,6 +124,7 @@ namespace presentacion
                 }
 
                 logicaNegocios.AltaGasto(fechaGas, fechaReg, mont, tipoGas, descGasto, idAdmin);
+
                 new Toast("exito", "Registro de gasto realizado con exito.").MostrarToast();
 
                 txtMont.Text = "0.00";
@@ -114,16 +136,46 @@ namespace presentacion
 
             if (tipo == "mod")
             {
+                string descGasto = "";
 
+                if (correspAct && cbEmp.SelectedItem != null)
+                {
+                    descGasto = "PAGO A EMPLEADO " + cbEmp.SelectedItem.ToString();
+                }
+                else
+                {
+                    descGasto = txtDesc.Text;
+                }
+
+                logicaNegocios.ModGasto(infoGasto.IdGasto , fechaGas, tipoGas, descGasto, idAdmin);
+                new Toast("exito", "Modificacion de gasto realizada con exito.").MostrarToast();
+
+                txtMont.Text = "0.00";
+                txtDesc.Clear();
+                cbTipoGas.SelectedIndex = 0;
+                this.Close();
+                GastoAgregado?.Invoke(this, EventArgs.Empty);
             }
         }
 
         private void AltaModGasto_Load(object sender, EventArgs e)
         {
             //Efectivo teorico en caja
-            decimal efecCaja = (logicaNegocios.GetPreciosPorFecha(fechaReg) - logicaNegocios.GetMontPorFecha(fechaReg));
-            lblEfec.Text = efecCaja.ToString("C2");
+            if (tipo == "alta") {
+               efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
+                                    - logicaNegocios.GetMontPorFecha(fechaReg)
+                                    + logicaNegocios.GetMontGan(fechaReg);
+            }
 
+            if (tipo == "mod")
+            {
+                efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
+                                    - logicaNegocios.GetMontPorFecha(fechaReg)
+                                    - infoGasto.Monto
+                                    + logicaNegocios.GetMontGan(fechaReg);
+            }
+
+            lblEfec.Text = efecCaja.ToString("C2");
             
             dtFechaGasto.MaxDate = fechaReg;
             dtFechaGasto.Value = infoGasto.FechaGasto;
@@ -240,7 +292,17 @@ namespace presentacion
                         cbEmp.Visible = true;
                         txtDesc.Visible = false;
                         lblDesc.Text = "Empleado";
-                        btnConfirmar.Text = "Agregar Gasto";
+                        if (tipo == "alta")
+                        {
+                            lblGasto.Text = "Registro de Gasto";
+                            btnConfirmar.Text = "Agregar Gasto";
+                        }
+
+                        if(tipo == "mod")
+                        {
+                            btnConfirmar.Text = "Modificar Gasto";
+                            lblGasto.Text = "Modificación de Gasto";
+                        }
 
                         List<int> numsEmp = logicaNegocios.GetEmpPorFecha(fechaReg);
                         if (numsEmp.Count > 0)
@@ -258,8 +320,21 @@ namespace presentacion
                         break;
 
                     case "GANANCIA":
-                        btnConfirmar.Text = "Agregar Ganancia";
-                        lblGasto.Text = "Registro de Ganancia";
+                        correspAct = false;
+                        imgEmp.Visible = false;
+                        imgCorresp.Visible = false;
+                        cbEmp.Visible = false;
+                        txtDesc.Visible = true;
+                        if (tipo == "alta") {
+                            btnConfirmar.Text = "Agregar Ganancia";
+                            lblGasto.Text = "Registro de Ganancia";
+                        }
+
+                        if(tipo == "mod")
+                        {
+                            btnConfirmar.Text = "Modificar Ganancia";
+                            lblGasto.Text = "Modificación de Ganancia";
+                        }
                         break;
 
                     default:
@@ -269,8 +344,19 @@ namespace presentacion
                         cbEmp.Visible = false;
                         txtDesc.Visible = true;
                         lblDesc.Text = "Descripción";
-                        txtMont.Text = "0.00";
-                        btnConfirmar.Text = "Agregar Gasto";
+                        if (tipo == "alta")
+                        {
+                            txtMont.Text = "0.00";
+                            btnConfirmar.Text = "Agregar Gasto";
+                            lblGasto.Text = "Registro de Gasto";
+                        }
+
+                        if(tipo == "mod")
+                        {
+                            btnConfirmar.Text = "Modificar Gasto";
+                            lblGasto.Text = "Modificación de Gasto";
+                        }
+                       
                         break;
                 }
             }
@@ -281,7 +367,7 @@ namespace presentacion
             string empSelec = "";
 
             //Condicion: Si el cb no esta vacio y tiene items cargados
-            if (cbEmp.SelectedItem != null && cbEmp.Items.Count > 0)
+            if (cbEmp.SelectedItem != null && cbEmp.Items.Count > 0 && tipo == "alta")
             {
                 empSelec = cbEmp.SelectedItem.ToString();
 

@@ -68,5 +68,9 @@ namespace negocios
             gastoDAO.ModGasto(idGasto, fechaGas, tipoGasto, descripcion, idAdmin);
         }
 
+        public List<decimal> GetMontGan(DateTime fecha)
+        {
+            return gastoDAO.GetMontGan(fecha);
+        }
     }
 }
