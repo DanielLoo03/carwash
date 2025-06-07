@@ -580,6 +580,7 @@ CREATE PROCEDURE modGasto (
     IN p_id INT,
     IN p_fechaGasto DATETIME,
     IN p_tipoGasto VARCHAR(50),
+    IN p_monto DECIMAL(7,2),
     IN p_descripcion VARCHAR(100),
     IN p_idAdmin INT
 )
@@ -587,6 +588,7 @@ BEGIN
     UPDATE gastos
     SET 
         fechaGasto = p_fechaGasto,
+        monto = p_monto,
         tipoGasto = p_tipoGasto,
         descripcion = p_descripcion,
         idAdmin = p_idAdmin

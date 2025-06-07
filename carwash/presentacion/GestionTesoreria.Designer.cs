@@ -258,6 +258,7 @@
             btnGas.Text = "Eliminar Gasto/Ganancia";
             btnGas.TextAlign = ContentAlignment.MiddleRight;
             btnGas.UseVisualStyleBackColor = false;
+            btnGas.Click += btnGas_Click;
             // 
             // GestionTesoreria
             // 

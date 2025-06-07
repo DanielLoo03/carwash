@@ -26,6 +26,7 @@ namespace presentacion
         private bool correspAct = true;
         private string nomUsuario;
         private decimal efecCaja = 0;
+        private DateTime fechaMod;
         public AltaModGasto(InfoGasto infoGastoAlta, string tipo, string nomUsuario, List<string>TipoGas)
         {
             this.tipo = tipo;
@@ -35,16 +36,27 @@ namespace presentacion
             InitializeComponent();
             cbTipoGas.DataSource = TipoGas;
 
-            if (tipo.Equals("mod"))
-            {
-                lblGasto.Text = "Modificación de Gasto";
-                txtMont.Enabled = false;
-                cbEmp.Enabled = false;
-            }
-            else if (tipo.Equals("alta"))
+            if (tipo.Equals("alta"))
             {
                 lblGasto.Text = "Registro de Gasto";
             }
+        }
+
+        public AltaModGasto(InfoGasto infoGastoAlta, string tipo, string nomUsuario, List<string> TipoGas, DateTime fechaMod)
+        {
+            this.tipo = tipo;
+            this.nomUsuario = nomUsuario;
+            this.infoGasto = infoGastoAlta;
+            this.fechaMod = fechaMod;
+
+            InitializeComponent();
+            cbTipoGas.DataSource = TipoGas;
+
+            if (tipo.Equals("mod"))
+            {
+                lblGasto.Text = "Modificación de Gasto";
+            }
+
         }
 
         private void guardarDatos()
@@ -54,6 +66,7 @@ namespace presentacion
             {
                 infoGasto.TipoGasto = cbTipoGas.Text;
             }
+
             infoGasto.Monto = decimal.Parse(txtMont.Text.Trim());
             infoGasto.Descripcion = txtDesc.Text;
             infoGasto.FechaGasto = dtFechaGasto.Value;
@@ -70,22 +83,13 @@ namespace presentacion
             //Efectivo teorico en caja
             
 
-            if (tipo == "alta") { 
-                efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
-                                    - logicaNegocios.GetMontPorFecha(fechaReg)
-                                    + logicaNegocios.GetMontGan(fechaReg);
-            }
-            
-            if(tipo == "mod"){
-                efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
-                                    - logicaNegocios.GetMontPorFecha(fechaReg)
-                                    - infoGasto.Monto
-                                    + logicaNegocios.GetMontGan(fechaReg);
-                MessageBox.Show(infoGasto.Monto.ToString());
-            }
+            efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
+                        - logicaNegocios.GetMontPorFecha(fechaReg)
+                        + logicaNegocios.GetMontGan(fechaReg);
+            MessageBox.Show(infoGasto.Monto.ToString());
 
             //Solo se valida que el registro no sea mayor al dinero en caja si es una alta y no es una ganancia
-            if (mont > efecCaja && tipoGas != "GANANCIA")
+            if (mont > efecCaja && tipoGas != "GANANCIA" && mont > efecCaja)
             {
                 new Toast("error", " El gasto no puede ser mayor al efectivo teorico en caja").MostrarToast();
                 return;
@@ -161,19 +165,9 @@ namespace presentacion
         private void AltaModGasto_Load(object sender, EventArgs e)
         {
             //Efectivo teorico en caja
-            if (tipo == "alta") {
-               efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
+            efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
                                     - logicaNegocios.GetMontPorFecha(fechaReg)
                                     + logicaNegocios.GetMontGan(fechaReg);
-            }
-
-            if (tipo == "mod")
-            {
-                efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
-                                    - logicaNegocios.GetMontPorFecha(fechaReg)
-                                    - infoGasto.Monto
-                                    + logicaNegocios.GetMontGan(fechaReg);
-            }
 
             lblEfec.Text = efecCaja.ToString("C2");
             
@@ -292,19 +286,22 @@ namespace presentacion
                         cbEmp.Visible = true;
                         txtDesc.Visible = false;
                         lblDesc.Text = "Empleado";
+
+                        List<int> numsEmp = new List<int>();
                         if (tipo == "alta")
                         {
                             lblGasto.Text = "Registro de Gasto";
                             btnConfirmar.Text = "Agregar Gasto";
+                            numsEmp = logicaNegocios.GetEmpPorFecha(fechaReg);
                         }
 
                         if(tipo == "mod")
                         {
                             btnConfirmar.Text = "Modificar Gasto";
                             lblGasto.Text = "Modificación de Gasto";
+                            numsEmp = logicaNegocios.GetEmpPorFecha(fechaMod);
                         }
 
-                        List<int> numsEmp = logicaNegocios.GetEmpPorFecha(fechaReg);
                         if (numsEmp.Count > 0)
                         {
                             List<string> emps = new List<string>();
@@ -326,6 +323,7 @@ namespace presentacion
                         cbEmp.Visible = false;
                         txtDesc.Visible = true;
                         if (tipo == "alta") {
+                            txtMont.Text = "0.00";
                             btnConfirmar.Text = "Agregar Ganancia";
                             lblGasto.Text = "Registro de Ganancia";
                         }
@@ -367,7 +365,7 @@ namespace presentacion
             string empSelec = "";
 
             //Condicion: Si el cb no esta vacio y tiene items cargados
-            if (cbEmp.SelectedItem != null && cbEmp.Items.Count > 0 && tipo == "alta")
+            if (cbEmp.SelectedItem != null && cbEmp.Items.Count > 0)
             {
                 empSelec = cbEmp.SelectedItem.ToString();
 
@@ -389,8 +387,17 @@ namespace presentacion
                 //COndicion: Si contiene un valor ( !null )
                 if (numEmp.HasValue)
                 {
-                    decimal monto = logicaNegocios.ConsCorrespTotal(fechaReg, numEmp.Value);
-                    txtMont.Text = monto.ToString();
+                    if (tipo == "alta")
+                    {
+                        decimal monto = logicaNegocios.ConsCorrespTotal(fechaReg, numEmp.Value);
+                        txtMont.Text = monto.ToString();
+                    }
+                    else
+                    {
+                        decimal monto = logicaNegocios.ConsCorrespTotal(fechaMod, numEmp.Value);
+                        txtMont.Text = monto.ToString();
+                    }
+                        
                 }
             }
         }
