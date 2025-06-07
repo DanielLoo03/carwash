@@ -565,4 +565,29 @@ BEGIN
     WHERE DATE(fechaRegistro) = fechaBusqueda;
 END $$
 
+CREATE PROCEDURE ObtenerMontosGanancia()
+BEGIN
+    SELECT monto
+    FROM gastos
+    WHERE tipoGasto = 'GANANCIA';
+END$$
+
+CREATE PROCEDURE modGasto (
+    IN p_id INT,
+    IN p_fechaGasto DATETIME,
+    IN p_fechaRegistro DATETIME,
+    IN p_tipoGasto VARCHAR(50),
+    IN p_descripcion VARCHAR(100),
+    IN p_idAdmin INT
+)
+BEGIN
+    UPDATE gastos
+    SET 
+        fechaGasto = p_fechaGasto,
+        fechaRegistro = p_fechaRegistro,
+        tipoGasto = p_tipoGasto,
+        descripcion = p_descripcion,
+        idAdmin = p_idAdmin
+    WHERE id = p_id;
+END$$
 DELIMITER ;

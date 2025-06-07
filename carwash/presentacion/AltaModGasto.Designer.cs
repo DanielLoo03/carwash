@@ -32,7 +32,7 @@
             btnConfirmar = new Button();
             label3 = new Label();
             lblMonto = new Label();
-            lblRegistroGasto = new Label();
+            lblGasto = new Label();
             btnRegresar = new Button();
             label1 = new Label();
             lblTipoGasto = new Label();
@@ -89,15 +89,15 @@
             lblMonto.TabIndex = 47;
             lblMonto.Text = "Monto";
             // 
-            // lblRegistroGasto
+            // lblGasto
             // 
-            lblRegistroGasto.AutoSize = true;
-            lblRegistroGasto.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblRegistroGasto.Location = new Point(190, 50);
-            lblRegistroGasto.Name = "lblRegistroGasto";
-            lblRegistroGasto.Size = new Size(359, 46);
-            lblRegistroGasto.TabIndex = 51;
-            lblRegistroGasto.Text = "Registro de Gasto";
+            lblGasto.AutoSize = true;
+            lblGasto.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblGasto.Location = new Point(190, 50);
+            lblGasto.Name = "lblGasto";
+            lblGasto.Size = new Size(359, 46);
+            lblGasto.TabIndex = 51;
+            lblGasto.Text = "Registro de Gasto";
             // 
             // btnRegresar
             // 
@@ -284,7 +284,7 @@
             Controls.Add(label1);
             Controls.Add(lblTipoGasto);
             Controls.Add(btnRegresar);
-            Controls.Add(lblRegistroGasto);
+            Controls.Add(lblGasto);
             Controls.Add(label3);
             Controls.Add(lblMonto);
             Controls.Add(btnConfirmar);
@@ -304,7 +304,7 @@
         private Button btnConfirmar;
         private Label label3;
         private Label lblMonto;
-        private Label lblRegistroGasto;
+        private Label lblGasto;
         private Button btnRegresar;
         private Label label1;
         private Label lblTipoGasto;

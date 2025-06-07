@@ -241,7 +241,31 @@ namespace persistencia
 
             return monts;
         }
-            
+
+        public List<decimal> GetMontGan(DateTime fecha)
+        {
+            List<decimal> monts = new List<decimal>();
+
+            MySqlCommand comando = new MySqlCommand();
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "obtenerMontosGanancia";
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@fechaBusqueda", fecha);
+
+            MySqlDataReader reader = comando.ExecuteReader();
+
+            while (reader.Read())
+            {
+                monts.Add(reader.GetDecimal("monto"));
+            }
+
+            reader.Close();
+            conexion.CerrarConexion();
+
+            return monts;
+        }
+
         public DataTable ConsGas(DateTime fecha)
         {
             tabla = new DataTable();

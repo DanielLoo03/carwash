@@ -13,13 +13,13 @@ using System.Windows.Forms;
 
 namespace presentacion
 {
-    public partial class GestionGasto : Form
+    public partial class GestionTesoreria : Form
     {
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
         private InfoGasto infoGasto = new InfoGasto();
         private string nomUsuario;
-        public GestionGasto(string nomUsuario)
+        public GestionTesoreria(string nomUsuario)
         {
             infoGasto.FechaGasto = DateTime.Today.Date;
             this.nomUsuario = nomUsuario;

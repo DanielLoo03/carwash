@@ -1,4 +1,5 @@
 ﻿using negocios;
+using Org.BouncyCastle.Crypto;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,11 +36,11 @@ namespace presentacion
 
             if (tipo.Equals("mod"))
             {
-                lblRegistroGasto.Text = "Modificación de Gasto";
+                lblGasto.Text = "Modificación de Gasto";
             }
             else if (tipo.Equals("alta"))
             {
-                lblRegistroGasto.Text = "Registro de Gasto";
+                lblGasto.Text = "Registro de Gasto";
             }
         }
 
@@ -225,40 +226,53 @@ namespace presentacion
 
         private void cbTipoGas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbTipoGas.SelectedItem != null && cbTipoGas.SelectedItem.ToString() == "CORRESPONDENCIA")
+            if (cbTipoGas.SelectedItem != null)
             {
-                cbEmp.Items.Clear();
-                correspAct = true;
-                imgEmp.Visible = true;
-                imgCorresp.Visible = true;
-                cbEmp.Visible = true;
-                txtDesc.Visible = false;
-                lblDesc.Text = "Empleado";
+                string tipoSeleccionado = cbTipoGas.SelectedItem.ToString();
 
-                if (logicaNegocios.GetEmpPorFecha(fechaReg).Count > 0)
+                switch (tipoSeleccionado)
                 {
-                    List<String> emps = new List<String>();
+                    case "CORRESPONDENCIA":
+                        cbEmp.Items.Clear();
+                        correspAct = true;
+                        imgEmp.Visible = true;
+                        imgCorresp.Visible = true;
+                        cbEmp.Visible = true;
+                        txtDesc.Visible = false;
+                        lblDesc.Text = "Empleado";
+                        btnConfirmar.Text = "Agregar Gasto";
 
-                    List<int> numsEmp = logicaNegocios.GetEmpPorFecha(fechaReg);
-                    foreach (int numEmp in numsEmp)
-                    {
-                        string nom = logicaNegocios.GetNomEmp(numEmp);
-                        emps.Add(nom);
-                    }
+                        List<int> numsEmp = logicaNegocios.GetEmpPorFecha(fechaReg);
+                        if (numsEmp.Count > 0)
+                        {
+                            List<string> emps = new List<string>();
+                            foreach (int numEmp in numsEmp)
+                            {
+                                string nom = logicaNegocios.GetNomEmp(numEmp);
+                                emps.Add(nom);
+                            }
 
-                    cbEmp.Items.AddRange(emps.ToArray()); // Agrega la lista de nombres al ComboBox
-                    cbEmp.SelectedIndex = 0;
+                            cbEmp.Items.AddRange(emps.ToArray());
+                            cbEmp.SelectedIndex = 0;
+                        }
+                        break;
+
+                    case "GANANCIA":
+                        btnConfirmar.Text = "Agregar Ganancia";
+                        lblGasto.Text = "Registro de Ganancia";
+                        break;
+
+                    default:
+                        correspAct = false;
+                        imgEmp.Visible = false;
+                        imgCorresp.Visible = false;
+                        cbEmp.Visible = false;
+                        txtDesc.Visible = true;
+                        lblDesc.Text = "Descripción";
+                        txtMont.Text = "0.00";
+                        btnConfirmar.Text = "Agregar Gasto";
+                        break;
                 }
-            }
-            else
-            {
-                correspAct = false;                
-                imgEmp.Visible = false;
-                imgCorresp.Visible = false;
-                cbEmp.Visible = false;
-                txtDesc.Visible = true;
-                lblDesc.Text = "Descripción";
-                txtMont.Text = "0.00";
             }
         }
 

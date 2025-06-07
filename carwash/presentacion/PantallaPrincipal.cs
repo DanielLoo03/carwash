@@ -90,7 +90,7 @@ namespace presentacion
 
         private void btnGastos_Click(object sender, EventArgs e)
         {
-            CargarForm(new GestionGasto(nomUsuario));
+            CargarForm(new GestionTesoreria(nomUsuario));
             lblGestionEmpleados.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
             lblVentas.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
             lblCorteCaja.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);

@@ -1,6 +1,6 @@
 ﻿namespace presentacion
 {
-    partial class GestionGasto
+    partial class GestionTesoreria
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionGasto));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GestionTesoreria));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             pnlCabecera = new Panel();
             btnAltaGas = new Button();
@@ -73,7 +73,7 @@
             btnAltaGas.Name = "btnAltaGas";
             btnAltaGas.Size = new Size(225, 39);
             btnAltaGas.TabIndex = 2;
-            btnAltaGas.Text = "Agregar Gasto";
+            btnAltaGas.Text = "Gestion Tesoreria";
             btnAltaGas.TextAlign = ContentAlignment.MiddleRight;
             btnAltaGas.UseVisualStyleBackColor = false;
             btnAltaGas.Click += btnAltaGas_Click;
@@ -85,9 +85,9 @@
             lblGastos.ForeColor = Color.FromArgb(63, 114, 175);
             lblGastos.Location = new Point(261, 28);
             lblGastos.Name = "lblGastos";
-            lblGastos.Size = new Size(153, 46);
+            lblGastos.Size = new Size(197, 46);
             lblGastos.TabIndex = 1;
-            lblGastos.Text = "Gastos";
+            lblGastos.Text = "Tesoreria";
             // 
             // lblGestionDe
             // 
@@ -222,7 +222,7 @@
             dtFechaGas.TabIndex = 10;
             dtFechaGas.ValueChanged += dtFechaGas_ValueChanged;
             // 
-            // GestionGasto
+            // GestionTesoreria
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -230,7 +230,7 @@
             Controls.Add(pnlContenido);
             Controls.Add(pnlCabecera);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "GestionGasto";
+            Name = "GestionTesoreria";
             Text = "GestionGastos";
             Load += GestionGasto_Load;
             pnlCabecera.ResumeLayout(false);
