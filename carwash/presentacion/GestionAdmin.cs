@@ -71,17 +71,22 @@ namespace presentacion
             DataTable dtFiltrado = dtPagina.DefaultView
                 .ToTable(false, "nombreUsuario", "contrasena");
 
-            // Ajusta el ancho de columnas según el número de columnas
+            // Se ajusta el ancho de columnas según el número de columnas
             tblAdmins.DataSource = dtFiltrado;
-            tblAdmins.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-            foreach (DataGridViewColumn col in tblAdmins.Columns)
-                col.Width = tblAdmins.Width / tblAdmins.Columns.Count;
-
-            // Se cambian los encabezados de columna a texto más amigable
-            if (tblAdmins.Columns.Contains("nombreUsuario"))
-                tblAdmins.Columns["nombreUsuario"].HeaderText = "Nombre de Usuario";
             if (tblAdmins.Columns.Contains("contrasena"))
-                tblAdmins.Columns["contrasena"].HeaderText = "Contraseña";
+                tblAdmins.Columns["contrasena"].Visible = false;
+
+            // Se establecer el encabezado y formato de la columna "nombreUsuario"
+            if (tblAdmins.Columns.Contains("nombreUsuario"))
+            {
+                var col = tblAdmins.Columns["nombreUsuario"];
+                col.HeaderText = "Nombre de Usuario";
+
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
         }
 
         // Evento que se ejecuta al cambiar el número de página en el ComboBox
@@ -215,6 +220,14 @@ namespace presentacion
                     if (nombreUsuario == usuarioAct)
                     {
                         new Toast("error", "No puedes eliminar tu propia cuenta de usuario.").MostrarToast();
+                        return;
+                    }
+
+                    var verificacion = new Verificacion(usuarioAct);
+                    verificacion.ShowDialog();
+
+                    if (!verificacion.VerificacionExitosa)
+                    {
                         return;
                     }
 

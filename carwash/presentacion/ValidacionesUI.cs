@@ -329,5 +329,17 @@ namespace presentacion
             return numEmp <= 0;
         }
 
+        public bool NombreContieneMasDeDosPalabras(string nombre)
+        {
+            int espacioCount = nombre.Trim().Count(c => c == ' ');
+            return espacioCount > 1;
+        }
+
+        // Valida que no haya espacios en los apellidos
+        public bool ApellidoContieneEspacios(string apellido)
+        {
+            return apellido.Trim().Contains(" ");
+        }
+
     }
 }
