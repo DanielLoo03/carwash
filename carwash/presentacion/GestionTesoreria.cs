@@ -242,7 +242,14 @@ namespace presentacion
 
             if (!cancelado)
             {
-                
+                var verificacion = new Verificacion(nomUsuario);
+                verificacion.ShowDialog();
+
+                if (!verificacion.VerificacionExitosa)
+                {
+                    return;
+                }
+
                 infoGastoElim.IdGasto = (int)filaSeleccionada.Cells["id"].Value;
                 infoGastoElim.FechaGasto = (DateTime)filaSeleccionada.Cells["fechaGasto"].Value;
                 infoGastoElim.Monto = (decimal)filaSeleccionada.Cells["monto"].Value;

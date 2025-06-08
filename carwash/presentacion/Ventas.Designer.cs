@@ -139,8 +139,7 @@
             btnConfigVentas.Name = "btnConfigVentas";
             btnConfigVentas.Size = new Size(226, 38);
             btnConfigVentas.TabIndex = 3;
-            btnConfigVentas.Text = "Configuraciones";
-            btnConfigVentas.TextAlign = ContentAlignment.MiddleRight;
+            btnConfigVentas.Text = "Configuración";
             btnConfigVentas.UseVisualStyleBackColor = false;
             btnConfigVentas.Click += btnConfigVentas_Click;
             // 

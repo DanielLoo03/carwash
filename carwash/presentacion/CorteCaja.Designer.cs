@@ -73,7 +73,7 @@
             // 
             btnConsBit.BackColor = Color.FromArgb(63, 114, 175);
             btnConsBit.FlatStyle = FlatStyle.Popup;
-            btnConsBit.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnConsBit.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConsBit.ForeColor = Color.White;
             btnConsBit.Image = (Image)resources.GetObject("btnConsBit.Image");
             btnConsBit.ImageAlign = ContentAlignment.MiddleLeft;
@@ -81,7 +81,7 @@
             btnConsBit.Name = "btnConsBit";
             btnConsBit.Size = new Size(225, 39);
             btnConsBit.TabIndex = 9;
-            btnConsBit.Text = "Consultar bitácora";
+            btnConsBit.Text = "Consultar Reapertura";
             btnConsBit.TextAlign = ContentAlignment.MiddleRight;
             btnConsBit.UseVisualStyleBackColor = false;
             btnConsBit.Click += btnConsBit_Click;
@@ -90,7 +90,7 @@
             // 
             btnReapCaja.BackColor = Color.FromArgb(63, 114, 175);
             btnReapCaja.FlatStyle = FlatStyle.Popup;
-            btnReapCaja.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnReapCaja.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnReapCaja.ForeColor = Color.White;
             btnReapCaja.Image = (Image)resources.GetObject("btnReapCaja.Image");
             btnReapCaja.ImageAlign = ContentAlignment.MiddleLeft;
@@ -106,11 +106,11 @@
             // lblCaja
             // 
             lblCaja.AutoSize = true;
-            lblCaja.Font = new Font("Inter", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCaja.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblCaja.ForeColor = Color.FromArgb(63, 114, 175);
             lblCaja.Location = new Point(209, 34);
             lblCaja.Name = "lblCaja";
-            lblCaja.Size = new Size(98, 44);
+            lblCaja.Size = new Size(95, 40);
             lblCaja.TabIndex = 7;
             lblCaja.Text = "Caja";
             // 
@@ -118,7 +118,7 @@
             // 
             btnRealizarCorte.BackColor = Color.FromArgb(63, 114, 175);
             btnRealizarCorte.FlatStyle = FlatStyle.Popup;
-            btnRealizarCorte.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRealizarCorte.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnRealizarCorte.ForeColor = Color.White;
             btnRealizarCorte.Image = (Image)resources.GetObject("btnRealizarCorte.Image");
             btnRealizarCorte.ImageAlign = ContentAlignment.MiddleLeft;
@@ -134,11 +134,11 @@
             // lblCorte
             // 
             lblCorte.AutoSize = true;
-            lblCorte.Font = new Font("Inter", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCorte.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblCorte.ForeColor = Color.White;
             lblCorte.Location = new Point(29, 31);
             lblCorte.Name = "lblCorte";
-            lblCorte.Size = new Size(200, 49);
+            lblCorte.Size = new Size(193, 46);
             lblCorte.TabIndex = 1;
             lblCorte.Text = "Corte de ";
             // 
@@ -168,10 +168,10 @@
             // lblNoCorte
             // 
             lblNoCorte.AutoSize = true;
-            lblNoCorte.Font = new Font("Nacelle", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNoCorte.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblNoCorte.Location = new Point(473, 251);
             lblNoCorte.Name = "lblNoCorte";
-            lblNoCorte.Size = new Size(742, 34);
+            lblNoCorte.Size = new Size(756, 32);
             lblNoCorte.TabIndex = 27;
             lblNoCorte.Text = "No se ha realizado un corte de caja en el día seleccionado.";
             lblNoCorte.Visible = false;
@@ -234,60 +234,60 @@
             // lblDiaCorte
             // 
             lblDiaCorte.AutoSize = true;
-            lblDiaCorte.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDiaCorte.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblDiaCorte.Location = new Point(1545, 57);
             lblDiaCorte.Name = "lblDiaCorte";
-            lblDiaCorte.Size = new Size(155, 22);
+            lblDiaCorte.Size = new Size(151, 22);
             lblDiaCorte.TabIndex = 20;
             lblDiaCorte.Text = "Consulta de corte";
             // 
             // lblAdmin
             // 
             lblAdmin.AutoSize = true;
-            lblAdmin.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAdmin.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblAdmin.Location = new Point(1173, 258);
             lblAdmin.Name = "lblAdmin";
-            lblAdmin.Size = new Size(127, 22);
+            lblAdmin.Size = new Size(120, 22);
             lblAdmin.TabIndex = 19;
             lblAdmin.Text = "Administrador";
             // 
             // lblDiferencia
             // 
             lblDiferencia.AutoSize = true;
-            lblDiferencia.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDiferencia.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblDiferencia.Location = new Point(928, 258);
             lblDiferencia.Name = "lblDiferencia";
-            lblDiferencia.Size = new Size(93, 22);
+            lblDiferencia.Size = new Size(91, 22);
             lblDiferencia.TabIndex = 18;
             lblDiferencia.Text = "Diferencia";
             // 
             // lblCalculado
             // 
             lblCalculado.AutoSize = true;
-            lblCalculado.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCalculado.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblCalculado.Location = new Point(666, 258);
             lblCalculado.Name = "lblCalculado";
-            lblCalculado.Size = new Size(93, 22);
+            lblCalculado.Size = new Size(90, 22);
             lblCalculado.TabIndex = 17;
             lblCalculado.Text = "Calculado";
             // 
             // lblContado
             // 
             lblContado.AutoSize = true;
-            lblContado.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblContado.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblContado.Location = new Point(397, 258);
             lblContado.Name = "lblContado";
-            lblContado.Size = new Size(82, 22);
+            lblContado.Size = new Size(78, 22);
             lblContado.TabIndex = 16;
             lblContado.Text = "Contado";
             // 
             // lblDatosCorte
             // 
             lblDatosCorte.AutoSize = true;
-            lblDatosCorte.Font = new Font("Inter", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDatosCorte.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDatosCorte.Location = new Point(697, 70);
             lblDatosCorte.Name = "lblDatosCorte";
-            lblDatosCorte.Size = new Size(308, 49);
+            lblDatosCorte.Size = new Size(295, 46);
             lblDatosCorte.TabIndex = 15;
             lblDatosCorte.Text = "Datos de corte";
             // 

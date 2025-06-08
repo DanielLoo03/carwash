@@ -23,13 +23,15 @@ namespace presentacion
         int numFilas = 10;
         int paginaFinal;
         private DataTable dtCompleto;
+        private string usuarioAct;
 
-        public GestionEmpleado()
+        public GestionEmpleado(string usuarioActual)
         {
             infoEmpleadoAlta.FechaNacimiento = DateTime.Today;
             infoEmpleadoMod.FechaNacimiento = DateTime.Today;
             InitializeComponent();
             this.KeyPreview = true;
+            usuarioAct = usuarioActual;
 
             this.Load += GestionEmpleado_Load;
             cbPagina.SelectedIndexChanged += cbPagina_SelectedIndexChanged;
@@ -100,6 +102,14 @@ namespace presentacion
 
             if (filaSeleccionada != null)
             {
+                var verificacion = new Verificacion(usuarioAct);
+                verificacion.ShowDialog();
+
+                if (!verificacion.VerificacionExitosa)
+                {
+                    return;
+                }
+
                 MessageBoxConfirmar messageBoxConfirmar = new MessageBoxConfirmar(
                     "¿Está seguro de eliminar al empleado " +
                     (int)filaSeleccionada.Cells["numEmpleado"].Value + " | " +

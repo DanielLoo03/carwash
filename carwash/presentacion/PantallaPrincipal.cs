@@ -34,7 +34,7 @@ namespace presentacion
 
         private void imgGestionEmpleados_Click(object sender, EventArgs e)
         {
-            CargarForm(new GestionEmpleado());
+            CargarForm(new GestionEmpleado(this.nomUsuario));
             lblGestionEmpleados.Font = new Font(btnGestionEmpleados.Font, FontStyle.Underline);
             lblVentas.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
             lblCorteCaja.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
@@ -45,7 +45,7 @@ namespace presentacion
         private void imgVentas_Click(object sender, EventArgs e)
         {
 
-            CargarForm(new Ventas());
+            CargarForm(new Ventas(this.nomUsuario));
             lblGestionEmpleados.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
             lblVentas.Font = new Font(btnGestionEmpleados.Font, FontStyle.Underline);
             lblCorteCaja.Font = new Font(btnGestionEmpleados.Font, FontStyle.Regular);
@@ -166,7 +166,7 @@ namespace presentacion
         private void PantallaPrincipal_Load(object sender, EventArgs e)
         {
             lblFecha.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            CargarForm(new GestionEmpleado());
+            CargarForm(new GestionEmpleado(this.nomUsuario));
             this.lblAdminActual.Text = this.nomUsuario;
 
             this.FormBorderStyle = FormBorderStyle.None;      // Quita los bordes de la ventana
