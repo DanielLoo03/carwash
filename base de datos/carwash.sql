@@ -57,3 +57,9 @@ CREATE TABLE cortecaja (
   PRIMARY KEY (id),
   FOREIGN KEY (idAdmin) REFERENCES administradores (id)
 );
+
+CREATE TABLE configcaja (
+  tipoConfig varchar(50) NOT NULL,
+  estado boolean NOT NULL DEFAULT 1,
+  PRIMARY KEY (tipoConfig)
+)

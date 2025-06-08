@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Org.BouncyCastle.Tls.Crypto.Impl.BC;
+using persistencia;
 
 namespace negocios
 {
@@ -352,14 +354,8 @@ namespace negocios
 
             decimal totalVentas = 0;
 
-            //Si no hubo ventas en el día
-            if (ventasNoCan.Rows.Count == 0) {
-
-                return totalVentas;
-
-            }
             //Si hubo al menos una venta en el día
-            else {
+            if(ventasNoCan.Rows.Count != 0) {
 
                 //Cicla por cada venta del día
                 foreach (DataRow venta in ventasNoCan.Rows)
@@ -371,6 +367,16 @@ namespace negocios
                     }
 
                 }
+
+            }
+
+            //Considera el monto en caja contado en el corte anterior
+            decimal montoCaja = ConsCaja();
+            //Si hubo un corte de caja anterior
+            if (montoCaja != -1)
+            {
+
+                totalVentas += montoCaja;
 
             }
 
@@ -435,6 +441,149 @@ namespace negocios
 
             }
 
+        }
+
+        //Consulta del corte de caja según el día seleccionado
+        public Boolean ConsCorte(DataGridView tblCorte, DateTime fechaCorte) {
+
+            DataTable corte = corteService.ConsCorte(fechaCorte);
+
+            //Si hay corte el día seleccionado
+            if (corte.Rows.Count != 0) {
+
+                tblCorte.DataSource = corte;
+                //Esconde el Id para que no lo vea el administrador
+                tblCorte.Columns["idAdmin"].Visible = false;
+                return true;
+
+            }
+            //No hay corte el día seleccionado
+            else {
+
+                return false;
+            
+            }
+
+        }
+
+        //Se obtiene el nombre de usuario según el id de administrador
+        public string ObtNomUsuario(int id) {
+
+            //Se obtiene el resultado del query
+            DataTable nomUsuario = corteService.ObtNomUsuario(id);
+            //Se convierte resultado de query a string (siempre regresa una sola fila)
+            return nomUsuario.Rows[0]["nombreUsuario"].ToString();
+            //Nunca regresa nulo, el atributo es NOT NULL en la base de datos
+
+        }
+
+        //Se consulta el dato Contado del último corte de caja realizado
+        public decimal ConsCaja()
+        {
+
+            //El resultado del query
+            DataTable resultado = corteService.ConsCaja();
+
+            //Si no hay ningún corte de caja realizado anteriormente
+            if (resultado.Rows.Count == 0) {
+
+                return -1;
+
+            }
+            //Hay un corte de caja realizado anteriormente
+            else {
+
+                //Se convierte el resultado al tipo de dato decimal
+                decimal contado = (decimal)(resultado.Rows[0]["contado"]);
+                return contado;
+
+            }
+
+        }
+
+        //Se consulta la fecha del último corte de caja realizado
+        public DateTime ConsFechaCorte()
+        {
+
+            //El resultado del query
+            DataTable resultado = corteService.ConsFechaCorte();
+
+            //Si no hay ningún corte de caja realizado anteriormente
+            if (resultado.Rows.Count == 0)
+            {
+
+                return DateTime.MinValue;
+
+            }
+            //Hay un corte de caja realizado anteriormente
+            else
+            {
+
+                //Se convierte el resultado al tipo de dato DateTime
+                DateTime fechaCorte = (DateTime)(resultado.Rows[0]["fechaCorte"]);
+                return fechaCorte;
+
+            }
+
+        }
+
+        //Bloquear opciones de alta/mod/baja/cancelación en módulos de ventas y gastos al realizar corte
+        public void BloqModulos(Button[] btns)
+        {
+            ToolTip toolTip = new ToolTip();
+
+            foreach (Button btn in btns) {
+
+                btn.Enabled = false;
+                toolTip.SetToolTip(btn, "Para habilitar la opción, debe reabrir caja.");
+
+            }
+
+        }
+
+        //Rehabilitar opciones de alta/mod/baja/cancelación en módulos de ventas y gastos al reabrir caja
+        public void AbrirModulos(Button[] btns) {
+
+            ToolTip toolTip = new ToolTip();
+
+            foreach (Button btn in btns)
+            {
+
+                btn.Enabled = true;
+                //Se "elimina" el tooltip
+                toolTip.SetToolTip(btn, null);
+
+            }
+
+        }
+
+        //Se abre o cierra caja
+        //Si se encuentra abierta, se cierra. Si se encuentre cerrada, se abre.
+        public void ModEstadoCaja(bool estado)
+        {
+
+            corteService.ModEstadoCaja(estado);
+
+        }
+
+        //Consulta el estado de caja, abierto o cerrado
+        public Boolean ConsEstadoCaja() {
+
+            DataTable resultado = corteService.ConsEstadoCaja();
+
+            //Condición: Si caja se encuentra abierta
+            if ((bool)resultado.Rows[0]["estado"]) {
+
+                return true;
+            
+            }
+            //Condición: Si caja se encuentra cerrada
+            else {
+
+                return false;
+            
+            }
+        
         }
 
         public Boolean AltaAdmin(string nombreUsuario, string contrasena)

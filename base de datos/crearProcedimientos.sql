@@ -323,4 +323,3 @@ BEGIN
 END $$
 
 DELIMITER ;
-

@@ -54,5 +54,109 @@ namespace persistencia
 
         }
 
+        public DataTable ConsCorte(DateTime fechaCorte) {
+
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consCorte",
+                CommandType = CommandType.StoredProcedure
+            };
+            comando.Parameters.AddWithValue("@fechaCorteParam", fechaCorte);
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            return tabla;
+
+        }
+
+        public DataTable ObtNomUsuario(int id) {
+
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "obtenerNomUsuario",
+                CommandType = CommandType.StoredProcedure
+            };
+            comando.Parameters.AddWithValue("@idParam", id);
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            return tabla;
+
+        }
+
+        public DataTable ConsCaja() {
+
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consCaja",
+                CommandType = CommandType.StoredProcedure
+            };
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            return tabla;
+
+        }
+
+        public DataTable ConsFechaCorte()
+        {
+
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consFechaCorte",
+                CommandType = CommandType.StoredProcedure
+            };
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            return tabla;
+
+        }
+
+        public void ModEstadoCaja(bool estado)
+        {
+
+            comando = new MySqlCommand();
+
+            comando.Connection = conexion.AbrirConexion();
+            comando.CommandText = "modEstadoCaja";
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@estadoParam", estado);
+
+            comando.ExecuteNonQuery();
+            comando.Parameters.Clear();
+            conexion.CerrarConexion();
+
+        }
+
+        public DataTable ConsEstadoCaja() {
+
+            tabla = new DataTable();
+            comando = new MySqlCommand
+            {
+                Connection = conexion.AbrirConexion(),
+                CommandText = "consEstadoCaja",
+                CommandType = CommandType.StoredProcedure
+            };
+
+            leer = comando.ExecuteReader();
+            tabla.Load(leer);
+            conexion.CerrarConexion();
+            return tabla;
+
+        }
+
     }
 }
