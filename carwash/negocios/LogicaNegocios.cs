@@ -350,14 +350,8 @@ namespace negocios
 
             decimal totalVentas = 0;
 
-            //Si no hubo ventas en el día
-            if (ventasNoCan.Rows.Count == 0) {
-
-                return totalVentas;
-
-            }
             //Si hubo al menos una venta en el día
-            else {
+            if(ventasNoCan.Rows.Count != 0) {
 
                 //Cicla por cada venta del día
                 foreach (DataRow venta in ventasNoCan.Rows)
@@ -370,15 +364,15 @@ namespace negocios
 
                 }
 
-                //Considera el monto en caja contado en el corte anterior
-                decimal montoCaja = ConsCaja();
-                //Si hubo un corte de caja anterior
-                if (montoCaja != -1)
-                {
+            }
 
-                    totalVentas += montoCaja;
+            //Considera el monto en caja contado en el corte anterior
+            decimal montoCaja = ConsCaja();
+            //Si hubo un corte de caja anterior
+            if (montoCaja != -1)
+            {
 
-                }
+                totalVentas += montoCaja;
 
             }
 

@@ -90,7 +90,6 @@ namespace presentacion
             timer.Tick += Timer_Tick;
             timer.Start();
 
-
         }
 
         private void Timer_Tick(object sender, EventArgs e) {

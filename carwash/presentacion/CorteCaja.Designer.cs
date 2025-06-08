@@ -162,7 +162,7 @@
             // imgFecha
             // 
             imgFecha.Image = (Image)resources.GetObject("imgFecha.Image");
-            imgFecha.Location = new Point(1528, 57);
+            imgFecha.Location = new Point(1504, 57);
             imgFecha.Name = "imgFecha";
             imgFecha.Size = new Size(24, 24);
             imgFecha.TabIndex = 24;
@@ -197,11 +197,11 @@
             // 
             lblDiaCorte.AutoSize = true;
             lblDiaCorte.Font = new Font("Nacelle", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDiaCorte.Location = new Point(1569, 57);
+            lblDiaCorte.Location = new Point(1545, 57);
             lblDiaCorte.Name = "lblDiaCorte";
-            lblDiaCorte.Size = new Size(109, 22);
+            lblDiaCorte.Size = new Size(155, 22);
             lblDiaCorte.TabIndex = 20;
-            lblDiaCorte.Text = "Día de corte";
+            lblDiaCorte.Text = "Consulta de corte";
             // 
             // lblAdmin
             // 
