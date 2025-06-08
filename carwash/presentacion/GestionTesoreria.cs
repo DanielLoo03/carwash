@@ -44,11 +44,13 @@ namespace presentacion
                     logicaNegocios.DecidirConsGas(tblGastos, dtFechaGas.Value.Date, verGastosAct);
                     RenomEncabezados(tblGastos);
                     ConfigTablaSoloLectura(tblGastos);
-                    CargarDatos();
+                    CargarEfecTeorico(fechaSelec);
+
                     if (lblNoGas.Visible == true)
                     {
                         lblNoGas.Visible = false;
                         tblGastos.Visible = true;
+                        CargarEfecTeorico(fechaSelec);
                     }
                 };
                 vtnAltaModGasto.ShowDialog();
@@ -61,6 +63,7 @@ namespace presentacion
 
         private void dtFechaGas_ValueChanged(object sender, EventArgs e)
         {
+            DateTime fechaSelec = dtFechaGas.Value.Date;
             bool hayVentas = logicaNegocios.DecidirConsGas(tblGastos, dtFechaGas.Value.Date, verGastosAct);
 
             if (hayVentas)
@@ -76,22 +79,7 @@ namespace presentacion
                 lblNoGas.Visible = true;
             }
 
-            DateTime fechaSelec = dtFechaGas.Value.Date;
-            decimal efecCaja = logicaNegocios.GetPreciosPorFecha(dtFechaGas.Value.Date)
-                        - logicaNegocios.GetMontPorFecha(dtFechaGas.Value.Date)
-                        + logicaNegocios.GetMontGan(dtFechaGas.Value.Date);
-
-            //En caso de que haya ventas se mostrara la ganancia en el lblGanDia
-            if (efecCaja > 0)
-            {
-                lblGanDia.Text = efecCaja.ToString("C");
-                lblNoGan.Visible = false;
-            }
-            else
-            {
-                lblNoGan.Visible = true;
-                lblGanDia.Text = "---";
-            }
+            CargarEfecTeorico(fechaSelec);
             dtFechaGas.MaxDate = DateTime.Today;
         }
 
@@ -112,30 +100,17 @@ namespace presentacion
             }
 
             DateTime fechaSelec = dtFechaGas.Value.Date;
-            decimal efecCaja = logicaNegocios.GetPreciosPorFecha(dtFechaGas.Value.Date)
-                        - logicaNegocios.GetMontPorFecha(dtFechaGas.Value.Date)
-                        + logicaNegocios.GetMontGan(dtFechaGas.Value.Date);
-
-            //En caso de que haya ventas se mostrara la ganancia en el lblGanDia
-            if (efecCaja > 0)
-            {
-                lblGanDia.Text = efecCaja.ToString("C");
-                lblNoGan.Visible = false;
-            }
-            else
-            {
-                lblNoGan.Visible = true;
-                lblGanDia.Text = "---";
-            }
+            CargarEfecTeorico(fechaSelec);
             dtFechaGas.MaxDate = DateTime.Today;
         }
 
-        private void CargarDatos()
+        private void CargarEfecTeorico(DateTime fechaSelec)
         {
-            DateTime fechaSelec = dtFechaGas.Value.Date;
-            decimal efecCaja = logicaNegocios.GetPreciosPorFecha(dtFechaGas.Value.Date)
-                        - logicaNegocios.GetMontPorFecha(dtFechaGas.Value.Date)
-                        + logicaNegocios.GetMontGan(dtFechaGas.Value.Date);
+            decimal efecCaja = 0;
+            
+            efecCaja = logicaNegocios.GetPreciosPorFecha(fechaSelec)
+                        - logicaNegocios.GetMontPorFecha(fechaSelec)
+                        + logicaNegocios.GetMontGan(fechaSelec);
 
             //En caso de que haya ventas se mostrara la ganancia en el lblGanDia
             if (efecCaja > 0)
@@ -226,28 +201,31 @@ namespace presentacion
                 infoGastoMod.Descripcion = (string)filaSeleccionada.Cells["descripcion"].Value;
                 infoGastoMod.FechaGasto = (DateTime)filaSeleccionada.Cells["fechaGasto"].Value;
 
-                DateTime fechaSelec = dtFechaGas.Value.Date;
+                bool cancelado = Convert.ToBoolean(filaSeleccionada.Cells["cancelado"].Value);
+                
+                if (!cancelado) {
+                    DateTime fechaSelec = dtFechaGas.Value.Date;
 
-                List<string> tipoGas = logicaNegocios.GetTiposGasto();
-                AltaModGasto vtnAltaModGasto = new AltaModGasto(infoGastoMod, "mod", nomUsuario, tipoGas, fechaSelec);
-                vtnAltaModGasto.GastoAgregado += (s, args) =>
+                    List<string> tipoGas = logicaNegocios.GetTiposGasto();
+                    AltaModGasto vtnAltaModGasto = new AltaModGasto(infoGastoMod, "mod", nomUsuario, tipoGas, fechaSelec);
+                    vtnAltaModGasto.GastoAgregado += (s, args) =>
+                    {
+                        logicaNegocios.DecidirConsGas(tblGastos, dtFechaGas.Value.Date, verGastosAct);
+                        tblGastos.Visible = true;
+                        RenomEncabezados(tblGastos);
+                        ConfigTablaSoloLectura(tblGastos);
+                        CargarEfecTeorico(fechaSelec);
+                    };
+                    vtnAltaModGasto.ShowDialog();
+                }
+                else
                 {
-                    logicaNegocios.DecidirConsGas(tblGastos, dtFechaGas.Value.Date, verGastosAct);
-                    tblGastos.Visible = true;
-                    RenomEncabezados(tblGastos);
-                    ConfigTablaSoloLectura(tblGastos);
-                    CargarDatos();
-                };
-                vtnAltaModGasto.ShowDialog();
-
-                decimal gan = logicaNegocios.ConsGanTotal(fechaSelec)
-                              + logicaNegocios.GetMontGan(fechaSelec); ;
-                lblGanDia.Text = gan.ToString("C");
-                lblNoGas.Visible = false;
+                    new Toast("error", "No se puede modificar un registro cancelado").MostrarToast();
+                }
             }
             else
             {
-                new Toast("error", "No has seleccionado ningun gasto").MostrarToast();
+                new Toast("error", "No has seleccionado ningun registro").MostrarToast();
             }
         }
 
@@ -255,19 +233,22 @@ namespace presentacion
         {
             if (tblGastos.CurrentRow == null || tblGastos.Rows.Count == 0)
             {
-                new Toast("error", "No hay Gastos para cancelar.").MostrarToast();
+                new Toast("error", "No hay registros para cancelar.").MostrarToast();
                 return;
             }
 
             DataGridViewRow filaSeleccionada = tblGastos.CurrentRow;
-            infoGastoElim.IdGasto = (int)filaSeleccionada.Cells["id"].Value;
-            infoGastoElim.FechaGasto = (DateTime)filaSeleccionada.Cells["fechaGasto"].Value;
-            infoGastoElim.Monto = (decimal)filaSeleccionada.Cells["monto"].Value;
-            infoGastoElim.TipoGasto = (string)filaSeleccionada.Cells["tipoGasto"].Value;
-            infoGastoElim.Descripcion = (string)filaSeleccionada.Cells["descripcion"].Value;
+            bool cancelado = Convert.ToBoolean(filaSeleccionada.Cells["cancelado"].Value);
 
-            if (filaSeleccionada != null)
+            if (!cancelado)
             {
+                
+                infoGastoElim.IdGasto = (int)filaSeleccionada.Cells["id"].Value;
+                infoGastoElim.FechaGasto = (DateTime)filaSeleccionada.Cells["fechaGasto"].Value;
+                infoGastoElim.Monto = (decimal)filaSeleccionada.Cells["monto"].Value;
+                infoGastoElim.TipoGasto = (string)filaSeleccionada.Cells["tipoGasto"].Value;
+                infoGastoElim.Descripcion = (string)filaSeleccionada.Cells["descripcion"].Value;
+
                 MessageBoxConfirmar messageBoxConfirmar = new MessageBoxConfirmar(
                     "¿Está seguro de eliminar el registro \n" +
                     "ID: [ " + infoGastoElim.IdGasto + " ] \n" +
@@ -281,26 +262,25 @@ namespace presentacion
                     logicaNegocios.CanGasto(infoGastoElim.IdGasto);
                     new Toast("exito", "Registro cancelado con exito! ").MostrarToast();
 
-                    if(logicaNegocios.DecidirConsGas(tblGastos, dtFechaGas.Value.Date, verGastosAct))
+                    if (logicaNegocios.DecidirConsGas(tblGastos, dtFechaGas.Value.Date, verGastosAct))
                     {
                         lblNoGas.Visible = false;
                         tblGastos.Visible = true;
                         RenomEncabezados(tblGastos);
                         ConfigTablaSoloLectura(tblGastos);
-                        CargarDatos();
                     }
                     else
                     {
                         tblGastos.Visible = false;
                         lblNoGas.Visible = true;
                     }
+                    CargarEfecTeorico(dtFechaGas.Value.Date);
                 };
                 messageBoxConfirmar.mostrarMessageBox();
-
             }
             else
             {
-                new Toast("error", "No has seleccionado ningún registro.").MostrarToast();
+                new Toast("error", "El registro seleccionado ya ha sido cancelado").MostrarToast();
             }
         }
 
@@ -347,13 +327,14 @@ namespace presentacion
                 tblGastos.Visible = true;
                 RenomEncabezados(tblGastos);
                 ConfigTablaSoloLectura(tblGastos);
-                CargarDatos();
             }
             else
             {
                 tblGastos.Visible = false;
                 lblNoGas.Visible = true;
             }
+
+            CargarEfecTeorico(dtFechaGas.Value.Date);
         }
     }
 }

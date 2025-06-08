@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using TextBox = System.Windows.Forms.TextBox;
 
@@ -81,11 +82,21 @@ namespace presentacion
             string desc = txtDesc.Text.Trim();
 
             //Efectivo teorico en caja
-            
 
-            efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
-                        - logicaNegocios.GetMontPorFecha(fechaReg)
-                        + logicaNegocios.GetMontGan(fechaReg);
+            if (tipo == "alta")
+            {
+                efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
+                            - logicaNegocios.GetMontPorFecha(fechaReg)
+                            + logicaNegocios.GetMontGan(fechaReg);
+            }
+            
+            if (tipo == "mod" && infoGasto.TipoGasto != "GANANCIA")
+            {
+                efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
+                            - logicaNegocios.GetMontPorFecha(fechaReg)
+                            + logicaNegocios.GetMontGan(fechaReg)
+                            + infoGasto.Monto;
+            }
 
             //Solo se valida que el registro no sea mayor al dinero en caja si es una alta y no es una ganancia
             if (mont > efecCaja && tipoGas != "GANANCIA" && mont > efecCaja)
@@ -164,9 +175,26 @@ namespace presentacion
         private void AltaModGasto_Load(object sender, EventArgs e)
         {
             //Efectivo teorico en caja
-            efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
-                                    - logicaNegocios.GetMontPorFecha(fechaReg)
-                                    + logicaNegocios.GetMontGan(fechaReg);
+            if (tipo == "alta")
+            {
+                efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
+                                        - logicaNegocios.GetMontPorFecha(fechaReg)
+                                        + logicaNegocios.GetMontGan(fechaReg);
+            }
+
+            if (tipo == "mod" && infoGasto.TipoGasto != "GANANCIA")
+            {
+                    efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
+                                - logicaNegocios.GetMontPorFecha(fechaReg)
+                                + logicaNegocios.GetMontGan(fechaReg)
+                                + infoGasto.Monto;
+            }
+            else
+            {
+                efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
+                                - logicaNegocios.GetMontPorFecha(fechaReg)
+                                + logicaNegocios.GetMontGan(fechaReg);
+            }
 
             lblEfec.Text = efecCaja.ToString("C2");
             
