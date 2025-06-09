@@ -35,6 +35,7 @@ namespace presentacion
         {
             DateTime fechaSelec = dtFechaGas.Value.Date;
 
+            //Condicion: si hay ganancias en el dia se pueden registrar gastos
             if (logicaNegocios.ConsGanTotal(fechaSelec) > 0)
             {
                 List<string> tipoGas = logicaNegocios.GetTiposGasto();

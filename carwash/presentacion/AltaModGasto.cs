@@ -19,14 +19,17 @@ namespace presentacion
     {
         private ValidacionesUI validacionesUI = new ValidacionesUI();
         private LogicaNegocios logicaNegocios = new LogicaNegocios();
+
         public event EventHandler GastoAgregado;
         private InfoGasto infoGasto;
-        private DateTime fechaReg = DateTime.Today.Date;
+       
         private string tipo;
         private int idAdmin = 0;
         private bool correspAct = true;
         private string nomUsuario;
         private decimal efecCaja = 0;
+
+        private DateTime fechaReg = DateTime.Today.Date;
         private DateTime fechaMod;
         public AltaModGasto(InfoGasto infoGastoAlta, string tipo, string nomUsuario, List<string>TipoGas)
         {
@@ -62,7 +65,6 @@ namespace presentacion
 
         private void guardarDatos()
         {
-           
             if (cbTipoGas.SelectedItem != null)
             {
                 infoGasto.TipoGasto = cbTipoGas.Text;
@@ -174,14 +176,19 @@ namespace presentacion
 
         private void AltaModGasto_Load(object sender, EventArgs e)
         {
+            //Fecha max del dtPicker
+            dtFechaGasto.MaxDate = fechaReg;
+
             //Efectivo teorico en caja
             if (tipo == "alta")
             {
-                efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
-                                        - logicaNegocios.GetMontPorFecha(fechaReg)
-                                        + logicaNegocios.GetMontGan(fechaReg);
+
+                efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg) //Precios de las ventas
+                                        - logicaNegocios.GetMontPorFecha(fechaReg) //Gastos del dia
+                                        + logicaNegocios.GetMontGan(fechaReg); //Ganancias del dia (registradas)
             }
 
+            //Condifcion: si es mod y Ganancia se toma en cuenta el monto de la mod para el efec en caja
             if (tipo == "mod" && infoGasto.TipoGasto != "GANANCIA")
             {
                     efecCaja = logicaNegocios.GetPreciosPorFecha(fechaReg)
@@ -196,10 +203,7 @@ namespace presentacion
                                 + logicaNegocios.GetMontGan(fechaReg);
             }
 
-            lblEfec.Text = efecCaja.ToString("C2");
-            
-            dtFechaGasto.MaxDate = fechaReg;
-            dtFechaGasto.Value = infoGasto.FechaGasto;
+            lblEfec.Text = efecCaja.ToString("C2"); 
 
             //Si se trata de una modificacion o ya se modificaron los otros campos el cbTipoGas se cargaran con los que se eligieron
             if (tipo == "mod" )
@@ -213,6 +217,7 @@ namespace presentacion
             txtMont.Text = infoGasto.Monto.ToString();
             txtDesc.Text = infoGasto.Descripcion;
             cbTipoGas.Text = infoGasto.TipoGasto;
+            dtFechaGasto.Value = infoGasto.FechaGasto;
         }
 
         private void txtMont_TextChanged(object sender, EventArgs e)
@@ -315,10 +320,13 @@ namespace presentacion
                         lblDesc.Text = "Empleado";
 
                         List<int> numsEmp = new List<int>();
+
                         if (tipo == "alta")
                         {
                             lblGasto.Text = "Registro de Gasto";
                             btnConfirmar.Text = "Agregar Gasto";
+
+                            //Si es alta llena el cb con los empleados del dia del registro
                             numsEmp = logicaNegocios.GetEmpPorFecha(fechaReg);
                         }
 
@@ -326,9 +334,12 @@ namespace presentacion
                         {
                             btnConfirmar.Text = "Modificar Gasto";
                             lblGasto.Text = "Modificación de Gasto";
+
+                            //Si es modificacion llena el cb con los empleados de la fecha de la modificacion
                             numsEmp = logicaNegocios.GetEmpPorFecha(fechaMod);
                         }
 
+                        //Llena el cb con los empleados que han realizado ventas
                         if (numsEmp.Count > 0)
                         {
                             List<string> emps = new List<string>();
@@ -349,6 +360,7 @@ namespace presentacion
                         imgCorresp.Visible = false;
                         cbEmp.Visible = false;
                         txtDesc.Visible = true;
+
                         if (tipo == "alta") {
                             txtMont.Text = "0.00";
                             btnConfirmar.Text = "Agregar Ganancia";
@@ -369,6 +381,7 @@ namespace presentacion
                         cbEmp.Visible = false;
                         txtDesc.Visible = true;
                         lblDesc.Text = "Descripción";
+
                         if (tipo == "alta")
                         {
                             txtMont.Text = "0.00";
