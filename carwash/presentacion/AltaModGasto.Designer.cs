@@ -44,7 +44,7 @@
             lblEfecTeo = new Label();
             lblEfec = new Label();
             dtFechaGasto = new DateTimePicker();
-            label2 = new Label();
+            lblFechaGas = new Label();
             label5 = new Label();
             cbEmp = new ComboBox();
             imgEmp = new PictureBox();
@@ -115,7 +115,7 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.Red;
-            label1.Location = new Point(277, 322);
+            label1.Location = new Point(296, 322);
             label1.Name = "label1";
             label1.Size = new Size(20, 25);
             label1.TabIndex = 81;
@@ -127,9 +127,9 @@
             lblTipoGasto.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTipoGasto.Location = new Point(153, 324);
             lblTipoGasto.Name = "lblTipoGasto";
-            lblTipoGasto.Size = new Size(124, 22);
+            lblTipoGasto.Size = new Size(143, 22);
             lblTipoGasto.TabIndex = 80;
-            lblTipoGasto.Text = "Tipo de Gasto";
+            lblTipoGasto.Text = "Tipo de Registro";
             // 
             // label4
             // 
@@ -210,15 +210,15 @@
             dtFechaGasto.Size = new Size(416, 28);
             dtFechaGasto.TabIndex = 90;
             // 
-            // label2
+            // lblFechaGas
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(154, 205);
-            label2.Name = "label2";
-            label2.Size = new Size(175, 22);
-            label2.TabIndex = 91;
-            label2.Text = "Fecha de realizacion";
+            lblFechaGas.AutoSize = true;
+            lblFechaGas.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblFechaGas.Location = new Point(154, 205);
+            lblFechaGas.Name = "lblFechaGas";
+            lblFechaGas.Size = new Size(175, 22);
+            lblFechaGas.TabIndex = 91;
+            lblFechaGas.Text = "Fecha de realizacion";
             // 
             // label5
             // 
@@ -272,7 +272,7 @@
             Controls.Add(imgEmp);
             Controls.Add(cbEmp);
             Controls.Add(label5);
-            Controls.Add(label2);
+            Controls.Add(lblFechaGas);
             Controls.Add(dtFechaGasto);
             Controls.Add(lblEfec);
             Controls.Add(lblEfecTeo);
@@ -316,7 +316,7 @@
         private Label lblEfecTeo;
         private Label lblEfec;
         private DateTimePicker dtFechaGasto;
-        private Label label2;
+        private Label lblFechaGas;
         private Label label5;
         private ComboBox cbEmp;
         private PictureBox imgEmp;

@@ -144,7 +144,7 @@ namespace persistencia
             return empleados;
         }
 
-        public string GetNomEmp(int numEmp)
+        public string GetNomEmp(int idEmp)
         {
             string nombreCompleto = string.Empty;
 
@@ -153,7 +153,7 @@ namespace persistencia
             comando.CommandText = "obtenerNombreEmpleado"; 
             comando.CommandType = CommandType.StoredProcedure;
 
-            comando.Parameters.AddWithValue("@numEmpleadoParam", numEmp);
+            comando.Parameters.AddWithValue("@numEmpleadoParam", idEmp);
 
             MySqlDataReader reader = comando.ExecuteReader();
 
@@ -168,7 +168,7 @@ namespace persistencia
             return nombreCompleto;
         }
 
-        public int? ObtenerNumEmpleado(string noms, string apellidoPat, string apellidoMat)
+        public int? GetNumEmp(string nom, string apellidoPat, string apellidoMat)
         {
             int? numEmpleado = null;
 
@@ -177,7 +177,7 @@ namespace persistencia
             comando.CommandText = "obtenerNumEmpleado";
             comando.CommandType = CommandType.StoredProcedure;
 
-            comando.Parameters.AddWithValue("@nombresParam", noms);
+            comando.Parameters.AddWithValue("@nombresParam", nom);
             comando.Parameters.AddWithValue("@apellidoPaternoParam", apellidoPat);
             comando.Parameters.AddWithValue("@apellidoMaternoParam", apellidoMat);
 

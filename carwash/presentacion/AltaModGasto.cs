@@ -117,7 +117,7 @@ namespace presentacion
             if (validacionesUI.EvalTxtVacios(descripcion) && correspAct == false)
             {
                 new Toast("error", " El campo de descripcion es obligatorio (debe ser llenado).").MostrarToast();
-                return;
+                return; 
             }
 
             if (validacionesUI.EvalCampoLimite(descripcion, 50))
@@ -164,12 +164,20 @@ namespace presentacion
                 }
 
                 logicaNegocios.ModGasto(infoGasto.IdGasto , fechaGas, mont, tipoGas, descGasto, idAdmin);
-                new Toast("exito", "Modificacion de gasto realizada con exito.").MostrarToast();
+
+                if (tipoGas == "GANANCIA") {
+                    new Toast("exito", "Modificacion de ganancia realizada con exito.").MostrarToast();
+                }
+                else
+                {
+                    new Toast("exito", "Modificacion de gasto realizada con exito.").MostrarToast();
+                }
 
                 txtMont.Text = "0.00";
                 txtDesc.Clear();
                 cbTipoGas.SelectedIndex = 0;
                 this.Close();
+
                 GastoAgregado?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -387,7 +395,7 @@ namespace presentacion
                             txtMont.Text = "0.00";
                             btnConfirmar.Text = "Agregar Gasto";
                             lblGasto.Text = "Registro de Gasto";
-                        }
+                        }   
 
                         if(tipo == "mod")
                         {

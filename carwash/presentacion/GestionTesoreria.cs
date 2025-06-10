@@ -221,7 +221,7 @@ namespace presentacion
                 }
                 else
                 {
-                    new Toast("error", "No se puede modificar un registro cancelado").MostrarToast();
+                    new Toast("error", "No se puede modificar un gasto/ganancia cancelado").MostrarToast();
                 }
             }
             else

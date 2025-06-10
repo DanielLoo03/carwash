@@ -137,9 +137,9 @@
             // 
             lblAdminActual.Font = new Font("Microsoft Sans Serif", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblAdminActual.ForeColor = Color.White;
-            lblAdminActual.Location = new Point(1595, 67);
+            lblAdminActual.Location = new Point(1575, 67);
             lblAdminActual.Name = "lblAdminActual";
-            lblAdminActual.Size = new Size(109, 20);
+            lblAdminActual.Size = new Size(133, 20);
             lblAdminActual.TabIndex = 14;
             lblAdminActual.Text = "Admin";
             lblAdminActual.TextAlign = ContentAlignment.MiddleCenter;

@@ -725,7 +725,6 @@ namespace negocios
             return true;
         }
 
-        //Funciones de Gastos //
         public Boolean AltaGasto(DateTime fechaGasto, DateTime fechaReg, decimal monto, string tipoGasto, string descripcion, int idAdmin)
         {
             gastoService.AltaGasto(fechaGasto, fechaReg, monto, tipoGasto, descripcion, idAdmin);
@@ -855,7 +854,7 @@ namespace negocios
 
         public int? ObtenerNumEmpleado(string noms, string apellidoPat, string apellidoMat)
         {
-            return gastoService.ObtenerNumEmpleado(noms, apellidoPat, apellidoMat);
+            return gastoService.GetNumEmp(noms, apellidoPat, apellidoMat);
         }
 
         public decimal GetPreciosPorFecha(DateTime fecha)

@@ -43,9 +43,9 @@ namespace negocios
             return gastoDAO.GetNomEmp(numEmp);
         }
 
-        public int? ObtenerNumEmpleado(string noms, string apellidoPat, string apellidoMat)
+        public int? GetNumEmp(string noms, string apellidoPat, string apellidoMat)
         {
-            return gastoDAO.ObtenerNumEmpleado(noms, apellidoPat, apellidoMat);
+            return gastoDAO.GetNumEmp(noms, apellidoPat, apellidoMat);
         }
 
         public List<decimal> GetPreciosPorFecha(DateTime fecha)
