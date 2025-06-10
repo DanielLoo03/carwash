@@ -41,6 +41,10 @@ namespace presentacion
 
             //Se obtiene el valor del campo calculado (lo que se debe tener en caja según el sistema)
             calculado = logicaNegocios.CalcSistema(logicaNegocios.ConsVentasNoCan(DateTime.Today));
+
+            calculado -= logicaNegocios.GetMontPorFecha(DateTime.Today);
+            calculado += logicaNegocios.GetMontGan(DateTime.Today);
+
             //Se formatea el dato calculado
             txtCalculado.Text = calculado.ToString("F2");
 

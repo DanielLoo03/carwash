@@ -141,7 +141,15 @@ namespace presentacion
 
                 logicaNegocios.AltaGasto(fechaGas, fechaReg, mont, tipoGas, descGasto, idAdmin);
 
-                new Toast("exito", "Registro de gasto realizado con exito.").MostrarToast();
+                if (tipoGas == "GANANCIA")
+                {
+                    new Toast("exito", "Registro de ganancia realizada con exito.").MostrarToast();
+                }
+                else
+                {
+                    new Toast("exito", "Registro de gasto realizado con exito.").MostrarToast();
+                }
+               
 
                 txtMont.Text = "0.00";
                 txtDesc.Clear();

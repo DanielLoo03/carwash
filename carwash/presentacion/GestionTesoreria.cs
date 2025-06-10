@@ -192,6 +192,12 @@ namespace presentacion
 
         private void btnModGastoGan_Click(object sender, EventArgs e)
         {
+            if (tblGastos.Rows.Count == 0)
+            {
+                new Toast("error", "No hay registros para modificar.").MostrarToast();
+                return;
+            }
+
             DataGridViewRow filaSeleccionada = tblGastos.CurrentRow;
             if (filaSeleccionada != null)
             {
@@ -226,7 +232,7 @@ namespace presentacion
             }
             else
             {
-                new Toast("error", "No has seleccionado ningun registro").MostrarToast();
+                new Toast("error", "No has seleccionado ningún registro a modificar").MostrarToast();
             }
         }
 
@@ -288,7 +294,7 @@ namespace presentacion
             }
             else
             {
-                new Toast("error", "El registro seleccionado ya ha sido cancelado").MostrarToast();
+                new Toast("error", "El registro seleccionado ya ha sido cancelado.").MostrarToast();
             }
         }
 
@@ -323,7 +329,7 @@ namespace presentacion
             }
             else
             {
-                btnVerGastosCan.Image = Image.FromFile("../../../recursos/imagenes/mostrarContrasena.png");
+                btnVerGastosCan.Image = Image.FromFile("    ");
                 btnVerGastosCan.Text = "Mostrar registros cancelados";
             }
 
