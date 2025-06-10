@@ -120,7 +120,7 @@ namespace presentacion
                 return; 
             }
 
-            if (validacionesUI.EvalCampoLimite(descripcion, 50))
+            if (validacionesUI.EvalCampoLimite(descripcion, 100))
             {
                 new Toast("error", " El campo de descripcion no puede exceder los 100 caracteres.").MostrarToast();
                 return;
